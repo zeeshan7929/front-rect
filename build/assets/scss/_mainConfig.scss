@@ -1,0 +1,358 @@
+@include media-breakpoint(basic) {
+  @font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/') format('woff2'),
+        url('../fonts/Poppins-BlackItalic.woff') format('woff');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Black.woff2') format('woff2'),
+        url('../fonts/Poppins-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Bold.woff2') format('woff2'),
+        url('../fonts/Poppins-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-BoldItalic.woff2') format('woff2'),
+        url('../fonts/Poppins-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-ExtraBold.woff2') format('woff2'),
+        url('../fonts/Poppins-ExtraBold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-ExtraLight.woff2') format('woff2'),
+        url('../fonts/Poppins-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-ExtraBoldItalic.woff2') format('woff2'),
+        url('../fonts/Poppins-ExtraBoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Italic.woff2') format('woff2'),
+        url('../fonts/Poppins-Italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-ExtraLightItalic.woff2') format('woff2'),
+        url('../fonts/Poppins-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Light.woff2') format('woff2'),
+        url('../fonts/Poppins-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-LightItalic.woff2') format('woff2'),
+        url('../fonts/Poppins-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Medium.woff2') format('woff2'),
+        url('../fonts/Poppins-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Regular.woff2') format('woff2'),
+        url('../fonts/Poppins-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-MediumItalic.woff2') format('woff2'),
+        url('../fonts/Poppins-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-SemiBold.woff2') format('woff2'),
+        url('../fonts/Poppins-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Thin.woff2') format('woff2'),
+        url('../fonts/Poppins-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-ThinItalic.woff2') format('woff2'),
+        url('../fonts/Poppins-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-SemiBoldItalic.woff2') format('woff2'),
+        url('../fonts/Poppins-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+
+
+
+
+
+  * {
+    &>* {
+      &::-webkit-scrollbar {}
+
+      &::-webkit-scrollbar-track {}
+
+      &::-webkit-scrollbar-thumb {}
+
+      &::-webkit-scrollbar-thumb:hover {}
+    }
+
+    &:hover>* {
+      &::-webkit-scrollbar-track {}
+
+      &::-webkit-scrollbar-thumb {}
+
+      &::-webkit-scrollbar-thumb:hover {}
+    }
+  }
+
+  [href*=javascript][target=_blank] {
+    pointer-events: none;
+  }
+  a.active[href],
+  a.accordion-button:not(.collapsed) {
+    pointer-events: none;
+  }
+  [data-scrollbar] {
+    & > canvas {
+      z-index: 1000;
+    }
+  }
+
+
+  body {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    outline: 0 !important;
+    display: block !important;
+    user-select: none !important;
+    font-family: 'Poppins'!important;
+
+    & input,
+    & textarea,
+    & select {
+      user-select: auto;
+    }
+
+    & .main, & main {
+      width: 100vw !important;
+      max-width: none !important;
+      height: 100% !important;
+      margin: 0 !important;
+      position: relative !important;
+      overflow: hidden !important;
+      padding: 0px !important;
+
+      &>.mainInner {
+        height: 100% !important;
+        border: 0 !important;
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        outline: 0 !important;
+        overflow: hidden !important;
+        margin: 0px !important;
+        flex-wrap: nowrap;
+        &> [data-page-name] {
+          overflow: hidden auto;
+          & > .container-fluid {
+            &.h-100 {
+              padding: 0 !important;
+            }
+          }
+        }
+      }
+    }
+
+    & .overflow-hidden-auto {
+      overflow: hidden auto !important;
+    }
+
+    & .overflow-auto-hidden {
+      overflow: auto hidden !important;
+    }
+  }
+}
+
+
+
+
+// No media query necessary for xs breakpoint as it's effectively `@media (min-width: 0) { ... }`
+@include media-breakpoint-up(sm) {
+}
+
+@include media-breakpoint-up(md) {
+  * {
+    &>* {
+      scrollbar-width: thin !important;
+      scrollbar-color: lighten($theme2, 2) !important;
+
+      &::-webkit-scrollbar {
+        width: .3em;
+        height: .3em;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+        border-radius: 50em;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba($gray-500, .0);
+        border-radius: 50em;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background: rgba($gray-400, .6);
+      }
+    }
+
+    &>* {
+      &>*:hover {
+        &::-webkit-scrollbar {
+          width: .3em;
+          height: .3em;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          background: rgba($gray-500, .1);
+          border-radius: 50em;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background: rgba($gray-400, .8);
+        }
+      }
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+
+@include media-breakpoint-down(xxl) {}
+
+@include media-breakpoint-down(xl) {}
+
+@include media-breakpoint-down(lg) {
+}
+
+@include media-breakpoint-down(md) {}
+
+@include media-breakpoint-down(sm) {}
+
+[data-bs-theme=dark] {
+  @include dark-media-breakpoint(basic) {}
+
+  // No media query necessary for xs breakpoint as it's effectively `@media (min-width: 0) { ... }`
+  @include dark-media-breakpoint-up(sm) {}
+
+  @include dark-media-breakpoint-up(md) {}
+
+  @include dark-media-breakpoint-up(lg) {}
+
+  @include dark-media-breakpoint-up(xl) {}
+
+  @include dark-media-breakpoint-up(xxl) {}
+
+
+  @include dark-media-breakpoint-down(xxl) {}
+
+  @include dark-media-breakpoint-down(xl) {}
+
+  @include dark-media-breakpoint-down(lg) {}
+
+  @include dark-media-breakpoint-down(md) {}
+
+  @include dark-media-breakpoint-down(sm) {}
+}

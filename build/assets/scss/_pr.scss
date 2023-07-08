@@ -1,0 +1,3269 @@
+@include media-breakpoint(basic) {
+    .upgradeOffcanvas {
+        & + .offcanvas-backdrop {
+            display: none !important;
+            background-color: transparent !important;
+            transition: none !important;
+            &.fade {
+                transition: opacity 0s !important;
+            }
+            &.show {
+                opacity: 0 !important;
+                display: none !important;
+                & + .modal-backdrop {
+                    display: none !important;
+                    &.show {
+                        display: none !important;
+                    }
+                }
+            }
+        }
+    }
+    .dpausagetracking  {
+        & .form-control {
+            &.formesInput {
+                padding: 6px 27px 6px 15px !important;
+            }
+        }
+    }
+    .imagetable {
+        & .rdt_TableHeader {
+            padding: 0 !important;
+        }
+    }
+    .modalMain{
+        & .modalContent{
+            border-radius: 25px;
+            & .modalBody{
+                & .modalBodyMainHeading{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 17px;
+                    & img{
+                        height: 31px;
+                    }
+                    & span{
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 24px;
+                        line-height: 36px;
+                        color: #464255;
+                        margin-left: 10px;
+                    }
+                }
+                & .para{
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 26px;
+                    color: #4A5C77;
+                    & span:first-child{
+                        font-weight: 700;
+                    }
+                    & span:last-child{
+                        font-weight: 700;
+                    }
+                }
+            }
+            & .modalFooter{
+                border-top: unset;
+                & .closeBtn{
+                    background: #E15656;
+                    border-radius: 18px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 21px;
+                    text-align: center;
+                    letter-spacing: 0.4px;
+                    border: none;
+                    height: 35px;
+                    padding: 20px 30px;
+                    & img{
+                        margin-right: 8px;
+                    }
+                }
+                & .applyBtn{
+                    background: #5BCD97;
+                    border-radius: 18px;
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    color: white;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 14px;
+                    line-height: 21px;
+                    text-align: center;
+                    letter-spacing: 0.4px;
+                    border: none;
+                    height: 35px;
+                    padding: 20px 30px;
+                    & img{
+                        margin-right: 8px;
+                    }
+                }
+            }
+        }
+    }
+    .billingCard{
+        background-color: #FDFDFD;
+        border-radius: 24px;
+        // height: 241px;
+        height: 100%;
+        padding: 28px 30px;
+        & .billingCardHeading{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 28px;
+            line-height: 48px;
+            color: #464255;
+        }
+        & .edit{
+            background: #9BB7C2;
+            border-radius: 18px; 
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & img{
+                height: 28px;
+            }
+        }
+        & .lightPlan{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 21px;
+            line-height: 32px;
+            color: #58CDFF;
+            margin-bottom: 7px;
+        }
+        & .billingBottomTxt{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 23px;
+            color: #A3A3A3;
+            margin-bottom: 7px;
+        }
+        & .close{
+            background: #838383;
+            border-radius: 18px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & img{
+
+            }
+        }
+    }
+    .tableHeading{
+        & .paymentHistory{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 24px;
+            line-height: 36px;
+            color: #464255;
+        }
+        & .searchInp{
+            height: 36px;
+            background: #FFFFFF;
+            border-radius: 18px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: #4A5C77;
+            padding-left: 20px;
+            box-shadow: none;
+            border-color: #FFFFFF;
+        }
+        & .searchIcon{
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            & img{
+                height: 15px;
+            }
+        }
+        & .formSelect{
+            background: #EAF0F8;
+            border: 1px solid #FFFFFF;
+            border-radius: 18px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 0.4px;
+            color: #464255;
+            box-shadow: none;
+        }
+        & .formselectIcon{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 15px;
+        }
+        & .uploadBtn{
+            background: #EAF0F8;
+            border: 1px solid #FFFFFF;
+            border-radius: 18px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 0.4px;
+            color: #464255;
+            padding: 0.5rem 1rem;
+            & img{
+                height: 15px;
+                margin-right: 8px;
+            }
+        }
+    }
+    .paymentTable{
+        &.table > :not(caption) > * > * {
+            background: #FDFDFD !important;
+            padding: 33px 20px;
+        }
+        &.table > tbody > tr:nth-of-type(odd) > * {
+            background-color: #FCFCFC !important;
+        }
+        & .tableHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #A3A3A3;
+            & th {
+                font-weight: 400 !important;
+                text-align: center;
+                &:first-child {
+                    border-radius: 24px 0 0 0;
+                }
+                &:last-child {
+                    border-radius: 0 24px 0 0;
+                }
+            }
+            & .Radius{
+                // border-radius: 24px 0 0 0;
+            }
+        }
+        & tbody {
+            & tr {
+                & td {
+                    text-align: center;
+                }
+                &:last-child {
+                    border-bottom: 0 !important;
+                    border-radius: 0 0 24px 24px;
+                    & td {
+                        border-bottom: 0 !important;
+                        &:first-child {
+                            border-radius: 0 0 0 24px;
+                        }
+                        &:last-child {
+                            border-radius: 0 0 24px 0;
+                        }
+                    }
+                }
+            }
+        }
+        & .Radiuss{
+            // border-radius: 0 24px 0 0;
+        }
+        & .date{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            color: #464255;
+        }
+        & .order{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 24px;
+            color: #464255;
+        }
+        & .description{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 26px;
+            color: #464255;
+        }
+        & .amount{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            color: #464255;
+        }
+        & .status{
+            & img{
+
+            }
+        }
+        & .invoice{
+            & img{
+                height: 16px;
+            }
+        }
+    }
+    .planDetail{
+        background-color: var(--color);
+        border-radius: 24px;
+        padding: 36px 50px;
+        & .planDetailMainHeading{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 48px;
+            color: #464255;
+            
+        }
+        & .planDetailSubHeading{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            color: #464255;
+        }
+        & .planDetailUl{
+            padding-left: 1em;
+            margin-bottom: 0;
+            & .planDetailLi{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 24px;
+                color: #464255;
+            }
+        }
+        & .planDetailAnchor{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 24px;
+            color: #464255;
+            text-decoration: none;
+        }
+        & .upgradeBtn{
+            background: #464255;
+            border-radius: 18px;
+            border: 0;
+            height: 40px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            letter-spacing: 0.4px;
+            color: #FFFFFF;
+            padding: 9px 24px;
+            display: flex;
+            align-items: center;
+            transition: 0.3s ease-in-out;
+            & img{
+                height: 18px;
+                margin-left: 5px;
+            }
+            &:hover {
+                background-color: darken(#464255, 5);
+            }
+        }
+    }
+    .upgradeOffcanvas{
+        width: 370px !important;
+        & .upgradeOffcanvasHeader{
+            padding: 30px 36px;
+            & .upgradeOffcanvasHeaderTitle{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 36px;
+                color: #464255;
+            }
+            & .btnClose{
+                height: 28px;
+                box-shadow: none;
+            }
+        }
+        & .upgradeOffcanvasBody{
+            padding: 0 36px;
+            & .upgradeOffcanvasBodyHead{
+                background: #F9EAEC;
+                border-radius: 14px;
+                padding: 8px 18px;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 32px;
+                line-height: 48px;
+                letter-spacing: 0.4px;
+                color: #464255;
+                display: inline-flex;
+                margin-bottom: 15px;
+            }
+            & .upgradeOffcanvasBodySubHead{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 36px;
+                color: #464255;
+                margin-bottom: 5px;
+            }
+            & .upgradebodyUl{
+                padding-left: 1em;
+                margin-bottom: 0;
+                & .upgradebodyLi{
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #464255;
+                    margin-bottom: 3px;
+                }
+            }
+        }
+        & .upgradeOffcanvasFooter{
+            padding: 20px 36px;
+            & .upgradeBtn{
+                background: #897FFF;
+                border: 0;
+                border-radius: 18px;
+                padding: 18px 32px;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 24px;
+                letter-spacing: 0.4px;
+                color: #FFFFFF;
+                transition: 0.3s ease-in-out;
+                & img{
+                    height: 28px;
+                    border: none;
+                    margin-right: 9px;
+                }
+                &:hover {
+                    background-color: darken(#897FFF, 5);
+                }
+            }
+        }
+    }
+    .billingAddressForm{
+        & .billingAddressFormHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 21px;
+            line-height: 32px;
+            color: #464255;
+            margin-bottom: 15px;
+        }
+        & .formLbl{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 18px;
+            color: #4A5C77;
+            margin-bottom: 3px;
+        }
+        & .formSelect{
+            background: #FFFFFF;
+            border: 1px solid #ECEAF3;
+            border-radius: 18px;
+            height: 62px;
+            width: 265px;
+            box-shadow: none;
+            padding: 18px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-image: url(../img/svg/selectdown.svg);
+            background-repeat: no-repeat;
+            background-position: top 50% right 20px;
+            background-size: 16px;
+            margin-bottom: 5px;
+        }
+        & .formInp{
+            background: #FFFFFF;
+            border: 1px solid #ECEAF3;
+            border-radius: 18px;
+            height: 62px;
+            box-shadow: none;
+            padding-left: 25px;
+            margin-bottom: 5px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            color: #A3A3A3;
+            &.inpWidth{
+                width: 265px;
+            }
+        }
+        & .imgParent{
+            position: absolute;
+            top: 43px;
+            right: 33px;
+            height: 62px;
+            & img{
+                height: 28px;
+                margin-left: 5px;
+            }
+        }
+    }
+    .applyBtn{
+        background: #5BCD97;
+        border-radius: 14px;
+        height: 45px;
+        padding: 10px 20px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 27px;
+        text-align: center;
+        letter-spacing: 0.4px;
+        color: #FFFFFF;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 8px;
+    }
+    .cancleBtn{
+        background: #E26F6F;
+        border-radius: 14px;
+        height: 45px;
+        padding: 10px 20px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 27px;
+        text-align: center;
+        letter-spacing: 0.4px;
+        color: #FFFFFF;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .settingTopBox{
+        background: #FDFDFD;
+        border-radius: 24px;
+        padding: 13px 38px;
+        & .settingTopBoxHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 32px;
+            line-height: 48px;
+            color: #4A5C77;
+        }
+        & .settingTopBoxSubHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            // font-weight: 700;
+            font-size: 16px;
+            line-height: 24px;
+            color: #464255;
+            & span{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                color: #464255;
+            }
+        }
+        & .moreDetail{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #464255;
+        }
+    }
+    .updateBox{
+        padding: 25px 56px;
+        background: #FDFDFD;
+        border-radius: 24px;
+        & .updateBoxHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 33px;
+            color: #464255;
+            margin-bottom: 10px;
+        }
+        & .updateBoxSubHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #A3A3A3;
+            margin-bottom: 15px;
+        }
+        & .updateInp{
+            background: #E0E0E0;
+            border: 1px solid #E0E0E0;
+            border-radius: 18px;
+            padding: 18px 24px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            box-shadow: none;
+            color: #A3A3A3;
+        }
+        & .settingSelectTop{
+            & .settingSelectTopTxt{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 18px;
+                color: #A3A3A3;
+            }
+            & .SelectInp{
+                background: #F5F6FA;
+                border-color: #F5F6FA;
+                border: none;
+                border-radius: 18px;
+                padding: 10px 20px;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 10px;
+                line-height: 15px;
+                color: #4A5C77;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &:focus-visible{
+                    outline: unset;
+                }
+            }
+            & .searchImg{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 10px;
+                & img{
+
+                }
+            }
+        }
+        & .updateSelect{
+            width: 100%;
+            background: rgba(234, 240, 248, 0.44);
+            border: 1px solid #E0E0E0;
+            border-radius: 18px;
+            height: 60px;
+            box-shadow: none;
+            background-image: url(../img/svg/selectdown.svg);
+            background-position: top 50% right 15px;
+            background-repeat: no-repeat;
+        }
+        & .updateBtn{
+            background: #5BCD97;
+            border-radius: 18px;
+            height: 36px;
+            border: none;font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            letter-spacing: 0.4px;
+            color: #FFFFFF;
+            padding: 10px 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+    }
+    .companyInfoForm{
+        background: #FDFDFD;
+        border-radius: 24px;
+        padding: 24px 75px 30px 55px;
+        & .companyInfoFormHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 33px;
+            color: #464255;
+            margin-bottom: 5px;
+        }
+        & .companyInfoFormSubHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #A3A3A3;
+            margin-bottom: 30px;
+        }
+        & .companyImg{
+            height: 56px;
+            margin-bottom: 31px;
+            & img{
+                
+            }
+            & .changeCompanyIcon {
+                position: absolute;
+                bottom: 10px;
+                cursor: pointer;
+                & img {
+                    height: 25px;
+                }
+            }
+        }
+        & .companyInfoFormLbl{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #464255;
+            display: block;
+            margin-bottom: 5px;
+        }
+        & .companyInfoFormInp{
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 18px;
+            height: 62px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            color: #A3A3A3;
+            width: 100%;
+            box-shadow: none;
+            margin-bottom: 22px;
+            padding-left: 24px;
+            &::placeholder {
+                color: #A3A3A3;
+            }
+        }
+        & .updateSelect{
+            width: 100%;
+            background: rgba(234, 240, 248, 0.44);
+            border: 1px solid #E0E0E0;
+            border-radius: 18px;
+            height: 60px;
+            box-shadow: none;
+            background-image: url(../img/svg/selectdown.svg);
+            background-position: top 50% right 15px;
+            background-repeat: no-repeat;
+            padding-left: 24px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            margin-bottom: 24px;
+        }
+        & .updateBtn{
+            background: #5BCD97;
+            border-radius: 18px;
+            height: 36px;
+            border: none;font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            text-align: center;
+            letter-spacing: 0.4px;
+            color: #FFFFFF;
+            padding: 10px 26px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+    }
+    .trainedDataBox{
+        background: #FFFFFF;
+        border-radius: 24px;
+        padding: 10px 25px;
+        & .trainedDataBoxHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 24px;
+            line-height: 36px;
+            color: #464255;
+            & img{
+                height: 30px;
+            }
+        }
+        & .progressBarTxt{
+            & .percent{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 26px;
+                color: #9BB7C2;
+                margin-right: 2px;
+            }
+            & span{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 26px;
+                color: #838383;
+            }
+        }
+        & .progressBarTxt1{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 26px;
+            text-align: right;
+            color: #838383;
+        }
+        & .progressBar{
+            border-radius: 16px;
+            height: 8px;
+            & .progressBar1{
+                background: #9BB7C2 !important;
+            }
+        }
+        & .progressBottomTxt{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 26px;
+            color: #838383;
+            margin-top: 5px;
+            & span{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 20px;
+                line-height: 26px;
+                text-align: right;
+                color: #9BB7C2
+            }
+        }
+    }
+    .alldpaTable{
+        width: 100%;
+        & .alldpaTableHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 33px;
+            color: #464255;
+        }
+        & .btnnn{
+            background: #5BCD97;
+            border-radius: 18px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.4px;
+            color: #FFFFFF;
+            border: none;
+            margin-left: 15px;
+            padding: 6px 10px;
+            height: 29px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        & .INP{
+            background: #FFFFFF;
+            border-radius: 18px;
+            height: 30px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: #4A5C77;
+            border: none;
+            box-shadow: none;
+            padding-left: 15px;
+            &:focus-visible{
+                outline: unset;
+            }
+        }
+        & .parent{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 20px;
+            padding: 10px 10px;
+            & img{
+
+            }
+        }
+    }
+    .tableImg{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        & img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .createHeroSection{
+        background: rgba(253, 253, 253, 0.36);
+        border-radius: 24px;
+        padding: 25px 53px;
+        & .creteHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 33px;
+            color: #464255;
+        }
+        & .creteSubHead{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 20px;
+            color: #A3A3A3;
+            margin-bottom: 18px;
+        }
+        & .createInp{
+            background: #FFFFFF;
+            border: 1px solid #E0E0E0;
+            border-radius: 18px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            color: #A3A3A3 !important;
+            box-shadow: none;
+            height: 62px;
+            padding-left: 24px;
+        }
+        & .createSpan{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            color: #A3A3A3;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 35px;
+        }
+        & .createSelectTxt{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #A3A3A3;
+        }
+        & .createSelectBox{
+            background: rgba(234, 240, 248, 0.44);
+            border: 1px solid #E0E0E0;
+            border-radius: 18px;
+            height: 60px;
+            box-shadow: none;
+            padding-left: 24px;
+            background-image: url(../img/svg/down.svg);
+            background-repeat: no-repeat;
+            background-position: top 50% right 20px;
+        }
+        & .selectColour{
+            background-color: var(--color);
+            border-radius: 64px;
+            width: 34px;
+            height: 34px;
+            display: block;
+        }
+        & .uploadSection{
+            background: rgba(174, 199, 232, 0.13);
+            border-radius: 24px;
+            padding: 11px 21px;
+            & .uploadSectionHead{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 20px;
+                text-align: justify;
+                color: #515151;
+            }
+            & .para{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 20px;
+                color: #515151;
+            }
+            input[type="checkbox"] {
+                position: relative;
+                width: 60px;
+                height: 30px;
+                -webkit-appearance: none;
+                appearance: none;
+                background: red;
+                outline: none;
+                border-radius: 2rem;
+                cursor: pointer;
+                // box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+            }
+            input[type="checkbox"]::before {
+                content: "";
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                background: #fff;
+                position: absolute;
+                top: 0;
+                left: 0;
+                transition: 0.5s;
+            }
+            input[type="checkbox"]:checked::before {
+                transform: translateX(100%);
+                background: #fff;
+            }
+            input[type="checkbox"]:checked {
+                background: #AAF298;
+            }
+        }
+        & .asignUsers{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #A3A3A3;
+            margin-bottom: 7px;
+        }
+        & .asignUsersBtn{
+            background-color: rgba(74, 92, 119, 0.6);
+            border: 2px solid #E8EAEE;
+            border-radius: 4px;
+            height: 36px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 16px;
+            color: #FFFFFF;
+            padding: 8px 12px;
+        }
+        & .circlePlus{
+            background-color: transparent;
+            border: none;
+        }
+        & .search{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        & .cardBody{
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 15px 16px;
+            & .formInp{
+                border-radius: 20px;
+                background-color: #F2F4F8;
+                box-shadow: none;
+                border-color: #F2F4F8;
+                padding-left: 50px;
+            }
+            & .search{
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 30px;
+            }
+            & .data{
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                & img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            & .spann{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 26px;
+                color: #000000;
+            }
+            & .assignBtn{
+                background: #5BCD97;
+                border-radius: 18px;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 21px;
+                letter-spacing: 0.4px;
+                color: #FFFFFF;
+                border: none;
+                padding: 4px 15px;
+            }
+        }
+        & .cancleBtn{
+            background: rgba(225, 86, 86, 0.81);
+            border-radius: 18px;
+            height: 60px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.4px;
+            color: #FFFFFF;
+            border: none;
+        }
+        & .closeBtn{
+            background:  #5BCD97;
+            border-radius: 18px;
+            height: 60px;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: 0.4px;
+            color: #FFFFFF;
+            border: none;
+            padding: 18px 26px;
+        }
+    }
+    .backBtn{
+        background: #90A0B8;
+        border-radius: 18px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        letter-spacing: 0.4px;
+        color: #FFFFFF;
+        border: none;
+        padding: 7px 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & img{
+            height: 12px;
+            margin-right: 10px;
+        }
+    }
+    .relationBar{
+        background: #FDFDFD;
+        border-radius: 24px;
+        padding: 9px 24px;
+        & .relationBarLeft{
+            & span:first-child{
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                background-color: #E7EBB8;
+                display: block;
+            }
+            & span:last-child{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 32px;
+                line-height: 48px;
+                color: #4A5C77;
+                display: flex;
+                flex-wrap: nowrap;
+            }
+        }
+        & .relationBarright{
+            & .relationBarrightBtn{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 14px;
+                line-height: 21px;
+                letter-spacing: 0.4px;
+                color: #FFFFFF;
+                background: #E7EBB8;
+                border-radius: 18px;
+                border: none;
+                padding: 9px 25px;
+                display: flex;
+                align-items: center;
+                & img{
+                    height: 24px;
+                    filter: brightness(6);
+                    margin-right: 5px;
+                }
+            }
+        }
+    }
+    .dashboardCard{
+        background-color: var(--color);
+        border-radius: 24px;
+        width: 100%;
+        height: 100%;
+        padding: 22px 22px;
+        & .dashboardNumber{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 48px;
+            color: #FFFFFF;
+        }
+        & .dashboardIcon{
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            background-color:#FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & img{
+                width: 25px;
+                height: 25px;
+            }
+        }
+        & .dashboardCardText{
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 26px;
+            color: #FFFFFF;
+            margin-top: 5px;
+            & span {
+                font-weight: 600;
+            }
+        }
+    }
+    .pill{
+        background: var(--color);
+        border-radius: 20px;
+        height: 60px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 20px;
+        text-align: center;
+        color: #FFFFFF;
+        padding: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        & img{
+            margin-right: 5px;
+        }
+    }
+    .inP{
+        background: #FFFFFF;
+        border-radius: 18px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 21px;
+        color: #4A5C77;
+        border-color: #FFFFFF;
+        height: 46px;
+        padding: 10px 11px;
+        padding-left: 10px;
+        width: 330px;
+        &:focus{
+        border-color: #FFFFFF;
+        }
+    }
+    .parent{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 24px;
+        & img{
+
+        }
+    }
+    .resetBtn{
+        background: #FFFFFF;
+        border: 1px solid #9291A5;
+        border-radius: 8px;
+        font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 21px;
+        text-align: right;
+        color: #615E83;
+        padding: 12px 16px;
+    }
+    .dpaDatabase{
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        & img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .trainedDataBox {
+        & .progressBar {
+            background: #C5C5C5;
+            & .progress {
+                height: 8px;
+                & .progressBar1 {
+                    background: #E7EBB8 !important;
+                }
+                & .progressBar2 {
+                    background: #9BB7C2;
+                }
+            }
+        }
+    }
+    
+    .plusDropdown {
+        & .eventBtn {
+            height: 30px;
+            width: 30px;
+        }
+        & .dropdown-menu {
+            filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+            background: #FFFFFF;
+            border-radius: 20px;
+            min-width: 320px;
+            & .innerbody {
+                & .searchgroup {
+                    & .input-group {
+                        & .input-group-text , & .form-control {
+                            background: #F2F4F8;
+                            color: #000000;
+                            height: 42px;
+                            font-size: 16px;
+                            line-height: 26px;
+                            & img {
+                                fill: #000;
+                                height: 25px;
+                            }
+                        }
+                    }
+                }
+                & .userGroup {
+                    & .usersInfo {
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 26px;
+                        color: #000000;
+                        & .userImg {
+                            width: 35px;
+                            height: 35px;
+                        }
+                    }
+                    & .assignBtn {
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 21px;
+                        letter-spacing: 0.4px;
+                        background: #5BCD97;
+                        height: 26px;
+                    }
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+@media (max-width :1599px){
+    .billingCard{
+        & .billingCardHeading{
+            font-size: 26px;
+        }
+        & .edit{
+            width: 56px;
+            height: 56px;
+            & img{
+            }
+        }
+        & .lightPlan{
+        }
+        & .billingBottomTxt{
+        }
+        & .close{
+            width: 56px;
+            height: 56px;
+            & img{
+
+            }
+        }
+    }
+    .tableHeading{
+        & .paymentHistory{
+        }
+        & .searchInp{
+        }
+        & .searchIcon{
+            & img{
+            }
+        }
+        & .formSelect{
+        }
+        & .formselectIcon{
+        }
+        & .uploadBtn{
+            & img{
+            }
+        }
+    }
+    .paymentTable{
+        &.table > :not(caption) > * > * {
+            padding: 26px 19px;
+        }
+        &.table > tbody > tr:nth-of-type(odd) > * {
+        }
+        & .tableHead{
+            & .Radius{
+            }
+        }
+        & .Radiuss{
+        }
+        & .date{
+        }
+        & .order{
+        }
+        & .description{
+        }
+        & .amount{
+        }
+        & .status{
+            & img{
+
+            }
+        }
+        & .invoice{
+            & img{
+            }
+        }
+    }
+    .planDetail{
+        & .planDetailMainHeading{
+        }
+        & .planDetailSubHeading{
+        }
+        & .planDetailUl{
+            & .planDetailLi{
+            }
+        }
+        & .planDetailAnchor{
+        }
+        & .upgradeBtn{
+            & img{
+            }
+        }
+    }
+    .upgradeOffcanvas{
+        & .upgradeOffcanvasHeader{
+            & .upgradeOffcanvasHeaderTitle{
+            }
+            & .btnClose{
+            }
+        }
+        & .upgradeOffcanvasBody{
+            & .upgradeOffcanvasBodyHead{
+            }
+            & .upgradeOffcanvasBodySubHead{
+            }
+            & .upgradebodyUl{
+                & .upgradebodyLi{
+                }
+            }
+        }
+        & .upgradeOffcanvasFooter{
+            & .upgradeBtn{
+                & img{
+                }
+            }
+        }
+    }
+    .formPadding{
+        &.formPadding1{
+            padding: 0 50px 0 80px;
+        }
+        .billingAddressForm{
+    
+            & .billingAddressFormHead{
+            }
+            & .formLbl{
+            }
+            & .formSelect{
+            }
+            & .formInp{
+                &.inpWidth{
+                }
+            }
+            & .imgParent{
+                & img{
+                }
+            }
+        }
+    }
+    .applyBtn{
+    }
+    .cancleBtn{
+    }
+    .createHeroSection{
+        & .creteHead{
+        }
+        & .creteSubHead{
+        }
+        & .createInp{
+        }
+        & .createSpan{
+        }
+        & .createSelectTxt{
+        }
+        & .createSelectBox{
+        }
+        & .selectColour{
+        }
+        & .uploadSection{
+            & .uploadSectionHead{
+            }
+            & .para{
+            }
+            input[type="checkbox"] {
+            }
+            input[type="checkbox"]::before {
+            }
+            input[type="checkbox"]:checked::before {
+            }
+            input[type="checkbox"]:checked {
+            }
+        }
+        & .asignUsers{
+        }
+        & .asignUsersBtn{
+        }
+        & .circlePlus{
+        }
+        & .search{
+        }
+        & .cardBody{
+            & .formInp{
+            }
+            & .search{
+            }
+            & .data{
+                & img{
+                }
+            }
+            & .spann{
+            }
+            & .assignBtn{
+            }
+        }
+        & .cancleBtn{
+        }
+        & .closeBtn{
+        }
+    }
+    
+    .trainedDataBox{
+        & .trainedDataBoxHead{
+            font-size: 22px;
+            & img{
+                height: 28px;
+            }
+        }
+        & .progressBarTxt{
+            & .percent{
+                font-size: 14px;
+            }
+            & span{
+                font-size: 14px;
+            }
+        }
+        & .progressBarTxt1{
+            font-size: 14px;
+        }
+        & .progressBar{
+            & .progressBar1{
+            }
+        }
+        & .progressBottomTxt{
+            font-size: 18px;
+            & span{
+            }
+        }
+    }
+    .alldpaTable .btnnn {
+        font-size: 14px;
+    }
+    .relationBar{
+        & .relationBarLeft{
+            & span:first-child{
+                width: 36px;
+                height: 36px;
+            }
+            & span:last-child{
+                font-size: 26px;
+            }
+        }
+        & .relationBarright{
+            & .relationBarrightBtn{
+                & img{
+                }
+            }
+        }
+    }
+    
+    .dashboardCard{
+        & .dashboardNumber{
+        }
+        & .dashboardIcon{
+            & img{
+            }
+        }
+        & .dashboardCardText{
+            & span {
+            }
+        }
+    }
+    .pill{
+        font-size: 14px;
+        height: 57px;
+        & img{
+        }
+    }
+    .inP{
+        width: 235px;
+        font-size: 13px;
+    }
+    .parent{
+        & img{
+
+        }
+    }
+    .resetBtn{
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    .dpaDatabase{
+        & img{
+        }
+    }
+    .trainedDataBox {
+        & .progressBar {
+            & .progress {
+                & .progressBar1 {
+                }
+                & .progressBar2 {
+                }
+            }
+        }
+    }
+    
+    .plusDropdown {
+        & .eventBtn {
+            height: 25px;
+            width: 25px;
+        }
+        & .dropdown-menu {
+            & .innerbody {
+                & .searchgroup {
+                    & .input-group {
+                        & .input-group-text , & .form-control {
+                            height: 35px;
+                            font-size: 13px;
+                            & img {
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+                & .userGroup {
+                    & .usersInfo {
+                        font-size: 14px;
+                        & .userImg {
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
+                    & .assignBtn {
+                        height: 21px;
+                    }
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-down(xxl) {
+    .billingCard{
+        padding: 20px 30px;
+        & .billingCardHeading{
+            font-size: 26px;
+        }
+        & .edit{
+            width: 48px;
+            height: 48px;
+            & img{
+            }
+        }
+        & .lightPlan{
+        }
+        & .billingBottomTxt{
+            margin-bottom: 0;
+        }
+        & .close{
+            width: 48px;
+            height: 48px;
+            & img{
+
+            }
+        }
+    }
+    .tableHeading{
+        & .paymentHistory{
+        }
+        & .searchInp{
+        }
+        & .searchIcon{
+            & img{
+            }
+        }
+        & .formSelect{
+        }
+        & .formselectIcon{
+        }
+        & .uploadBtn{
+            & img{
+            }
+        }
+    }
+    .paymentTable{
+        &.table > :not(caption) > * > * {
+        }
+        &.table > tbody > tr:nth-of-type(odd) > * {
+        }
+        & .tableHead{
+            & .Radius{
+            }
+        }
+        & .Radiuss{
+        }
+        & .date{
+        }
+        & .order{
+        }
+        & .description{
+        }
+        & .amount{
+        }
+        & .status{
+            & img{
+
+            }
+        }
+        & .invoice{
+            & img{
+            }
+        }
+    }
+    .planDetail{
+        & .planDetailMainHeading{
+        }
+        & .planDetailSubHeading{
+        }
+        & .planDetailUl{
+            & .planDetailLi{
+            }
+        }
+        & .planDetailAnchor{
+        }
+        & .upgradeBtn{
+            & img{
+            }
+        }
+    }
+    .upgradeOffcanvas{
+        & .upgradeOffcanvasHeader{
+            & .upgradeOffcanvasHeaderTitle{
+            }
+            & .btnClose{
+            }
+        }
+        & .upgradeOffcanvasBody{
+            & .upgradeOffcanvasBodyHead{
+            }
+            & .upgradeOffcanvasBodySubHead{
+            }
+            & .upgradebodyUl{
+                & .upgradebodyLi{
+                }
+            }
+        }
+        & .upgradeOffcanvasFooter{
+            & .upgradeBtn{
+                & img{
+                }
+            }
+        }
+    }
+    .formPadding{
+        &.formPadding1{
+            padding: 0 50px 0 0;
+        }
+        .billingAddressForm{
+    
+            & .billingAddressFormHead{
+            }
+            & .formLbl{
+            }
+            & .formSelect{
+            }
+            & .formInp{
+                &.inpWidth{
+                }
+            }
+            & .imgParent{
+                & img{
+                    height: 20px;
+                }
+            }
+        }
+    }
+    .applyBtn{
+    }
+    .cancleBtn{
+    }
+    .createHeroSection{
+        & .creteHead{
+        }
+        & .creteSubHead{
+        }
+        & .createInp{
+        }
+        & .createSpan{
+        }
+        & .createSelectTxt{
+        }
+        & .createSelectBox{
+        }
+        & .selectColour{
+        }
+        & .uploadSection{
+            & .uploadSectionHead{
+            }
+            & .para{
+            }
+            input[type="checkbox"] {
+            }
+            input[type="checkbox"]::before {
+            }
+            input[type="checkbox"]:checked::before {
+            }
+            input[type="checkbox"]:checked {
+            }
+        }
+        & .asignUsers{
+        }
+        & .asignUsersBtn{
+        }
+        & .circlePlus{
+        }
+        & .search{
+        }
+        & .cardBody{
+            & .formInp{
+            }
+            & .search{
+            }
+            & .data{
+                & img{
+                }
+            }
+            & .spann{
+            }
+            & .assignBtn{
+            }
+        }
+        & .cancleBtn{
+        }
+        & .closeBtn{
+        }
+    }
+    
+    .relationBar{
+        & .relationBarLeft{
+            & span:first-child{
+            }
+            & span:last-child{
+            }
+        }
+        & .relationBarright{
+            & .relationBarrightBtn{
+                & img{
+                }
+            }
+        }
+    }
+    
+    .dashboardCard{
+        & .dashboardNumber{
+        }
+        & .dashboardIcon{
+            & img{
+            }
+        }
+        & .dashboardCardText{
+            & span {
+            }
+        }
+    }
+    .pill{
+        & img{
+        }
+    }
+    .inP{
+        width: 100%;
+    }
+    .parent{
+        & img{
+
+        }
+    }
+    .resetBtn{
+    }
+    .dpaDatabase{
+        & img{
+        }
+    }
+    .trainedDataBox {
+        & .progressBar {
+            & .progress {
+                & .progressBar1 {
+                }
+                & .progressBar2 {
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    .billingCard{
+        & .billingCardHeading{
+            font-size: 21px;
+        }
+        & .edit{
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            & img{
+                height: 15px;
+            }
+        }
+        & .lightPlan{
+        }
+        & .billingBottomTxt{
+        }
+        & .close{
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            & img{
+                height: 15px;
+            }
+        }
+    }
+    .tableHeading{
+        & .paymentHistory{
+            font-size: 19px;
+        }
+        & .searchInp{
+        }
+        & .searchIcon{
+            & img{
+            }
+        }
+        & .formSelect{
+        }
+        & .formselectIcon{
+        }
+        & .uploadBtn{
+            & img{
+            }
+        }
+    }
+    .paymentTable{
+        &.table > :not(caption) > * > * {
+        }
+        &.table > tbody > tr:nth-of-type(odd) > * {
+        }
+        & .tableHead{
+            & .Radius{
+            }
+        }
+        & .Radiuss{
+        }
+        & .date{
+        }
+        & .order{
+        }
+        & .description{
+        }
+        & .amount{
+        }
+        & .status{
+            & img{
+
+            }
+        }
+        & .invoice{
+            & img{
+            }
+        }
+    }
+    .planDetail{
+        & .planDetailMainHeading{
+        }
+        & .planDetailSubHeading{
+        }
+        & .planDetailUl{
+            & .planDetailLi{
+            }
+        }
+        & .planDetailAnchor{
+        }
+        & .upgradeBtn{
+            & img{
+            }
+        }
+    }
+    .upgradeOffcanvas{
+        & .upgradeOffcanvasHeader{
+            padding: 25px 36px;
+            & .upgradeOffcanvasHeaderTitle{
+                font-size: 22px;
+            }
+            & .btnClose{
+            }
+        }
+        & .upgradeOffcanvasBody{
+            & .upgradeOffcanvasBodyHead{
+                font-size: 28px;
+                line-height: 40px;
+            }
+            & .upgradeOffcanvasBodySubHead{
+                font-size: 22px;
+            }
+            & .upgradebodyUl{
+                & .upgradebodyLi{
+                    font-size: 14px;
+                }
+            }
+        }
+        & .upgradeOffcanvasFooter{
+            & .upgradeBtn{
+                padding: 16px 28px;
+                font-size: 14px;
+                & img{
+                    height: 22px;
+                }
+            }
+        }
+    }
+    .formPadding{
+        &.formPadding1{
+            padding: 0 0 0 12px;
+        }
+        .billingAddressForm{
+    
+            & .billingAddressFormHead{
+            }
+            & .formLbl{
+            }
+            & .formSelect{
+                width: 100%;
+            }
+            & .formInp{
+                width: 100%;
+                &.inpWidth{
+                }
+            }
+            & .imgParent{
+                & img{
+                }
+            }
+        }
+    }
+    .applyBtn{
+        font-size: 15px;
+    }
+    .cancleBtn{
+        font-size: 15px;
+    }
+    .createHeroSection{
+        & .creteHead{
+        }
+        & .creteSubHead{
+        }
+        & .createInp{
+        }
+        & .createSpan{
+        }
+        & .createSelectTxt{
+        }
+        & .createSelectBox{
+        }
+        & .selectColour{
+        }
+        & .uploadSection{
+            & .uploadSectionHead{
+            }
+            & .para{
+            }
+            input[type="checkbox"] {
+            }
+            input[type="checkbox"]::before {
+            }
+            input[type="checkbox"]:checked::before {
+            }
+            input[type="checkbox"]:checked {
+            }
+        }
+        & .asignUsers{
+        }
+        & .asignUsersBtn{
+        }
+        & .circlePlus{
+        }
+        & .search{
+        }
+        & .cardBody{
+            & .formInp{
+            }
+            & .search{
+            }
+            & .data{
+                & img{
+                }
+            }
+            & .spann{
+            }
+            & .assignBtn{
+            }
+        }
+        & .cancleBtn{
+        }
+        & .closeBtn{
+        }
+    }
+    
+    .plusDropdown {
+        & .eventBtn {
+            height: 25px;
+            width: 25px;
+        }
+        & .dropdown-menu {
+            & .innerbody {
+                & .searchgroup {
+                    & .input-group {
+                        & .input-group-text , & .form-control {
+                            height: 35px;
+                            font-size: 13px;
+                            & img {
+                                height: 20px;
+                            }
+                        }
+                    }
+                }
+                & .userGroup {
+                    & .usersInfo {
+                        font-size: 14px;
+                        & .userImg {
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
+                    & .assignBtn {
+                        height: 21px;
+                    }
+                }
+            }
+        }
+    }
+    .relationBar{
+        & .relationBarLeft{
+            & span:first-child{
+                width: 34px;
+                height: 34px;
+            }
+            & span:last-child{
+                font-size: 24px;
+            }
+        }
+        & .relationBarright{
+            & .relationBarrightBtn{
+                font-size: 12px;
+                & img{
+                }
+            }
+        }
+    }
+    
+    .dashboardCard{
+        & .dashboardNumber{
+        }
+        & .dashboardIcon{
+            & img{
+            }
+        }
+        & .dashboardCardText{
+            & span {
+            }
+        }
+    }
+    .pill{
+        & img{
+        }
+    }
+    .inP{
+    }
+    .parent{
+        & img{
+
+        }
+    }
+    .resetBtn{
+    }
+    .dpaDatabase{
+        & img{
+        }
+    }
+    .trainedDataBox {
+        & .progressBar {
+            & .progress {
+                & .progressBar1 {
+                }
+                & .progressBar2 {
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .billingCard{
+        & .billingCardHeading{
+        }
+        & .edit{
+            & img{
+            }
+        }
+        & .lightPlan{
+        }
+        & .billingBottomTxt{
+        }
+        & .close{
+            & img{
+
+            }
+        }
+    }
+    .tableHeading{
+        & .paymentHistory{
+        }
+        & .searchInp{
+        }
+        & .searchIcon{
+            & img{
+            }
+        }
+        & .formSelect{
+        }
+        & .formselectIcon{
+        }
+        & .uploadBtn{
+            & img{
+            }
+        }
+    }
+    .paymentTable{
+        &.table > :not(caption) > * > * {
+        }
+        &.table > tbody > tr:nth-of-type(odd) > * {
+        }
+        & .tableHead{
+            & .Radius{
+            }
+        }
+        & .Radiuss{
+        }
+        & .date{
+        }
+        & .order{
+        }
+        & .description{
+        }
+        & .amount{
+        }
+        & .status{
+            & img{
+
+            }
+        }
+        & .invoice{
+            & img{
+            }
+        }
+    }
+    .planDetail{
+        & .planDetailMainHeading{
+        }
+        & .planDetailSubHeading{
+        }
+        & .planDetailUl{
+            & .planDetailLi{
+            }
+        }
+        & .planDetailAnchor{
+        }
+        & .upgradeBtn{
+            & img{
+            }
+        }
+    }
+    .upgradeOffcanvas{
+        & .upgradeOffcanvasHeader{
+            & .upgradeOffcanvasHeaderTitle{
+                font-size: 22px;
+            }
+            & .btnClose{
+            }
+        }
+        & .upgradeOffcanvasBody{
+            & .upgradeOffcanvasBodyHead{
+            }
+            & .upgradeOffcanvasBodySubHead{
+            }
+            & .upgradebodyUl{
+                & .upgradebodyLi{
+                }
+            }
+        }
+        & .upgradeOffcanvasFooter{
+            & .upgradeBtn{
+                & img{
+                }
+            }
+        }
+    }
+    .formPadding{
+        &.formPadding1{
+
+        }
+        .billingAddressForm{
+            & .billingAddressFormHead{
+            }
+            & .formLbl{
+            }
+            & .formSelect{
+            }
+            & .formInp{
+                &.inpWidth{
+                }
+            }
+            & .imgParent{
+                & img{
+                }
+            }
+        }
+    }
+    .applyBtn{
+        font-size: 15px;
+    }
+    .cancleBtn{
+        font-size: 15px;
+    }
+    .createHeroSection{
+        & .creteHead{
+        }
+        & .creteSubHead{
+        }
+        & .createInp{
+        }
+        & .createSpan{
+        }
+        & .createSelectTxt{
+        }
+        & .createSelectBox{
+        }
+        & .selectColour{
+        }
+        & .uploadSection{
+            & .uploadSectionHead{
+            }
+            & .para{
+            }
+            input[type="checkbox"] {
+            }
+            input[type="checkbox"]::before {
+            }
+            input[type="checkbox"]:checked::before {
+            }
+            input[type="checkbox"]:checked {
+            }
+        }
+        & .asignUsers{
+        }
+        & .asignUsersBtn{
+        }
+        & .circlePlus{
+        }
+        & .search{
+        }
+        & .cardBody{
+            & .formInp{
+            }
+            & .search{
+            }
+            & .data{
+                & img{
+                }
+            }
+            & .spann{
+            }
+            & .assignBtn{
+            }
+        }
+        & .cancleBtn{
+        }
+        & .closeBtn{
+        }
+    }
+    .relationBar{
+        & .relationBarLeft{
+            & span:first-child{
+            }
+            & span:last-child{
+            }
+        }
+        & .relationBarright{
+            & .relationBarrightBtn{
+                & img{
+                }
+            }
+        }
+    }
+    
+    .dashboardCard{
+        & .dashboardNumber{
+        }
+        & .dashboardIcon{
+            & img{
+            }
+        }
+        & .dashboardCardText{
+            & span {
+            }
+        }
+    }
+    .pill{
+        & img{
+        }
+    }
+    .inP{
+    }
+    .parent{
+        & img{
+
+        }
+    }
+    .resetBtn{
+    }
+    .dpaDatabase{
+        & img{
+        }
+    }
+    .trainedDataBox {
+        & .progressBar {
+            & .progress {
+                & .progressBar1 {
+                }
+                & .progressBar2 {
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .billingCard{
+        padding: 15px 18px;
+        & .billingCardHeading{
+            font-size: 16px;
+        }
+        & .edit{
+            width: 32px;
+            height: 32px;
+            & img{
+                height: 16px;
+            }
+        }
+        & .lightPlan{
+            font-size: 16px;
+        }
+        & .billingBottomTxt{
+            font-size: 13px;
+        }
+        & .close{
+            width: 32px;
+            height: 32px;
+            & img{
+                height: 12px;
+            }
+        }
+    }
+    .tableHeading{
+        & .paymentHistory{
+            margin-bottom: 10px;
+        }
+        & .searchInp{
+            width: 100%;
+        }
+        & .searchIcon{
+            & img{
+            }
+        }
+        & .formSelect{
+            width: 100%;
+        }
+        & .formselectIcon{
+        }
+        & .uploadBtn{
+            width: 100%;
+            & img{
+            }
+        }
+    }
+    .paymentTable{
+        &.table > :not(caption) > * > * {
+            padding: 20px;
+        }
+        &.table > tbody > tr:nth-of-type(odd) > * {
+        }
+        & .tableHead{
+            font-size: 12px;
+            & .Radius{
+            }
+        }
+        & .Radiuss{
+        }
+        & .date{
+            font-size: 12px;
+        }
+        & .order{
+            font-size: 12px;
+        }
+        & .description{
+            font-size: 12px;
+        }
+        & .amount{
+            font-size: 12px;
+        }
+        & .status{
+            & img{
+                height: 16px;
+            }
+        }
+        & .invoice{
+            & img{
+            }
+        }
+    }
+    .planDetail{
+        & .planDetailMainHeading{
+        }
+        & .planDetailSubHeading{
+        }
+        & .planDetailUl{
+            & .planDetailLi{
+            }
+        }
+        & .planDetailAnchor{
+        }
+        & .upgradeBtn{
+            & img{
+            }
+        }
+    }
+    .upgradeOffcanvas{
+        & .upgradeOffcanvasHeader{
+            & .upgradeOffcanvasHeaderTitle{
+            }
+            & .btnClose{
+            }
+        }
+        & .upgradeOffcanvasBody{
+            & .upgradeOffcanvasBodyHead{
+            }
+            & .upgradeOffcanvasBodySubHead{
+            }
+            & .upgradebodyUl{
+                & .upgradebodyLi{
+                }
+            }
+        }
+        & .upgradeOffcanvasFooter{
+            & .upgradeBtn{
+                & img{
+                }
+            }
+        }
+    }
+    .formPadding{
+        &.formPadding{
+
+        }
+        .billingAddressForm{
+            & .billingAddressFormHead{
+            }
+            & .formLbl{
+            }
+            & .formSelect{
+            }
+            & .formInp{
+                &.inpWidth{
+                }
+            }
+            & .imgParent{
+                & img{
+                }
+            }
+        }
+    }
+    .applyBtn{
+        font-size: 14px;
+    }
+    .cancleBtn{
+        font-size: 14px;
+    }
+    .trainedDataBox{
+        & .trainedDataBoxHead{
+            & img{
+            }
+        }
+        & .progressBarTxt{
+            & .percent{
+            }
+            & span{
+            }
+        }
+        & .progressBarTxt1{
+        }
+        & .progressBar{
+            & .progressBar1{
+            }
+        }
+        & .progressBottomTxt{
+            & span{
+            }
+        }
+    }
+    .alldpaTable{
+        & .alldpaTableHead{
+        }
+        & .btnnn{
+        }
+        & .INP{
+            &:focus-visible{
+            }
+        }
+        & .parent{
+            & img{
+
+            }
+        }
+    }
+    .tableImg{
+        & img{
+        }
+    }
+    .createHeroSection{
+        padding: 25px 82px;
+        & .creteHead{
+        }
+        & .creteSubHead{
+        }
+        & .createInp{
+        }
+        & .createSpan{
+        }
+        & .createSelectTxt{
+        }
+        & .createSelectBox{
+        }
+        & .selectColour{
+        }
+        & .uploadSection{
+            & .uploadSectionHead{
+            }
+            & .para{
+            }
+            input[type="checkbox"] {
+            }
+            input[type="checkbox"]::before {
+            }
+            input[type="checkbox"]:checked::before {
+            }
+            input[type="checkbox"]:checked {
+            }
+        }
+        & .asignUsers{
+        }
+        & .asignUsersBtn{
+        }
+        & .circlePlus{
+        }
+        & .search{
+        }
+        & .cardBody{
+            & .formInp{
+            }
+            & .search{
+            }
+            & .data{
+                & img{
+                }
+            }
+            & .spann{
+            }
+            & .assignBtn{
+            }
+        }
+        & .cancleBtn{
+        }
+        & .closeBtn{
+        }
+    }
+    .relationBar{
+        & .relationBarLeft{
+            & span:first-child{
+            }
+            & span:last-child{
+                font-size: 20px;
+            }
+        }
+        & .relationBarright{
+            & .relationBarrightBtn{
+                & img{
+                }
+            }
+        }
+    }
+    
+    .dashboardCard{
+        & .dashboardNumber{
+        }
+        & .dashboardIcon{
+            & img{
+            }
+        }
+        & .dashboardCardText{
+            & span {
+            }
+        }
+    }
+    .pill{
+        & img{
+        }
+    }
+    .inP{
+    }
+    .parent{
+        & img{
+
+        }
+    }
+    .resetBtn{
+    }
+    .dpaDatabase{
+        & img{
+        }
+    }
+    .trainedDataBox {
+        & .progressBar {
+            & .progress {
+                & .progressBar1 {
+                }
+                & .progressBar2 {
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .billingCard{
+        & .billingCardHeading{
+        }
+        & .edit{
+            & img{
+            }
+        }
+        & .lightPlan{
+        }
+        & .billingBottomTxt{
+        }
+        & .close{
+            & img{
+
+            }
+        }
+    }
+    .tableHeading{
+        & .paymentHistory{
+        }
+        & .searchInp{
+        }
+        & .searchIcon{
+            & img{
+            }
+        }
+        & .formSelect{
+            margin-top: 10px;
+        }
+        & .formselectIcon{
+        }
+        & .uploadBtn{
+            margin-top: 10px;
+            & img{
+            }
+        }
+    }
+    .paymentTable{
+        &.table > :not(caption) > * > * {
+        }
+        &.table > tbody > tr:nth-of-type(odd) > * {
+        }
+        & .tableHead{
+            & .Radius{
+            }
+        }
+        & .Radiuss{
+        }
+        & .date{
+        }
+        & .order{
+        }
+        & .description{
+        }
+        & .amount{
+        }
+        & .status{
+            & img{
+
+            }
+        }
+        & .invoice{
+            & img{
+            }
+        }
+    }
+    .planDetail{
+        padding: 20px 20px;
+        & .planDetailMainHeading{
+            font-size: 20px;
+        }
+        & .planDetailSubHeading{
+            font-size: 13px;
+        }
+        & .planDetailUl{
+            & .planDetailLi{
+                font-size: 13px;
+            }
+        }
+        & .planDetailAnchor{
+            font-size: 12px;
+        }
+        & .upgradeBtn{
+            height: 35px;
+            font-size: 11px;
+            padding: 9px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            & img{
+                height: 14px;
+            }
+        }
+    }
+    .upgradeOffcanvas{
+        width: 300px !important;
+        & .upgradeOffcanvasHeader{
+            padding: 25px;
+            & .upgradeOffcanvasHeaderTitle{
+                font-size: 20px;
+            }
+            & .btnClose{
+            }
+        }
+        & .upgradeOffcanvasBody{
+            padding: 0 25px;
+            & .upgradeOffcanvasBodyHead{
+                font-size: 24px;
+                line-height: 34px;
+            }
+            & .upgradeOffcanvasBodySubHead{
+                font-size: 20px;
+            }
+            & .upgradebodyUl{
+                & .upgradebodyLi{
+                }
+            }
+        }
+        & .upgradeOffcanvasFooter{
+            padding: 20px 25px;
+            & .upgradeBtn{
+                & img{
+                }
+            }
+        }
+    }
+    .formPadding{
+        &.formPadding{
+
+        }
+        .billingAddressForm{
+    
+            & .billingAddressFormHead{
+            }
+            & .formLbl{
+            }
+            & .formSelect{
+                height: 50px;
+                font-size: 14px;
+                padding: 12px 24px;
+            }
+            & .formInp{
+                height: 50px;
+                font-size: 14px;
+                &.inpWidth{
+                }
+            }
+            & .imgParent{
+                & img{
+                    display: none;
+                }
+            }
+        }
+    }
+    .applyBtn{
+        font-size: 14px;
+    }
+    .cancleBtn{
+        font-size: 14px;
+    } 
+    .trainedDataBox{
+        & .trainedDataBoxHead{
+            font-size: 18px;
+            & img{
+                height: 20px;
+            }
+        }
+        & .progressBarTxt{
+            & .percent{
+            }
+            & span{
+            }
+        }
+        & .progressBarTxt1{
+        }
+        & .progressBar{
+            & .progressBar1{
+            }
+        }
+        & .progressBottomTxt{
+            font-size: 15px;
+            & span{
+                font-size: 12px;
+            }
+        }
+    }
+    .alldpaTable{
+        & .alldpaTableHead{
+            font-size: 18px;
+        }
+        & .btnnn{
+            font-size: 12px;
+        }
+        & .INP{
+            &:focus-visible{
+            }
+        }
+        & .parent{
+            & img{
+
+            }
+        }
+    }
+    .tableImg{
+        & img{
+        }
+    }
+    .createHeroSection{
+        padding: 25px 35px;
+        & .creteHead{
+            font-size: 18px;
+        }
+        & .creteSubHead{
+            font-size: 12px;
+        }
+        & .createInp{
+            height: 50px;
+            font-size: 13px;
+        }
+        & .createSpan{
+        }
+        & .createSelectTxt{
+        }
+        & .createSelectBox{
+            height: 50px;
+            font-size: 13px;
+        }
+        & .selectColour{
+        }
+        & .uploadSection{
+            padding: 10px 18px;
+            & .uploadSectionHead{
+                font-size: 12px;
+            }
+            & .para{
+            }
+            input[type="checkbox"] {
+                width: 40px;
+                height: 22px;
+            }
+            input[type="checkbox"]::before {
+                width: 22px;
+                height: 22px;
+            }
+            input[type="checkbox"]:checked::before {
+                content: "";
+                width: 20px;
+                height: 20px;
+            }
+            input[type="checkbox"]:checked {
+            }
+        }
+        & .asignUsers{
+        }
+        & .asignUsersBtn{
+        }
+        & .circlePlus{
+        }
+        & .search{
+        }
+        & .cardBody{
+            & .formInp{
+                font-size: 12px;
+            }
+            & .search{
+            }
+            & .data{
+                & img{
+                }
+            }
+            & .spann{
+                font-size: 14px;
+            }
+            & .assignBtn{
+                font-size: 12px;
+            }
+        }
+        & .cancleBtn{
+            height: 50px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        & .closeBtn{
+            height: 50px;
+            font-size: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 18px 10px;
+            & img{
+                height: 20px;
+            }
+        }
+    }
+    .plusDropdown {
+        & .eventBtn {
+            height: 22px;
+            width: 22px;
+        }
+        & .dropdown-menu {
+            min-width: 300px;
+            & .innerbody {
+                & .searchgroup {
+                    & .input-group {
+                        & .input-group-text , & .form-control {
+                            height: 30px;
+                            & img {
+                                height: 16px;
+                            }
+                        }
+                    }
+                }
+                & .userGroup {
+                    & .usersInfo {
+                        & .userImg {
+                            width: 25px;
+                            height: 25px;
+                        }
+                    }
+                    & .assignBtn {
+                        height: 18px;
+                        font-size: 10px;
+                    }
+                }
+            }
+        }
+    }
+    .relationBar{
+        & .relationBarLeft{
+            & span:first-child{
+            }
+            & span:last-child{
+            }
+        }
+        & .relationBarright{
+            & .relationBarrightBtn{
+                & img{
+                }
+            }
+        }
+    }
+    
+    .dashboardCard{
+        & .dashboardNumber{
+        }
+        & .dashboardIcon{
+            & img{
+            }
+        }
+        & .dashboardCardText{
+            & span {
+            }
+        }
+    }
+    .pill{
+        & img{
+        }
+    }
+    .inP{
+    }
+    .parent{
+        & img{
+
+        }
+    }
+    .resetBtn{
+    }
+    .dpaDatabase{
+        & img{
+        }
+    }
+    .trainedDataBox {
+        & .progressBar {
+            & .progress {
+                & .progressBar1 {
+                }
+                & .progressBar2 {
+                }
+            }
+        }
+    }
+}

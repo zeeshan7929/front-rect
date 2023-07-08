@@ -1,0 +1,3592 @@
+[data-page-name="signUpFormPage"] {
+    @include media-breakpoint(basic) {
+        &.signUpFormPage {
+            background: url(../img/bg1.png), #F4F4F4;
+            background-repeat: no-repeat;
+            background-size: contain;
+            z-index: 1;
+            // &::before{
+            //     content: '';
+            //     background: url(../img/bg1.png) no-repeat, center;
+            //     background-size: cover;
+            //     position: absolute;
+            //     top: 0;
+            //     left: 0;
+            //     height: 1000px;
+            //     width: 1000px;
+            //     z-index: -1;
+            // }
+            & .innerSection {
+                // max-width: 853px;
+                & .form {
+                    & .topSection {
+                        & .userName {
+                            font-size: 60px;
+                            line-height: 90px;
+                            color: #464255;
+                        }
+                        & .databaseName {
+                            font-weight: 300;
+                            font-size: 40px;
+                            line-height: 60px;
+                            color: #464255;
+                        }
+                        & .topbilling {
+                            & .belingType {
+                                font-size: 22px;
+                                line-height: 28px;
+                                color: #4A5C77;
+                                & span {
+                                    height: 40px;
+                                    width: 40px;
+                                }
+                            }
+                            & .form-select {
+                                height: 60px;
+                                background-color: #DAECEC;
+                                border: 1px solid #E0E0E0;
+                                border-radius: 18px;
+                                padding: 16px 26px;
+                                gap: 14px;
+                                font-size: 15px;
+                                line-height: 22px;
+                                letter-spacing: 0.4px;
+                                color: #464255;
+                                position: relative;
+                                // &::before{
+                                //     content: '';
+                                //     background: url(../img/svg/down-chevron.svg) no-repeat, center;
+                                //     background-size: cover;
+                                //     position: absolute;
+                                //     top: 0;
+                                //     left: 0;
+                                //     height: 28px;
+                                //     width: 28px;
+                                //     z-index: -1;
+                                // }
+                            }
+                            & .features {
+                                & .featuresName {
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                    color: #464255;
+                                }
+                                & ul {
+                                    & li {
+                                        font-size: 16px;
+                                        line-height: 24px;
+                                        color: #464255;
+                                        &::marker{
+                                            color: #464255;
+                                            font-size: 14px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & .mainForm {
+                        & .companyDetails {
+                            font-weight: 500;
+                            font-size: 22px;
+                            line-height: 28px;
+                            color: #4A5C77;
+                            & span {
+                                width: 50px;
+                                height: 50px;
+                            }
+                        }
+                        & .card {
+                            border-radius: 24px;
+                            & .card-body{
+                                & .imnformation {
+                                    font-size: 22px;
+                                    line-height: 33px;
+                                    color: #464255;
+                                    & .solidContent {
+                                        color: #A3A3A3;
+                                        font-size: 14px;
+                                        line-height: 20px;
+                                    }
+                                }
+                                & .imgOuter {
+                                    width: 70px;
+                                    height: 70px;
+                                    & img {
+                                        object-position: center top;
+                                        object-fit: cover;
+                                    }
+                                    & .form-label {
+                                        cursor: pointer;
+                                        background-color: #4A5C77;
+                                        width: 24px;
+                                        padding: 5px;
+                                        height: 24px;
+                                    }
+                                }
+                                & .logoName {
+                                    font-size: 16px;
+                                    line-height: 24px;
+                                    color: #4A5C77;
+                                }
+                                & .portalName {
+                                    color: #4A5C77;
+                                    font-size: 14.22px;
+                                    line-height: 17px;
+                                }
+                                & .companyForm {
+                                    & .formGroup {
+                                        & .form-label {
+                                            color: #464255;
+                                            font-size: 12px;
+                                            line-height: 18px;
+                                        }
+                                        & .form-control, & .form-select{
+                                            border: 1px solid #E0E0E0;
+                                            border-radius: 18px;    
+                                            height: 62px;
+                                            padding: 18px 24px;
+                                            gap: 10px;
+                                            color: #A3A3A3;
+                                            font-size: 14px;
+                                            line-height: 26px;
+                                            &::placeholder{
+                                                color: #A3A3A3;
+                                            }
+                                        }
+                                        & .form-select{
+                                            background-color: rgba(234, 240, 248, 0.44); 
+                                            color: #464255;
+                                            font-size: 15px; 
+                                            line-height: 22px;  
+                                        }
+                                        & .input-group {
+                                            & .input-group-text {
+                                                padding: 18px 24px;
+                                                border-radius: 18px; 
+                                                font-weight: 400;
+                                                font-size: 14px;
+                                                line-height: 26px;
+                                                color: #A3A3A3;
+                                                & .arrowImg {
+                                                    height: 20px;
+                                                    padding-right: 24px;
+                                                    border-right: 2px solid #E0E0E0;
+                                                }
+                                            }
+                                        }
+                                        & .invalidText {
+                                            color: #B00101;
+                                            font-size: 12px;
+                                            line-height: 26px;
+                                            font-weight: 400;
+                                        }
+                                    }
+                                    & .form-check {
+                                        & .form-check-input {
+                                            border: 1.5px solid #C5C5C5;
+                                            &:checked{
+                                                background-color: #464255;
+                                            }
+                                        }
+                                        & .form-check-label {
+                                            font-size: 14px;
+                                            line-height: 20px;
+                                            color: #A3A3A3;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & .paymentGroup {
+                        & .form-check {
+                            & .form-check-input  {
+                                border: 1.5px solid #4A5C77;
+                                &:checked{
+                                    background-color: #464255 !important;
+                                }
+                            }
+                            & .form-check-label {
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #4A5C77;
+                            }
+                        }
+                        & .paymentBtn {
+                            letter-spacing: 0.4px;
+                            font-size: 16px;
+                            line-height: 24px; 
+                            padding: 16px 26px;
+                            background: #897FFF;
+                            border-radius: 18px; 
+                            transition: all ease-in-out 0.3s;
+                            &:hover{
+                                background: rgba(#897FFF, 0.8);
+                            }
+                        }
+                        & .timeingPyment {
+                            color: #464255;
+                            font-size: 16px;
+                            line-height: 24px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    @include media-breakpoint-up(sm) {}
+    
+    @include media-breakpoint-up(md) {}
+    
+    @include media-breakpoint-up(lg) {}
+    
+    @include media-breakpoint-up(xl) {}
+    
+    @include media-breakpoint-up(xxl) {}
+    
+    
+    @include media-breakpoint-down(xxl) {}
+    
+    @include media-breakpoint-down(xl) {}
+    
+    @include media-breakpoint-down(lg) {
+        &.signUpFormPage {
+            &::before{
+                height: 500px;
+                width: 500px;
+            }
+            & .innerSection {
+                & .form {
+                    & .topSection {
+                        & .userName {
+                            font-size: 50px;
+                            line-height: 70px;
+                        }
+                        & .databaseName {
+                            font-size: 30px;
+                            line-height: 40px;
+                        }
+                        & .topbilling {
+                            & .belingType {
+                                font-size: 20px;
+                                line-height: normal;
+                                & span {
+                                    height: 30px;
+                                    width: 30px;
+                                }
+                            }
+                            & .form-select {
+                                height: 50px;
+                                border-radius: 16px;
+                                padding: 16px 20px;
+                                font-size: 14px;
+                                line-height: normal;
+                            }
+                            & .features {
+                                & .featuresName {
+                                    font-size: 14px;
+                                    line-height: normal;
+                                }
+                                & ul {
+                                    & li {
+                                        font-size: 14px;
+                                        line-height: normal;
+                                        &::marker{
+                                            font-size: 12px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & .mainForm {
+                        & .companyDetails {
+                            font-size: 20px;
+                            line-height: normal;
+                            & span {
+                                width: 40px;
+                                height: 40px;
+                            }
+                        }
+                        & .card {
+                            border-radius: 20px;
+                            & .card-body{
+                                & .imnformation {
+                                    font-size: 20px;
+                                    line-height: normal;
+                                    & .solidContent {
+                                        font-size: 12px;
+                                        line-height: normal;
+                                    }
+                                }
+                                & .imgOuter {
+                                    width: 60px;
+                                    height: 60px;
+                                    & .form-label {
+                                        width: 22px;
+                                        padding: 5px;
+                                        height: 22px;
+                                    }
+                                }
+                                & .logoName {
+                                    font-size: 14px;
+                                    line-height: normal;
+                                }
+                                & .portalName {
+                                    font-size: 12px;
+                                    line-height: normal;
+                                }
+                                & .companyForm {
+                                    & .formGroup {
+                                        & .form-label {
+                                            font-size: 12px;
+                                            line-height: normal;
+                                        }
+                                        & .form-control, & .form-select{
+                                            border-radius: 16px;    
+                                            height: 50px;
+                                            padding: 16px 20px;
+                                            font-size: 12px;
+                                            line-height: normal;
+                                        }
+                                        & .form-select{
+                                            font-size: 14px; 
+                                            line-height: normal;  
+                                        }
+                                        & .input-group {
+                                            height: 50px;
+                                            & .input-group-text {
+                                                padding: 16px 20px;
+                                                border-radius: 16px; 
+                                                font-size: 12px;
+                                                line-height: normal;
+                                                & .arrowImg {
+                                                    height: 16px;
+                                                    padding-right: 20px;
+                                                }
+                                            }
+                                        }
+                                        & .invalidText {
+                                            font-size: 10px;
+                                            line-height: normal;
+                                        }
+                                    }
+                                    & .form-check {
+                                        & .form-check-input {
+                                            &:checked{
+                                            }
+                                        }
+                                        & .form-check-label {
+                                            font-size: 12px;
+                                            line-height: normal;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & .paymentGroup {
+                        & .form-check {
+                            & .form-check-input  {
+                                &:checked{
+                                }
+                            }
+                            & .form-check-label {
+                                font-size: 12px;
+                                line-height: normal;
+                            }
+                        }
+                        & .paymentBtn {
+                                font-size: 14px;
+                                padding: 12px 24px;
+                                border-radius: 16px; 
+                                line-height: normal;
+                        }
+                        & .timeingPyment {
+                            font-size: 14px;
+                            line-height: normal;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @include media-breakpoint-down(md) {
+        &.signUpFormPage {
+            &::before{
+                height: 400px;
+                width: 400px;
+            }
+            & .innerSection {
+                & .form {
+                    & .topSection {
+                        & .userName {
+                            font-size: 40px;
+                            line-height: normal;
+                        }
+                        & .databaseName {
+                            font-size: 25px;
+                            line-height: normal;
+                        }
+                        & .topbilling {
+                            & .belingType {
+                                font-size: 18px;
+                                & span {
+                                    height: 25px;
+                                    width: 25px;
+                                }
+                            }
+                            & .form-select {
+                                height: 40px;
+                                border-radius: 10px;
+                                font-size: 13px;
+                                padding: 8px 18px;
+                            }
+                            & .features {
+                                & .featuresName {
+                                    font-size: 13px;
+                                }
+                                & ul {
+                                    & li {
+                                        font-size: 13px;
+                                        &::marker{
+                                            font-size: 10px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & .mainForm {
+                        & .companyDetails {
+                            font-size: 18px;
+                            line-height: normal;
+                            & span {
+                                width: 35px;
+                                height: 35px;
+                            }
+                        }
+                        & .card {
+                            & .card-body{
+                                & .imnformation {
+                                    font-size: 18px;
+                                    & .solidContent {
+                                    }
+                                }
+                                & .imgOuter {
+                                    width: 50px;
+                                    height: 50px;
+                                    & .form-label {
+                                        width: 20px;
+                                        padding: 4px;
+                                        height: 20px;
+                                    }
+                                }
+                                & .logoName {
+                                }
+                                & .portalName {
+                                }
+                                & .companyForm {
+                                    & .formGroup {
+                                        & .form-label {
+                                        }
+                                        & .form-control, & .form-select{
+                                            border-radius: 10px;    
+                                            height: 40px;
+                                            padding: 8px 18px;
+                                        }
+                                        & .form-select{
+                                            font-size: 13px; 
+                                        }
+                                        & .input-group {
+                                            height: 40px;
+                                            & .input-group-text {
+                                                padding: 8px 18px;
+                                                border-radius: 10px; 
+                                                & .arrowImg {
+                                                    height: 14px;
+                                                    padding-right: 18px;
+                                                }
+                                            }
+                                        }
+                                        & .invalidText {
+                                        }
+                                    }
+                                    & .form-check {
+                                        & .form-check-input {
+                                            &:checked{
+                                            }
+                                        }
+                                        & .form-check-label {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & .paymentGroup {
+                        & .form-check {
+                            & .form-check-input  {
+                                &:checked{
+                                }
+                            }
+                            & .form-check-label {
+                            }
+                        }
+                        & .paymentBtn {
+                                font-size: 12px;
+                                padding: 10px 18px;
+                                border-radius: 10px; 
+                        }
+                        & .timeingPyment {
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    @include media-breakpoint-down(sm) {
+        &.signUpFormPage {
+            &::before{
+            }
+            & .innerSection {
+                & .form {
+                    & .topSection {
+                        & .userName {
+                            font-size: 30px;
+                        }
+                        & .databaseName {
+                            font-size: 20px;
+                        }
+                        & .topbilling {
+                            & .belingType {
+                                font-size: 16px;
+                                & span {
+                                }
+                            }
+                            & .form-select {
+                            }
+                            & .features {
+                                & .featuresName {
+                                }
+                                & ul {
+                                    & li {
+                                        &::marker{
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & .mainForm {
+                        & .companyDetails {
+                            font-size: 16px;
+                            & span {
+                                width: 30px;
+                                height: 30px;
+                            }
+                        }
+                        & .card {
+                            & .card-body{
+                                & .imnformation {
+                                    font-size: 16px;
+                                    & .solidContent {
+                                    }
+                                }
+                                & .imgOuter {
+                                    & .form-label {
+                                    }
+                                }
+                                & .logoName {
+                                }
+                                & .portalName {
+                                }
+                                & .companyForm {
+                                    & .formGroup {
+                                        & .form-label {
+                                        }
+                                        & .form-control, & .form-select{
+                                        }
+                                        & .form-select{ 
+                                        }
+                                        & .input-group {
+                                            & .input-group-text { 
+                                                & .arrowImg {
+                                                }
+                                            }
+                                        }
+                                        & .invalidText {
+                                        }
+                                    }
+                                    & .form-check {
+                                        & .form-check-input {
+                                            &:checked{
+                                            }
+                                        }
+                                        & .form-check-label {
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    & .paymentGroup {
+                        & .form-check {
+                            & .form-check-input  {
+                                &:checked{
+                                }
+                            }
+                            & .form-check-label {
+                            }
+                        }
+                        & .paymentBtn {
+                        }
+                        & .timeingPyment {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+// ? ######################## [ Dashboard Chart Side ] ################
+@include media-breakpoint(basic) {
+    .chartSide {
+        &.rightSidebarHeader {
+            height: 170px;
+            display: flex;
+            align-items: center;
+            background-color: #f3f4f8;
+        }
+        &  .searchgroup {
+            & .input-group {
+                & .form-control {
+                    background: #EAF0F8;
+                    border-radius: 22px;
+                    height: 70px;
+                    padding: 23px 32px;
+                    color: #A3A3A3;
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+                & .input-group-text {
+                    border-radius: 22px;
+                    background: #EAF0F8;
+                }
+            }
+        }
+        & .accordion {
+            & .accordion-item {
+                border-radius: 24px;
+                & .accordion-header {
+                    border-radius: 24px;
+                    & .accordion-button  {
+                        border-radius: 24px;
+                        &::after{
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                            width: 20px;
+                            height: 20px;
+                            background: url(../img/svg/chevron-small-up.svg) no-repeat, center;
+                            // background-size: cover;
+                        }
+                        &:not(.collapsed)::after {
+                            transform: rotateX(180deg);
+                        }
+                        & .accordionHeader {
+                            & .dpausage {
+                                color: #464255;
+                                font-size: 24px;
+                                line-height: 36px;
+                                // & .iconImg1 {
+                                //     height: 16px;
+                                // }
+                                // & .iconImg {
+                                //     height: 16px;
+                                // }
+                                & span {
+                                    align-items: center;
+                                    justify-content: center;
+                                    width: 30px;
+                                    height: 30px;
+                                    & img {
+                                        max-width: 100%;
+                                    }
+                                }
+                            }
+                            & .chartValue{
+                                font-size: 32px;
+                                line-height: 48px;
+                                color: #4A5C77;
+                            }
+                            & .progress {
+                                height: 8px;
+                                background: #C5C5C5;
+                                & .progress-bar {
+                                    background: #4A5C77;
+                                }
+                            }
+                            & .renewsContent {
+                                color: #4A5C77;
+                                font-size: 14px;
+                                line-height: 26px;
+                            }
+                            & .reviewCounting {
+                                color: #4A5C77;
+                                font-size: 14px;
+                                line-height: 26px;
+                                & span {
+                                    color: #838383;
+                                }
+                            }
+                        }
+                    }
+                }
+                & .accordion-collapse {
+                    & .accordion-body {
+                        & .chart {
+                            max-width: 240px;
+                        }
+                        & .token {
+                            font-size: 12px;
+                            line-height: 18px;
+                        }
+                        & .token , & .tokenCounting {
+                            color: #464255;
+                        }
+                        & .tokenCounting {
+                            font-size: 26px;
+                            line-height: 39px;
+                        }
+                    }
+                }
+            }
+        }
+        & .latestActivity{
+            & .activityHeading {
+                color: #464255;
+                font-size: 24px;
+                line-height: 36px;
+            }
+            & .activityTime {
+                & .timing {
+                    color: #464255;
+                    font-size: 15px;
+                    line-height: 24px;
+                }
+                & .timecaption {
+                    color: #A3A3A3;
+                    font-size: 14px;
+                    line-height: 26px;
+                }
+                &::before{
+                    content: "";
+                    width: 16px;
+                    height: 16px;
+                    background: #F3F2F7;
+                    border: 3px solid #9BB7C2;
+                    border-radius: 16px;
+                    position: absolute;
+                    left: -20px;
+                    top: 5px;
+                }
+                &::after{
+                    content: "";
+                    height: 100%;
+                    background: #B9BBBD;
+                    width: 1px;
+                    position: absolute;
+                    left: -13px;
+                    top: 18.5px;
+                }
+                &:last-child{
+                    &::after{
+                        visibility: hidden;
+                        opacity: 0;
+                    }
+                }
+            }
+        }
+    }
+
+    .dpaSection {
+        &.card{
+            background: #FDFDFD;
+            border-radius: 24px;
+            & .dpaUsesHeading {
+                font-size: 24px;
+                line-height: 48px;
+                color: #4A5C77;
+            }
+            & .formSelectGroup {
+                border: 1px solid #C3D3E2;
+                border-radius: 8px;
+                font-size: 14px;
+                line-height: 20px;
+                color: #081427;
+                font-weight: 500;
+                &:focus{
+                    border-color: #C3D3E2;
+                }
+            }
+            & .exportBtn {
+                height: 28px;
+                border: 1px solid #FFECD0;
+                background-color: #FFE9C926;
+                font-size: 12px;
+                line-height: 18px;
+                color: #464255;
+                letter-spacing: 0.4px;
+                & span {
+                    height: 15px;
+                    width: 15px;
+                }
+            }
+        }
+        &.topDapSection {
+            & .leftSide {
+                & .commonWork {
+                    & .workColor {
+                        width: 24px;
+                        height: 24px;
+                        background: #E7EBB8;
+                    }
+                    & .workHeading {
+                        font-size: 18px;
+                        line-height: 27px;
+                        color: #464255;
+                    }
+                    & .workToken {
+                        font-size: 14px;
+                        line-height: 26px;
+                        color: #A3A3A3;
+                    }
+                    & .trackBtn {
+                        background: #E7EBB8;
+                        height: 34px;
+                        font-size: 12px;
+                        line-height: 18px;
+                        letter-spacing: 0.4px;
+                        & span{
+                            height: 18px;
+                            width: 18px;
+                        }
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            height: 8px;
+                            background: #C5C5C5;
+                            & .progress-bar {
+                                background: #E7EBB8;
+                            }
+                        }
+                    }
+                    &.hrWork {
+                        & .workColor, & .trackBtn {
+                            background: #AEC7E8;
+                        }
+                        & .progressGroup {
+                            & .progress {
+                                & .progress-bar {
+                                    background: #AEC7E8;
+                                }
+                            }
+                        }
+                }
+                &.customerService {
+                    & .workColor, & .trackBtn {
+                        background: #CEC0EC;
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                                background: #CEC0EC;
+                            }
+                        }
+                    }
+            }
+            }
+        }
+    }
+    }
+    .dpasetting {
+        & .dpaSettingInnerPage {
+            background: rgba(253, 253, 253, 0.36);
+            & .realtionCard {
+                & .workplaceCard {
+                    border-radius: 24px;
+                    background: #FDFDFD;
+                    & .innerbody {
+                        & .workplacePoint {
+                            width: 40px;
+                            height: 40px;
+                            background: #E7EBB8;
+                        }
+                        & .workrelation {
+                            font-size: 32px;
+                            line-height: 48px;
+                            color: #4A5C77;
+                        }
+                    }
+                }
+                & .dpadeleteBtn {
+                    background: #E15656;
+                    height: 35px;
+                    padding: 8px 26px;
+                    font-size: 14px;
+                    line-height: 21px;
+                    letter-spacing: 0.4px;
+                    & span {
+                        height: 24px;
+                        width: 24px;
+                    }
+                    &.backBtn {
+                        padding: 16px 26px 16px 15px;
+                        background: #90A0B8;
+                    }
+                }
+            }
+            & .trainedDataBox {
+                & .progressBar {
+                    background: #C5C5C5;
+                    & .progress {
+                        height: 8px;
+                        & .progressBar1 {
+                            background: #E7EBB8 !important;
+                        }
+                        & .progressBar2 {
+                            background: #9BB7C2;
+                        }
+                    }
+                }
+            }
+            & .editSetting {
+                & .editsettingHeading {
+                    font-size: 22px;
+                    line-height: 33px;
+                    color: #464255;
+                }
+                & .clickingEvent {
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 20px;
+                    color: #A3A3A3;
+                }
+                & .editGroup {
+                    & .inputGroup {
+                        position: relative;
+                        & .form-label{
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 18px;
+                            color: #464255;
+                            position: absolute;
+                            z-index: 2;
+                            left: 50px;
+                        }
+                        & .input-group {
+                            z-index: 1;
+                            & .form-control, & .input-group-text{
+                                background: #FFFFFF;
+                                border: 1px solid #E0E0E0;
+                                border-radius: 18px;
+                                padding: 18px 24px;
+                                height: 60px;
+                                font-weight: 400;
+                                font-size: 14px;
+                                line-height: 26px;
+                                color: #A3A3A3;
+                                &::placeholder{
+                                    color: #A3A3A3;
+                                }
+                            }
+                        }
+                    }
+                    
+                }
+                & .rightSide {
+                    & .form-label {
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 18px;
+                        color: #464255;
+                    }
+                    & .form-select {
+                        background-color: rgba(234, 240, 248, 0.44);
+                        border: 1px solid #E0E0E0;
+                        border-radius: 18px;
+                        height: 60px;
+                        font-weight: 400;
+                        font-size: 15px;
+                        line-height: 22px;
+                        letter-spacing: 0.4px;
+                        color: #464255;
+                        padding: 16px 26px;
+                    }
+                    & .colorPointer {
+                        height: 35px;
+                        width: 35px;
+                    }
+                    & .uploadFile {
+                        background: rgba(174, 199, 232, 0.13);
+                        border-radius: 24px;
+                        & .content {
+                            & .uploadheading {
+                                font-size: 14px;
+                                line-height: 20px;
+                                color: #515151;
+                            }
+                            & .uploadcontent {
+                                font-size: 12px;
+                                line-height: 20px;
+                                color: #515151;
+                            }
+                        }
+                        & .switchBtn {
+                            & .form-check-input{
+                                box-shadow: inset 0px 6px 8px 3px rgba(0, 0, 0, 0.1);
+                                width: 71px;
+                                height: 31.95px;
+                                cursor: pointer;
+                            &:focus{
+                                border: none !important;
+                                filter: grayscale(1);
+                                
+                            }
+                            &:checked {
+                                background-color: #AAF298;
+                                filter: grayscale(0);
+                            }
+                            }
+                        }
+                    }
+                }
+                & .assignedUsersGroup {
+                    & .assognedHeading {
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 27px;
+                        color: #A3A3A3;
+                        &.subHeading {
+                            font-size: 12px;
+                            line-height: 18px;
+                        }
+                    }
+                    & .assignedwork {
+                        font-weight: 500;
+                        font-size: 22px;
+                        line-height: 33px;
+                        color: #464255;
+                    }
+                    & .searchgroup {
+                        & .input-group {
+                            & .form-control {
+                                padding: 2px 17px 2px 10px;
+                                height: 30px;
+                                font-weight: 400;
+                                font-size: 14px;
+                                line-height: 21px;
+                                color: #4A5C77;
+                            }
+                            & .input-group-text {
+                                & img {
+                                    height: 15px;
+                                }
+                            }
+                        }
+                    }
+                    & .userAssign {
+                        & .usereventSection {
+                            & .userName {
+                                background: rgba(74, 92, 119, 0.6);
+                                border: 2px solid #E8EAEE;
+                                border-radius: 4px;
+                                padding: 8px 12px;
+                                font-weight: 400;
+                                font-size: 14px;
+                                line-height: 16px;
+                                & span{
+                                    display: flex;
+                                    height: 11px;
+                                }
+                            }
+                        }
+                        & .dropdown {
+                            & .eventBtn {
+                                height: 30px;
+                                width: 30px;
+                            }
+                            & .dropdown-menu {
+                                filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.15));
+                                background: #FFFFFF;
+                                border-radius: 20px;
+                                & .innerbody {
+                                    & .searchgroup {
+                                        & .input-group {
+                                            & .input-group-text , & .form-control {
+                                                background: #F2F4F8;
+                                                color: #000000;
+                                                height: 42px;
+                                                font-size: 16px;
+                                                line-height: 26px;
+                                                & img {
+                                                    fill: #000;
+                                                    height: 25px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    & .userGroup {
+                                        & .usersInfo {
+                                            font-weight: 400;
+                                            font-size: 18px;
+                                            line-height: 26px;
+                                            color: #000000;
+                                            & .userImg {
+                                                width: 35px;
+                                                height: 35px;
+                                            }
+                                        }
+                                        & .assignBtn {
+                                            font-weight: 500;
+                                            font-size: 14px;
+                                            line-height: 21px;
+                                            letter-spacing: 0.4px;
+                                            background: #5BCD97;
+                                            height: 26px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        & .btnGroup {
+                            & .cancleBtn, & .saveChangeBtn {
+                                height: 60px;
+                                border-radius: 18px;
+                                padding: 16px 26px;
+                                gap: 14px;
+                                font-weight: 500;
+                                font-size: 16px;
+                                line-height: 24px;
+                                letter-spacing: 0.4px;
+                                & span {
+                                    height: 28px;
+                                }
+                            }
+                            & .cancleBtn {
+                                background: #E15656CF;
+                            }
+                            & .saveChangeBtn {
+                                background: #5BCD97;
+                            }
+                            &.uploadBtnGroup {
+                                & .cancleBtn {
+                                    background: #DF9292;
+                                    border-radius: 5px;
+                                }
+                                & .saveChangeBtn {
+                                    background: #4A3AFF66;
+                                    border-radius: 5px;
+                                    &.approvBtn {
+                                        background: #4A3AFF;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .uploadFile {
+        & .training {
+            font-weight: 600;
+            font-size: 25px;
+            line-height: 38px;
+            color: #585858;
+        }
+        & .trainingSubContent {
+            font-weight: 400;
+            font-size: 12px;
+            line-height: 18px;
+            color: #A3A3A3;
+        }
+        & .documentCard {
+            background: rgba(255, 255, 255, 0.38);
+        }
+        & .chooseFile {
+            border: 1px dashed rgba(0, 0, 0, 0.25);
+            border-radius: 10px;
+            & .fileImg {
+                height: 48px;
+                width: 48px;
+            }
+        }
+        & .selectFilrBtn {
+            background: #FBFDFE;
+            border: 1px solid #9BB7C2;
+            border-radius: 5px;
+            padding: 12px 16px;
+            height: 35px;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 10px;
+            line-height: 11px;
+            text-transform: uppercase;
+            color: #9BB7C2;
+            &:active{
+                background: #FBFDFE;
+                border-color: #9BB7C2;
+                color: #9BB7C2;
+            }
+        }
+        & .uploadFileGroup {
+            background: #F2F2F2;
+            border-radius: 5px;
+            & .uploadFileImg {
+                height: 24px;
+            }
+            & .fileSize {
+                color: #000000B2;
+                font-weight: 400;
+                font-size: 10px;
+                line-height: 11px;
+            }
+            & .progress {
+                height: 6px;
+                background: #0000001A;
+                & .progress-bar {
+                    background: #4A5C77;
+                }
+            }
+            & .closeBtn {
+                height: 24px;
+                width: 24px;
+                background: #4A5C77;
+                position: absolute;
+                top: -7px;
+                right: -7px;
+            }
+        }
+        & .balanceCount {
+            font-size: 32px;
+            line-height: 48px;
+            &.first{
+                color: #9BB7C2;
+            }
+            &.second {
+                color: #FFBB78;
+            }
+            &.thard {
+                color: #5BCD97;
+            }
+        }
+        & .balanceContent {
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #A3A3A3;
+        }
+        & .dash {
+            font-weight: 900;
+            font-size: 40px;
+            line-height: 60px;
+            color: #A3A3A3;
+        }
+    }
+    .TableCointainer {
+        & .documetnUploadReq {
+            font-weight: 600;
+            font-size: 25px;
+            line-height: 38px;
+            color: #897FFF;
+        }
+        & .ReqsubHeading {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: #585858;
+        }
+        & .searchgroup {
+            & .input-group {
+                & .form-control , & .input-group-text {
+                    height: 45px;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 21px;
+                    color: #4A5C77;
+                }
+                & .input-group-text {
+                    & img {
+                        height: 20px;
+                    }
+                }
+            }
+        }
+        & .filtterBTn {
+            border: 1px solid #9291A5;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            height: 45px;
+            color: #615E83;
+            &:active{
+                color: #615E83;
+                border: 1px solid #9291A5;
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+@media (max-width: 1599px) {
+
+    .chartSide {
+        &.rightSidebarHeader {
+            height: 140px;
+        }
+        &  .searchgroup {
+            & .input-group {
+                & .form-control {
+                    font-size: 14px;
+                }
+                & .input-group-text {
+                }
+            }
+        }
+        & .accordion {
+            & .accordion-item {
+                & .accordion-header {
+                    & .accordion-button  {
+                        &::after{
+                        }
+                        &:not(.collapsed)::after {
+                        }
+                        & .accordionHeader {
+                            & .dpausage {
+                                font-size: 22px;
+                                & span {
+                                    width: 28px;
+                                    height: 28px;
+                                    & img {
+                                    }
+                                }
+                            }
+                            & .chartValue{
+                                font-size: 30px;
+                            }
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                            & .renewsContent {
+                                font-size: 12px;
+                            }
+                            & .reviewCounting {
+                                font-size: 12px;
+                                & span {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .accordion-collapse {
+                    & .accordion-body {
+                        & .chart {
+                        }
+                        & .token {
+                        }
+                        & .token , & .tokenCounting {
+                        }
+                        & .tokenCounting {
+                            font-size: 24px;
+                        }
+                    }
+                }
+            }
+        }
+        & .latestActivity{
+            & .activityHeading {
+                font-size: 22px;
+            }
+            & .activityTime {
+                & .timing {
+                    font-size: 14px;
+                }
+                & .timecaption {
+                    font-size: 13px;
+                    line-height: 23px;
+                }
+                &::before{
+                }
+                &::after{
+                }
+                &:last-child{
+                    &::after{
+                    }
+                }
+            }
+        }
+    }
+    .dpaSection {
+        &.card{
+            & .dpaUsesHeading {
+                font-size: 20px;
+                line-height: normal;
+            }
+            & .formSelectGroup {
+                & .form-select {
+                    font-size: 13px;
+                }
+                &:focus{
+                }
+            }
+            & .exportBtn {
+                height: 28px;
+                font-size: 12px;
+                line-height: normal;
+                & span {
+                    height: 14px;
+                    width: 14px;
+                }
+            }
+        }
+        &.topDapSection {
+            & .leftSide {
+                & .commonWork {
+                    & .workColor {
+                        width: 22px;
+                        height: 22px;
+                    }
+                    & .workHeading {
+                        font-size: 16px;
+                        line-height: normal;
+                    }
+                    & .workToken {
+                        font-size: 13px;
+                        line-height: normal;
+                    }
+                    & .trackBtn {
+                        height: 32px;
+                        line-height: normal;
+                        & span{
+                            height: 16px;
+                            width: 16px;
+                        }
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+                    &.hrWork {
+                        & .workColor, & .trackBtn {
+                        }
+                        & .progressGroup {
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                        }
+                }
+                &.customerService {
+                    & .workColor, & .trackBtn {
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+            }
+            }
+        }
+    }
+    }
+
+    .dpasetting {
+        & .dpaSettingInnerPage {
+            & .realtionCard {
+                & .workplaceCard {
+                    border-radius: 22px;
+                    & .innerbody {
+                        & .workplacePoint {
+                            width: 38px;
+                            height: 38px;
+                        }
+                        & .workrelation {
+                            font-size: 30px;
+                            line-height: normal;
+                        }
+                    }
+                }
+                & .dpadeleteBtn {
+                    height: 32px;
+                    padding: 8px 22px;
+                    font-size: 13px;
+                    line-height: normal;
+                    & span {
+                        height: 22px;
+                        width: 22px;
+                    }
+                    &.backBtn {
+                        padding: 14px 24px 14px 15px;
+                    }
+                }
+            }
+            & .trainedDataBox {
+                & .progressBar {
+                    & .progress {
+                        & .progressBar1 {
+                        }
+                        & .progressBar2 {
+                        }
+                    }
+                }
+            }
+            & .editSetting {
+                & .editsettingHeading {
+                    font-size: 20px;
+                    line-height: normal;
+                }
+                & .clickingEvent {
+                    font-size: 13px;
+                    line-height: normal;
+                }
+                & .editGroup {
+                    & .inputGroup {
+                        & .form-label{
+                            font-size: 11px;
+                            line-height: normal;
+                        }
+                        & .input-group {
+                            & .form-control, & .input-group-text{
+                                padding: 16px 22px;
+                                height: 50px;
+                                font-size: 13px;
+                                line-height: normal;
+                                &::placeholder{
+                                }
+                            }
+                        }
+                    }
+                }
+                & .rightSide {
+                    & .form-label {
+                        font-size: 11px;
+                        line-height: normal;
+                    }
+                    & .form-select {
+                        border-radius: 16px;
+                        height: 50px;
+                        font-size: 14px;
+                        line-height: normal;
+                        padding: 14px 22px;
+                    }
+                    & .colorPointer {
+                        height: 33px;
+                        width: 33px;
+                    }
+                    & .uploadFile {
+                        border-radius: 22px;
+                        & .content {
+                            & .uploadheading {
+                                font-size: 13px;
+                                line-height: normal;
+                            }
+                            & .uploadcontent {
+                                font-size: 11px;
+                                line-height: normal;
+                            }
+                        }
+                        & .switchBtn {
+                            & .form-check-input{
+                                width: 60px;
+                                height: 28px;
+                                cursor: pointer;
+                            &:focus{
+                                
+                            }
+                            &:checked {
+                            }
+                            }
+                        }
+                    }
+                }
+                & .assignedUsersGroup {
+                    & .assognedHeading {
+                        font-size: 16px;
+                        line-height: normal;
+                        &.subHeading {
+                            font-size: 11px;
+                            line-height: normal;
+                        }
+                    }
+                    & .assignedwork {
+                        font-size: 20px;
+                        line-height: normal;
+                    }
+                    & .searchgroup {
+                        & .input-group {
+                            & .form-control {
+                                padding: 2px 15px 2px 8px;
+                                height: 27px;
+                                font-size: 13px;
+                                line-height: normal;
+                            }
+                            & .input-group-text {
+                                & img {
+                                    height: 13px;
+                                }
+                            }
+                        }
+                    }
+                    & .userAssign {
+                        & .usereventSection {
+                            & .userName {
+                                padding: 7px 10px;
+                                font-size: 13px;
+                                line-height: normal;
+                                & span{
+                                    height: 10px;
+                                }
+                            }
+                        }
+                        & .dropdown {
+                            & .eventBtn {
+                                height: 27px;
+                                width: 27px;
+                            }
+                            & .dropdown-menu {
+                                border-radius: 18px;
+                                & .innerbody {
+                                    & .searchgroup {
+                                        & .input-group {
+                                            & .input-group-text , & .form-control {
+                                                height: 38px;
+                                                font-size: 14px;
+                                                line-height: normal;
+                                                & img {
+                                                    height: 22px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    & .userGroup {
+                                        & .usersInfo {
+                                            font-size: 16px;
+                                            line-height: normal;
+                                            & .userImg {
+                                                width: 32px;
+                                                height: 32px;
+                                            }
+                                        }
+                                        & .assignBtn {
+                                            font-size: 13px;
+                                            line-height: normal;
+                                            height: 23px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        & .btnGroup {
+                            & .cancleBtn, & .saveChangeBtn {
+                                height: 50px;
+                                border-radius: 16px;
+                                padding: 14px 24px;
+                                font-size: 14px;
+                                line-height: normal;
+                                & span {
+                                    height: 25px;
+                                }
+                            }
+                            & .cancleBtn {
+                            }
+                            & .saveChangeBtn {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .uploadFile {
+        & .training {
+            font-size: 23px;
+            line-height: normal;
+        }
+        & .trainingSubContent {
+            font-size: 12px;
+            line-height: normal;
+        }
+        & .documentCard {
+        }
+        & .chooseFile {
+            & .fileImg {
+                height: 45px;
+                width: 45px;
+            }
+        }
+        & .selectFilrBtn {
+            padding: 10px 14px;
+            height: 35px;
+            line-height: normal;
+            &:active{
+            }
+        }
+        & .uploadFileGroup {
+            & .uploadFileImg {
+                height: 22px;
+            }
+            & .fileSize {
+                line-height: normal;
+            }
+            & .progress {
+                & .progress-bar {
+                }
+            }
+            & .closeBtn {
+                height: 22px;
+                width: 22px;
+                top: -6px;
+                right: -6px;
+            }
+        }
+        & .balanceCount {
+            font-size: 30px;
+            line-height: normal;
+            &.first{
+            }
+            &.second {
+            }
+            &.thard {
+            }
+        }
+        & .balanceContent {
+            font-size: 14px;
+            line-height: normal;
+        }
+        & .dash {
+            font-size: 38px;
+            line-height: normal;
+        }
+    }
+    .TableCointainer {
+        & .documetnUploadReq {
+            font-size: 23px;
+            line-height: normal;
+        }
+        & .ReqsubHeading {
+            font-size: 13px;
+            line-height: normal;
+        }
+        & .searchgroup {
+            & .input-group {
+                & .form-control , & .input-group-text {
+                    height: 42px;
+                    font-size: 13px;
+                    line-height: normal;
+                }
+                & .input-group-text {
+                    & img {
+                        height: 18px;
+                    }
+                }
+            }
+        }
+        & .filtterBTn {
+            font-size: 13px;
+            line-height: normal;
+            height: 42px;
+            &:active{
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xxl) {
+    .chartSide {
+        &.rightSidebarHeader {
+            height: 110px;
+        }
+        &  .searchgroup {
+            & .input-group {
+                & .form-control {
+                    height: 60px;
+                    padding: 23px;
+                    border-radius: 18px;
+                }
+                & .input-group-text {
+                }
+            }
+        }
+        & .searchCloseIcon {
+            height: 55px;
+        }
+        & .accordion {
+            & .accordion-item {
+                & .accordion-header {
+                    & .accordion-button  {
+                        &::after{
+                        }
+                        &:not(.collapsed)::after {
+                        }
+                        & .accordionHeader {
+                            & .dpausage {
+                                font-size: 21px;
+                                line-height: 34px;
+                                & span {
+                                    & img {
+                                        height: 21px;
+                                    }
+                                }
+                            }
+                            & .chartValue{
+                                font-size: 28px;
+                            }
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                            & .renewsContent {
+                            }
+                            & .reviewCounting {
+                                & span {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .accordion-collapse {
+                    & .accordion-body {
+                        & .chart {
+                        }
+                        & .token {
+                        }
+                        & .token , & .tokenCounting {
+                        }
+                        & .tokenCounting {
+                        }
+                    }
+                }
+            }
+        }
+        & .latestActivity{
+            & .activityHeading {
+            }
+            & .activityTime {
+                & .timing {
+                }
+                & .timecaption {
+                }
+                &::before{
+                }
+                &::after{
+                }
+                &:last-child{
+                    &::after{
+                    }
+                }
+            }
+        }
+    }
+    .dpaSection {
+        &.card{
+            & .dpaUsesHeading {
+                font-size: 26px;
+            }
+            & .formSelectGroup {
+                &:focus{
+                }
+            }
+            & .exportBtn {
+                & span {
+                }
+            }
+        }
+        &.topDapSection {
+            & .leftSide {
+                & .commonWork {
+                    & .workColor {
+                    }
+                    & .workHeading {
+                        font-size: 15px;
+                    }
+                    & .workToken {
+                        font-size: 12px;
+                    }
+                    & .trackBtn {
+                        & span{
+                        }
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+                    &.hrWork {
+                        & .workColor, & .trackBtn {
+                        }
+                        & .progressGroup {
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                        }
+                }
+                &.customerService {
+                    & .workColor, & .trackBtn {
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+            }
+            }
+        }
+    }
+}
+    .uploadFile {
+        & .training {
+            font-size: 21px;
+        }
+        & .trainingSubContent {
+            font-size: 11px;
+        }
+        & .documentCard {
+        }
+        & .chooseFile {
+            & .fileImg {
+                height: 43px;
+                width: 43px;
+            }
+        }
+        & .selectFilrBtn {
+            height: 33px;
+            &:active{
+            }
+        }
+        & .uploadFileGroup {
+            & .uploadFileImg {
+                height: 20px;
+            }
+            & .fileSize {
+            }
+            & .progress {
+                & .progress-bar {
+                }
+            }
+            & .closeBtn {
+                height: 20px;
+                width: 20px;
+                
+                padding: 4px !important;
+            }
+        }
+        & .balanceCount {
+            font-size: 28px;
+            &.first{
+            }
+            &.second {
+            }
+            &.thard {
+            }
+        }
+        & .balanceContent {
+            font-size: 13px;
+        }
+        & .dash {
+            font-size: 35px;
+        }
+    }
+    .TableCointainer {
+        & .documetnUploadReq {
+            font-size: 21px;
+        }
+        & .ReqsubHeading {
+            // font-size: 13px;
+        }
+        & .searchgroup {
+            & .input-group {
+                & .form-control , & .input-group-text {
+                    height: 40px;
+                    // font-size: 13px;
+                }
+                & .input-group-text {
+                    & img {
+                        // height: 18px;
+                    }
+                }
+            }
+        }
+        & .filtterBTn {
+            // font-size: 13px;
+            height: 40px;
+            &:active{
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    .chartSide {
+        &.rightSidebarHeader {
+        }
+        &  .searchgroup {
+            & .input-group {
+                & .form-control {
+                }
+                & .input-group-text {
+                }
+            }
+        }
+        & .searchCloseIcon {
+            height: 52px;
+        }
+        & .accordion {
+            & .accordion-item {
+                & .accordion-header {
+                    & .accordion-button  {
+                        &::after{
+                        }
+                        &:not(.collapsed)::after {
+                        }
+                        & .accordionHeader {
+                            & .dpausage {
+                                font-size: 20px;
+                                line-height: 30px;
+                                & span {
+                                    & img {
+                                        height: 20px;
+                                    }
+                                }
+                            }
+                            & .chartValue{
+                                font-size: 26px;
+                            }
+                            & .progress {
+                                height: 7px;
+                                & .progress-bar {
+                                }
+                            }
+                            & .renewsContent {
+                            }
+                            & .reviewCounting {
+                                & span {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .accordion-collapse {
+                    & .accordion-body {
+                        & .chart {
+                        }
+                        & .token {
+                        }
+                        & .token , & .tokenCounting {
+                        }
+                        & .tokenCounting {
+                            font-size: 22px;
+                        }
+                    }
+                }
+            }
+        }
+        & .latestActivity{
+            & .activityHeading {
+            }
+            & .activityTime {
+                & .timing {
+                }
+                & .timecaption {
+                }
+                &::before{
+                }
+                &::after{
+                }
+                &:last-child{
+                    &::after{
+                    }
+                }
+            }
+        }
+    }
+    .dpaSection {
+        &.card{
+            & .dpaUsesHeading {
+                font-size: 24px;
+            }
+            & .formSelectGroup {
+                & .form-select {
+                    font-size: 12px;
+                }
+                &:focus{
+                }
+            }
+            & .exportBtn {
+                & span {
+                }
+            }
+        }
+        &.topDapSection {
+            & .leftSide {
+                & .commonWork {
+                    & .workColor {
+                    }
+                    & .workHeading {
+                    }
+                    & .workToken {
+                    }
+                    & .trackBtn {
+                        & span{
+                        }
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+                    &.hrWork {
+                        & .workColor, & .trackBtn {
+                        }
+                        & .progressGroup {
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                        }
+                }
+                &.customerService {
+                    & .workColor, & .trackBtn {
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+            }
+            }
+        }
+    }
+    }
+
+    .dpasetting {
+        & .dpaSettingInnerPage {
+            & .realtionCard {
+                & .workplaceCard {
+                    & .innerbody {
+                        & .workplacePoint {
+                            width: 36px;
+                            height: 36px;
+                        }
+                        & .workrelation {
+                            font-size: 28px;
+                        }
+                    }
+                }
+                & .dpadeleteBtn {
+                    height: 30px;
+                    & span {
+                        height: 20px;
+                        width: 20px;
+                    }
+                    &.backBtn {
+                    }
+                }
+            }
+            & .trainedDataBox {
+                & .progressBar {
+                    & .progress {
+                        & .progressBar1 {
+                        }
+                        & .progressBar2 {
+                        }
+                    }
+                }
+            }
+            & .editSetting {
+                & .editsettingHeading {
+                    font-size: 18px;
+                }
+                & .clickingEvent {
+                }
+                & .editGroup {
+                    & .inputGroup {
+                        & .form-label{
+                        }
+                        & .input-group {
+                            & .form-control, & .input-group-text{
+                                height: 45px;
+                                &::placeholder{
+                                }
+                            }
+                        }
+                    }
+                }
+                & .rightSide {
+                    & .form-label {
+                    }
+                    & .form-select {
+                        height: 45px;
+                        font-size: 13px;
+                    }
+                    & .colorPointer {
+                        height: 31px;
+                        width: 31px;
+                    }
+                    & .uploadFile {
+                        & .content {
+                            & .uploadheading {
+                            }
+                            & .uploadcontent {
+                            }
+                        }
+                        & .switchBtn {
+                            & .form-check-input{
+                                width: 50px;
+                                height: 25px;
+                                cursor: pointer;
+                            &:focus{
+                                
+                            }
+                            &:checked {
+                            }
+                            }
+                        }
+                    }
+                }
+                & .assignedUsersGroup {
+                    & .assognedHeading {
+                        font-size: 15px;
+                        &.subHeading {
+                        }
+                    }
+                    & .assignedwork {
+                        font-size: 18px;
+                    }
+                    & .searchgroup {
+                        & .input-group {
+                            & .form-control {
+                                height: 25px;
+                            }
+                            & .input-group-text {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                    & .userAssign {
+                        & .usereventSection {
+                            & .userName {
+                                & span{
+                                }
+                            }
+                        }
+                        & .dropdown {
+                            & .eventBtn {
+                                height: 25px;
+                                width: 25px;
+                            }
+                            & .dropdown-menu {
+                                & .innerbody {
+                                    & .searchgroup {
+                                        & .input-group {
+                                            & .input-group-text , & .form-control {
+                                                height: 35px;
+                                                font-size: 13px;
+                                                & img {
+                                                    height: 20px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    & .userGroup {
+                                        & .usersInfo {
+                                            font-size: 14px;
+                                            & .userImg {
+                                                width: 30px;
+                                                height: 30px;
+                                            }
+                                        }
+                                        & .assignBtn {
+                                            height: 21px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        & .btnGroup {
+                            & .cancleBtn, & .saveChangeBtn {
+                                height: 45px;
+                                font-size: 13px;
+                                & span {
+                                    height: 22px;
+                                }
+                            }
+                            & .cancleBtn {
+                            }
+                            & .saveChangeBtn {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .uploadFile {
+        & .training {
+            font-size: 19px;
+        }
+        & .trainingSubContent {
+        }
+        & .documentCard {
+        }
+        & .chooseFile {
+            & .fileImg {
+                height: 40px;
+                width: 40px;
+            }
+        }
+        & .selectFilrBtn {
+            height: 30px;
+            &:active{
+            }
+        }
+        & .uploadFileGroup {
+            & .uploadFileImg {
+                height: 19px;
+            }
+            & .fileSize {
+            }
+            & .progress {
+                & .progress-bar {
+                }
+            }
+            & .closeBtn {
+                height: 18px;
+                width: 18px;
+            }
+        }
+        & .balanceCount {
+            font-size: 26px;
+            &.first{
+            }
+            &.second {
+            }
+            &.thard {
+            }
+        }
+        & .balanceContent {
+            font-size: 12px;
+        }
+        & .dash {
+            font-size: 32px;
+        }
+    }
+    .TableCointainer {
+        & .documetnUploadReq {
+            font-size: 18px;
+        }
+        & .ReqsubHeading {
+            font-size: 12px;
+        }
+        & .searchgroup {
+            & .input-group {
+                & .form-control , & .input-group-text {
+                    height: 38px;
+                    font-size: 12px;
+                }
+                & .input-group-text {
+                    & img {
+                        height: 17px;
+                    }
+                }
+            }
+        }
+        & .filtterBTn {
+            font-size: 12px;
+            height: 38px;
+            &:active{
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .chartSide {
+        &.rightSidebarHeader {
+        }
+        &  .searchgroup {
+            & .input-group {
+                & .form-control {
+                }
+                & .input-group-text {
+                }
+            }
+        }
+        & .accordion {
+            & .accordion-item {
+                & .accordion-header {
+                    & .accordion-button  {
+                        &::after{
+                        }
+                        &:not(.collapsed)::after {
+                        }
+                        & .accordionHeader {
+                            & .dpausage {
+                                & span {
+                                    & img {
+                                    }
+                                }
+                            }
+                            & .chartValue{
+                            }
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                            & .renewsContent {
+                            }
+                            & .reviewCounting {
+                                & span {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .accordion-collapse {
+                    & .accordion-body {
+                        & .chart {
+                        }
+                        & .token {
+                        }
+                        & .token , & .tokenCounting {
+                        }
+                        & .tokenCounting {
+                        }
+                    }
+                }
+            }
+        }
+        & .latestActivity{
+            & .activityHeading {
+            }
+            & .activityTime {
+                & .timing {
+                }
+                & .timecaption {
+                }
+                &::before{
+                }
+                &::after{
+                }
+                &:last-child{
+                    &::after{
+                    }
+                }
+            }
+        }
+    }
+    .dpaSection {
+        &.card{
+            & .dpaUsesHeading {
+            }
+            & .formSelectGroup {
+                &:focus{
+                }
+            }
+            & .exportBtn {
+                & span {
+                }
+            }
+        }
+        &.topDapSection {
+            & .leftSide {
+                & .commonWork {
+                    & .workColor {
+                    }
+                    & .workHeading {
+                    }
+                    & .workToken {
+                    }
+                    & .trackBtn {
+                        & span{
+                        }
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+                    &.hrWork {
+                        & .workColor, & .trackBtn {
+                        }
+                        & .progressGroup {
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                        }
+                }
+                &.customerService {
+                    & .workColor, & .trackBtn {
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+            }
+            }
+        }
+    }
+}
+
+    .dpasetting {
+        & .dpaSettingInnerPage {
+            & .realtionCard {
+                & .workplaceCard {
+                    & .innerbody {
+                        & .workplacePoint {
+                            width: 32px;
+                            height: 32px;
+                        }
+                        & .workrelation {
+                            font-size: 25px;
+                        }
+                    }
+                }
+                & .dpadeleteBtn {
+                    height: 27px;
+                    & span {
+                        height: 18px;
+                        width: 18px;
+                    }
+                    &.backBtn {
+                    }
+                }
+            }
+            & .trainedDataBox {
+                & .progressBar {
+                    & .progress {
+                        & .progressBar1 {
+                        }
+                        & .progressBar2 {
+                        }
+                    }
+                }
+            }
+            & .editSetting {
+                & .editsettingHeading {
+                    font-size: 16px;
+                }
+                & .clickingEvent {
+                }
+                & .editGroup {
+                    & .inputGroup {
+                        & .form-label{
+                            font-size: 10px;
+                        }
+                        & .input-group {
+                            & .form-control, & .input-group-text{
+                                height: 40px;
+                                font-size: 12px;
+                                border-radius: 14px;
+                                padding: 8px 22px;
+                                &::placeholder{
+                                }
+                            }
+                        }
+                    }
+                }
+                & .rightSide {
+                    & .form-label {
+                    }
+                    & .form-select {
+                        height: 40px;
+                        border-radius: 14px;
+                                padding: 8px 22px !important;
+                    }
+                    & .colorPointer {
+                        height: 28px;
+                        width: 28px;
+                    }
+                    & .uploadFile {
+                        border-radius: 18px;
+                        & .content {
+                            & .uploadheading {
+                            }
+                            & .uploadcontent {
+                            }
+                        }
+                        & .switchBtn {
+                            & .form-check-input{
+                                width: 45px;
+                                height: 23px;
+                                cursor: pointer;
+                            &:focus{
+                                
+                            }
+                            &:checked {
+                            }
+                            }
+                        }
+                    }
+                }
+                & .assignedUsersGroup {
+                    & .assognedHeading {
+                        font-size: 14px;
+                        &.subHeading {
+                        }
+                    }
+                    & .assignedwork {
+                        font-size: 16px;
+                    }
+                    & .searchgroup {
+                        & .input-group {
+                            & .form-control {
+                                height: 23px;
+                            }
+                            & .input-group-text {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                    & .userAssign {
+                        & .usereventSection {
+                            & .userName {
+                                & span{
+                                }
+                            }
+                        }
+                        & .dropdown {
+                            & .eventBtn {
+                                height: 23px;
+                                width: 23px;
+                            }
+                            & .dropdown-menu {
+                                & .innerbody {
+                                    & .searchgroup {
+                                        & .input-group {
+                                            & .input-group-text , & .form-control {
+                                                height: 32px;
+                                                & img {
+                                                    height: 18px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    & .userGroup {
+                                        & .usersInfo {
+                                            font-size: 13px;
+                                            & .userImg {
+                                                width: 27px;
+                                                height: 27px;
+                                            }
+                                        }
+                                        & .assignBtn {
+                                            height: 19px;
+                                            font-size: 11px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        & .btnGroup {
+                            & .cancleBtn, & .saveChangeBtn {
+                                height: 40px;
+                                & span {
+                                    height: 20px;
+                                }
+                            }
+                            & .cancleBtn {
+                            }
+                            & .saveChangeBtn {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .uploadFile {
+        & .training {
+            font-size: 18px;
+        }
+        & .trainingSubContent {
+        }
+        & .documentCard {
+        }
+        & .chooseFile {
+            & .fileImg {
+                height: 38px;
+                width: 38px;
+            }
+        }
+        & .selectFilrBtn {
+            &:active{
+            }
+        }
+        & .uploadFileGroup {
+            & .uploadFileImg {
+                height: 18px;
+            }
+            & .fileSize {
+            }
+            & .progress {
+                & .progress-bar {
+                }
+            }
+            & .closeBtn {
+                height: 18px;
+                width: 18px;
+            }
+        }
+        & .balanceCount {
+            font-size: 24px;
+            &.first{
+            }
+            &.second {
+            }
+            &.thard {
+            }
+        }
+        & .balanceContent {
+            font-size: 11px;
+        }
+        & .dash {
+            font-size: 28px;
+        }
+    }
+    .TableCointainer {
+        & .documetnUploadReq {
+            font-size: 16px;
+        }
+        & .ReqsubHeading {
+            font-size: 11px;
+        }
+        & .searchgroup {
+            & .input-group {
+                & .form-control , & .input-group-text {
+                    height: 36px;
+                    font-size: 11px;
+                }
+                & .input-group-text {
+                    & img {
+                        height: 16px;
+                    }
+                }
+            }
+        }
+        & .filtterBTn {
+            font-size: 11px;
+            height: 36px;
+            &:active{
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .chartSide {
+        &.rightSidebarHeader {
+            height: 90px;
+        }
+        &  .searchgroup {
+            & .input-group {
+                & .form-control {
+                    height: 54px;
+                }
+                & .input-group-text {
+                    & img {
+                        height: 22px;
+                    }
+                }
+            }
+        }
+        & .searchCloseIcon {
+            height: 46px;
+        }
+        & .accordion {
+            & .accordion-item {
+                & .accordion-header {
+                    & .accordion-button  {
+                        &::after{
+                        }
+                        &:not(.collapsed)::after {
+                        }
+                        & .accordionHeader {
+                            & .dpausage {
+                                font-size: 18px;
+                                & span {
+                                    & img {
+                                        height: 22px;
+                                    }
+                                    & .iconImg {
+                                        height: 18px;
+                                    }
+                                }
+                            }
+                            & .chartValue{
+                                font-size: 22px;
+                            }
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                            & .renewsContent {
+                            }
+                            & .reviewCounting {
+                                & span {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .accordion-collapse {
+                    & .accordion-body {
+                        & .chart {
+                        }
+                        & .token {
+                        }
+                        & .token , & .tokenCounting {
+                        }
+                        & .tokenCounting {
+                        }
+                    }
+                }
+            }
+        }
+        & .latestActivity{
+            & .activityHeading {
+                font-size: 20px;
+                margin-bottom: 0.5rem !important;
+            }
+            & .activityTime {
+                & .timing {
+                }
+                & .timecaption {
+                }
+                &::before{
+                }
+                &::after{
+                }
+                &:last-child{
+                    &::after{
+                    }
+                }
+            }
+        }
+    }
+    .dpaSection {
+        &.card{
+            & .dpaUsesHeading {
+                font-size: 20px;
+            }
+            & .formSelectGroup {
+                & .form-select {
+                    padding: 4px 16px 4px 4px;
+                    background-position: right 0.5rem center;
+                }
+                &:focus{
+                }
+            }
+            & .exportBtn {
+                & span {
+                }
+            }
+        }
+        &.topDapSection {
+            & .leftSide {
+                & .commonWork {
+                    & .workColor {
+                    }
+                    & .workHeading {
+                        font-size: 14px;
+                    }
+                    & .workToken {
+                    }
+                    & .trackBtn {
+                        & span{
+                        }
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+                    &.hrWork {
+                        & .workColor, & .trackBtn {
+                        }
+                        & .progressGroup {
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                        }
+                }
+                &.customerService {
+                    & .workColor, & .trackBtn {
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+            }
+            }
+        }
+    }
+    }
+    .dpasetting {
+        & .dpaSettingInnerPage {
+            & .realtionCard {
+                & .workplaceCard {
+                    & .innerbody {
+                        & .workplacePoint {
+                            width: 30px;
+                            height: 30px;
+                        }
+                        & .workrelation {
+                            font-size: 22px;
+                        }
+                    }
+                }
+                & .dpadeleteBtn {
+                    height: 25px;
+                    & span {
+                        height: 17px;
+                        width: 17px;
+                    }
+                    &.backBtn {
+                    }
+                }
+            }
+            & .trainedDataBox {
+                & .progressBar {
+                    & .progress {
+                        & .progressBar1 {
+                        }
+                        & .progressBar2 {
+                        }
+                    }
+                }
+            }
+            & .editSetting {
+                & .editsettingHeading {
+                    font-size: 14px;
+                }
+                & .clickingEvent {
+                }
+                & .editGroup {
+                    & .inputGroup {
+                        & .form-label{
+                        }
+                        & .input-group {
+                            & .form-control, & .input-group-text{
+                                &::placeholder{
+                                }
+                            }
+                        }
+                    }
+                }
+                & .rightSide {
+                    & .form-label {
+                    }
+                    & .form-select {
+                    }
+                    & .colorPointer {
+                        height: 25px;
+                        width: 25px;
+                    }
+                    & .uploadFile {
+                        & .content {
+                            & .uploadheading {
+                            }
+                            & .uploadcontent {
+                            }
+                        }
+                        & .switchBtn {
+                            & .form-check-input{
+                                width: 40px;
+                                height: 20px;
+                                cursor: pointer;
+                            &:focus{
+                                
+                            }
+                            &:checked {
+                            }
+                            }
+                        }
+                    }
+                }
+                & .assignedUsersGroup {
+                    & .assognedHeading {
+                        font-size: 13px;
+                        &.subHeading {
+                        }
+                    }
+                    & .assignedwork {
+                        font-size: 15px;
+                    }
+                    & .searchgroup {
+                        & .input-group {
+                            & .form-control {
+                            }
+                            & .input-group-text {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                    & .userAssign {
+                        & .usereventSection {
+                            & .userName {
+                                font-size: 11px;
+                                & span{
+                                }
+                            }
+                        }
+                        & .dropdown {
+                            & .eventBtn {
+                                height: 22px;
+                                width: 22px;
+                            }
+                            & .dropdown-menu {
+                                & .innerbody {
+                                    & .searchgroup {
+                                        & .input-group {
+                                            & .input-group-text , & .form-control {
+                                                height: 30px;
+                                                & img {
+                                                    height: 16px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    & .userGroup {
+                                        & .usersInfo {
+                                            & .userImg {
+                                                width: 25px;
+                                                height: 25px;
+                                            }
+                                        }
+                                        & .assignBtn {
+                                            height: 18px;
+                                            font-size: 10px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        & .btnGroup {
+                            & .cancleBtn, & .saveChangeBtn {
+                                height: 35px;
+                                border-radius: 12px;
+                                & span {
+                                    height: 18px;
+                                }
+                            }
+                            & .cancleBtn {
+                            }
+                            & .saveChangeBtn {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .uploadFile {
+        & .training {
+            font-size: 16px;
+        }
+        & .trainingSubContent {
+        }
+        & .documentCard {
+        }
+        & .chooseFile {
+            & .fileImg {
+                height: 36px;
+                width: 36px;
+            }
+        }
+        & .selectFilrBtn {
+            &:active{
+            }
+        }
+        & .uploadFileGroup {
+            & .uploadFileImg {
+            }
+            & .fileSize {
+            }
+            & .progress {
+                & .progress-bar {
+                }
+            }
+            & .closeBtn {
+            }
+        }
+        & .balanceCount {
+            font-size: 18px;
+            &.first{
+            }
+            &.second {
+            }
+            &.thard {
+            }
+        }
+        & .balanceContent {
+        }
+        & .dash {
+            font-size: 25px;
+        }
+    }
+    .TableCointainer {
+        & .documetnUploadReq {
+            font-size: 15px;
+        }
+        & .ReqsubHeading {
+            font-size: 10px;
+        }
+        & .searchgroup {
+            & .input-group {
+                & .form-control , & .input-group-text {
+                    height: 32px;
+                    font-size: 10px;
+                }
+                & .input-group-text {
+                    & img {
+                    }
+                }
+            }
+        }
+        & .filtterBTn {
+            font-size: 10px;
+            height: 32px;
+            &:active{
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .chartSide {
+        &.rightSidebarHeader {
+        }
+        &  .searchgroup {
+            & .input-group {
+                & .form-control {
+                }
+                & .input-group-text {
+                }
+            }
+        }
+        & .accordion {
+            & .accordion-item {
+                & .accordion-header {
+                    & .accordion-button  {
+                        &::after{
+                        }
+                        &:not(.collapsed)::after {
+                        }
+                        & .accordionHeader {
+                            & .dpausage {
+                                & span {
+                                    & img {
+                                    }
+                                }
+                            }
+                            & .chartValue{
+                            }
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                            & .renewsContent {
+                            }
+                            & .reviewCounting {
+                                & span {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .accordion-collapse {
+                    & .accordion-body {
+                        & .chart {
+                        }
+                        & .token {
+                        }
+                        & .token , & .tokenCounting {
+                        }
+                        & .tokenCounting {
+                        }
+                    }
+                }
+            }
+        }
+        & .latestActivity{
+            & .activityHeading {
+            }
+            & .activityTime {
+                & .timing {
+                }
+                & .timecaption {
+                }
+                &::before{
+                }
+                &::after{
+                }
+                &:last-child{
+                    &::after{
+                    }
+                }
+            }
+        }
+    }
+    .dpaSection {
+        &.card{
+            & > .row {
+                & > .col {
+                    &.d-flex {
+                        width: 100% !important;
+                        flex: 0 0 auto;
+                        justify-content: space-between;
+                    }
+                }
+                & > .col-auto {
+                    margin-top: 7px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: end;
+                }
+            }
+            & .dpaUsesHeading {
+            }
+            & .formSelectGroup {
+                &:focus{
+                }
+            }
+            & .exportBtn {
+                & span {
+                }
+            }
+        }
+        &.topDapSection {
+            & .leftSide {
+                & .commonWork {
+                    & .workColor {
+                    }
+                    & .workHeading {
+                    }
+                    & .workToken {
+                    }
+                    & .trackBtn {
+                        & span{
+                        }
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+                    &.hrWork {
+                        & .workColor, & .trackBtn {
+                        }
+                        & .progressGroup {
+                            & .progress {
+                                & .progress-bar {
+                                }
+                            }
+                        }
+                }
+                &.customerService {
+                    & .workColor, & .trackBtn {
+                    }
+                    & .progressGroup {
+                        & .progress {
+                            & .progress-bar {
+                            }
+                        }
+                    }
+            }
+            }
+        }
+    }
+    }
+    .dpasetting {
+        & .dpaSettingInnerPage {
+            & .realtionCard {
+                & .workplaceCard {
+                    & .innerbody {
+                        & .workplacePoint {
+                            width: 28px;
+                            height: 28px;
+                        }
+                        & .workrelation {
+                            font-size: 18px;
+                        }
+                    }
+                }
+                & .dpadeleteBtn {
+                    font-size: 12px;
+                    padding: 4px 15px;
+                    gap: 10px !important;
+                    & span {
+                        height: 16px;
+                        width: 16px;
+                    }
+                    &.backBtn {
+                    }
+                }
+            }
+            & .trainedDataBox {
+                & .progressBar {
+                    & .progress {
+                        & .progressBar1 {
+                        }
+                        & .progressBar2 {
+                        }
+                    }
+                }
+            }
+            & .editSetting {
+                & .editsettingHeading {
+                    font-size: 14px;
+                }
+                & .clickingEvent {
+                }
+                & .editGroup {
+                    & .inputGroup {
+                        & .form-label{
+                        }
+                        & .input-group {
+                            & .form-control, & .input-group-text{
+                                border-right: 1px solid #E0E0E0 !important;
+                                border-radius: 14px !important;
+                                &::placeholder{
+                                }
+                            }
+                        }
+                        & .textgroup {
+                            font-size: 10px;
+                            font-weight: 400;
+                        }
+                    }
+                }
+                & .rightSide {
+                    & .form-label {
+                    }
+                    & .form-select {
+                    }
+                    & .colorPointer {
+                        height: 25px;
+                        width: 25px;
+                    }
+                    & .uploadFile {
+                        & .content {
+                            & .uploadheading {
+                            }
+                            & .uploadcontent {
+                            }
+                        }
+                        & .switchBtn {
+                            & .form-check-input{
+                                width: 40px;
+                                height: 20px;
+                                cursor: pointer;
+                            &:focus{
+                                
+                            }
+                            &:checked {
+                            }
+                            }
+                        }
+                    }
+                }
+                & .assignedUsersGroup {
+                    & .assognedHeading {
+                        font-size: 13px;
+                        &.subHeading {
+                        }
+                    }
+                    & .assignedwork {
+                        font-size: 15px;
+                    }
+                    & .searchgroup {
+                        & .input-group {
+                            & .form-control {
+                            }
+                            & .input-group-text {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                    & .userAssign {
+                        & .usereventSection {
+                            & .userName {
+                                font-size: 11px;
+                                & span{
+                                }
+                            }
+                        }
+                        & .dropdown {
+                            & .eventBtn {
+                                height: 22px;
+                                width: 22px;
+                            }
+                            & .dropdown-menu {
+                                & .innerbody {
+                                    & .searchgroup {
+                                        & .input-group {
+                                            & .input-group-text , & .form-control {
+                                                height: 30px;
+                                                & img {
+                                                    height: 16px;
+                                                }
+                                            }
+                                        }
+                                    }
+                                    & .userGroup {
+                                        & .usersInfo {
+                                            & .userImg {
+                                                width: 25px;
+                                                height: 25px;
+                                            }
+                                        }
+                                        & .assignBtn {
+                                            height: 18px;
+                                            font-size: 10px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        & .btnGroup {
+                            & .cancleBtn, & .saveChangeBtn {
+                                height: 35px;
+                                border-radius: 12px;
+                                & span {
+                                    height: 18px;
+                                }
+                            }
+                            & .cancleBtn {
+                            }
+                            & .saveChangeBtn {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .uploadFile {
+        & .training {
+            font-size: 16px;
+        }
+        & .trainingSubContent {
+        }
+        & .documentCard {
+        }
+        & .chooseFile {
+            & .fileImg {
+                height: 34px;
+                width: 34px;
+            }
+        }
+        & .selectFilrBtn {
+            &:active{
+            }
+        }
+        & .uploadFileGroup {
+            & .uploadFileImg {
+            }
+            & .fileSize {
+            }
+            & .progress {
+                & .progress-bar {
+                }
+            }
+            & .closeBtn {
+            }
+        }
+        & .balanceCount {
+            font-size: 16px;
+            &.first{
+            }
+            &.second {
+            }
+            &.thard {
+            }
+        }
+        & .balanceContent {
+        }
+        & .dash {
+            font-size: 23px;
+        }
+    }
+    .TableCointainer {
+        & .documetnUploadReq {
+            font-size: 15px;
+        }
+        & .ReqsubHeading {
+            font-size: 10px;
+        }
+        & .searchgroup {
+            & .input-group {
+                & .form-control , & .input-group-text {
+                    height: 32px;
+                    font-size: 10px;
+                }
+                & .input-group-text {
+                    & img {
+                    }
+                }
+            }
+        }
+        & .filtterBTn {
+            font-size: 10px;
+            height: 32px;
+            &:active{
+            }
+        }
+    }
+}
+

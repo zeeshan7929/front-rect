@@ -1,0 +1,1897 @@
+@include media-breakpoint(basic) {
+    .trackingusing {
+        & .leftSection {
+            & .dpaSection {
+
+                & .dpaUsesHeading {}
+
+                & .formSelectGroup {
+                    & .form-select {}
+                }
+
+                & .cardImage {}
+            }
+        }
+
+        & .rightSection {
+            & .dashboardCardDetail {
+                & .dashboardCard {
+                    // padding: 27px 15px;
+                }
+            }
+
+            & .imageHeading {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 36px;
+                color: #464255;
+
+                & .imageicon {
+                    width: 21.05px;
+                    height: 20px;
+                }
+            }
+
+            & .managebtn {
+                background: #9bb7c2;
+                border-radius: 18px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 18px;
+                color: #fff;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                & span {
+                    width: 15px;
+                }
+            }
+
+            & .persentaheading {
+                font-weight: 600;
+                font-size: 32px;
+                line-height: 48px;
+                color: #9BB7C2;
+            }
+
+            & .progress {
+                height: 8px;
+
+                & .progress-bar {
+                    background: #9BB7C2;
+
+                }
+
+                &.progressbar2 {
+                    background: #658490;
+                }
+            }
+
+            & .tokens {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #9BB7C2;
+            }
+
+            & .kmmetter {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #9BB7C2;
+
+                & span {
+                    color: #838383;
+                }
+            }
+
+            & .bottomSection {
+                & .heading {
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 18px;
+                    color: #464255;
+                }
+
+                & .number {
+                    font-weight: 600;
+                    font-size: 26px;
+                    line-height: 39px;
+                    color: #464255;
+                    text-align: center;
+                }
+            }
+
+            & .bottomcard {
+                & .dpetext {
+                    font-weight: 600;
+                    font-size: 24px;
+                    line-height: 36px;
+                    color: #464255;
+                }
+
+                & .graphimage {
+                    width: 150px;
+                    height: 150px;
+                }
+
+                & .heading {
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 36px;
+                    color: #464255;
+                }
+
+                & .subheading {
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 26px;
+                    color: #A3A3A3;
+                }
+
+                & .topForm {
+                    & .form-control {
+                        background: #eaf0f8;
+                        border-radius: 18px;
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 9px;
+                        color: #4a5c77;
+                        padding: 9px 23px 9px 23px;
+                    }
+
+                    & .usageSlect {
+
+                        & .form-select {
+                            background: #EAF0F8 url(../img/svg/down.svg);
+                            background-repeat: no-repeat;
+                            background-position: top 50% right 10px;
+                            width: 200.53px;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 30px;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 12px;
+                            letter-spacing: .4px;
+                            color: #464255;
+                            padding: 10px 23px 10px 23px;
+
+                            & .slected {}
+                        }
+                    }
+
+                }
+
+                & .imagetable {}
+            }
+
+        }
+    }
+
+    .usedByUser {
+        & .topForm {
+            & .form-control {
+                background: #EAF0F8;
+                border-radius: 18px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                color: #4A5C77;
+                padding: 10px 60px 10px 19px;
+                box-shadow: none;
+            }
+
+            & .usageSlect {
+
+                & .form-select {
+                    background: #EAF0F8 url(../img/svg/down.svg);
+                    background-repeat: no-repeat;
+                    background-position: top 50% right 10px;
+                    width: 250.53px;
+                    border: 1px solid #E0E0E0;
+                    border-radius: 30px;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 20px;
+                    letter-spacing: 0.4px;
+                    color: #464255;
+                    padding: 10px 30px 10px 20px;
+
+                    & .slected {}
+                }
+            }
+
+        }
+    }
+
+    .imagecard {
+        height: 277px;
+    }
+
+    .overtracking {
+        & .backbtn {
+            background: #90A0B8;
+            border-radius: 18px;
+            font-weight: 500;
+            font-size: 12px;
+            line-height: 18px;
+            color: #fff;
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            padding: 7px 20px 7px 20px;
+
+            & span {
+                width: 15px;
+            }
+        }
+
+        & .usercard {
+            & .imageuser {
+                width: 151px;
+                height: 151px;
+            }
+
+            & .username {
+                font-weight: 600;
+                font-size: 32px;
+                line-height: 48px;
+                color: #4A5C77;
+            }
+
+            & .admin {
+                font-weight: 500;
+                font-size: 21px;
+                line-height: 32px;
+                color: #00C2E4;
+            }
+
+            & .mail {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 24px;
+                color: #464255;
+            }
+
+            & .backbtn2 {
+                background: #90a0b8;
+                border-radius: 18px;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 18px;
+                color: #fff;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+                padding: 4px 20px;
+
+                & span {
+                    filter: brightness(100);
+                }
+            }
+        }
+
+        & .dPAUsagecard {
+            & .heading {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 36px;
+                color: #464255;
+
+                & span {
+                    width: 20px;
+                }
+            }
+
+            & .persantage {
+                font-weight: 600;
+                font-size: 25px;
+                line-height: 38px;
+                color: #4A5C77;
+
+            }
+
+            & .progress {
+                height: 8px;
+                background: #C5C5C5;
+
+            }
+
+            & .progress-bar {
+                background: #4A5C77;
+                border-radius: 16px;
+
+                &.color {
+                    background: #E7EBB8;
+                }
+            }
+
+            & .progresbarbottomtext {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #4A5C77;
+            }
+
+            & .lemet {
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #FFFFFF;
+                background: #FF7A7A;
+                border-radius: 24px;
+                gap: 0.3rem;
+                height: 29px;
+
+                & span {
+                    width: 17px;
+                }
+            }
+        }
+
+        & .textassign {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 22px;
+            line-height: 33px;
+            color: #464255;
+            white-space: nowrap;
+        }
+
+        & .assignbtn {
+            background: #a2a2a2;
+            border-radius: 18px;
+            padding: 8px 19px;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 21px;
+            color: #fff;
+
+            & span {
+                width: 15px;
+            }
+        }
+
+        & .form-control {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: #4A5C77;
+            padding: 5px 30px 5px 28px;
+
+        }
+
+        & .imagetable {}
+
+        & .leftcard {
+            & .heading {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 36px;
+                color: #464255;
+            }
+
+            & .leftimage {}
+        }
+
+    }
+
+    .dpausagetracking {
+        & .cricle {
+            width: 40px;
+            height: 40px;
+            background: #E7EBB8;
+            border-radius: 50%;
+        }
+
+        & .hWorkplace {
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 48px;
+            color: #4A5C77;
+        }
+
+        & .subHeading {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 24px;
+            color: #464255;
+        }
+
+        & .textAssigned {
+            font-weight: 500;
+            font-size: 26px;
+            line-height: 39px;
+            color: #464255;
+        }
+
+        & .form-control {
+            background: #EAF0F8;
+            border-radius: 18px;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+        }
+    }
+
+    .colororange {
+        background-color: #FFBB78 !important;
+    }
+
+    .colorGreen {
+        background: #2CA02C !important;
+    }
+
+    .blue {
+        background: #62C0BB !important;
+    }
+
+    .colorPink {
+        background: #F0CECE !important;
+    }
+
+    .colorbg {
+        background: #4A5C77 !important;
+    }
+
+    .colortext {
+        color: #4A5C77 !important;
+    }
+}
+
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {
+    .trackingusing {
+        & .h-md-100 {
+            height: 100%;
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+@media (max-width: 1599px) {
+    .trackingusing {
+        & .leftSection {
+            & .dpaSection {
+
+                & .dpaUsesHeading {}
+
+                & .formSelectGroup {
+                    & .form-select {}
+                }
+
+                & .cardImage {}
+            }
+        }
+
+        & .rightSection {
+            & .dashboardCardDetail {
+                & .dashboardCard {
+                    // padding: 19px 10px;
+                }
+            }
+
+            & .imageHeading {
+                font-size: 20px;
+                line-height: 28px;
+
+                & .imageicon {
+                    width: 18.05px;
+                    height: 15px;
+                }
+            }
+
+            & .managebtn {
+                background: #9bb7c2;
+                border-radius: 18px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 18px;
+                color: #fff;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                & span {
+                    width: 15px;
+                }
+            }
+
+            & .persentaheading {
+                font-size: 22px;
+                line-height: 27px;
+            }
+
+            & .progress {
+                height: 8px;
+
+                & .progress-bar {
+                    background: #9BB7C2;
+
+                }
+
+                &.progressbar2 {
+                    background: #658490;
+                }
+            }
+
+            & .tokens {
+                font-size: 13px;
+            }
+
+            & .kmmetter {
+                font-size: 13px;
+
+                & span {
+                    color: #838383;
+                }
+            }
+
+            & .bottomSection {
+                & .heading {
+                    font-size: 12px;
+                }
+
+                & .number {
+                    font-size: 22px;
+                }
+            }
+
+            & .bottomcard {
+                & .dpetext {
+                    font-size: 20px;
+                }
+
+                & .graphimage {
+                    width: 150px;
+                    height: 150px;
+                }
+
+                & .heading {
+                    font-size: 18px;
+                    line-height: 24px;
+                }
+
+                & .subheading {
+                    font-size: 12px;
+                }
+
+                & .topForm {
+                    & .form-control {
+                        background: #eaf0f8;
+                        border-radius: 18px;
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 9px;
+                        color: #4a5c77;
+                        padding: 9px 23px 9px 23px;
+                        box-shadow: none;
+                    }
+
+                    & .usageSlect {
+
+                        & .form-select {
+                            background: #EAF0F8 url(../img/svg/down.svg);
+                            background-repeat: no-repeat;
+                            background-position: top 50% right 10px;
+                            width: 200.53px;
+                            border: 1px solid #e0e0e0;
+                            border-radius: 30px;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 12px;
+                            letter-spacing: .4px;
+                            color: #464255;
+                            padding: 10px 23px 10px 23px;
+
+                            & .slected {}
+                        }
+                    }
+
+                }
+
+                & .imagetable {}
+            }
+
+        }
+    }
+
+    .usedByUser {
+        & .topForm {
+            & .form-control {
+                background: #EAF0F8;
+                border-radius: 18px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+                color: #4A5C77;
+                padding: 10px 60px 10px 19px;
+            }
+
+            & .usageSlect {
+
+                & .form-select {
+                    background: #EAF0F8 url(../img/svg/down.svg);
+                    background-repeat: no-repeat;
+                    background-position: top 50% right 10px;
+                    width: 250.53px;
+                    border: 1px solid #E0E0E0;
+                    border-radius: 30px;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 20px;
+                    letter-spacing: 0.4px;
+                    color: #464255;
+                    padding: 10px 30px 10px 20px;
+
+                    & .slected {}
+                }
+            }
+
+        }
+    }
+
+    .imagecard {
+        height: 277px;
+    }
+
+    // overtracking
+    .overtracking {
+        & .backbtn {
+            & span {}
+        }
+
+        & .usercard {
+            & .imageuser {
+                width: 130px;
+                height: 130px;
+                border-radius: 22px;
+                overflow: hidden;
+                & img {
+                    object-fit: cover;
+                    object-position: top;
+                }
+            }
+
+            & .username {
+                font-size: 28px;
+                line-height: 40px;
+            }
+
+            & .admin {
+                font-size: 19px;
+                line-height: 29px;
+            }
+
+            & .mail {
+                font-size: 14px;
+                line-height: 22px;
+            }
+
+            & .backbtn2 {
+                font-size: 12px;
+                line-height: 15px;
+
+                & span {
+                    filter: brightness(100);
+                    width: 20px;
+                }
+            }
+        }
+
+        & .dPAUsagecard {
+            & .heading {
+                font-size: 21px;
+                line-height: 32px;
+            }
+
+            & .persantage {
+                font-size: 19px;
+                line-height: 32px;
+
+            }
+
+            & .progress {}
+
+            & .progress-bar {
+
+                &.color {}
+            }
+
+            & .progresbarbottomtext {
+                font-size: 13px;
+                line-height: 22px;
+            }
+
+            & .lemet {
+                font-size: 13px;
+                line-height: 23px;
+                height: 25px;
+
+                & span {
+                    width: 14px;
+                }
+            }
+        }
+
+        & .textassign {
+            font-size: 20px;
+            line-height: 30px;
+        }
+
+        & .assignbtn {
+            padding: 6px 18px;
+            font-size: 12px;
+            line-height: 20px;
+
+            & span {
+                width: 15px;
+            }
+        }
+
+        & .form-control {
+            font-size: 13px;
+            line-height: 18px;
+            padding: 4px 27px 4px 27px;
+
+        }
+
+        & .imagetable {}
+
+        & .leftcard {
+            & .heading {
+                font-size: 22px;
+                line-height: 33px;
+            }
+
+            & .leftimage {}
+        }
+    }
+
+    // dpausagetracking
+    .dpausagetracking {
+        & .cricle {
+            width: 38px;
+            height: 38px;
+        }
+
+        & .hWorkplace {
+            font-size: 21px;
+            line-height: 28px;
+        }
+
+        & .subHeading {
+            font-size: 15px;
+            line-height: 20px;
+        }
+
+        & .textAssigned {
+            font-size: 24px;
+            line-height: 32px;
+        }
+
+        & .form-control {
+            font-size: 14px;
+        }
+    }
+
+}
+
+@include media-breakpoint-down(xxl) {
+    .overtracking {
+        & .backbtn {
+
+
+            & span {
+                width: 15px;
+            }
+        }
+
+        & .usercard {
+            & .imageuser {
+                width: 80px;
+                height: 80px;
+            }
+
+            & .username {
+                font-size: 18px;
+                line-height: 27px;
+
+            }
+
+            & .admin {
+                font-size: 17px;
+                line-height: 26px;
+            }
+
+            & .mail {
+                font-size: 14px;
+            }
+
+            & .backbtn2 {
+                padding: 2px 20px;
+                font-size: 12px;
+
+                & span {
+                    filter: brightness(100);
+                    width: 20px;
+                }
+            }
+        }
+
+        & .dPAUsagecard {
+            & .heading {
+                font-size: 17px;
+                line-height: 15px;
+
+                & span {
+                    width: 20px;
+                }
+            }
+
+            & .persantage {
+                font-size: 17px;
+
+            }
+
+            & .progress {
+                height: 8px;
+                background: #C5C5C5;
+
+            }
+
+            & .progress-bar {
+                background: #4A5C77;
+                border-radius: 16px;
+            }
+
+            & .progresbarbottomtext {
+                font-size: 12px;
+            }
+
+            & .lemet {
+                font-size: 12px;
+                line-height: 24px;
+                height: 25px;
+
+                & span {
+                    width: 17px;
+                }
+            }
+        }
+
+        & .textassign {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        & .assignbtn {
+            padding: 4px 9px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        & .form-control {
+            width: 100%;
+
+        }
+
+        & .imagetable {}
+
+        & .leftcard {
+            & .heading {
+                font-size: 20px;
+                line-height: 27px;
+            }
+
+            & .leftimage {}
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    .trackingusing {
+        & .leftSection {
+            & .dpaSection {
+
+                & .dpaUsesHeading {}
+
+                & .formSelectGroup {
+                    & .form-select {}
+                }
+
+                & .cardImage {}
+            }
+        }
+
+        & .rightSection {
+            & .dashboardCardDetail {
+                & .dashboardCard {
+                    padding: 27px 15px;
+                }
+            }
+
+            & .imageHeading {
+                font-size: 17px;
+
+                & .imageicon {
+                    width: 15.05px;
+                    height: 13px;
+                }
+            }
+
+            & .managebtn {
+                background: #9bb7c2;
+                border-radius: 18px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 18px;
+                color: #fff;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                & span {
+                    width: 15px;
+                }
+            }
+
+            & .persentaheading {
+                font-size: 20px;
+
+            }
+
+            & .progress {
+                height: 8px;
+
+                & .progress-bar {
+                    background: #9BB7C2;
+
+                }
+
+                &.progressbar2 {
+                    background: #658490;
+                }
+            }
+
+            & .tokens {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #9BB7C2;
+            }
+
+            & .kmmetter {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #9BB7C2;
+
+                & span {
+                    color: #838383;
+                }
+            }
+
+            & .bottomSection {
+                & .heading {
+                    font-size: 14px;
+                }
+
+                & .number {
+                    font-size: 18px;
+                }
+            }
+
+            & .bottomcard {
+                & .dpetext {
+                    font-size: 21px;
+                    line-height: 46px;
+                }
+
+                & .graphimage {
+                    width: 150px;
+                    height: 150px;
+                    margin: unset;
+                }
+
+                & .heading {
+                    font-size: 18px;
+                }
+
+                & .subheading {
+                    font-size: 12px;
+                }
+
+                & .topForm {
+                    & .form-control {
+                        font-size: 12px;
+                        line-height: 9px;
+                        color: #4a5c77;
+                        padding: 9px 23px 9px 23px;
+                    }
+
+                    & .usageSlect {
+
+                        & .form-select {
+                            width: 100%;
+
+                            & .slected {}
+                        }
+                    }
+
+                }
+
+                & .imagetable {}
+            }
+
+        }
+    }
+
+    .usedByUser {
+        & .topForm {
+            & .form-control {
+                font-size: 13px;
+            }
+
+            & .usageSlect {
+
+                & .form-select {
+                    width: 100%;
+                    font-size: 13px;
+
+                    & .slected {}
+                }
+            }
+
+        }
+    }
+
+    // overtracking
+    .overtracking {
+        & .backbtn {
+
+
+            & span {
+                width: 15px;
+            }
+        }
+
+        & .usercard {
+            & .imageuser {
+                width: 80px;
+                height: 80px;
+            }
+
+            & .username {
+                font-size: 18px;
+                line-height: 27px;
+
+            }
+
+            & .admin {
+                font-size: 17px;
+                line-height: 26px;
+            }
+
+            & .mail {
+                font-size: 14px;
+            }
+
+            & .backbtn2 {
+                padding: 2px 20px;
+                font-size: 12px;
+
+                & span {
+                    filter: brightness(100);
+                    width: 20px;
+                }
+            }
+        }
+
+        & .dPAUsagecard {
+            & .heading {
+                font-size: 17px;
+                line-height: 15px;
+
+                & span {
+                    width: 20px;
+                }
+            }
+
+            & .persantage {
+                font-size: 17px;
+
+            }
+
+            & .progress {
+                height: 8px;
+                background: #C5C5C5;
+
+            }
+
+            & .progress-bar {
+                background: #4A5C77;
+                border-radius: 16px;
+            }
+
+            & .progresbarbottomtext {
+                font-size: 12px;
+            }
+
+            & .lemet {
+                font-size: 12px;
+                line-height: 24px;
+                height: 25px;
+
+                & span {
+                    width: 17px;
+                }
+            }
+        }
+
+        & .textassign {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        & .assignbtn {
+            padding: 4px 9px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        & .form-control {
+            width: 100%;
+
+        }
+
+        & .imagetable {}
+
+        & .leftcard {
+            & .heading {
+                font-size: 20px;
+                line-height: 27px;
+            }
+
+            & .leftimage {}
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .overtracking {
+        & .backbtn {
+
+
+            & span {
+                width: 15px;
+            }
+        }
+
+        & .usercard {
+            & .imageuser {
+                width: 80px;
+                height: 80px;
+            }
+
+            & .username {
+                font-size: 18px;
+                line-height: 27px;
+
+            }
+
+            & .admin {
+                font-size: 17px;
+                line-height: 26px;
+            }
+
+            & .mail {
+                font-size: 14px;
+            }
+
+            & .backbtn2 {
+                padding: 2px 20px;
+                font-size: 12px;
+
+                & span {
+                    filter: brightness(100);
+                    width: 20px;
+                }
+            }
+        }
+
+        & .dPAUsagecard {
+            & .heading {
+                font-size: 17px;
+                line-height: 15px;
+
+                & span {
+                    width: 20px;
+                }
+            }
+
+            & .persantage {
+                font-size: 16px;
+
+            }
+
+            & .progress {
+                height: 8px;
+                background: #C5C5C5;
+
+            }
+
+            & .progress-bar {
+                background: #4A5C77;
+                border-radius: 16px;
+            }
+
+            & .progresbarbottomtext {
+                font-size: 12px;
+            }
+
+            & .lemet {
+                font-size: 12px;
+                line-height: 24px;
+                height: 25px;
+
+                & span {
+                    width: 17px;
+                }
+            }
+        }
+
+        & .textassign {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        & .assignbtn {
+            padding: 4px 9px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        & .form-control {
+            width: 100%;
+
+        }
+
+        & .imagetable {}
+
+        & .leftcard {
+            & .heading {
+                font-size: 20px;
+                line-height: 27px;
+            }
+
+            & .leftimage {}
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .trackingusing {
+        & .leftSection {
+            & .dpaSection {
+
+                & .dpaUsesHeading {}
+
+                & .formSelectGroup {
+                    & .form-select {}
+                }
+
+                & .cardImage {}
+            }
+        }
+
+        & .rightSection {
+            & .dashboardCardDetail {
+                & .dashboardCard {
+                    padding: 27px 15px;
+                }
+            }
+
+            & .imageHeading {
+                font-size: 17px;
+
+                & .imageicon {
+                    width: 15.05px;
+                    height: 13px;
+                }
+            }
+
+            & .managebtn {
+                background: #9bb7c2;
+                border-radius: 18px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 18px;
+                color: #fff;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                & span {
+                    width: 15px;
+                }
+            }
+
+            & .persentaheading {
+                font-size: 20px;
+
+            }
+
+            & .progress {
+                height: 8px;
+
+                & .progress-bar {
+                    background: #9BB7C2;
+
+                }
+
+                &.progressbar2 {
+                    background: #658490;
+                }
+            }
+
+            & .tokens {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #9BB7C2;
+            }
+
+            & .kmmetter {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #9BB7C2;
+
+                & span {
+                    color: #838383;
+                }
+            }
+
+            & .bottomSection {
+                & .heading {
+                    font-size: 14px;
+                }
+
+                & .number {
+                    font-size: 18px;
+                }
+            }
+
+            & .bottomcard {
+                & .dpetext {
+                    font-size: 21px;
+                    line-height: 46px;
+                }
+
+                & .graphimage {
+                    width: 150px;
+                    height: 150px;
+                    margin: unset;
+                }
+
+                & .heading {
+                    font-size: 18px;
+                }
+
+                & .subheading {
+                    font-size: 12px;
+                }
+
+                & .topForm {
+                    & .form-control {
+                        font-size: 12px;
+                        line-height: 9px;
+                        color: #4a5c77;
+                        padding: 9px 23px 9px 23px;
+                    }
+
+                    & .usageSlect {
+
+                        & .form-select {
+                            width: 100%;
+
+                            & .slected {}
+                        }
+                    }
+
+                }
+
+                & .imagetable {}
+            }
+
+        }
+    }
+
+    .usedByUser {
+        & .topForm {
+            & .form-control {
+                font-size: 13px;
+            }
+
+            & .usageSlect {
+
+                & .form-select {
+                    width: 100%;
+                    font-size: 13px;
+
+                    & .slected {}
+                }
+            }
+
+        }
+    }
+
+    .imagecard {
+        height: 277px;
+    }
+
+    .overtracking {
+        & .backbtn {
+
+
+            & span {
+                width: 15px;
+            }
+        }
+
+        & .usercard {
+            & .imageuser {
+                width: 80px;
+                height: 80px;
+            }
+
+            & .username {
+                font-size: 18px;
+                line-height: 27px;
+
+            }
+
+            & .admin {
+                font-size: 17px;
+                line-height: 26px;
+            }
+
+            & .mail {
+                font-size: 14px;
+            }
+
+            & .backbtn2 {
+                padding: 2px 20px;
+                font-size: 12px;
+
+                & span {
+                    filter: brightness(100);
+                    width: 20px;
+                }
+            }
+        }
+
+        & .dPAUsagecard {
+            & .heading {
+                font-size: 17px;
+                line-height: 15px;
+
+                & span {
+                    width: 20px;
+                }
+            }
+
+            & .persantage {
+                font-size: 15px;
+
+            }
+
+            & .progress {
+                height: 8px;
+                background: #C5C5C5;
+
+            }
+
+            & .progress-bar {
+                background: #4A5C77;
+                border-radius: 16px;
+            }
+
+            & .progresbarbottomtext {
+                font-size: 12px;
+            }
+
+            & .lemet {
+                font-size: 12px;
+                line-height: 24px;
+                height: 25px;
+
+                & span {
+                    width: 17px;
+                }
+            }
+        }
+
+        & .textassign {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        & .assignbtn {
+            padding: 4px 9px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        & .form-control {
+            width: 100%;
+
+        }
+
+        & .imagetable {}
+
+        & .leftcard {
+            & .heading {
+                font-size: 20px;
+                line-height: 27px;
+            }
+
+            & .leftimage {}
+        }
+    }
+
+    .dpausagetracking {
+        & .cricle {}
+
+        & .hWorkplace {
+            font-size: 16px;
+            line-height: 28px;
+            white-space: nowrap;
+
+        }
+
+        & .subHeading {
+            font-size: 13px;
+            line-height: 17px;
+            margin-bottom: 10px;
+        }
+
+        & .textAssigned {
+            font-size: 18px;
+            line-height: 48px;
+        }
+
+        & .formres {
+            & .form-control {
+                background: #EAF0F8;
+                border-radius: 18px;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+            }
+        }
+
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .trackingusing {
+        & .leftSection {
+            & .dpaSection {
+
+                & .dpaUsesHeading {}
+
+                & .formSelectGroup {
+                    & .form-select {}
+                }
+
+                & .cardImage {}
+            }
+        }
+
+        & .rightSection {
+            & .dashboardCardDetail {
+                & .dashboardCard {
+                    padding: 27px 15px;
+                }
+            }
+
+            & .imageHeading {
+                font-size: 17px;
+
+                & .imageicon {
+                    width: 15.05px;
+                    height: 13px;
+                }
+            }
+
+            & .managebtn {
+                background: #9bb7c2;
+                border-radius: 18px;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 18px;
+                color: #fff;
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+
+                & span {
+                    width: 15px;
+                }
+            }
+
+            & .persentaheading {
+                font-size: 20px;
+
+            }
+
+            & .progress {
+                height: 8px;
+
+                & .progress-bar {
+                    background: #9BB7C2;
+
+                }
+
+                &.progressbar2 {
+                    background: #658490;
+                }
+            }
+
+            & .tokens {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #9BB7C2;
+            }
+
+            & .kmmetter {
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 26px;
+                color: #9BB7C2;
+
+                & span {
+                    color: #838383;
+                }
+            }
+
+            & .bottomSection {
+                & .heading {
+                    font-size: 14px;
+                }
+
+                & .number {
+                    font-size: 18px;
+                }
+            }
+
+            & .bottomcard {
+                & .dpetext {
+                    font-size: 21px;
+                    line-height: 46px;
+                }
+
+                & .graphimage {
+                    width: 150px;
+                    height: 150px;
+                    margin: auto;
+                }
+
+                & .heading {
+                    font-size: 18px;
+                }
+
+                & .subheading {
+                    font-size: 12px;
+                }
+
+                & .topForm {
+                    & .form-control {
+                        font-size: 12px;
+                        line-height: 9px;
+                        color: #4a5c77;
+                        padding: 9px 23px 9px 23px;
+                    }
+
+                    & .usageSlect {
+
+                        & .form-select {
+                            width: 100%;
+
+                            & .slected {}
+                        }
+                    }
+
+                }
+
+                & .imagetable {}
+            }
+
+        }
+    }
+
+    .usedByUser {
+        & .topForm {
+            & .form-control {
+                font-size: 13px;
+            }
+
+            & .usageSlect {
+
+                & .form-select {
+                    width: 100%;
+                    font-size: 13px;
+
+                    & .slected {}
+                }
+            }
+
+        }
+    }
+
+    .imagecard {
+        height: 277px;
+    }
+
+    .overtracking {
+        & .backbtn {
+            font-size: 11px;
+            line-height: 14px;
+            padding: 5px 16px 5px 15px;
+
+            & span {
+                width: 15px;
+            }
+        }
+
+        & .usercard {
+            & .imageuser {
+                width: 80px;
+                height: 80px;
+            }
+
+            & .username {
+                font-size: 17px;
+                line-height: 24px;
+
+            }
+
+            & .admin {
+                font-size: 15px;
+                line-height: 22px;
+            }
+
+            & .mail {
+                font-size: 13px;
+            }
+
+            & .backbtn2 {
+                padding: 3px 20px;
+                font-size: 12px;
+
+                & span {
+                    filter: brightness(100);
+                    width: 20px;
+                }
+            }
+        }
+
+        & .dPAUsagecard {
+            & .heading {
+                font-size: 16px;
+                line-height: 22px;
+
+                & span {
+                    width: 20px;
+                }
+            }
+
+            & .persantage {
+                font-size: 15px;
+
+            }
+
+            & .progress {
+                height: 8px;
+                background: #C5C5C5;
+
+            }
+
+            & .progress-bar {
+                background: #4A5C77;
+                border-radius: 16px;
+            }
+
+            & .progresbarbottomtext {
+                font-size: 12px;
+            }
+
+            & .lemet {
+                font-size: 12px;
+                line-height: 24px;
+                height: 25px;
+
+                & span {
+                    width: 17px;
+                }
+            }
+        }
+
+        & .textassign {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        & .assignbtn {
+            padding: 4px 9px;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        & .form-control {
+            width: 100%;
+
+        }
+
+        & .imagetable {}
+
+        & .leftcard {
+            & .heading {
+                font-size: 20px;
+                line-height: 27px;
+            }
+
+            & .leftimage {}
+        }
+    }
+
+    .dpausagetracking {
+        & .cricle {}
+
+        & .hWorkplace {
+            font-size: 16px;
+            line-height: 28px;
+            white-space: nowrap;
+
+        }
+
+        & .subHeading {
+            font-size: 13px;
+            line-height: 17px;
+            margin-bottom: 10px;
+        }
+
+        & .textAssigned {
+            font-size: 18px;
+            line-height: 48px;
+        }
+
+        & .formres {
+            width: 100%;
+
+            & .form-control {
+                background: #EAF0F8;
+                border-radius: 18px;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 21px;
+            }
+        }
+
+    }
+}

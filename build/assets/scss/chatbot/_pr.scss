@@ -1,0 +1,790 @@
+@include media-breakpoint(basic) {
+    main {
+        & .chatbotMainInner {
+            & .rightPart {
+                & .chatArea {
+                    padding: 0 !important;
+                    transform: translate(0);
+                    & .offcanvas-backdrop {
+                        background: rgba(255, 255, 255, 0.5);
+                        backdrop-filter: blur(5px)
+                    }
+                    & .userMessage {
+                        & .userMessageInner {
+                            background: #F3F2F7;
+                            border-radius: 6px;
+                            & .text {
+                                font-family: 'Cabin';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 15px;
+                                line-height: 21px;
+                                color: #434343;
+                            }
+                            & .msgTime {
+                                font-family: 'Cabin';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 12px;
+                                line-height: 15px;
+                                color: #434343;
+                                padding-left: 6px;
+                                white-space: nowrap;
+                            }
+                        }
+                    }
+                    & .botMessage {
+                        & .botMessageInner {
+                            background: #8FB6E0;
+                            border-radius: 6px;
+                            & .text {
+                                font-family: 'Cabin';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 15px;
+                                line-height: 21px;
+                                color: #FFFFFF;;
+                            }
+                            & .downloadPdf {
+                                text-decoration: none;
+                                background: rgba(74, 92, 119, 0.7);
+                                border-radius: 20px;
+                                font-family: 'Cabin';
+                                font-style: normal;
+                                font-weight: 400;
+                                font-size: 13px;
+                                line-height: 20px;
+                                color: rgba(255, 255, 255, 0.9);
+                                display: inline-flex;
+                                align-items: center;
+                                padding: 5px 10px;
+                                flex: 0 0 auto;
+                            }
+                            & .msgActionBtn {
+                                & img {
+                                    height: 18px;
+                                    padding-left: 5px;
+                                }
+                            }
+                        }
+                    }
+                }
+                & .chatBottomBar {
+                    height: 143px;
+                    background: rgba(213, 224, 229, 0.4);
+                    border-top: 1px solid #D9D9D9;
+                    & .chatInputWrapper {
+                        & .form-control {
+                            font-family: 'Cabin';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 15px;
+                            line-height: 20px;
+                            color: #3D3D3D;
+                            resize: none;
+                            overflow: hidden;
+                            min-height: 49px;
+                            max-height: 75px;
+                            padding-right: 80px;
+                        }
+                        & .textareaBtn{
+                            & img{
+                                border-left: 1px solid $gray-500;
+                                padding-left: 18px;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    .starredResponseOffcanvas {
+        // top: 75px !important;
+        width: 800px !important;
+        & .offcanvas-header {
+            & .offcanvas-title {
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 36px;
+                color: #4A5C77;
+            }
+            & .input-group {
+                & .form-control {
+                    background: #FEFDFE;
+                    border: 1px solid #8CA5B2;
+                    border-radius: 3px 20px 20px 3px;
+                    font-family: 'Cabin';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 15px;
+                    color: #ACB1C6;
+                    &::placeholder {
+                        color: #ACB1C6;
+                    }
+                }
+                & .input-group-text {
+                    border-radius: 1.5rem;
+                    background-color: #8CA5B2;
+                    & img {
+
+                    }
+                }
+            }
+        }
+        & .offcanvas-body {
+            & .msgDate {
+                & .date {
+                    font-family: 'Cabin';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 19px;
+                    color: #4A5C77;
+                }
+                & .line {
+                    display: block;
+                    width: 100%;
+                    height: 1.5px;
+                    background-color: #4A5C77;
+                }
+            }
+            & .userMessage {
+                & .userMessageInner {
+                    background: #F3F2F7;
+                    border-radius: 6px;
+                    & .text {
+                        font-family: 'Cabin';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 15px;
+                        line-height: 21px;
+                        color: #434343;
+                    }
+                    & .msgTime {
+                        font-family: 'Cabin';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 12px;
+                        line-height: 15px;
+                        color: #434343;
+                        padding-left: 6px;
+                        white-space: nowrap;
+                    }
+                }
+            }
+            & .botMessage {
+                & .botMessageInner {
+                    background: #8FB6E0;
+                    border-radius: 6px;
+                    & .text {
+                        font-family: 'Cabin';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 15px;
+                        line-height: 21px;
+                        color: #FFFFFF;;
+                    }
+                    & .downloadPdf {
+                        text-decoration: none;
+                        background: rgba(74, 92, 119, 0.7);
+                        border-radius: 20px;
+                        font-family: 'Cabin';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 13px;
+                        line-height: 20px;
+                        color: rgba(255, 255, 255, 0.9);
+                        display: inline-flex;
+                        align-items: center;
+                        padding: 5px 10px;
+                        flex: 0 0 auto;
+                    }
+                    & .msgActionBtn {
+                        & img {
+                            height: 17px;
+                            padding-left: 5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .indexPageOuter {
+        & .customScrollbar {
+            &::-webkit-scrollbar {
+            }
+            &::-webkit-scrollbar-thumb {
+                background: #4A5C77;
+                border-radius: 100px;
+                height: 8px;
+                width: 33px;
+            }
+            &::-webkit-scrollbar-track {
+                background: rgba(143, 182, 224, 0.29);
+                border-radius: 100px;
+                height: 8px;
+                margin-inline: 300px !important;
+            }
+        }
+    }
+    .modalBox{
+        & .modalBoxDialog{
+            // width: 572.16px;
+            // height: 234px;
+            & .modalBoxContent{
+                padding: 25px 56px 0 56px;
+                & .modalBoxHeader{
+                    border-bottom: 0;
+                    padding: 0;
+                    display: flex;
+                    align-items: center;
+                    & .modalBoxTitle{
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 24px;
+                        line-height: 36px;
+                        color: #464255;
+                        margin-bottom: 37px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 100%;
+                        & img{
+                            width: 21px;
+                            height: 19px;
+                            margin-right: 15px;
+                        }
+                    }
+                }
+                & .modalBoxBody{
+                    padding: 0;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 15px;
+                    line-height: 26px;
+                    color: #4A5C77;
+                    margin-bottom: 37px;
+                }
+                & .modalBoxfooter{
+                    padding: 0;
+                    border-top: none;
+                    display: flex;
+                    justify-content: center;
+                    & .cancleBtn{
+                        margin-bottom: 29px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 21px;
+                        letter-spacing: 0.4px;
+                        color: #FFFFFF;
+                        background: #E15656;
+                        border-radius: 18px;
+                        height: 35px;
+                        border: none;
+                        padding: 7px 21px;
+                        & img{
+                            height: 12px;
+                            margin-right: 14px;
+                        }
+                    }
+                    & .removeBtn{
+                        margin-bottom: 29px;
+                        background: #5BCD97;
+                        border-radius: 18px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 21px;
+                        text-align: center;
+                        letter-spacing: 0.4px;
+                        color: #FFFFFF;
+                        border: none;
+                        padding: 7px 21px;
+                        height: 35px;
+                        & img{
+                            height: 13px;
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+
+@include media-breakpoint-down(xxl) {
+    main {
+        & .chatbotMainInner {
+            & .rightPart {
+                & .chatArea {
+                    & .userMessage {
+                        & .userMessageInner {
+                            & .text {
+                                font-size: 14px;
+                            }
+                            & .msgTime {
+                            }
+                        }
+                    }
+                    & .botMessage {
+                        & .botMessageInner {
+                            & .text {
+                                font-size: 14px;
+                            }
+                            & .downloadPdf {
+                                font-size: 12px;
+                            }
+                            & .msgActionBtn {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .chatBottomBar {
+                    & .chatInputWrapper {
+                        & .form-control {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    .starredResponseOffcanvas {
+        & .offcanvas-header {
+            & .offcanvas-title {
+            }
+            & .input-group {
+                & .form-control {
+                    &::placeholder {
+                    }
+                }
+                & .input-group-text {
+                    & img {
+
+                    }
+                }
+            }
+        }
+        & .offcanvas-body {
+            & .msgDate {
+                & .date {
+                }
+                & .line {
+                }
+            }
+            & .userMessage {
+                & .userMessageInner {
+                    & .text {
+                        font-size: 14px;
+                    }
+                    & .msgTime {
+                    }
+                }
+            }
+            & .botMessage {
+                & .botMessageInner {
+                    & .text {
+                        font-size: 14px;
+                    }
+                    & .downloadPdf {
+                        font-size: 12px;
+                    }
+                    & .msgActionBtn {
+                        & img {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    main {
+        & .chatbotMainInner {
+            & .rightPart {
+                & .chatArea {
+                    & .userMessage {
+                        & .userMessageInner {
+                            & .text {
+                            }
+                            & .msgTime {
+                            }
+                        }
+                    }
+                    & .botMessage {
+                        & .botMessageInner {
+                            & .text {
+                            }
+                            & .downloadPdf {
+                            }
+                            & .msgActionBtn {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .chatBottomBar {
+                    & .chatInputWrapper {
+                        & .form-control {
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    .starredResponseOffcanvas {
+        width: 700px !important;
+        & .offcanvas-header {
+            & .offcanvas-title {
+            }
+            & .input-group {
+                & .form-control {
+                    &::placeholder {
+                    }
+                }
+                & .input-group-text {
+                    & img {
+
+                    }
+                }
+            }
+        }
+        & .offcanvas-body {
+            & .msgDate {
+                & .date {
+                }
+                & .line {
+                }
+            }
+            & .userMessage {
+                & .userMessageInner {
+                    & .text {
+                    }
+                    & .msgTime {
+                    }
+                }
+            }
+            & .botMessage {
+                & .botMessageInner {
+                    & .text {
+                    }
+                    & .downloadPdf {
+                    }
+                    & .msgActionBtn {
+                        & img {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    main {
+        & .chatbotMainInner {
+            & .rightPart {
+                & .chatArea {
+                    & .userMessage {
+                        & .userMessageInner {
+                            & .text {
+                            }
+                            & .msgTime {
+                            }
+                        }
+                    }
+                    & .botMessage {
+                        & .botMessageInner {
+                            & .text {
+                            }
+                            & .downloadPdf {
+                            }
+                            & .msgActionBtn {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .chatBottomBar {
+                    & .chatInputWrapper {
+                        & .form-control {
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    .starredResponseOffcanvas {
+        width: 100% !important;
+        & .offcanvas-header {
+            & .offcanvas-title {
+            }
+            & .input-group {
+                & .form-control {
+                    &::placeholder {
+                    }
+                }
+                & .input-group-text {
+                    & img {
+
+                    }
+                }
+            }
+        }
+        & .offcanvas-body {
+            & .msgDate {
+                & .date {
+                }
+                & .line {
+                }
+            }
+            & .userMessage {
+                & .userMessageInner {
+                    & .text {
+                    }
+                    & .msgTime {
+                    }
+                }
+            }
+            & .botMessage {
+                & .botMessageInner {
+                    & .text {
+                    }
+                    & .downloadPdf {
+                    }
+                    & .msgActionBtn {
+                        & img {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    main {
+        & .chatbotMainInner {
+            & .rightPart {
+                & .chatArea {
+                    & .userMessage {
+                        & .userMessageInner {
+                            & .text {
+                            }
+                            & .msgTime {
+                            }
+                        }
+                    }
+                    & .botMessage {
+                        & .botMessageInner {
+                            & .text {
+                            }
+                            & .downloadPdf {
+                            }
+                            & .msgActionBtn {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .chatBottomBar {
+                    & .chatInputWrapper {
+                        & .form-control {
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    .starredResponseOffcanvas {
+        & .offcanvas-header {
+            & .offcanvas-title {
+            }
+            & .input-group {
+                & .form-control {
+                    &::placeholder {
+                    }
+                }
+                & .input-group-text {
+                    & img {
+
+                    }
+                }
+            }
+        }
+        & .offcanvas-body {
+            & .msgDate {
+                & .date {
+                }
+                & .line {
+                }
+            }
+            & .userMessage {
+                & .userMessageInner {
+                    & .text {
+                    }
+                    & .msgTime {
+                    }
+                }
+            }
+            & .botMessage {
+                & .botMessageInner {
+                    & .text {
+                    }
+                    & .downloadPdf {
+                    }
+                    & .msgActionBtn {
+                        & img {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    main {
+        & .chatbotMainInner {
+            & .rightPart {
+                & .chatArea {
+                    & .userMessage {
+                        & .userMessageInner {
+                            & .text {
+                            }
+                            & .msgTime {
+                            }
+                        }
+                    }
+                    & .botMessage {
+                        & .botMessageInner {
+                            & .text {
+                            }
+                            & .downloadPdf {
+                            }
+                            & .msgActionBtn {
+                                & img {
+                                }
+                            }
+                        }
+                    }
+                }
+                & .chatBottomBar {
+                    & .chatInputWrapper {
+                        & .form-control {
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    .starredResponseOffcanvas {
+        & .offcanvas-header {
+            & .offcanvas-title {
+                font-size: 20px;
+            }
+            & .input-group {
+                & .form-control {
+                    &::placeholder {
+                    }
+                }
+                & .input-group-text {
+                    & img {
+
+                    }
+                }
+            }
+        }
+        & .offcanvas-body {
+            & .msgDate {
+                & .date {
+                }
+                & .line {
+                }
+            }
+            & .userMessage {
+                & .userMessageInner {
+                    & .text {
+                    }
+                    & .msgTime {
+                    }
+                }
+            }
+            & .botMessage {
+                & .botMessageInner {
+                    & .text {
+                    }
+                    & .downloadPdf {
+                    }
+                    & .msgActionBtn {
+                        & img {
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    .modalBox{
+        & .modalBoxDialog{
+            & .modalBoxContent{
+                padding: 25px 20px 0 20px;
+                & .modalBoxHeader{
+                    & .modalBoxTitle{
+                        margin-bottom: 15px;
+                        font-size: 15px;
+                        & img{
+                            padding-right: 8px;
+                            margin-right: 0;
+                            height: 20px;
+                        }
+                    }
+                }
+                & .modalBoxBody{
+                    margin-bottom: 15px;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+                & .modalBoxfooter{
+                    & .cancleBtn{
+                        font-size: 13px;
+                        margin-bottom: 15px;
+                        & img{
+                        }
+                    }
+                    & .removeBtn{
+                        font-size: 13px;
+                        margin-bottom: 15px;
+                        & img{
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+}
