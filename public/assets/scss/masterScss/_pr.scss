@@ -1,0 +1,76 @@
+@include media-breakpoint(basic) {
+    .masterDashboard {
+        & .leftPart {
+            & .sideBar {
+                & .sideBarInner {
+                    & .sideBarHeader {
+                        & .companyLogo {
+                            padding-left: 0;
+                        }
+                    }
+                    & .sideBarBody {
+                        & .sidebarUL {
+                            & .sidebarLi {
+                                & .sidebarImg {
+                                    margin-right: 15px;
+                                    filter: brightness(1);
+                                }
+                                &.active {
+                                    & .sidebarImg {
+                                        filter: brightness(5);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        & .rightBgPart {
+            & .singleRightPart {
+                width: 100%!important;
+                & .stickyHeader {
+                    width: 66.66%;
+                    margin-inline: auto !important;
+                }
+            }
+            & .headerHiddenDetails {
+                & .pageHeading {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+
+@include media-breakpoint-down(xxl) {
+    .masterDashboard {
+        & .leftPart {}
+        & .rightBgPart {
+            & .singleRightPart {
+                & .stickyHeader {
+                    width: 100%;
+                    margin-inline: auto !important;
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {}
+
+@include media-breakpoint-down(lg) {}
+
+@include media-breakpoint-down(md) {}
+
+@include media-breakpoint-down(sm) {}

@@ -1,0 +1,2113 @@
+@include media-breakpoint(basic) {
+    main {
+        & .chatbotMainInner {
+            & .leftPart {
+                width: 243px;
+                background: url(../../assets/img/bg/bgSidebar.png);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                border-top-right-radius: 30.82px;
+                border-bottom-right-radius: 30.82px;
+                overflow: hidden;
+                &.forUpload {
+                    border-bottom-right-radius: 0px;
+                }
+                & .logoOuter {
+                    height: 75px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    & img {
+                        height: 36px;
+                    }
+                }
+                & .userBoxOuter {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 5px;
+                    & .userImg {
+                        width: 78px;
+                        height: 78px;
+                        overflow: hidden;
+                        border-radius: 50%;
+                    }
+                    & .userName {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 22px;
+                        line-height: 33px;
+                        color: #FFFFFF;
+                    }
+                    & .userSubHeading {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 14px;
+                        line-height: 21px;
+                        text-align: center;
+                        color: rgba(255, 255, 255, 0.4);
+                    }
+                }
+                & .scroolHide {
+                    &::-webkit-scrollbar-corner {
+                        width: 0px;
+                        height: 0px;
+                    }
+                    &::-webkit-scrollbar {
+                        width: 0px;
+                        height: 0px;
+                    }
+                }
+                & .sideBarLinks {
+                    & .sLink {
+                        text-decoration: none;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 15px;
+                        line-height: 22px;
+                        color: #FFFFFF;
+                        padding: 18px;
+                        width: 100%;
+                        display: block;
+                        position: relative;
+                        & img {
+                            width: 24px;
+                            height: 24px;
+                            filter: brightness(10);
+                        }
+                        &.active {
+                            background-color: rgba(255, 255, 255, 0.27);
+                        }
+                        &.locked {
+                            filter: brightness(0.9);
+                            & .lockImg {
+                                width: 14px;
+                                height: 14px;
+                            }
+                        }
+                        &::before {
+                            content: "";
+                            background-color: rgba(255, 255, 255, 0.20);
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            left: -100%;
+                            top: 0;
+                            transition: all 0.3s ease-in-out;
+                        }
+                        &:hover::before {
+                            left: 0;
+                            right: -100%;
+                        }
+                    }
+                }
+                & .sideBottomPart {
+                    padding: 15px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    & .logOutBtn {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 39px;
+                        width: 148px;
+                        background: #FFFFFF;
+                        border-radius: 14px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 24px;
+                        text-decoration: none;
+                        color: #4A5C77;
+                        transition: all 0.3s ease-in-out;
+                        & img {
+                            width: 18px;
+                            height: 18px;
+                        }
+                        &:hover {
+                            filter: brightness(0.9);
+                        }
+                    }
+                    & .powerText {
+                        font-family: 'Cabin';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 10px;
+                        line-height: 12px;
+                        text-align: center;
+                        color: #FFFFFF;
+                        margin-top: 20px;
+                    }
+                }
+            }
+            & .rightPart {
+                width: calc(100% - 243px);
+                background: url(../../assets/img/bg/mainBg.png);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: bottom right;
+                & .topPart {
+                    padding: 0px 25px;
+                    height: 75px;
+                    & .topPartnner {
+                        background-color: #4A5C77;
+                        border-bottom-left-radius: 30.82px;
+                        border-bottom-right-radius: 30.82px;
+                        padding: 0px 35px;
+                        & .pageHeading {
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 600;
+                            font-size: 26px;
+                            line-height: 39px;
+                            color: #FFFFFF;
+                            & span {
+                                font-weight: 400;
+                            }
+                        }
+                        & .viewStartBtn {
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 13px;
+                            line-height: 20px;
+                            color: #4A5C77;
+                            background: #ffffff;
+                            border-radius: 28px;
+                            padding: 7px 12px;
+                            text-decoration: none;
+                            transition: all 0.3s ease-in-out;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            & img {
+                                width: 16px;
+                                height: 16px;
+                            }
+                            &:hover {
+                                filter: brightness(0.9);
+                            }
+                        }
+                        & .resetBtn {
+                            font-family: 'Poppins';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 13px;
+                            line-height: 20px;
+                            color: #FFFFFF;
+                            background: #DF9292;
+                            border-radius: 28px;
+                            padding: 7px 12px;
+                            text-decoration: none;
+                            transition: all 0.3s ease-in-out;
+                            display: inline-flex;
+                            align-items: center;
+                            justify-content: center;
+                            & img {
+                                width: 16px;
+                                height: 16px;
+                            }
+                            &:hover {
+                                filter: brightness(0.9);
+                            }
+                        }
+                    }
+                }
+                & .mainPart {
+                    padding: 0px 25px;
+                    &.onlyHomePage {
+                        padding-right: 0 !important;
+                    }
+                }
+                & .bottomBar {
+                    background-color: #4A5C77;
+                    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.1);
+                    height: 82px;
+                    padding: 0px 30px;
+                    & .cancelBtn {
+                        height: 50px;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 106px;
+                        background-color: #DF9292;
+                        border-radius: 5px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 21px;
+                        text-transform: capitalize;
+                        color: #FFFFFF;
+                        transition: all 0.3s ease-in-out;
+                        box-shadow: none;
+                        border: none;
+                        &:hover {
+                            filter: brightness(0.9);
+                        }
+                        &.disabled {
+                            filter: brightness(0.8);
+                            pointer-events: none;
+                        }
+                    }
+                    & .uploadBtn {
+                        height: 50px;
+                        border: none;
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 185px;
+                        border-radius: 5px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 21px;
+                        text-transform: capitalize;
+                        background-color:  #4A3AFF;
+                        color: #FFFFFF;
+                        box-shadow: none;
+                        transition: all 0.3s ease-in-out;
+                        & img {
+                            width: 17px;
+                            height: 17px;
+                        }
+                        &:hover {
+                            filter: brightness(0.9);
+                        }
+                        &.disabled {
+                            filter: brightness(0.8);
+                            pointer-events: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+
+@include media-breakpoint-down(xxl) {
+    main {
+        & .chatbotMainInner {
+            & .leftPart {
+                &.forUpload {
+                }
+                & .logoOuter {
+                    & img {
+                    }
+                }
+                & .userBoxOuter {
+                    & .userImg {
+                    }
+                    & .userName {
+                    }
+                    & .userSubHeading {
+                    }
+                }
+                & .scroolHide {
+                    &::-webkit-scrollbar-corner {
+                    }
+                    &::-webkit-scrollbar {
+                    }
+                }
+                & .sideBarLinks {
+                    & .sLink {
+                        & img {
+                        }
+                        &.active {
+                        }
+                        &.locked {
+                            & .lockImg {
+                            }
+                        }
+                        &::before {
+                        }
+                        &:hover::before {
+                        }
+                    }
+                }
+                & .sideBottomPart {
+                    & .logOutBtn {
+                        & img {
+                        }
+                        &:hover {
+                        }
+                    }
+                    & .powerText {
+                    }
+                }
+            }
+            & .rightPart {
+                & .topPart {
+                    & .topPartnner {
+                        & .pageHeading {
+                        }
+                    }
+                }
+                & .mainPart {
+                    &.onlyHomePage {
+                    }
+                }
+                & .bottomBar {
+                    & .cancelBtn {
+                        &:hover {
+                        }
+                    }
+                    & .uploadBtn {
+                        & img {
+                        }
+                        &:hover {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    main {
+        & .chatbotMainInner {
+            & .leftPart {
+                &.forUpload {
+                }
+                & .logoOuter {
+                    & img {
+                        height: 34px;
+                    }
+                }
+                & .userBoxOuter {
+                    & .userImg {
+                        width: 70px;
+                        height: 70px;
+                    }
+                    & .userName {
+                        font-size: 21px;
+                        line-height: 28px;
+                    }
+                    & .userSubHeading {
+                        font-size: 13px;
+                        line-height: 20px;
+                    }
+                }
+                & .scroolHide {
+                    &::-webkit-scrollbar-corner {
+                    }
+                    &::-webkit-scrollbar {
+                    }
+                }
+                & .sideBarLinks {
+                    & .sLink {
+                        font-size: 14px;
+                        line-height: 20px;
+                        padding: 16px;
+                        & img {    
+                            width: 22px;
+                            height: 22px;
+                        }
+                        &.active {
+                        }
+                        &.locked {
+                            & .lockImg {
+                            }
+                        }
+                        &::before {
+                        }
+                        &:hover::before {
+                        }
+                    }
+                }
+                & .sideBottomPart {
+                    & .logOutBtn {
+                        & img {
+                        }
+                        &:hover {
+                        }
+                    }
+                    & .powerText {
+                    }
+                }
+            }
+            & .rightPart {
+                & .topPart {
+                    height: 65px;
+                    & .topPartnner {
+                        padding: 0px 30px;
+                        & .pageHeading {
+                            font-size: 24px;
+                            line-height: 37px;
+                        }
+                    }
+                }
+                & .mainPart {
+                    &.onlyHomePage {
+                    }
+                }
+                & .bottomBar {
+                    & .cancelBtn {
+                        height: 45px;
+                        &:hover {
+                        }
+                    }
+                    & .uploadBtn {
+                        height: 45px;
+                        & img {
+                        }
+                        &:hover {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    main {
+        & .chatbotMainInner {
+            & .leftPart {
+                &.forUpload {
+                }
+                & .logoOuter {
+                    height: 65px;
+                    & img {
+                        height: 34px;
+                    }
+                }
+                & .userBoxOuter {
+                    & .userImg {
+                        width: 70px;
+                        height: 70px;
+                    }
+                    & .userName {
+                        font-size: 21px;
+                        line-height: 28px;
+                    }
+                    & .userSubHeading {
+                        font-size: 13px;
+                        line-height: 20px;
+                    }
+                }
+                & .scroolHide {
+                    &::-webkit-scrollbar-corner {
+                    }
+                    &::-webkit-scrollbar {
+                    }
+                }
+                & .sideBarLinks {
+                    & .sLink {
+                        font-size: 14px;
+                        line-height: 20px;
+                        padding: 16px;
+                        & img {    
+                            width: 22px;
+                            height: 22px;
+                        }
+                        &.active {
+                        }
+                        &.locked {
+                            & .lockImg {
+                            }
+                        }
+                        &::before {
+                        }
+                        &:hover::before {
+                        }
+                    }
+                }
+                & .sideBottomPart {
+                    & .logOutBtn {
+                        & img {
+                        }
+                        &:hover {
+                        }
+                    }
+                    & .powerText {
+                    }
+                }
+            }
+            & .rightPart {
+                width: 100%;
+                & .topPart {
+                    height: 65px;
+                    & .topPartnner {
+                        padding: 0px 30px;
+                        & .pageHeading {
+                            font-size: 24px;
+                            line-height: 37px;
+                        }
+                        & .viewStartBtn {
+                            font-size: 11px;
+                            line-height: 15px;
+                            & img {
+                                width: 15px;
+                                height: 15px;
+                            }
+                            &:hover {
+                            }
+                        }
+                        & .resetBtn {
+                            font-size: 11px;
+                            line-height: 15px;
+                            & img {
+                                width: 15px;
+                                height: 15px;
+                            }
+                            &:hover {
+                            }
+                        }
+                        & .menuIconBtn {
+                            & img {
+                                filter: brightness(10);
+                            }
+                        }
+                    }
+                }
+                & .mainPart {
+                    &.onlyHomePage {
+                    }
+                }
+                & .bottomBar {
+                    & .cancelBtn {
+                        height: 45px;
+                        &:hover {
+                        }
+                    }
+                    & .uploadBtn {
+                        height: 45px;
+                        & img {
+                        }
+                        &:hover {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    main {
+        & .chatbotMainInner {
+            & .leftPart {
+                &.forUpload {
+                }
+                & .logoOuter {
+                    & img {
+                        height: 32px;
+                    }
+                }
+                & .userBoxOuter {
+                    & .userImg {    
+                        width: 60px;
+                        height: 60px;
+                    }
+                    & .userName {
+                        font-size: 18px;
+                        line-height: 24px;
+                    }
+                    & .userSubHeading {
+                        line-height: 15px;
+                    }
+                }
+                & .scroolHide {
+                    &::-webkit-scrollbar-corner {
+                    }
+                    &::-webkit-scrollbar {
+                    }
+                }
+                & .sideBarLinks {
+                    & .sLink {
+                        font-size: 13px;
+                        line-height: 15px;
+                        padding: 14px;
+                        & img {
+                            width: 18px;
+                            height: 18px;                        
+                        }
+                        &.active {
+                        }
+                        &.locked {
+                            & .lockImg {
+                            }
+                        }
+                        &::before {
+                        }
+                        &:hover::before {
+                        }
+                    }
+                }
+                & .sideBottomPart {
+                    & .logOutBtn {
+                        height: 30px;
+                        width: 110px;
+                        font-size: 14px;
+                        line-height: 20px;
+                        border-radius: 7px;
+                        & img {
+                            width: 16px;
+                            height: 16px;                        
+                        }
+                        &:hover {
+                        }
+                    }
+                    & .powerText {
+                        margin-top: 15px;
+                    }
+                }
+            }
+            & .rightPart {
+                & .topPart {
+                    & .topPartnner {
+                        & .pageHeading {
+                            font-size: 22px;
+                            line-height: 30px;
+                        }
+                        & .viewStartBtn {
+                            padding: 7px 18px;
+                            & span {
+                                display: none;
+                            }
+                            & img {
+                                width: 19px;
+                                height: 19px;
+                            }
+                            &:hover {
+                            }
+                        }
+                        & .resetBtn {
+                            padding: 7px 18px;
+                            & span {
+                                display: none;
+                            }
+                            & img {
+                                width: 19px;
+                                height: 19px;
+                            }
+                            &:hover {
+                            }
+                        }
+                        & .menuIconBtn {
+                            & img {
+                                width: 22px;
+                                height: 22px;
+                            }
+                        }
+                    }
+                }
+                & .mainPart {
+                    padding-left: 20px;
+                    &.onlyHomePage {
+                    }
+                }
+                & .bottomBar {
+                    height: 60px;
+                    padding: 0px 15px;
+                   & .cancelBtn {
+                       height: 40px;
+                       width: 90px;
+                       font-size: 13px;
+                       line-height: 19px;
+                       &:hover {
+                       }
+                   }
+                   & .uploadBtn {
+                        height: 40px;
+                        width: 175px;
+                        font-size: 13px;
+                        line-height: 19px;
+                        & img {
+                           width: 15px;
+                           height: 15px;
+                        }
+                        &:hover {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    main {
+        & .chatbotMainInner {
+            & .leftPart {
+                &.forUpload {
+                }
+                & .logoOuter {
+                    height: 55px;
+                    & img {
+                    }
+                }
+                & .userBoxOuter {
+                    & .userImg {
+                    }
+                    & .userName {
+                    }
+                    & .userSubHeading {
+                    }
+                }
+                & .scroolHide {
+                    &::-webkit-scrollbar-corner {
+                    }
+                    &::-webkit-scrollbar {
+                    }
+                }
+                & .sideBarLinks {
+                    & .sLink {
+                        & img {                       
+                        }
+                        &.active {
+                        }
+                        &.locked {
+                            & .lockImg {
+                            }
+                        }
+                        &::before {
+                        }
+                        &:hover::before {
+                        }
+                    }
+                }
+                & .sideBottomPart {
+                    & .logOutBtn {
+                        & img {                       
+                        }
+                        &:hover {
+                        }
+                    }
+                    & .powerText {
+                    }
+                }
+            }
+            & .rightPart {
+                & .topPart {
+                    height: 70px;
+                    padding: 0px 15px;
+                    & .topPartnner {
+                        border-bottom-left-radius: 15.82px;
+                        border-bottom-right-radius: 15.82px;
+                        padding: 0px 25px;
+                        & .pageHeading {
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+                        & .viewStartBtn {
+                            padding: 5px 20px;
+                            & span {
+                            }
+                            & img {
+                                width: 13px;
+                                height: 13px;
+                            }
+                            &:hover {
+                            }
+                        }
+                        & .resetBtn {
+                            padding: 5px 20px;
+                            & span {
+                            }
+                            & img {
+                                width: 13px;
+                                height: 13px;
+                            }
+                            &:hover {
+                            }
+                        }
+                        & .menuIconBtn {
+                            & img {
+                            }
+                        }
+                    }
+                }
+                & .mainPart {
+                    &.onlyHomePage {
+                    }
+                }
+                & .bottomBar {
+                   & .cancelBtn {
+                       &:hover {
+                       }
+                   }
+                   & .uploadBtn {
+                        & img {
+                        }
+                        &:hover {
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// ********************************** Home Page Srart ************************** //
+
+@include media-breakpoint(basic) {
+    .indexPageOuter {
+        padding-left: 25px;
+        & .sectionHeading {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 35px;
+            line-height: 40px;
+            color: #4A5C77;
+            & span{
+                color: #8FA9B6;
+            }
+        }
+        & .indexBottomSection {
+            & .searchBoxOuter {
+                padding-right: 25px;
+                & .megicTextOuter {
+                    display: flex;
+                    align-items: center;
+                    & .imgOuter {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 32px;
+                        height: 32px;
+                        margin-right: 12px;
+                    }
+                    & .magicText {
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 22px;
+                        line-height: 28px;
+                        color: #4A5C77;
+                    }
+                }
+                & .SearchBarOuter {
+                    // max-width: 260px;
+                    & .input-group {
+                        height: 30px;
+                        width: 260px !important;
+                        & input {
+                            height: 100%;
+                            box-shadow: none;
+                            font-family: 'Cabin';
+                            font-style: normal;
+                            font-weight: 400;
+                            font-size: 12px;
+                            line-height: 15px;
+                            color: #ACB1C6;
+                            padding: 8px 14px;
+                            background-color: #fff;
+                            border-radius: 3px 0px 0px 3px !important;
+                            border: 1px solid #8CA5B2;
+                            &::placeholder{
+                                color: $gray-400;
+                            }
+                        }
+                        & button {
+                            box-shadow: none;
+                            background-color: #8CA5B2;
+                            border-radius: 0px 20px 20px 0px !important;
+                            height: 100%;
+                            padding: 4px 7px;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            border: 1px solid #8CA5B2;
+                            & img {
+                                width: 14px;
+                                height: 14px;
+                                filter: invert(1);
+                            }
+                            &:focus {
+                                outline: none;
+                            }
+                            &:hover {
+                                background-color: darken(#8CA5B2, 5);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        & .customScrollbar {
+            padding-bottom: 20px;
+            * {
+                &>* {
+                  &::-webkit-scrollbar {}
+            
+                  &::-webkit-scrollbar-track {
+                  }
+            
+                  &::-webkit-scrollbar-thumb {
+                  }
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+            
+                &:hover>* {
+                  &::-webkit-scrollbar-track {}
+            
+                  &::-webkit-scrollbar-thumb {}
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+              }
+        }
+    }
+    .dataCard {
+        max-width: 370px;
+        height: 190px;
+        width: 100%;
+        padding: 25px;
+        border-radius: 30.8224px;
+        overflow: hidden;
+        border: none;
+        &.bg-one {
+            background-color:  #E7EBB8;
+        }
+        &.bg-two {
+            background-color:  #B3C6E5;
+        }
+        &.bg-three {
+            background-color:  #F0CECE;
+        }
+        &.bg-four {
+            background-color:  #F5BE82;
+        }
+        &.bg-five {
+            background-color:  #CEC0EC;
+        }
+        &.bg-six {
+            background-color:  #62C0BB;
+        }
+        & .dataCardImg {
+            width: 33px;
+            height: 33px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            margin-left: 7px;
+            & img {
+                filter: brightness(10);
+            }
+        }
+        & .dataCardHeading {
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14.8701px;
+            line-height: 21px;
+            color: #FFFFFF;
+            margin-bottom: 8px;
+        }
+        & .dataCardText {
+            font-family: 'Cabin';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 11.7878px;
+            line-height: 13px;
+            color: #FFFFFF;
+        }
+        & .cardLink {
+            text-decoration: none;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 11px;
+            line-height: 15px;
+            color: rgba(255, 255, 255, 0.67);
+        }
+    }
+}
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+
+@include media-breakpoint-down(xxl) {
+    .indexPageOuter {
+        & .sectionHeading {
+            & span{
+            }
+        }
+        & .indexBottomSection {
+            & .searchBoxOuter {
+                & .megicTextOuter {
+                    & .imgOuter {
+                    }
+                    & .magicText {
+                    }
+                }
+                & .SearchBarOuter {
+                    & .input-group {
+                        & input {
+                        }
+                        & button {
+                            & img {
+                            }
+                            &:focus {
+                            }
+                            &:hover {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        & .customScrollbar {
+            * {
+                &>* {
+                  &::-webkit-scrollbar {}
+            
+                  &::-webkit-scrollbar-track {
+                  }
+            
+                  &::-webkit-scrollbar-thumb {
+                  }
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+            
+                &:hover>* {
+                  &::-webkit-scrollbar-track {}
+            
+                  &::-webkit-scrollbar-thumb {}
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+              }
+        }
+    }
+    .dataCard {
+        max-width: 360px;
+        height: 185px;
+        &.bg-one {
+        }
+        &.bg-two {
+        }
+        &.bg-three {
+        }
+        &.bg-four {
+        }
+        &.bg-five {
+        }
+        &.bg-six {
+        }
+        & .dataCardImg {
+            & img {
+            }
+        }
+        & .dataCardHeading {
+            font-size: 14.8701px;
+        }
+        & .dataCardText {
+            font-size: 10.7878px;
+        }
+        & .cardLink {
+            font-size: 10px;
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    .indexPageOuter {
+        & .sectionHeading {
+            font-size: 33px;
+            line-height: 35px;
+            & span{
+            }
+        }
+        & .indexBottomSection {
+            & .searchBoxOuter {
+                & .megicTextOuter {
+                    & .imgOuter {
+                        width: 25px;
+                        height: 25px;
+                    }
+                    & .magicText {
+                        font-size: 20px;
+                        line-height: 28px;
+                    }
+                }
+                & .SearchBarOuter {
+                    & .input-group {
+                        & input {
+                        }
+                        & button {
+                            & img {
+                            }
+                            &:focus {
+                            }
+                            &:hover {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        & .customScrollbar {
+            * {
+                &>* {
+                  &::-webkit-scrollbar {}
+            
+                  &::-webkit-scrollbar-track {
+                  }
+            
+                  &::-webkit-scrollbar-thumb {
+                  }
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+            
+                &:hover>* {
+                  &::-webkit-scrollbar-track {}
+            
+                  &::-webkit-scrollbar-thumb {}
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+              }
+        }
+    }
+    .dataCard {
+        &.bg-one {
+        }
+        &.bg-two {
+        }
+        &.bg-three {
+        }
+        &.bg-four {
+        }
+        &.bg-five {
+        }
+        &.bg-six {
+        }
+        & .dataCardImg {
+            & img {
+            }
+        }
+        & .dataCardHeading {
+        }
+        & .dataCardText {
+        }
+        & .cardLink {
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+}
+
+@include media-breakpoint-down(md) {
+    .indexPageOuter {
+        padding-left: 0;
+        & .sectionHeading {
+            font-size: 25px;
+            line-height: 28px;
+            & span{
+            }
+        }
+        & .indexBottomSection {
+            & .searchBoxOuter {
+                & .megicTextOuter {
+                    & .imgOuter {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 10px;
+                    }
+                    & .magicText {
+                        font-size: 15px;
+                        line-height: 18px;
+                    }
+                }
+                & .SearchBarOuter {
+                    // max-width: 100% !important;
+                    & .input-group {
+                        width: 100% !important;
+                        margin-top: 10px;
+                        & input {
+                        }
+                        & button {
+                            & img {
+                            }
+                            &:focus {
+                            }
+                            &:hover {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        & .customScrollbar {
+            * {
+                &>* {
+                  &::-webkit-scrollbar {}
+            
+                  &::-webkit-scrollbar-track {
+                  }
+            
+                  &::-webkit-scrollbar-thumb {
+                  }
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+            
+                &:hover>* {
+                  &::-webkit-scrollbar-track {}
+            
+                  &::-webkit-scrollbar-thumb {}
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+              }
+        }
+    }
+    .dataCard {
+        width: 330px;
+        height: 170px;
+        padding: 20px;
+        border-radius: 23.8224px;
+        &.bg-one {
+        }
+        &.bg-two {
+        }
+        &.bg-three {
+        }
+        &.bg-four {
+        }
+        &.bg-five {
+        }
+        &.bg-six {
+        }
+        & .dataCardImg {
+            & img {
+            }
+        }
+        & .dataCardHeading {
+        }
+        & .dataCardText {
+        }
+        & .cardLink {
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .indexPageOuter {
+        & .sectionHeading {
+            font-size: 20px;
+            line-height: 25px;
+            padding-right: 20px !important;
+            & span{
+            }
+        }
+        & .indexBottomSection {
+            & .searchBoxOuter {
+                padding-right: 20px;
+                & .megicTextOuter {
+                    & .imgOuter {
+                        width: 20px;
+                        height: 20px;
+                        margin-right: 10px;
+                    }
+                    & .magicText {
+                        font-size: 14px;
+                    }
+                }
+                & .SearchBarOuter {
+                    // margin-top: 15px;
+                    max-width: 100%;
+                    padding-left: 0;
+                    & .input-group {
+                        & input {
+                        }
+                        & button {
+                            & img {
+                            }
+                            &:focus {
+                            }
+                            &:hover {
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        & .customScrollbar {
+            * {
+                &>* {
+                  &::-webkit-scrollbar {}
+            
+                  &::-webkit-scrollbar-track {
+                  }
+            
+                  &::-webkit-scrollbar-thumb {
+                  }
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+            
+                &:hover>* {
+                  &::-webkit-scrollbar-track {}
+            
+                  &::-webkit-scrollbar-thumb {}
+            
+                  &::-webkit-scrollbar-thumb:hover {}
+                }
+              }
+        }
+    }
+    .dataCard {
+        width: 300px;
+        height: 170px;
+        padding: 15px;
+        border-radius: 20.8224px;
+        &.bg-one {
+        }
+        &.bg-two {
+        }
+        &.bg-three {
+        }
+        &.bg-four {
+        }
+        &.bg-five {
+        }
+        &.bg-six {
+        }
+        & .dataCardImg {
+            & img {
+            }
+        }
+        & .dataCardHeading {
+        }
+        & .dataCardText {
+        }
+        & .cardLink {
+        }
+    }
+}
+
+//! **************************************** Home Page End ********************************//
+
+
+// ********************************** Upload Selection Page Srart ************************** //
+
+@include media-breakpoint(basic) {
+    .uploadSelectionSectionOuter {
+        & .uploadSelectionInnner {
+            padding: 35px 16px 0px 16px;
+            & .sideHeading {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 8px;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 28px;
+                color: #4A5C77;
+                padding-bottom: 27px;
+                & img {
+                    width: 34px;
+                    height: 34px;
+                }
+            }
+            & .leftSide {
+                padding: 28px 32px 0px 32px;
+                background: rgba(243, 242, 247, 0.5);
+                border-radius: 20px;
+                & .dataCardOuter {
+                    & .dataCard {
+                        max-width: 100%;
+                        width: 100%;
+                        padding: 25px 40px;
+                        // use active class for inner shadow
+                        // &.active {
+                        //     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+                        // }
+                    }
+                }
+            }
+            & .rightSide {
+                padding: 28px 32px 0px 32px;
+                & .reviewText {
+                    font-family: 'Cabin';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 18px;
+                    color: #4A5C77;
+                    & span {
+                        font-weight: 700;
+                    }
+                }
+                & .uploadPageBtn {
+                    background: #897FFF;
+                    border-radius: 8px;
+                    width: 257px;
+                    height: 66px;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 21px;
+                    color: #FFFFFF;
+                    text-decoration: none;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    transition: all 0.3s ease-in-out;
+                    & img {
+                        width: 29px;
+                        height: 29px;
+                    }
+                    &:hover {
+                        filter: brightness(0.9);
+                    }
+                    &.disabled {
+                        filter: brightness(0.8);
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+
+@include media-breakpoint-down(xxl) {
+}
+
+@include media-breakpoint-down(xl) {
+    .uploadSelectionSectionOuter {
+        & .uploadSelectionInnner {
+            padding: 30px 15px 0px 15px;
+            & .sideHeading {
+                gap: 6px;
+                font-size: 22px;
+                line-height: 24px;
+                padding-bottom: 24px;
+                & img {
+                    width: 30px;
+                    height: 30px;
+                }
+            }
+            & .leftSide {
+                padding: 24px 24px 0px 24px;
+                & .dataCardOuter {
+                    & .dataCard {
+                        padding: 25px 30px;
+                        &.active {
+                        }
+                    }
+                }
+            }
+            & .rightSide {
+                padding: 24px 24px 0px 24px;
+                & .reviewText {
+                    & span {
+                    }
+                }
+                & .uploadPageBtn {
+                    border-radius: 8px;
+                    width: 240px;
+                    height: 50px;
+                    font-size: 16px;
+                    line-height: 18px;
+                    & img {
+                        width: 23px;
+                        height: 23px;
+                    }
+                    &:hover {
+                    }
+                    &.disabled {
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    .uploadSelectionSectionOuter {
+        & .uploadSelectionInnner {
+            & .sideHeading {
+                & img {
+                }
+            }
+            & .leftSide {
+                padding: 20px 20px 0px 20px;
+                & .dataCardOuter {
+                    & .dataCard {
+                        padding: 25px 25px;
+                        &.active {
+                        }
+                    }
+                }
+            }
+            & .rightSide {
+                padding: 20px 20px 0px 20px;
+                & .reviewText {
+                    & span {
+                    }
+                }
+                & .uploadPageBtn {
+                    & img {
+                    }
+                    &:hover {
+                    }
+                    &.disabled {
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    .uploadSelectionSectionOuter {
+        & .uploadSelectionInnner {
+            padding: 25px 0px 0px 0px;
+            & .sideHeading {
+                font-size: 20px;
+                line-height: 22px;
+                padding-bottom: 20px;
+                & img {
+                    width: 25px;
+                    height: 25px;
+                }
+            }
+            & .leftSide {
+                height: auto !important;
+                padding: 20px 20px 0px 20px;
+                & .dataCardOuter {
+                    & .dataCard {
+                        padding: 25px 35px;
+                        &.active {
+                        }
+                    }
+                }
+            }
+            & .rightSide {
+                padding: 20px 20px 0px 20px;
+                & .reviewText {
+                    text-align: center;
+                    & span {
+                    }
+                }
+                & .uploadPageBtn {
+                    width: 220px;
+                    height: 45px;
+                    font-size: 15px;
+                    line-height: 17px;
+                    & img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                    &:hover {
+                    }
+                    &.disabled {
+                    }
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .uploadSelectionSectionOuter {
+        & .uploadSelectionInnner {
+            padding: 25px 0px 0px 0px;
+            & .sideHeading {
+                font-size: 18px;
+                line-height: 20px;
+                padding-bottom: 18px;
+                & img {
+                    width: 23px;
+                    height: 23px;
+                }
+            }
+            & .leftSide {
+                padding: 15px 15px 0px 15px;
+                & .dataCardOuter {
+                    & .dataCard {
+                        padding: 25px 25px;
+                        &.active {
+                        }
+                    }
+                }
+            }
+            & .rightSide {
+                padding: 20px 20px 0px 20px;
+                & .reviewText {
+                    & span {
+                    }
+                }
+                & .uploadPageBtn {
+                    border-radius: 6px;
+                    width: 200px;
+                    height: 40px;
+                    font-size: 14px;
+                    line-height: 16px;
+                    & img {
+                        width: 18px;
+                        height: 18px;
+                    }
+                    &:hover {
+                    }
+                    &.disabled {
+                    }
+                }
+            }
+        }
+    }
+}
+
+//! **************************************** Upload Selection Page End ********************************//
+
+
+// ********************************** Upload Page Srart ************************** //
+
+@include media-breakpoint(basic) {
+    .uploadPageSectionOuter {
+        & .leftSide {
+            padding: 32px !important;
+            & .fileInpOuter {
+                width: 100%;
+                height: 100%;
+                border: 1px dashed rgba(0, 0, 0, 0.25);
+                border-radius: 10px;
+                & .uploadIconOuter {
+                    width: 48px;
+                    height: 48px;
+                    margin-bottom: 24px;
+                }
+                & .selectHeadig {
+                    font-family: 'Helvetica';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 13px;
+                    line-height: 15px;
+                    color: #000000;
+                    text-align: center;
+                    margin-bottom: 12px;
+                }
+                & .formetText {
+                    text-align: center;
+                    font-family: 'Helvetica';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 14px;
+                    color: rgba(0, 0, 0, 0.4);
+                    margin-bottom: 24px;
+                }
+                & .selectFileBtn {
+                    width: 95px;
+                    height: 35px;
+                    background: #FBFDFE;
+                    border: 1px solid rgba(15, 145, 210, 0.7);
+                    border-radius: 5px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    font-family: 'Helvetica';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 10px;
+                    line-height: 11px;
+                    text-transform: uppercase;
+                    color: #0F91D2;
+                }
+            }
+        }
+        & .rightSide {
+            padding: 32px !important;
+        }
+        & .noFile {
+            font-family: 'Cabin';
+            text-align: center;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 18px;
+            color: rgba(74, 92, 119, 0.6);
+        }
+    }
+    .uploadedFileOuter {
+        padding: 0px 16px;
+        margin-top: 40px;
+        min-height: 250px;
+        & .scrollPart {
+            border-top: 2px solid #E9E9E9;
+        }
+        & .uploadedFileInner {
+            padding: 20px 40px;
+            & .uploadedCard {
+                background: #F9F9FB;
+                border-radius: 5px;
+                padding: 17px 19px;
+                position: relative;
+                & .closetBtn {
+                    position: absolute;
+                    top: -6px;
+                    right: -6px;
+                    width: 24px;
+                    height: 24px;
+                    text-decoration: none;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    background-color: #0F91D2;
+                    & img {
+                        width: 8px;
+                        height: 8px;
+                    }
+                }
+                & .fileImgOuter {
+                    width: 24px;
+                    height: 24px;
+                    display: flex;
+                    align-items: center;
+                    margin-right: 17px;
+                }
+                & .fileNameText {
+                    font-family: 'Helvetica';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 14px;
+                    color: #000000;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    -webkit-line-clamp: 2;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+          
+                }
+                & .previewText {
+                    position: relative;
+                    font-family: 'Helvetica';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 14px;
+                    color: #0F91D2;
+                    padding: 0px 12px;
+                    text-decoration: none;
+                    display: inline-block;
+                    &::before {
+                        content: "";
+                        width: 3px;
+                        height: 3px;
+                        background-color: #767676;
+                        border-radius: 50%;
+                        position: absolute;
+                        left: 0px;
+                        top: 5px;
+                    }
+                }
+                & .fileSizeText {
+                    text-align: end;
+                    font-family: 'Helvetica';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 10px;
+                    line-height: 11px;
+                    color: rgba(0, 0, 0, 0.7);
+                }
+            }
+        }
+    }
+    .successBoxOuter {
+        max-width: 460px;
+        width: 100%;
+        padding: 28px 71px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 20px;
+        & .successImg {
+            width: 112px;
+            height: 112px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+        & .successHeading {
+            text-align: center;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 30px;
+            color: #000000;
+            margin-bottom: 16px;
+        }
+        & .successText {
+            text-align: center;
+            font-family: 'Cabin';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 16px;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 25px;
+        }
+        & .backBtn2 {
+            text-align: center;
+            font-family: 'Poppins';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 21px;
+            color: #FFFFFF;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 199px;
+            height: 45px;
+            background: #897FFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.16);
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                filter: brightness(0.9);
+            }
+        }
+    }
+}
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+
+@include media-breakpoint-down(xxl) {
+}
+
+@include media-breakpoint-down(xl) {
+    .uploadPageSectionOuter {
+        & .leftSide {
+            padding: 25px !important;
+            & .fileInpOuter {
+                & .uploadIconOuter {
+                }
+                & .selectHeadig {
+                }
+                & .formetText {
+                }
+                & .selectFileBtn {
+                }
+            }
+        }
+        & .rightSide {
+            padding: 25px !important;
+        }
+        & .noFile {
+        }
+    }
+    .uploadedFileOuter {
+        & .scrollPart {
+        }
+        & .uploadedFileInner {
+            & .uploadedCard {
+                & .closetBtn {
+                    & img {
+                    }
+                }
+                & .fileImgOuter {
+                }
+                & .fileNameText {
+                }
+                & .previewText {
+                    &::before {
+                    }
+                }
+                & .fileSizeText {
+                }
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+}
+
+@include media-breakpoint-down(md) {
+    .uploadPageSectionOuter {
+        height: auto !important;
+        & .leftSide {
+            padding: 20px !important;
+            & .fileInpOuter {
+                padding: 10px;
+                & .uploadIconOuter {
+                }
+                & .selectHeadig {
+                }
+                & .formetText {
+                }
+                & .selectFileBtn {
+                }
+            }
+        }
+        & .rightSide {
+            padding: 20px !important;
+        }
+        & .noFile {
+        }
+    }
+    .uploadedFileOuter {
+        margin-top: 30px;
+        & .scrollPart {
+            height: auto !important;
+        }
+        & .uploadedFileInner {
+            padding: 20px 10px;
+            & .uploadedCard {
+                & .closetBtn {
+                    & img {
+                    }
+                }
+                & .fileImgOuter {
+                }
+                & .fileNameText {
+                }
+                & .previewText {
+                    &::before {
+                    }
+                }
+                & .fileSizeText {
+                }
+            }
+        }
+    }
+    .successBoxOuter {
+        padding: 20px;
+        & .successImg {
+            width: 112px;
+            height: 112px;
+            margin-bottom: 16px;
+        }
+        & .successHeading {
+            font-size: 20px;
+            line-height: 30px;
+            margin-bottom: 16px;
+        }
+        & .successText {
+            font-size: 13px;
+            line-height: 16px;
+            margin-bottom: 25px;
+        }
+        & .backBtn2 {
+            font-size: 13px;
+            line-height: 20px;
+            width: 180px;
+            height: 40px;
+            &:hover {
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    .uploadPageSectionOuter {
+        & .leftSide {
+            padding: 15px !important;
+            & .fileInpOuter {
+                padding: 10px 5px;
+                & .uploadIconOuter {
+                    margin-bottom: 18px;
+                }
+                & .selectHeadig {
+                }
+                & .formetText {
+                }
+                & .selectFileBtn {
+                }
+            }
+        }
+        & .rightSide {
+            padding: 15px !important;
+        }
+        & .noFile {
+        }
+    }
+    .uploadedFileOuter {
+        margin-top: 30px;
+        & .scrollPart {
+            height: auto !important;
+        }
+        & .uploadedFileInner {
+            padding: 20px 10px;
+            & .uploadedCard {
+                & .closetBtn {
+                    & img {
+                    }
+                }
+                & .fileImgOuter {
+                }
+                & .fileNameText {
+                }
+                & .previewText {
+                    &::before {
+                    }
+                }
+                & .fileSizeText {
+                }
+            }
+        }
+    }
+}
+
+//! **************************************** Upload Page End ********************************//

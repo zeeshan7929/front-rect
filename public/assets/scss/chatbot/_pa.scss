@@ -1,0 +1,854 @@
+
+
+
+@include media-breakpoint(basic) {
+    .carmenDashboard{
+        
+        & .trackPageTopBar{
+            background: #F9F9FB;
+            border-radius: 24px;
+            padding: 25px 134px;
+            margin: 40px 0 30px 0;
+            & .trackPageTopBarHeadTxt{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 36px;
+                color: #464255;
+                display: flex;
+                justify-content: center;
+            }
+            & .trackPageTopBarPercent{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 22px;
+                line-height: 33px;
+                color: #4A5C77;
+            }
+            & .trackPageTopProgressBar{
+                & .trackProgress{
+                    height: 6px !important;
+                    background-color: #C5C5C5;
+                }
+                & .trackProgressBar{
+                    background: #4A5C77;
+                    border-radius: 16px;
+    
+                }
+            }
+            & .trackPageTopBarBottomTxt{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 26px;
+                color: #838383;
+            }
+            & .trackPageTopBarBottomTxt1{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 26px;
+                text-align: right;
+                color: #4A5C77;
+                & span{
+                    color: #4A5C77;
+                }
+            }
+            & .limitSpan{
+                background: #FF7A7A;
+                border-radius: 24px;
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 10px;
+                line-height: 26px;
+                display: flex;
+                align-items: center;
+                text-align: right;
+                color: #FFFFFF;
+                height: 11px;
+                padding: 10px 15px;
+            }
+        }
+        & .marginClass{
+            // margin-right: 60px !important;
+            & .trackTableHead{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 18px;
+                line-height: 24px;
+                color: #464255;
+            }
+            & .trackTableHeadSearch{
+                & .trackInp{
+                    background: #FBFBFB;
+                    border-radius: 18px;
+                    border-color: #FBFBFB;
+                    padding-left: 20px;
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 12px;
+                    line-height: 18px;
+                    color: #4A5C77;
+                    border: none;
+                    height: 30px;
+                    &:focus-visible{
+                        outline: unset;
+                    }
+                }
+                & .inpSearch{
+                    position: absolute;
+                    top: 8%;
+                    right: 10px;
+                    & img{
+                        height: 15px;
+                    }
+                }
+            }
+            & .trackTable{
+                width: 100%;
+                height: 100%;
+                overflow: hidden;;
+                & img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            & .trackgraph{
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                & img{
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            & .profileSection{
+                background: rgba(243, 242, 247, 0.8);
+                border-radius: 30.8224px;
+                padding: 26px 50px;
+                margin: 0 0 46px 0;
+                // margin-right: 100px;
+                & .profileImg{
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 50%;
+                    overflow: hidden;
+                    & img{
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+                & .fileLbl{
+                    width: 24px;
+                    height: 24px;
+                    background-color: #4A5C77;
+                    border-radius: 50%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: absolute;
+                    bottom: 3px;
+                    left: 70px;
+                    & img{
+                        height: 12px;
+                    }
+                }
+                & .profileName{
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #4A5C77;
+                    margin-bottom: 5px;
+                }
+                & .profileDescription{
+                    font-family: 'Cabin';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14.22px;
+                    line-height: 17px;
+                    color: #4A5C77;
+                }
+                & .userLbl{
+                    font-family: 'DM Sans';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14.22px;
+                    line-height: 19px;
+                    color: #4A5C77;
+                    margin-bottom: 10px;
+                }
+                & .userInp{
+                    background: #FFFFFF;
+                    border-radius: 8px;
+                    height: 46px;
+                    padding-left: 40px;
+                    font-family: 'Cabin';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14.22px;
+                    line-height: 17px;
+                    color: #727272;
+                    border: none;
+                }
+                & .userImg{
+                    position: absolute;
+                    top: 55%;
+                    left: 28px;
+                    & img{
+                        height: 14px;
+                    }
+                }
+                & .updateBtn{
+                    background: #9BB7C2;
+                    opacity: 0.8;
+                    border-radius: 8px;
+                    font-family: 'Cabin';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 16px;
+                    line-height: 19px;
+                    text-align: center;
+                    color: #FFFFFF;
+                    border: none;
+                    padding: 12px 60px;
+                    &:hover{
+                        opacity: 0.5;
+                    }
+                }
+                & .passInp{
+                    background: #FFFFFF;
+                    border-radius: 8px;
+                    height: 46px;
+                    padding-left: 40px;
+                    font-family: 'Cabin';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14.22px;
+                    line-height: 17px;
+                    color: #727272;
+                    border: none;
+                }
+                & .passImg{
+                    position: absolute;
+                    top: 24%;
+                    left: 28px;
+                    & img{
+        
+                    }
+                }
+                & .openEye{
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    right: 25px;
+                    & img{
+                        height: 18px;
+                    }
+                }
+            }
+            & .sideTxt{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 22px;
+                line-height: 33px;
+                color: #4A5C77;
+                transform: rotate(-90deg);
+                position: absolute;
+                left: -70px;
+                top: 50%;
+            }
+            & .sideTxt1{
+                font-family: 'Poppins';
+                font-style: normal;
+                font-weight: 600;
+                font-size: 22px;
+                line-height: 33px;
+                color: #4A5C77;
+                transform: rotate(-90deg);
+                position: absolute;
+                left: -24px;
+                top: 50%;
+            }
+        }
+    }
+    
+    .confirmModal {
+        & .modalDialog{
+            max-width: 572px !important;
+            & .modalContent{
+                padding: 25px 42px;
+                background: #FFFFFF;
+                border-radius: 24px;
+                & .modalHeader{
+                    font-family: 'Poppins';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 24px;
+                    line-height: 36px;
+                    color: #464255;
+                    display: flex !important;
+                    justify-content: center;
+                    border-bottom: unset;
+                    & img{
+                        height: 25px;
+                        padding-right: 10px;
+                    }
+                    & .modalTitle{
+                        display: flex;
+                        align-items: center;
+                    }
+                }
+                & .modalBody{
+                    padding-top: 22px !important;
+                    padding-bottom: 18px !important;
+                    & .para{
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 26px;
+                        color: #4A5C77;
+                    }
+                }
+                & .modalFooter{
+                    border-top: unset;
+                    & .cancleBtn{
+                        background: #E15656;
+                        border-radius: 40px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 21px;
+                        letter-spacing: 0.4px;
+                        color: #FFFFFF;
+                        margin: 0;
+                        height: 35px !important;
+                        transition: 0.3s ease-in-out;
+                        & img{
+                            height: 12px;
+                            padding-right: 5px;
+                        }
+                        &:hover {
+                            background-color: darken($color: #E15656, $amount: 8);
+                        }
+                    }
+                    & .applyBtn{
+                        height: 35px !important;
+                        background-color: #5BCD97;
+                        border-radius: 40px;
+                        font-family: 'Poppins';
+                        font-style: normal;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 21px;
+                        text-align: center;
+                        letter-spacing: 0.4px;
+                        color: #FFFFFF;
+                        margin: 0;
+                        margin-left: 15px !important;
+                        transition: 0.3s ease-in-out;
+                        & img{
+                            height: 17px;
+                            padding-right: 10px;
+                        }
+                        &:hover {
+                            background-color: darken($color: #5BCD97, $amount: 8);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@include media-breakpoint-up(sm) {}
+
+@include media-breakpoint-up(md) {}
+
+@include media-breakpoint-up(lg) {}
+
+@include media-breakpoint-up(xl) {}
+
+@include media-breakpoint-up(xxl) {}
+
+
+@include media-breakpoint-down(xxl) {
+    
+    .carmenDashboard{
+        & .trackPageTopBar{
+            & .trackPageTopBarHeadTxt{
+            }
+            & .trackPageTopBarPercent{
+            }
+            & .trackPageTopProgressBar{
+                & .trackProgress{
+                }
+                & .trackProgressBar{
+
+                }
+            }
+            & .trackPageTopBarBottomTxt{
+            }
+            & .trackPageTopBarBottomTxt1{
+                & span{
+                }
+            }
+        }
+        & .marginClass{
+            // margin-right: 20px !important;
+            
+        & .trackTableHead{
+        }
+        & .trackTableHeadSearch{
+            & .trackInp{
+                &:focus-visible{
+                }
+            }
+            & .inpSearch{
+                & img{
+                }
+            }
+        }
+        & .trackTable{
+            & img{
+            }
+        }
+        & .trackgraph{
+            & img{
+            }
+        }
+        & .profileSection{
+            & .profileImg{
+                & img{
+                }
+            }
+            & .fileLbl{
+                & img{
+                }
+            }
+            & .profileName{
+            }
+            & .profileDescription{
+            }
+            & .userLbl{
+            }
+            & .userInp{
+            }
+            & .userImg{
+                & img{
+                }
+            }
+            & .updateBtn{
+                &:hover{
+                }
+            }
+            & .passInp{
+            }
+            & .passImg{
+                & img{
+
+                }
+            }
+            & .openEye{
+                & img{
+                }
+            }
+        }
+        & .sideTxt{
+        }
+        & .sideTxt1{
+        }
+        }
+    }
+}
+
+@include media-breakpoint-down(xl) {
+    
+    .carmenDashboard{
+        & .trackPageTopBar{
+            padding: 25px 60px;
+            & .trackPageTopBarHeadTxt{
+            }
+            & .trackPageTopBarPercent{
+            }
+            & .trackPageTopProgressBar{
+                & .trackProgress{
+                }
+                & .trackProgressBar{
+
+                }
+            }
+            & .trackPageTopBarBottomTxt{
+            }
+            & .trackPageTopBarBottomTxt1{
+                & span{
+                }
+            }
+        }
+        & .marginClass{
+            // margin-right: 20px;
+            & .trackTableHead{
+            }
+            & .trackTableHeadSearch{
+                & .trackInp{
+                    &:focus-visible{
+                    }
+                }
+                & .inpSearch{
+                    & img{
+                    }
+                }
+            }
+            & .trackTable{
+                & img{
+                }
+            }
+            & .trackgraph{
+                & img{
+                }
+            }
+            & .profileSection{
+                // margin-right: 50px;
+                & .profileImg{
+                    & img{
+                    }
+                }
+                & .fileLbl{
+                    & img{
+                    }
+                }
+                & .profileName{
+                }
+                & .profileDescription{
+                }
+                & .userLbl{
+                }
+                & .userInp{
+                }
+                & .userImg{
+                    & img{
+                    }
+                }
+                & .updateBtn{
+                    &:hover{
+                    }
+                }
+                & .passInp{
+                }
+                & .passImg{
+                    & img{
+    
+                    }
+                }
+                & .openEye{
+                    & img{
+                    }
+                }
+            }
+            & .sideTxt{
+            }
+            & .sideTxt1{
+            }
+        }
+    }
+}
+
+@include media-breakpoint-down(lg) {
+    
+    .carmenDashboard{
+        & .trackPageTopBar{
+            & .trackPageTopBarHeadTxt{
+            }
+            & .trackPageTopBarPercent{
+            }
+            & .trackPageTopProgressBar{
+                & .trackProgress{
+                }
+                & .trackProgressBar{
+
+                }
+            }
+            & .trackPageTopBarBottomTxt{
+            }
+            & .trackPageTopBarBottomTxt1{
+                & span{
+                }
+            }
+        }
+        & .trackTableHead{
+        }
+        & .trackTableHeadSearch{
+            & .trackInp{
+                &:focus-visible{
+                }
+            }
+            & .inpSearch{
+                & img{
+                }
+            }
+        }
+        & .trackTable{
+            & img{
+            }
+        }
+        & .trackgraph{
+            & img{
+            }
+        }
+        & .profileSection{
+            // margin-right: 30px;
+            & .profileImg{
+                & img{
+                }
+            }
+            & .fileLbl{
+                & img{
+                }
+            }
+            & .profileName{
+            }
+            & .profileDescription{
+            }
+            & .userLbl{
+            }
+            & .userInp{
+            }
+            & .userImg{
+                & img{
+                }
+            }
+            & .updateBtn{
+                &:hover{
+                }
+            }
+            & .passInp{
+            }
+            & .passImg{
+                & img{
+
+                }
+            }
+            & .openEye{
+                & img{
+                }
+            }
+        }
+        & .sideTxt{
+        }
+        & .sideTxt1{
+        }
+    }
+}
+
+@include media-breakpoint-down(md) {
+    
+    .carmenDashboard{
+        & .trackPageTopBar{
+            & .trackPageTopBarHeadTxt{
+            }
+            & .trackPageTopBarPercent{
+            }
+            & .trackPageTopProgressBar{
+                & .trackProgress{
+                }
+                & .trackProgressBar{
+
+                }
+            }
+            & .trackPageTopBarBottomTxt{
+            }
+            & .trackPageTopBarBottomTxt1{
+                & span{
+                }
+            }
+        }
+        & .trackTableHead{
+        }
+        & .trackTableHeadSearch{
+            & .trackInp{
+                &:focus-visible{
+                }
+            }
+            & .inpSearch{
+                & img{
+                }
+            }
+        }
+        & .trackTable{
+            & img{
+            }
+        }
+        & .trackgraph{
+            & img{
+            }
+        }
+        & .profileSection{
+            padding: 25px !important;
+            & .profileImg{
+                & img{
+                }
+            }
+            & .fileLbl{
+                & img{
+                }
+            }
+            & .profileName{
+            }
+            & .profileDescription{
+            }
+            & .userLbl{
+            }
+            & .userInp{
+                font-size: 13px;
+            }
+            & .userImg{
+                & img{
+                }
+            }
+            & .updateBtn{
+                &:hover{
+                }
+            }
+            & .passInp{
+                font-size: 12px;
+            }
+            & .passImg{
+                & img{
+
+                }
+            }
+            & .openEye{
+                & img{
+                }
+            }
+        }
+        & .sideTxt{
+            position: static !important;
+            transform: rotate(0) !important;
+            margin-top: 25px;
+        }
+        & .sideTxt1{
+            position: static !important;
+            transform: rotate(0) !important;
+            margin-bottom: 0.5rem;
+        }
+    }
+}
+
+@include media-breakpoint-down(sm) {
+    
+    .carmenDashboard{
+        & .trackPageTopBar{
+            padding: 20px 25px;
+            & .trackPageTopBarHeadTxt{
+                font-size: 20px;
+                & img{
+                    height: 25px;
+                }
+            }
+            & .trackPageTopBarPercent{
+                font-size: 15px;
+            }
+            & .trackPageTopProgressBar{
+                & .trackProgress{
+                }
+                & .trackProgressBar{
+
+                }
+            }
+            & .trackPageTopBarBottomTxt{
+                font-size: 11px;
+            }
+            & .trackPageTopBarBottomTxt1{
+                font-size: 11px;
+                & span{
+                }
+            }
+        }
+        & .trackTableHead{
+            font-size: 13px !important;
+        }
+        & .trackTableHeadSearch{
+            & .trackInp{
+                &:focus-visible{
+                }
+            }
+            & .inpSearch{
+                & img{
+                }
+            }
+        }
+        & .trackTable{
+            & img{
+            }
+        }
+        & .trackgraph{
+            & img{
+            }
+        }
+        & .profileSection{
+            padding: 25px !important;
+            & .profileImg{
+                width: 60px;
+                height: 60px;
+                & img{
+                }
+            }
+            & .fileLbl{
+                width: 20px;
+                height: 20px;
+                bottom: 3px;
+                left: 56px;
+                & img{
+                }
+            }
+            & .profileName{
+            }
+            & .profileDescription{
+            }
+            & .userLbl{
+            }
+            & .userInp{
+                font-size: 12px;
+            }
+            & .userImg{
+                & img{
+                }
+            }
+            & .updateBtn{
+                font-size: 12px;
+                &:hover{
+                }
+            }
+            & .passInp{
+                font-size: 12px;
+            }
+            & .passImg{
+                & img{
+
+                }
+            }
+            & .openEye{
+                & img{
+                }
+            }
+        }
+        & .sideTxt{
+        }
+        & .sideTxt1{
+        }
+    }
+}
