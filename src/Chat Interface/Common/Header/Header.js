@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Header({ title, setSidebarOpen }) {
+function Header({ title, setSidebarOpen,rightElements }) {
   return (
 <div className="col-12 topPart ">
   <div className="row h-100 mx-0 align-items-center">
@@ -14,7 +14,12 @@ function Header({ title, setSidebarOpen }) {
         <div className="col-auto px-0">
           <div className="pageHeading">{title}</div>
         </div>
+
+        <div className="col-auto px-0 mr-2" style={{flex:1,display:"flex",justifyContent:"flex-end"}}>
+          {rightElements}
+        </div>
       </div>
+
     </div>
   </div>
 </div>

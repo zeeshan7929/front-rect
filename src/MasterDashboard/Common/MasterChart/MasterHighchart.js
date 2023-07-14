@@ -33,13 +33,14 @@ const MasterHighchart = ({ title }) => {
         total[val].push(cur);
         return total;
       }, {});
-
+      console.log("Grouped data:")
+      console.log(groupedDate)
       for (let key in groupedDate) {
         let totalDpaUsage = 0;
         for (let value of groupedDate[key]) {
           totalDpaUsage += Number(value?.dpa_usage);
         }
-        data?.push({ name: key, usage: totalDpaUsage });
+        data?.push({ name: key, y: totalDpaUsage });
       }
 
       const ser = weekdays?.map((day) => {
@@ -47,7 +48,7 @@ const MasterHighchart = ({ title }) => {
         if (match.length) {
           return match[0];
         } else {
-          return { name: day, usage: 0 };
+          return { name: day, y: 0 };
         }
       });
       setdpausage(ser);
@@ -72,7 +73,7 @@ const MasterHighchart = ({ title }) => {
         for (let value of groupedDate[key]) {
           totalDpaUsage += Number(value?.embeding_usage);
         }
-        data?.push({ name: key, usage: totalDpaUsage });
+        data?.push({ name: key, y: totalDpaUsage });
       }
 
       const ser = weekdays?.map((day) => {
@@ -80,7 +81,7 @@ const MasterHighchart = ({ title }) => {
         if (match.length) {
           return match[0];
         } else {
-          return { name: day, usage: 0 };
+          return { name: day, y: 0 };
         }
       });
       setembedding(ser);

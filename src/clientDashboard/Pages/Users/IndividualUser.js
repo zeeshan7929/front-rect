@@ -20,7 +20,10 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
   let ref = useRef(null);
   const ids = JSON.parse(localStorage.getItem("a_login"));
   const location = useLocation();
+  
   let item = location?.state?.item;
+  console.log("TE : ")
+  console.log(item)
   const [value, setValue] = useState(1);
   const [open, setopen] = useState(false);
   const [userDpa, setUserDpa] = useState([]);

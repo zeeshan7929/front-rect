@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as yup from "yup";
+import { toaster } from "../../Common/Others/Toaster";
 import { postData } from "../../Common/fetchservices";
 import { ErrorText } from "../../Common/Others/ErrorText";
 
@@ -31,8 +32,17 @@ const AssistantVerifyOtp = () => {
       user_id: String(ids?.user_id),
     };
     const res = await postData("verify_otp ", body);
-    if (!res.verified) {
-      navigate("/dashboard", { state: { ids } });
+    console.log(res?.role)
+    if (res?.result.verified) {
+
+      if (res?.result.role === "admin"){
+        navigate("/dashboard", { state: { ids } });
+      }else{
+        window.location.href = '/dpa-selection'
+      }
+      
+    }else {
+      toaster(false, res?.result?.reason);
     }
   };
 

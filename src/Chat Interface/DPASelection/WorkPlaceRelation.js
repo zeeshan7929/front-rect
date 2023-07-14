@@ -15,7 +15,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
   const [quary, setQuary] = useState("");
   const [details, setDetails] = useState({});
   const [show, setshow] = useState(false);
-
+  const [submitting,setSubmitting] = useState(false);
   const ref = useRef();
 
   const handleStarredMsg = async () => {
@@ -44,9 +44,17 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
       dpa_id: item?.dpa_id,
       query: quary,
     };
+    setSubmitting(true);
+    try {
     const res = await postData("u_request_query", body);
     setDetails(res?.result);
     setshow(true);
+    }catch(er) {
+      console.warn(er)
+    }finally{
+      setSubmitting(false)
+    }
+
   }, [quary]);
   const handleAllDetails = useCallback(async () => {
     const body = {
@@ -63,6 +71,12 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
     }
   }, [Object.values(details || {})]);
 
+  const handleDpaReset = ()=>{
+    setshow(false)
+    setDetails("");
+  }
+
+
   const handleDeleteStarr = async (id) => {
     const body = {
       starred_id: id,
@@ -77,6 +91,8 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
       DPA <span> Workplace Relations</span>
     </>
   );
+
+
   const formatDate = (date) => {
     let formatedDate = `${date.slice(0, 4)} ${date.slice(8, date.length)}`;
     return formatedDate;
@@ -94,7 +110,9 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
               <Sidebar sideBar={sideBar} setSidebarOpen={setSidebarOpen} />
               <div className="col-auto rightPart px-0 h-100">
                 <div className="row mx-0 h-100 flex-column flex-nowrap overflow-hidden">
-                  <Header title={t} setSidebarOpen={setSidebarOpen} />
+                  <Header title={t} setSidebarOpen={setSidebarOpen} rightElements={<button onClick={handleDpaReset} style={{background:"#DF9292",color:"white",borderRadius:"20px",boxShadow:"none",outline:"none",border:"none",padding:"4px 8px"}}><svg style={{marginRight:"10px"}} xmlns="http://www.w3.org/2000/svg" width="17" height="18" viewBox="0 0 17 18" fill="none">
+  <path d="M2.57935 2.16071V6.48213M2.57935 6.48213H6.55653M2.57935 6.48213C4.12212 4.97785 5.55088 3.27474 7.71344 2.94417C8.99434 2.74837 10.2991 3.01016 11.4312 3.69008C12.5632 4.37001 13.4612 5.43124 13.9899 6.71388M14.5109 15.125V10.8036M14.5109 10.8036H10.5337M14.5109 10.8036C12.9681 12.3078 11.5394 14.011 9.37679 14.3415C8.0959 14.5373 6.79113 14.2755 5.65908 13.5956C4.52703 12.9157 3.62903 11.8545 3.10038 10.5718" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>Reset DPA</button>} />
                   <div className="col-12 mainPart d-flex flex-column flex-fill overflow-hidden chatArea">
                     <div className="row mx-0 flex-column flex-nowrap overflow-hidden h-100">
                       <div className="col-12 flex-fill overflow-hidden-auto">
@@ -130,14 +148,19 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                                     </ol>
                                   </div> */}
                                   <div className="col-12 px-0">
-                                    {details?.files?.map((item) => {
+                                    {details?.attachments?.map((item,i) => {
                                       return (
                                         <div
-                                          key={Math.random()}
+                                          key={i}
                                           className="row mx-0 mt-3"
+
                                         >
                                           <div className="col px-0 d-flex flex-wrap gap-3">
                                             <div
+                                            style={{'cursor':"pointer"}}
+                                            onClick={()=>{
+                                              window.open("/workplace-relation-preview?id="+item.doc_id,"_blank");
+                                            }}
                                               // href="javascript:;"
                                               className="downloadPdf"
                                             >
@@ -145,20 +168,25 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                                                 src="./../assets/img/svg/folder.svg"
                                                 className="me-1"
                                                 alt="file icon"
+                                                id={item?.doc_id}
                                               />
-                                              {item?.filename}
+                                              {item?.file_path}
                                             </div>
                                           </div>
                                           <div className="col-auto d-flex align-items-end">
-                                            <div className="msgActionBtn border-0 bg-transparent text-decoration-none">
+                                            {/* <div className="msgActionBtn border-0 bg-transparent text-decoration-none">
                                               <img
                                                 src="./../assets/img/svg/starrrrr.svg"
                                                 className=""
                                                 alt="file icon"
+                                                
                                               />
-                                            </div>
-                                            <a
-                                              href="javascript:;"
+                                            </div> */}
+                                            <div
+                                              style={{cursor:"pointer"}}
+                                              onClick={()=>{
+                                                navigator.clipboard.writeText(details.response)
+                                              }}
                                               className="msgActionBtn border-0 bg-transparent text-decoration-none"
                                             >
                                               <img
@@ -166,7 +194,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                                                 className=""
                                                 alt="file icon"
                                               />
-                                            </a>
+                                            </div>
                                           </div>
                                         </div>
                                       );
@@ -183,6 +211,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                       <div className="col-12 bottomBar chatBottomBar d-flex align-items-start">
                         <div className="chatInputWrapper w-100 position-relative mt-4">
                           <textarea
+                          disabled={submitting}
                             onChange={(e) => {
                               if (e.nativeEvent.inputType === "insertLineBreak")
                                 return;
@@ -192,7 +221,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                             }}
                             value={quary}
                             className="form-control shadow-none w-100"
-                            placeholder="Enter your quary here..."
+                            placeholder={submitting ? "Please wait..." :"Enter your query here..."}
                             onKeyPress={(e) => {
                               if (e.key == "Enter" && quary) {
                                 handleQuestion();
@@ -202,6 +231,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                             }}
                           ></textarea>
                           <button
+                          disabled={submitting}
                             onClick={() => {
                               if (quary) {
                                 handleQuestion();
@@ -319,10 +349,12 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                                               <div
                                                 // href="javascript:;"
                                                 onClick={() => {
+                                                  console.log("start clicked")
                                                   setIsOpen("model");
                                                   setRemoveStar(el?.id);
                                                 }}
-                                                className="msgActionBtn border-0 bg-transparent text-decoration-none"
+                                                style={{background:"red"}}
+                                                // className="msgActionBtn border-0  text-decoration-none"
                                                 // data-bs-toggle="modal"
                                                 // data-bs-target="#exampleModal"
                                               >

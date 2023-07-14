@@ -1,18 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, json, useLocation, useNavigate } from "react-router-dom";
+import { postData } from "../../../clientDashboard/Common/fetchservices";
 
 function Sidebar({ setSidebarOpen }) {
   const token = JSON.parse(localStorage.getItem("a_login"));
-
+  const details_ = JSON.parse(localStorage.getItem("details"));
   const navigate = useNavigate();
+  const [userData,setUserData] = useState({username:""})
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    postData("get_user_info", {
+      client_id: token.client_id,
+      user_id: token.user_id.toString(),
+    })
+      .then((res) => {
+        setUserData({ username:res.result.username})
+      })
+      .catch((er) => {
+        console.warn(er);
+      });
+  }, []);
 
   const hanldeLogout = () => {
     if (token) {
       localStorage.removeItem("a_login");
-      navigate("/master-login");
+      navigate("/assistant-login");
     }
   };
+  
+
   const handleAdmin = () => {
     if (JSON.parse(localStorage.getItem("m_login"))) {
       navigate("/master-dashboard");
@@ -25,6 +42,7 @@ function Sidebar({ setSidebarOpen }) {
       <div className="row flex-column flex-nowrap h-100 mx-0">
         <div className="col-12 logoOuter">
           <img src="../assets/img/logo/Logo2.svg" alt="" />
+          {/* <span className="userName">{details_.name}</span> */}
           <img
             src="../assets/img/svg/menuClose.svg"
             className="d-lg-none menuCloseIcon ms-2"
@@ -41,8 +59,8 @@ function Sidebar({ setSidebarOpen }) {
               alt=""
             />
           </NavLink>
-          <span className="userName">Carmen</span>
-          <span className="userSubHeading">USER</span>
+          <span className="userName">{userData.username}</span>
+          <span className="userSubHeading">{token.role}</span>
         </div>
         <div className="col 12 px-0 flex-fill overflow-hidden">
           <div className="row mx-0 h-100">

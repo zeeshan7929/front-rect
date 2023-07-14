@@ -30,7 +30,9 @@ const MasterVerifyOtp = () => {
       otp: `${otp?.otp}`,
     };
     const res = await postData("m_validate_otp", body);
-    if (res?.verified) {
+    // console.log(res)
+    // console.log(res?.result.verified)
+    if (res?.result.verified) {
       toaster(true, "Success");
       setTimeout(() => {
         navigate("/master-dashboard");

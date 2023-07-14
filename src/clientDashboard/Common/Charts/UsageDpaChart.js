@@ -20,8 +20,8 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
   const handleAllRange = async (min) => {
     if (clientId && userId !== undefined) {
       const body = {
-        client_id: clientId,
-        user_id: userId,
+        client_id: clientId.toString(),
+        user_id: userId.toString(),
         min_date: min,
         max_date: new Date(Date.now()).toISOString().substr(0, 10),
       };
@@ -42,7 +42,8 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         for (let value of groupedDate[key]) {
           totalDpaUsage += Number(value?.dpa_usage);
         }
-        data?.push({ name: key, usage: totalDpaUsage });
+        data?.push({ name: key, y: totalDpaUsage });
+        
       }
 
       const ser = weekdays?.map((day) => {
@@ -50,7 +51,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         if (match.length) {
           return match[0];
         } else {
-          return { name: day, usage: 0 };
+          return { name: day, y: 0 };
         }
       });
       setdpausers(ser);
@@ -78,7 +79,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         for (let value of groupedDate[key]) {
           totalDpaUsage += Number(value?.dpa_usage);
         }
-        data?.push({ name: key, usage: totalDpaUsage });
+        data?.push({ name: key, y: totalDpaUsage });
       }
 
       const ser = weekdays?.map((day) => {
@@ -86,13 +87,13 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         if (match.length) {
           return match[0];
         } else {
-          return { name: day, usage: 0 };
+          return { name: day, y: 0 };
         }
       });
       setdpausage(ser);
     } else {
       const body = {
-        client_id: clientId,
+        client_id: clientId.toString(),
         min_date: min,
         max_date: new Date(Date.now()).toISOString().substr(0, 10),
       };
@@ -113,7 +114,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         for (let value of groupedDate[key]) {
           totalDpaUsage += Number(value?.dpa_usage);
         }
-        data?.push({ name: key, usage: totalDpaUsage });
+        data?.push({ name: key, y: totalDpaUsage });
       }
 
       const ser = weekdays?.map((day) => {
@@ -121,7 +122,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         if (match.length) {
           return match[0];
         } else {
-          return { name: day, usage: 0 };
+          return { name: day, y: 0 };
         }
       });
       setoverview(ser);
@@ -199,9 +200,9 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
       title: {
         text: "",
       },
-      min: 5000,
-      max: 100000,
-      tickInterval: 10000,
+      min: 50,
+      max: 10000,
+      // tickInterval: 1000,
       startPoint: 0,
     },
     plotOptions: {
@@ -259,15 +260,17 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         //     y: 5000,
         //   },
         // ],
-        data:
-          clientId && dpaId
-            ? dpausage
-            : clientId && userId
-            ? dpausers
-            : overview,
+        data:dpausers,
+          // clientId && dpaId
+            // ? dpausage
+            // : clientId && userId
+            // ? dpausers
+            // : overview,
       },
     ],
   };
+  console.log(">")
+  console.log(dpausers)
   return (
     <div className="card shadow-none border-0 p-3 dpaSection  my-4">
       <div className="row mx-0 align-items-center">
@@ -332,7 +335,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
           </div>
         </div>
         <div className="col-12  mt-3">
-          <HighchartsReact highcharts={Highcharts} options={options1} />
+          <HighchartsReact highcharts={Highcharts} options={options1}  />
         </div>
       </div>
     </div>

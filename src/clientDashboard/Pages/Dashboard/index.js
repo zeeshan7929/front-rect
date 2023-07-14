@@ -105,7 +105,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
     //   setRenewsDate(res7.result.sub_renew_date);
   };
 
-  const groupByCategory = allClientDpa.reduce((group, product) => {
+  const groupByCategory = top3Dpa.reduce((group, product) => {
     const { dpa_name } = product;
     group[dpa_name] = group[dpa_name] ?? [];
     group[dpa_name].push(product);
@@ -114,8 +114,9 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
 
   let data = Object.values(groupByCategory).map((item) => {
     let count = 0;
+    
     item.map((el) => {
-      count += Number(el.token_usage);
+      count += Number(el.dpa_usage);
     });
     return { name: item[0].dpa_name, y: count, color: item[0].dpa_color };
   });
@@ -124,6 +125,8 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
     addBlurClass();
     getAllUserCount();
   }, []);
+
+ 
 
   return (
     <div className="container-fluid h-100">

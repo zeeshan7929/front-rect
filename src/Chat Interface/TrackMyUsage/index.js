@@ -198,9 +198,8 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
                             <div className="col-12 d-flex justify-content-between">
                               <div className="trackPageTopBarPercent">
                                 {Number(dpastats?.user_dpa_used) > 0
-                                  ? Number(dpastats?.user_dpa_used * 100) /
-                                      Number(dpastats?.user_dpa_assign_limit) >
-                                    0
+                                  ? Math.round(Number(dpastats?.user_dpa_used * 100 ) /
+                                  Number(dpastats?.user_dpa_assign_limit)) 
                                   : "0"}
                                 {""}%
                               </div>
@@ -354,7 +353,7 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
                                     >
                                       {CountConverter(el.y)} Tokens(
                                       {token > 0
-                                        ? `${(token * 100) / totalUsage}`
+                                        ? `${Math.round((token * 100) / totalUsage)}`
                                         : "0"}
                                       )
                                     </div>

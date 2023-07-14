@@ -13,10 +13,15 @@ import { postData } from "../../Common/fetchservices";
 import UsageDpaChart from "../../Common/Charts/UsageDpaChart";
 
 const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
+  let ids = JSON.parse(localStorage.getItem("a_login"));  
   const location = useLocation();
   let item = location?.state?.item;
+  console.log("ITEM : ")
+  console.log(item)
   let dt = location?.state?.dt;
+  
   let renewDate = location?.state?.getRenewDate;
+  
   const [filterdpa, setFilterDpa] = useState([]);
   const [search, setsearch] = useState("");
 
@@ -406,7 +411,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                 </div>
                               </div>
                               <div className="col-xxl-12 px-0">
-                                <UsageDpaChart clientId={"48"} userId={"41"} />
+                                <UsageDpaChart clientId={ids?.client_id} userId={ids?.user_id} />
                               </div>
                             </div>
                             <div className="col-xxl-4">

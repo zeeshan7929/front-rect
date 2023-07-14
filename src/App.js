@@ -52,6 +52,7 @@ import Preview from "./Chat Interface/Document Upload/Preview";
 import LandingPage from "./clientDashboard/Pages/Login/LandingPage";
 import MasterAuth from "./MasterDashboard/Common/Protected/MasterAuth";
 import VerifyPayment from "./clientDashboard/Pages/verify-payment";
+import WorkPlaceRelationDocPreview from "./Chat Interface/DPASelection/WorkPlaceRelationDocPreview";
 
 function App() {
   const [sideBar, setSidebarOpen] = useState("");
@@ -304,6 +305,16 @@ function App() {
             }
           />
 
+<Route
+            path="/workplace-relation-preview"
+            element={
+              <WorkPlaceRelationDocPreview
+                sideBar={sideBar}
+                setSidebarOpen={setSidebarOpen}
+              />
+            }
+          />
+          
           {/* Track My Usage */}
           <Route
             path="/track-my-usage"
@@ -610,6 +621,7 @@ function App() {
             }
           />
           <Route
+          exact
             path="/workplace-relation"
             element={
               <WorkPlaceRelation
@@ -618,6 +630,7 @@ function App() {
               />
             }
           />
+         
 
           {/* Track My Usage */}
           <Route
