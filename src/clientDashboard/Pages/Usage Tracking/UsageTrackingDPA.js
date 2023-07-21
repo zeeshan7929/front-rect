@@ -10,27 +10,44 @@ import { randomBackground } from "../../Common/Others/RandonColor";
 import { addBlurClass } from "../../Common/Others/AddBlurClass";
 import UsageDpaChart from "../../Common/Charts/UsageDpaChart";
 import { CountConverter } from "../../Common/Others/CountConverter";
+import { RenewsDate } from "../../Common/Others/RenewsDate";
 
 const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   let item = location?.state?.item;
   let renewDate = location?.state?.getRenewDate;
   let tokenLimit = location?.state?.tokenLimit;
+  console.log("Token Limit")
+  console.log(tokenLimit)
   const [users, setUsers] = useState([]);
   const [filterUsers, setfilterUsers] = useState([]);
   const [search, setsearch] = useState("");
   const [dpacount, setdpacount] = useState("");
+  const [tierInfo,setTierInfo] = useState([]);
   const [dpaInfo, setDpaInfo] = useState({});
+  const [refreshTokens,setRefreshToken] = useState("");
 
   let ids = JSON.parse(localStorage.getItem("a_login"));
+  let details_ = JSON.parse(localStorage.getItem("details"));
   const handleDpa = async () => {
     const body = {
       client_id: ids?.client_id,
     };
-    const res = await postData("get_client_all_users", body);
+    const bod = {
+      client_id: ids?.client_id,
+      dpa_id: String(item?.dpa_id ? item.dpa_id : item?.id)
+    }
+    const res = await postData("get_all_users_of_dpa", bod);
+    console.log(res)
     setUsers(res?.result);
-  };
 
+    const res2 = await postData("get_client_tier_info", body);
+    setTierInfo(res2?.result);
+  };
+  function Round(num, decimalPlaces = 0) {
+    var p = Math.pow(10, decimalPlaces);
+    return Math.round(num * p) / p;
+}
   const handleAllUsers = async () => {
     const body = {
       client_id: ids?.client_id,
@@ -40,12 +57,17 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
     setDpaInfo(res1?.result);
     const count = await postData("get_dpa_token_usage_count", body);
     setdpacount(count?.result?.dpa_usage_token_count);
+    
+    const r_tokens = await postData('get_client_remaining_days_to_refresh_tokens',body);
+    setRefreshToken(r_tokens?.result)
+
+
   };
 
   const filterAllUsers = () => {
     const fill = users?.filter((el) => {
-      const { name } = el;
-      if (name?.toLowerCase().includes(search?.toLowerCase())) {
+      const { username } = el;
+      if (username?.toLowerCase().includes(search?.toLowerCase())) {
         return el;
       }
     });
@@ -60,9 +82,9 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
   useEffect(() => {
     filterAllUsers();
   }, [search]);
-  let b = users?.map((el) => el.token_usage);
+  let b = users?.map((el) => el.dpa_usage_by_user);
   let dpaUsage = b?.reduce((total, cur) => Number(total) + Number(cur), 0);
-
+  
   const columns = [
     {
       name: `TOTAL USER : ${users?.length}`,
@@ -75,19 +97,21 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
               borderRadius: "50%",
               marginRight: "10px",
             }}
-            src={row?.image ? row?.image : "assets/img/bg/Avatar.png"}
+            src={row?.profile_image ? row?.profile_image : "assets/img/bg/Avatar.png"}
           />
-          {row?.name.toLowerCase()}
+          {row?.username.toLowerCase()}
         </>
       ),
       letf: true,
     },
     {
+      
       name: `TOTAL USAGE : ${dpaUsage}`,
       selector: (row) => (
+        
         <div>
           <Line
-            percent={(row?.token_usage * 100) / row?.usage_limit}
+            percent={(Number(row?.dpa_usage_by_user ) / Number(row?.usage_limit)) * 100  }
             strokeWidth={5}
             trailWidth={5}
             strokeColor={randomBackground()}
@@ -98,7 +122,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
             }}
           />
           &nbsp;&nbsp;&nbsp;
-          {CountConverter(row?.token_usage)} Tokens
+          {CountConverter(row?.dpa_usage_by_user)} Tokens
         </div>
       ),
       center: true,
@@ -108,7 +132,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
     },
     {
       name: `ACROSS ALL DPA`,
-      selector: (row) => <div>{CountConverter(row.usage_limit)}</div>,
+      selector: (row) => <div>{CountConverter(row.dpa_usage_by_user)}</div>,
       center: true,
     },
     {
@@ -191,7 +215,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                   setSidebarOpen={setSidebarOpen}
                                   textHeader={` DPA Usage Tracking`}
                                   textSubHeader={
-                                    "Welcome Carmen, you can find all information you require here."
+                                    "welcome "+ details_.name + ", you can find all information you require here."
                                   }
                                 />
                               </div>
@@ -215,7 +239,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                       DPA Usage Tracking
                                     </div>
                                     <div className="col pageSubheading px-0">
-                                      Welcome Carmen, you can find all
+                                      welcome carmen, you can find all
                                       information you require here.
                                     </div>
                                   </div>
@@ -276,7 +300,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                         <div className="persantage">
                                           {`${
                                             dpacount > 0
-                                              ? (dpacount * 100) / tokenLimit
+                                              ? Round(((dpacount / tierInfo.database_usage) * 100 ),1)
                                               : "0"
                                           }%`}
                                         </div>
@@ -288,7 +312,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                         <Line
                                           percent={
                                             dpacount > 0
-                                              ? (dpacount * 100) / tokenLimit
+                                              ? Round((dpacount / tierInfo.database_usage) * 100,1)
                                               : "0"
                                           }
                                           strokeWidth={1}
@@ -299,11 +323,11 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                       <div className="col-12 d-flex align-items-center justify-content-between pt-2">
                                         <div className="progresbarbottomtext">
                                           Usage renews{" "}
-                                          <strong>{renewDate}</strong>{" "}
+                                          <strong>{RenewsDate(refreshTokens.remaining_days)}</strong>{" "}
                                         </div>
                                         <div className="progresbarbottomtext">
                                           {CountConverter(dpacount)} out of{" "}
-                                          {CountConverter(tokenLimit)}
+                                          {CountConverter(tierInfo.database_usage)}
                                         </div>
                                       </div>
                                     </div>

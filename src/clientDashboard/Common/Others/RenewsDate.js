@@ -1,5 +1,6 @@
 export const RenewsDate = (date) => {
   let n = Number(new Date(date).getDate());
+  
   let month = new Date(date).toLocaleDateString("en-US", {
     month: "short",
   });
@@ -10,5 +11,6 @@ export const RenewsDate = (date) => {
       ? "th"
       : ord[(n % 10) - 1];
   let getRenewDate = `${n + nth} ${month} `;
+  
   return getRenewDate;
 };

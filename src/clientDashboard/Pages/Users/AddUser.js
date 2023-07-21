@@ -181,7 +181,7 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
                                 textHeader={"Add User"}
                                 setSidebarOpen={setSidebarOpen}
                                 textSubHeader={
-                                  " Welcome Carmen, you can add new users here"
+                                  " welcome carmen, you can add new users here"
                                 }
                               />
                             </div>
@@ -192,7 +192,7 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
                                     Add User
                                   </div>
                                   <div className="col pageSubheading px-0">
-                                    Welcome Carmen, you can add new users here
+                                    welcome carmen, you can add new users here
                                   </div>
                                 </div>
                                 <div className="row mx-0">

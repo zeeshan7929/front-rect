@@ -215,7 +215,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                               sideBar={sideBar}
                               textHeader={`User Usage Tracking`}
                               textSubHeader={
-                                "Welcome Carmen, you can find all information you require here."
+                                "welcome carmen, you can find all information you require here."
                               }
                             />
                           </div>
@@ -240,7 +240,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                 User Usage Tracking
                               </div>
                               <div className="col pageSubheading px-0">
-                                Welcome Carmen, you can find all information you
+                                welcome carmen, you can find all information you
                                 require here.
                               </div>
                             </div>

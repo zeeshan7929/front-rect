@@ -14,6 +14,8 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
   const [filterData, setFilterData] = useState([]);
   const [roleuser, setRoleuser] = useState([]);
   const [totaladmin, settotaladmin] = useState([]);
+  const [usersLimit,setUsersLimit] = useState("");
+  const [tierInfo,setTierInfo] = useState([])
   // const adminUserNumber = allUser?.filter((item) => item.role == "admin");
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("a_login"));
@@ -22,10 +24,15 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
       client_id: token.client_id,
     };
     const res = await postData("get_client_all_users", body);
+    let r = await postData("get_client_tier_info", body);
+    setTierInfo(r?.result)
     setAllUser(res.result);
     setFilterData(res.result);
   };
-
+  function Round(num, decimalPlaces = 0) {
+    var p = Math.pow(10, decimalPlaces);
+    return Math.round(num * p) / p;
+}
   const RoleUser = async () => {
     const body = {
       client_id: token.client_id,
@@ -40,6 +47,10 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
     };
     const res = await postData("get_client_all_role_admin", body);
     settotaladmin(res.result);
+
+    const res2 = await postData("get_client_assign_user", body);
+    setUsersLimit(res2.result.users_count);
+    
   };
   useEffect(() => {
     addBlurClass();
@@ -90,7 +101,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
         <div>
           {Number(row?.token_usage) || Number(row?.usage_limit) > 0 ? (
             <Line
-              percent={row?.token_usage}
+              percent={(Number(row?.token_usage) / Number(row?.usage_limit)) * 100}
               strokeWidth={5}
               trailWidth={5}
               strokeColor={randomBackground()}
@@ -116,7 +127,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
           )}
           &nbsp;&nbsp;&nbsp;&nbsp;
           {(Number(row?.token_usage) || Number(row?.usage_limit)) > 0
-            ? `${(Number(row?.token_usage) * 100) / Number(row?.usage_limit)}%`
+            ? `${Round((Number(row?.token_usage) * 100) / Number(row?.usage_limit),1)}%`
             : ""}
         </div>
       ),
@@ -142,7 +153,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
               <path
                 d="M12 20H20.5M18 10L21 7L17 3L14 6M18 10L8 20H4V16L14 6M18 10L14 6"
                 stroke="#959298"
-                stroke-width="1.5"
+                strokeWidth="1.5"
                 stroke-linecap="round"
                 stroke-linejoin="round"
               />
@@ -222,7 +233,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
                                 setSidebarOpen={setSidebarOpen}
                                 textHeader={"User Management"}
                                 textSubHeader={
-                                  "Welcome Carmen, you can find all user information here."
+                                  "welcome carmen, you can find all user information here."
                                 }
                               />
                             </div>
@@ -233,7 +244,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
                                     User Management
                                   </div>
                                   <div className="col pageSubheading px-0">
-                                    Welcome Carmen, you can find all information
+                                    welcome carmen, you can find all information
                                     you require here.
                                   </div>
                                 </div>
@@ -257,7 +268,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
                                         </div>
                                         <div className="col-12 pe-0">
                                           <div className="dashboardCardText">
-                                            of 20 Users
+                                            of {usersLimit} Users
                                           </div>
                                         </div>
                                       </div>

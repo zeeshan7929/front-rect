@@ -197,7 +197,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                   // sideBar={sideBar}
                                   textHeader={"Settings"}
                                   textSubHeader={
-                                    "Welcome Carmen, you can find your company information here"
+                                    "welcome carmen, you can find your company information here"
                                   }
                                 />
                               </div>
@@ -208,7 +208,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                       Settings
                                     </div>
                                     <div className="col pageSubheading px-0">
-                                      Welcome Carmen, you can find all
+                                      welcome carmen, you can find all
                                       information you require here.
                                     </div>  
                                   </div>

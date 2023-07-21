@@ -128,7 +128,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   );
   let b = allUserDpa?.map((el) => el.token_usage);
   let tokenUsage = b.reduce((total, cur) => Number(total) + Number(cur), 0);
-  let c = allUserDpaDetails?.map((el) => el.token_usage);
+  let c = allUserDpaDetails?.map((el) => el.dpa_usage);
   let AllDpa = c.reduce((total, cur) => Number(total) + Number(cur), 0);
 
   const columns = [
@@ -258,7 +258,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                               sideBar={sideBar}
                               textHeader={`Usage Tracking`}
                               textSubHeader={
-                                "Welcome Carmen,you can view your DPA usage here."
+                                "welcome carmen,you can view your DPA usage here."
                               }
                             />
                           </div>
@@ -269,17 +269,19 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                   Usage Tracking
                                 </div>
                                 <div className="col pageSubheading px-0">
-                                  Welcome Carmen, you can find all information
+                                  welcome carmen, you can find all information
                                   you require here.
                                 </div>
                               </div>
                               <div className="row mx-0 my-3">
-                                <div className="col-xxl-12 leftSection px-0">
-                                  <div className="row mx-0 g-4 rightSection pe-2">
-                                    <UsageDpaChart
+                                <div className="col-xxl-12  px-0">
+                                
+                                <div className="row mx-0 g-4 rightSection pe-2">
+                                <div className="chart-info" style={{display:'flex', gap:'2%', maxHeight:'500px'}}>
+                                <UsageDpaChart
                                       clientId={clientId?.client_id}
                                     />
-                                    <div className="col-xxl-6 ps-xxl-0">
+                                    <div className="col-xxl-6 ps-xxl-0" style={{paddingTop:'1.5%' , paddingBottom:'1.5%'}}>
                                       <div className="row mx-0 h-100 mb-3 gy-3">
                                         <div className="col-md-4 px-md-2 px-0 h-md-100">
                                           <div className="row mx-0 dashboardCardDetail h-md-100 gap-md-3">
@@ -462,101 +464,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-xxl-6">
-                                      <div className="card shadow-none border-0 p-3 dpaSection topDapSection  mb-4 usedByUser h100">
-                                        <div className="row mx-0 align-items-center">
-                                          <div className="col-12 dpaUsesHeading fw-semibold mb-4 text-sm-center text-start">
-                                            Usage by Users
-                                          </div>
-                                          <div className="col-12 px-0">
-                                            <div className="row mx-0 align-items-center justify-content-between topForm g-4 ">
-                                              <div className="col-md-auto inputcol px-0">
-                                                <div className="position-relative">
-                                                  <input
-                                                    type="text"
-                                                    onChange={(e) =>
-                                                      setsearchalluserName(
-                                                        e.target.value
-                                                      )
-                                                    }
-                                                    className="form-control border-0"
-                                                    id="exampleFormControlInput1"
-                                                    placeholder="Search User"
-                                                  />
-                                                  <span className="d-inline-flex position-absolute top-0 end-0 me-3 mt-2 pt-2">
-                                                    <img
-                                                      className="w-100 h-100"
-                                                      src="assets/img/svg/search.svg"
-                                                      alt="search"
-                                                    />
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div className="col-md-auto Selectcol px-0">
-                                                <div className="usageSlect">
-                                                  <select
-                                                    className="form-select shadow-none"
-                                                    aria-label="Default select example"
-                                                  >
-                                                    <option
-                                                      className="slected"
-                                                      selected
-                                                    >
-                                                      All DPA
-                                                    </option>
-                                                    <option value={1}>
-                                                      One
-                                                    </option>
-                                                    <option value={2}>
-                                                      Two
-                                                    </option>
-                                                    <option value={3}>
-                                                      Three
-                                                    </option>
-                                                  </select>
-                                                </div>
-                                              </div>
-                                              <div className="col-12 px-0">
-                                                <div className="imagetable w-100">
-                                                  <DataTable
-                                                    title={
-                                                      <div
-                                                        style={{
-                                                          display: "flex",
-                                                          lineHeight: "50px",
-                                                          paddingRight: "10px",
-                                                          paddingLeft: "10px",
-                                                          fontSize: "15px",
-                                                          backgroundColor:
-                                                            "#f6f8f9",
-                                                          borderRadius:
-                                                            "1.5em 1.5em 0 0",
-                                                          alignItems: "center",
-                                                          textAlign: "center",
-                                                          justifyContent:
-                                                            "space-between",
-                                                        }}
-                                                      >
-                                                        <p>User</p>
-                                                        <p>DPA Usage</p>
-                                                        <p>Action</p>
-                                                      </div>
-                                                    }
-                                                    columns={columns}
-                                                    data={
-                                                      searchalluserName
-                                                        ? filterallUserDpa
-                                                        : allUserDpa
-                                                    }
-                                                    // customStyles={customStyles}
-                                                  />
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+                                </div>
+                                    
                                     <div className="col-xxl-6">
                                       <div className="card border-0 rounded-4 bottomcard p-3 me-2">
                                         <div className="row mx-0">
@@ -585,7 +494,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                               </div>
                                               <div className="col-12 px-0 subheading">
                                                 Data represented here renews{" "}
-                                                <strong>every month</strong>
+                                                <strong> every month</strong>
                                               </div>
                                               <div className="col-12 px-0">
                                                 <div className="row px-0 d-flex align-items-center">
@@ -749,7 +658,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                                         Used:{" "}
                                                                         <span className="fw-semibold">
                                                                           {CountConverter(
-                                                                            el?.token_usage
+                                                                            el?.dpa_usage
+                                                                            
                                                                           )}
                                                                         </span>
                                                                       </div>
@@ -913,6 +823,101 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                           );
                                                         }
                                                       )}
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="col-xxl-6">
+                                      <div className="card shadow-none border-0 p-3 dpaSection topDapSection  mb-4 usedByUser h100">
+                                        <div className="row mx-0 align-items-center">
+                                          <div className="col-12 dpaUsesHeading fw-semibold mb-4 text-sm-center text-start">
+                                            Usage by Users
+                                          </div>
+                                          <div className="col-12 px-0">
+                                            <div className="row mx-0 align-items-center justify-content-between topForm g-4 ">
+                                              <div className="col-md-auto inputcol px-0">
+                                                <div className="position-relative">
+                                                  <input
+                                                    type="text"
+                                                    onChange={(e) =>
+                                                      setsearchalluserName(
+                                                        e.target.value
+                                                      )
+                                                    }
+                                                    className="form-control border-0"
+                                                    id="exampleFormControlInput1"
+                                                    placeholder="Search User"
+                                                  />
+                                                  <span className="d-inline-flex position-absolute top-0 end-0 me-3 mt-2 pt-2">
+                                                    <img
+                                                      className="w-100 h-100"
+                                                      src="assets/img/svg/search.svg"
+                                                      alt="search"
+                                                    />
+                                                  </span>
+                                                </div>
+                                              </div>
+                                              <div className="col-md-auto Selectcol px-0">
+                                                <div className="usageSlect">
+                                                  <select
+                                                    className="form-select shadow-none"
+                                                    aria-label="Default select example"
+                                                  >
+                                                    <option
+                                                      className="slected"
+                                                      selected
+                                                    >
+                                                      All DPA
+                                                    </option>
+                                                    <option value={1}>
+                                                      One
+                                                    </option>
+                                                    <option value={2}>
+                                                      Two
+                                                    </option>
+                                                    <option value={3}>
+                                                      Three
+                                                    </option>
+                                                  </select>
+                                                </div>
+                                              </div>
+                                              <div className="col-12 px-0">
+                                                <div className="imagetable w-100">
+                                                  <DataTable
+                                                    title={
+                                                      <div
+                                                        style={{
+                                                          display: "flex",
+                                                          lineHeight: "50px",
+                                                          paddingRight: "10px",
+                                                          paddingLeft: "10px",
+                                                          fontSize: "15px",
+                                                          backgroundColor:
+                                                            "#f6f8f9",
+                                                          borderRadius:
+                                                            "1.5em 1.5em 0 0",
+                                                          alignItems: "center",
+                                                          textAlign: "center",
+                                                          justifyContent:
+                                                            "space-between",
+                                                        }}
+                                                      >
+                                                        <p>User</p>
+                                                        <p>DPA Usage</p>
+                                                        <p>Action</p>
+                                                      </div>
+                                                    }
+                                                    columns={columns}
+                                                    data={
+                                                      searchalluserName
+                                                        ? filterallUserDpa
+                                                        : allUserDpa
+                                                    }
+                                                    // customStyles={customStyles}
+                                                  />
                                                 </div>
                                               </div>
                                             </div>

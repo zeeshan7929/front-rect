@@ -17,7 +17,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
   const [show, setshow] = useState(false);
   const [submitting,setSubmitting] = useState(false);
   const ref = useRef();
-
+  
   const handleStarredMsg = async () => {
     const body = {
       client_id: ids.client_id,
@@ -88,7 +88,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
   };
   let t = (
     <>
-      DPA <span> Workplace Relations</span>
+      DPA: {item?.name}
     </>
   );
 

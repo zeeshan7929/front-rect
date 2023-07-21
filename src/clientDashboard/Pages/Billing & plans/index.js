@@ -223,7 +223,7 @@ const BillingPlans = ({ sideBar, setSidebarOpen }) => {
                               sideBar={sideBar}
                               textHeader={`Billing & Plans`}
                               textSubHeader={
-                                " Welcome Carmen, you can find all your billing history here."
+                                " welcome carmen, you can find all your billing history here."
                               }
                             />
                           </div>
@@ -234,7 +234,7 @@ const BillingPlans = ({ sideBar, setSidebarOpen }) => {
                                   Billing &amp; Plans
                                 </div>
                                 <div className="col pageSubheading px-0">
-                                  Welcome Carmen, you can find all your billing
+                                  welcome carmen, you can find all your billing
                                   history here.
                                 </div>
                               </div>

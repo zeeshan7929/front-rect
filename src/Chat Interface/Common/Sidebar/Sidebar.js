@@ -7,8 +7,9 @@ function Sidebar({ setSidebarOpen }) {
   const details_ = JSON.parse(localStorage.getItem("details"));
   const navigate = useNavigate();
   const [userData,setUserData] = useState({username:""})
+  const [userDetails,setUserDetails] = useState([])
   const { pathname } = useLocation();
-
+  const [profileImage,setProfileImage] = useState("")
   useEffect(() => {
     postData("get_user_info", {
       client_id: token.client_id,
@@ -16,6 +17,8 @@ function Sidebar({ setSidebarOpen }) {
     })
       .then((res) => {
         setUserData({ username:res.result.username})
+        setUserDetails(res?.result)
+        get_base64_image(res?.result.profile_image)
       })
       .catch((er) => {
         console.warn(er);
@@ -28,7 +31,14 @@ function Sidebar({ setSidebarOpen }) {
       navigate("/assistant-login");
     }
   };
-  
+  let get_base64_image =  async(image) =>{
+    const body = {
+      filename:image
+    }
+    const res = await postData("reterive_image", body);
+    
+    setProfileImage(res?.result)
+  }
 
   const handleAdmin = () => {
     if (JSON.parse(localStorage.getItem("m_login"))) {
@@ -54,7 +64,11 @@ function Sidebar({ setSidebarOpen }) {
         <div className="col-12 userBoxOuter mb-lg-5 mb-md-3 mt-lg-4 mt-md-3 my-2">
           <NavLink to="javascript:;" className="userImg">
             <img
-              src="../assets/img/Avatar2.png"
+              src={
+                profileImage !== ""
+                ? "data:image/png;base64, "+profileImage
+                : "../assets/img/Avatar2.png"
+              }
               className="w-100 h-100"
               alt=""
             />
@@ -117,6 +131,7 @@ function Sidebar({ setSidebarOpen }) {
                 <li>
                   <NavLink
                     to="/user-settings"
+                    state= {{userDetails}}
                     className={`sLink ${
                       pathname == "/user-settings" ? "active" : ""
                     }`}

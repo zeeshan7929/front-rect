@@ -215,7 +215,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
                                 // sideBar={sideBar}
                                 textHeader={`DPA Database Overview`}
                                 textSubHeader={
-                                  "Welcome Carmen, you can find all information you require here."
+                                  "welcome carmen, you can find all information you require here."
                                 }
                               />
                             </div>
@@ -226,7 +226,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
                                     DPA Database Overview
                                   </div>
                                   <div className="col pageSubheading px-0">
-                                    Welcome Carmen, you can find all information
+                                    welcome carmen, you can find all information
                                     you require here.
                                   </div>
                                 </div>

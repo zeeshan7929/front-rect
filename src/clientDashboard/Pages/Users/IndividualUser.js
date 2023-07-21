@@ -263,7 +263,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                 setSidebarOpen={setSidebarOpen}
                                 textHeader={"User Management"}
                                 textSubHeader={
-                                  "Welcome Carmen, you can add new users here"
+                                  "welcome carmen, you can add new users here"
                                 }
                               />
                             </div>
@@ -274,7 +274,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                     User Management
                                   </div>
                                   <div className="col pageSubheading px-0">
-                                    Welcome Carmen, you can find all information
+                                    welcome carmen, you can find all information
                                     you require here.
                                   </div>
                                 </div>
@@ -655,13 +655,13 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                         10K
                                                       </li>
                                                       <li className="vertical-line2  ms-0">
-                                                        1L
+                                                        100K
                                                       </li>
                                                       <li className="vertical-line3 me-1">
-                                                        2.5L
+                                                        250K
                                                       </li>
                                                       <li className="vertical-line4 me-2">
-                                                        5L
+                                                        500K
                                                       </li>
                                                       <li className="vertical-line5 ms-0">
                                                         1M

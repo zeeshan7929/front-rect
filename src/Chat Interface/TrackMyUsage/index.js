@@ -53,6 +53,7 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
     };
     const dpaStats = await postData("u_get_dpa_usage_stats", body);
     setDpaStats(dpaStats.result);
+    console.log(dpaStats)
   };
 
   const handleFilterUserDpa = () => {
@@ -119,7 +120,7 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
       cell: (row) => (
         <div>
           <Line
-            percent={Number(row?.dpa_usage * 100) / totalUsage > 0}
+            percent={(Number(row?.dpa_usage) /Number(dpastats?.user_dpa_assign_limit)) * 100}
             strokeWidth={5}
             trailWidth={5}
             strokeLinecap="square"
@@ -204,8 +205,8 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
                                 {""}%
                               </div>
                               <div className="trackPageTopBarPercent">
-                                {CountConverter(dpastats?.user_dpa_used)}
-                                Tokens
+                                {CountConverter(dpastats?.user_dpa_used)} Tokens
+                                 
                               </div>
                             </div>
                             <div className="col-12 mt-2">

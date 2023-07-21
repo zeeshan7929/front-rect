@@ -83,7 +83,7 @@ const SubscriptionPlan = ({ setSidebarOpen, sideBar }) => {
                                   setSidebarOpen={setSidebarOpen}
                                   textHeader={`Billing & Plans`}
                                   textSubHeader={
-                                    "Welcome Carmen, you can find your subscription plan here."
+                                    "welcome carmen, you can find your subscription plan here."
                                   }
                                 />
                               </div>
@@ -94,7 +94,7 @@ const SubscriptionPlan = ({ setSidebarOpen, sideBar }) => {
                                       subscription &amp; Plans
                                     </div>
                                     <div className="col pageSubheading px-0">
-                                      Welcome Carmen, you can find all your
+                                      welcome carmen, you can find all your
                                       billing history here.
                                     </div>
                                   </div>

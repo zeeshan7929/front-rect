@@ -13,6 +13,7 @@ import { toaster } from "../../Common/Others/Toaster";
 const BillingDetails = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   let item = location?.state?.item;
+  console.log(item)
   let id = location?.state?.id;
   const navigate = useNavigate();
   const countries = Country.getAllCountries();
@@ -131,7 +132,7 @@ const BillingDetails = ({ sideBar, setSidebarOpen }) => {
                               setSidebarOpen={setSidebarOpen}
                               textHeader={`Billing & Plans`}
                               textSubHeader={
-                                " Welcome Carmen, you can find all your billing history here."
+                                " welcome carmen, you can find all your billing history here."
                               }
                             />
                           </div>
@@ -142,7 +143,7 @@ const BillingDetails = ({ sideBar, setSidebarOpen }) => {
                                   Update Billing Details
                                 </div>
                                 <div className="col pageSubheading px-0">
-                                  Welcome Carmen, you can find all your billing
+                                  welcome carmen, you can find all your billing
                                   history here.
                                 </div>
                               </div>

@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
+import { postData } from "../../../clientDashboard/Common/fetchservices";
 const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
+  const token = JSON.parse(localStorage.getItem("a_login"));
+  const [profileImage,setProfileImage] = useState("")
   const [windowSize, setWindowSize] = useState({
     width: undefined,
   });
   useEffect(() => {
+    postData("get_user_info", {
+      client_id: token.client_id,
+      user_id: token.user_id.toString(),
+    })
+      .then((res) => {
+        
+        get_base64_image(res?.result.profile_image)
+      })
+      .catch((er) => {
+        console.warn(er);
+      });
     if (typeof window !== "undefined") {
       function handleResize() {
         setWindowSize({
@@ -17,6 +30,14 @@ const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
       return () => window.removeEventListener("resize", handleResize);
     }
   }, []);
+  let get_base64_image =  async(image) =>{
+    const body = {
+      filename:image
+    }
+    const res = await postData("reterive_image", body);
+    
+    setProfileImage("data:image/png;base64, "+res?.result)
+  }
   return (
     <div className="col-12 header px-0">
       <div className="row mx-0 justify-content-center align-items-center">
@@ -56,13 +77,13 @@ const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
                       className="w100"
                       alt=""
                     />
-                    <div className="notificationText">2</div>
+                    <div className="notificationText">0</div>
                   </NavLink>
                 </div>
                 <div className="col-auto px-0">
                   <NavLink className="userImgBtn">
-                    <img
-                      src="assets/img/bg/Avatar.png"
+                    <img style={{borderRadius:15}}
+                      src={profileImage}
                       className="w-100"
                       alt=""
                     />

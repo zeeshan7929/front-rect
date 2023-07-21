@@ -12,45 +12,59 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
   const [percent, setPercent] = useState("");
   const [uploaddocument, setUploadDocument] = useState();
   const [renewDate, setRenewDate] = useState({});
-  const [totalTokenLimit, setTotalTokenLimit] = useState(0);
+  const [totalTokenUsed, setTotalTokenUsed] = useState(0);
   const [allUserDpaDetails, setAllUserDpaDetails] = useState([]);
-
+  const [assignDpa,setAssignDpa] = useState("")
+  const [dpa_percent,set_dpa_percent] = useState("")
+  const [tierInfo,setTierInfo] = useState([])
   const ids = JSON.parse(localStorage.getItem("a_login"));
   const handleRenewDate = async () => {
     let body = {
       client_id: ids.client_id,
     };
-    const res = await postData("get_client_sub_renew_date", body);
-    setRenewDate(res?.result?.sub_renew_date);
+    let res = await postData("get_client_tier_info", body);
+    setRenewDate(res?.result?.renew_date);
+    setTierInfo(res?.result)
+    
     const res1 = await postData("/get_client_training_token_usage", body);
+    
     setPercent(res1.result.training_token_usage);
+    const res4 = await postData('/get_client_dpa_token_usage',body);
+    set_dpa_percent(res4)
+    const assign_dpa = await postData('/get_client_assign_dpa_token',body);
+    setAssignDpa(assign_dpa?.result.assign_dpa_token_count)
     const res2 = await postData("/get_client_uploaded_documents", body);
     setUploadDocument(res2.result.length);
     const res3 = await postData("get_client_all_dpa_details", body);
     setAllUserDpaDetails(res3.result);
   };
-
-  let c = allUserDpaDetails?.map((el) => el.token_usage);
+  function Round(num, decimalPlaces = 0) {
+    var p = Math.pow(10, decimalPlaces);
+    return Math.round(num * p) / p;
+}
+  let c = allUserDpaDetails?.map((el) => el.dpa_usage);
   let AllDpa = c?.reduce((total, cur) => Number(total) + Number(cur), 0);
-
+  
   const autoClose = () => {
     if (sideBar == "side") {
       setSidebarOpen("");
     }
   };
   useOnClickOutside(myref, autoClose);
-
+  
   const getTotalTokenLimit = async () => {
     const body = {
       client_id: ids.client_id,
       user_id: String(ids.user_id),
     };
-    const res = await postData("get_user_assign_token_limit", body);
-    setTotalTokenLimit(Number(res.result.user_assign_token_limit));
+    const res = await postData("get_client_dpa_token_usage", body);
+    setTotalTokenUsed(Number(res.result.dpa_token_usage));
   };
+ 
   useEffect(() => {
     handleRenewDate();
     getTotalTokenLimit();
+    setOpen({ ...open, dpa: "dpa" });
   }, []);
 
   return (
@@ -131,8 +145,8 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                         <>
                           <div className="row mx-0 align-items-center my-1">
                             <div className="col-auto chartValue fw-semibold">
-                              {AllDpa > 0
-                                ? (AllDpa * 100) / totalTokenLimit
+                              {assignDpa > 0
+                                ? Round((((totalTokenUsed + Number.EPSILON) * 100) / assignDpa ),1)
                                 : "0"}
                               %
                             </div>
@@ -140,7 +154,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                               <Line
                                 percent={
                                   AllDpa > 0
-                                    ? (AllDpa * 100) / totalTokenLimit
+                                    ? Round((((totalTokenUsed + Number.EPSILON) * 100) / assignDpa),1)
                                     : "0"
                                 }
                                 strokeWidth={2}
@@ -157,9 +171,9 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                               </span>
                             </div>
                             <div className="col-auto reviewCounting">
-                              {CountConverter(AllDpa)}{" "}
+                              {CountConverter(totalTokenUsed)}{" "}
                               <span>
-                                out of {CountConverter(totalTokenLimit)}
+                                out of {CountConverter(assignDpa)}
                               </span>{" "}
                             </div>
                           </div>
@@ -179,7 +193,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                     <div className="chart mx-auto mb-3">
                       <CircularProgress
                         percentage={
-                          AllDpa > 0 ? (AllDpa * 100) / totalTokenLimit : "0"
+                          assignDpa > 0 ? Round((((totalTokenUsed + Number.EPSILON) * 100) / assignDpa),1) : "0"
                         }
                       />
                     </div>
@@ -189,7 +203,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                           Total Tokens
                         </div>
                         <div className="tokenCounting text-center fw-semibold">
-                          {CountConverter(AllDpa)}
+                          {CountConverter(assignDpa)}
                         </div>
                       </div>
                       <div className="col text-center d-flex flex-column">
@@ -197,7 +211,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                           Total Tokens used
                         </div>
                         <div className="tokenCounting text-center fw-semibold">
-                          {CountConverter(totalTokenLimit)}
+                          {CountConverter(totalTokenUsed)}
                         </div>
                       </div>
                       <div className="col text-center d-flex flex-column">
@@ -205,7 +219,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                           Tokens remaining
                         </div>
                         <div className="tokenCounting text-center fw-semibold">
-                          {CountConverter(AllDpa - totalTokenLimit)}
+                          {CountConverter(assignDpa - totalTokenUsed)}
                         </div>
                       </div>
                     </div>
@@ -245,17 +259,17 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                         <>
                           <div className="row mx-0 align-items-center my-1">
                             <div className="col-auto chartValue fw-semibold">
-                              {totalTokenLimit > 0
-                                ? ((percent / totalTokenLimit) * 100).toFixed()
+                              {tierInfo.training_tokens > 0
+                                ? (( percent / tierInfo.training_tokens ) * 100).toFixed()
                                 : "0"}
                               %
                             </div>
                             <div className="col">
                               <Line
                                 percent={
-                                  totalTokenLimit > 0
+                                  tierInfo.training_tokens > 0
                                     ? (
-                                        (percent / totalTokenLimit) *
+                                        ( percent /  tierInfo.training_tokens ) *
                                         100
                                       ).toFixed()
                                     : "0"
@@ -276,7 +290,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                             <div className="col-auto reviewCounting">
                               {CountConverter(percent)}{" "}
                               <span>
-                                out of {CountConverter(totalTokenLimit)}
+                                out of {CountConverter(tierInfo.training_tokens)}
                               </span>
                             </div>
                           </div>
@@ -296,8 +310,8 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                     <div className="chart mx-auto mb-3">
                       <CircularProgress
                         percentage={
-                          totalTokenLimit > 0
-                            ? ((percent / totalTokenLimit) * 100).toFixed()
+                          tierInfo.training_tokens > 0
+                            ? ((percent / tierInfo.training_tokens) * 100).toFixed()
                             : "0"
                         }
                       />
@@ -324,7 +338,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                           Tokens remaining
                         </div>
                         <div className="tokenCounting text-center fw-semibold">
-                          {CountConverter(totalTokenLimit - percent)}
+                          {CountConverter(tierInfo.training_tokens - percent)}
                         </div>
                       </div>
                     </div>
@@ -415,7 +429,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
             ""
           )}
 
-          <div className="latestActivity mt-4">
+          {/* <div className="latestActivity mt-4">
             <div className="row mx-0 ps-4">
               <div className="col-12 activityHeading fw-medium mb-3 px-0">
                 Latest Activity
@@ -435,7 +449,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

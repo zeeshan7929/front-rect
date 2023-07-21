@@ -137,7 +137,7 @@ const UploadRequest = () => {
                                         Document Upload Request
                                       </div>
                                       <div className="col pageSubheading px-0">
-                                        Welcome Carmen, you can find all
+                                        welcome carmen, you can find all
                                         information you require here.
                                       </div>
                                     </div>
@@ -234,7 +234,7 @@ const UploadRequest = () => {
                                 Document Upload Request
                               </div>
                               <div className="col pageSubheading px-0">
-                                Welcome Carmen, you can find all information you
+                                welcome carmen, you can find all information you
                                 require here.
                               </div>
                             </div>

@@ -109,7 +109,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                             sideBar={sideBar}
                             textHeader={"Document Upload"}
                             textSubHeader={
-                              "Welcome Carmen, you can find all information you require here."
+                              "welcome carmen, you can find all information you require here."
                             }
                           />
                         </div>
@@ -120,7 +120,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                 Document Upload
                               </div>
                               <div className="col pageSubheading px-0">
-                                Welcome Carmen, you can find all information you
+                                welcome carmen, you can find all information you
                                 require here.
                               </div>
                             </div>

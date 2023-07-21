@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../Common/Sidebar/Sidebar";
 import { postData } from "../../clientDashboard/Common/fetchservices";
 import { Formik, Form, Field } from "formik";
 import { useImageToBase64 } from "../Common/blob/blob";
+import { useLocation, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import * as Yup from "yup";
 import Header from "../Common/Header/Header";
@@ -11,21 +12,32 @@ import { toaster } from "../../clientDashboard/Common/Others/Toaster";
 function UserSetting({ sideBar, setSidebarOpen }) {
   const { base64Image, convertToBase64 } = useImageToBase64();
   let ids = JSON.parse(localStorage.getItem("a_login"));
-
-  const [images, setimages] = useState([]);
+  const location = useLocation();
+  console.log(location)
+  
+  let item = location?.state.userDetails;
+  
+  const [images, setimages] = useState("");
   const [modalOpen, setModelOpen] = useState(false);
   const [modalOpen1, setModelOpen1] = useState(false);
   const [bodyState, setBodyState] = useState({});
   const [showOP, setShowOP] = useState(false);
   const [showNP, setShowNP] = useState(false);
   const [showCP, setShowCP] = useState(false);
-
   const [passwordvalue, setpasswordvalue] = useState({
     old_password: "",
     new_password: "",
     confirm_password: "",
   });
-
+  let get_base64_image =  async(image) =>{
+    const body = {
+      filename:image
+    }
+    const res = await postData("reterive_image", body);
+    
+    setimages("data:image/png;base64, "+res?.result)
+  }
+  useEffect(()=>{get_base64_image(item?.profile_image)},[images])
   const validationschemas = yup.object().shape({
     old_password: Yup.string().required("Please Enter Old Password"),
     new_password: Yup.string().required("Password is required"),
@@ -34,7 +46,7 @@ function UserSetting({ sideBar, setSidebarOpen }) {
       "Passwords must match"
     ),
   });
-
+  
   const passwordfun = (val) => {
     const body = {
       user_id: String(ids.user_id),
@@ -56,11 +68,7 @@ function UserSetting({ sideBar, setSidebarOpen }) {
     setModelOpen1(false);
   };
 
-  const [initialValue, setInitialValue] = useState({
-    name: "",
-    email: "",
-    profile_image: "",
-  });
+  console.log(item?.username)
   const validationschema = yup.object().shape({
     name: Yup.string().required("Please Enter Name"),
     email: Yup.string().email().required("Please Enter Email"),
@@ -116,7 +124,12 @@ function UserSetting({ sideBar, setSidebarOpen }) {
                   <div className="col-12 mainPart flex-fill overflow-hidden-auto carmenDashboard">
                     {
                       <Formik
-                        initialValues={initialValue}
+                      enableReinitialize
+                        initialValues={{
+                          name: item?.username,
+                          email: item?.email,
+                          profile_image: item?.profile_image,
+                        }}
                         onSubmit={(value, resetForm) =>
                           submitHandler(value, resetForm)
                         }
@@ -136,7 +149,7 @@ function UserSetting({ sideBar, setSidebarOpen }) {
                                         <div className="profileImg">
                                           <img
                                             src={
-                                              base64Image
+                                              item?.profile_image !== ""
                                                 ? images
                                                 : "./../assets/img/Avatar2.png"
                                             }

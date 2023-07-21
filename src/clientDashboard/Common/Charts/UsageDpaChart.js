@@ -269,8 +269,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
       },
     ],
   };
-  console.log(">")
-  console.log(dpausers)
+  
   return (
     <div className="card shadow-none border-0 p-3 dpaSection  my-4">
       <div className="row mx-0 align-items-center">
@@ -335,7 +334,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
           </div>
         </div>
         <div className="col-12  mt-3">
-          <HighchartsReact highcharts={Highcharts} options={options1}  />
+          <HighchartsReact highcharts={Highcharts} options={options1} containerProps={{ style: { height: "200px" } }}  />
         </div>
       </div>
     </div>

@@ -22,6 +22,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
   let ids = JSON.parse(localStorage.getItem("a_login"));
+  let details__ = JSON.parse(localStorage.getItem("details"));
   const [top3Dpa, setTop3Dpa] = useState([]);
   const [allClientDpa, setAllClientDpa] = useState([]);
   const [filterdDpa, setFilterdDpa] = useState([]);
@@ -35,6 +36,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
   const [tokenUsage, setTokenUsage] = useState("");
   const [remainingDays, setRemainingDays] = useState("");
 
+  const [dpaTokenUsage,setDpaTokenUsage] = useState("");
   const [tierInfo, setTierInfo] = useState("");
   // const [renewsDate, setRenewsDate] = useState("");
 
@@ -87,6 +89,8 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
 
     // remaining api
     const res5 = await postData("get_client_training_token_usage", body);
+    const res66 = await postData("get_client_dpa_token_usage", body);
+    setDpaTokenUsage(res66.result.dpa_token_usage);
     setTokenUsage(
       res5.result.training_token_usage ? res5.result.training_token_usage : 0
     );
@@ -158,7 +162,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                 setSidebarOpen={setSidebarOpen}
                                 textHeader={"Dashboard"}
                                 textSubHeader={
-                                  " Welcome Carmen, you can find all information you require here."
+                                  " Welcome  "+details__.name+" , you can find all information you require here."
                                 }
                               />
                             </div>
@@ -169,7 +173,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                     Dashboard
                                   </div>
                                   <div className="col pageSubheading px-0">
-                                    Welcome Carmen, you can find all information
+                                    Welcome , you can find all information
                                     you require here.
                                   </div>
                                 </div>
@@ -293,6 +297,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                       <div className="row mx-0 align-items-center">
                                         <div className="col-xl-6 px-0 leftSide">
                                           {top3Dpa?.map((el, i) => {
+                                            console.log(el)
                                             return (
                                               <div
                                                 key={Math.random()}
@@ -302,13 +307,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                                   <div
                                                     style={{
                                                       backgroundColor:
-                                                        i == 0
-                                                          ? "#e7ebb8"
-                                                          : i == 1
-                                                          ? "#aec7e8"
-                                                          : i == 2
-                                                          ? "#cec0ec"
-                                                          : "",
+                                                        el.dpa_color
                                                     }}
                                                     className="workColor rounded-circle"
                                                   ></div>
@@ -323,7 +322,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                                         Total Token Used:{" "}
                                                         <span className="fw-semibold">
                                                           {CountConverter(
-                                                            el.dpa_usage
+                                                            (el.dpa_usage ) 
                                                           )}
                                                         </span>
                                                       </div>
@@ -333,13 +332,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                                         type="button"
                                                         style={{
                                                           backgroundColor:
-                                                            i == 0
-                                                              ? "#e7ebb8"
-                                                              : i == 1
-                                                              ? "#aec7e8"
-                                                              : i == 2
-                                                              ? "#cec0ec"
-                                                              : "",
+                                                            el.dpa_color
                                                         }}
                                                         className="btn trackBtn rounded-pill text-white d-flex align-items-center gap-2"
                                                         onClick={() =>
@@ -369,17 +362,11 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                                     </div>
                                                     <div className="col-12 progressGroup mt-2">
                                                       <Line
-                                                        percent={el.dpa_usage}
+                                                        percent={(el.dpa_usage  / dpaTokenUsage) }
                                                         strokeWidth={1.5}
                                                         trailWidth={1.5}
                                                         strokeColor={
-                                                          i == 0
-                                                            ? "#e7ebb8"
-                                                            : i == 1
-                                                            ? "#aec7e8"
-                                                            : i == 2
-                                                            ? "#cec0ec"
-                                                            : ""
+                                                          el.dpa_color
                                                         }
                                                       />
                                                     </div>

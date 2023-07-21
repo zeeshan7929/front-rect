@@ -85,7 +85,7 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                             sideBar={sideBar}
                             textHeader={"Manage DPA Database"}
                             textSubHeader={
-                              "Welcome Carmen, you can find all information you require here."
+                              "welcome carmen, you can find all information you require here."
                             }
                           />
                         </div>
@@ -96,7 +96,7 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                 Manage DPA Database
                               </div>
                               <div className="col pageSubheading px-0">
-                                Welcome Carmen, you can find all your billing
+                                welcome carmen, you can find all your billing
                                 history here.
                               </div>
                             </div>
