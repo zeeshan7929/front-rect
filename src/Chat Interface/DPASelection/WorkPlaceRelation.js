@@ -88,7 +88,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
   };
   let t = (
     <>
-      DPA: {item?.name}
+      DPA: {item?.dpa_name}
     </>
   );
 

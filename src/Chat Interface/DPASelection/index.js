@@ -27,7 +27,7 @@ function DPASelection({ sideBar, setSidebarOpen }) {
 
   const handleFilter = () => {
     let input = search.toLocaleLowerCase();
-    const fill = dpauser.filter((el) => el.name.toLowerCase().includes(input));
+    const fill = dpauser.filter((el) => el.dpa_name.toLowerCase().includes(input));
     setFilterdDpa(fill);
   };
 
@@ -68,7 +68,7 @@ function DPASelection({ sideBar, setSidebarOpen }) {
                     />
                   </div>
                 </div>
-                <div className="col px-0 dataCardHeading">{card1?.name}</div>
+                <div className="col px-0 dataCardHeading">{card1?.dpa_name}</div>
                 <div className="col px-0 dataCardText">
                   {card1?.description}
                 </div>
@@ -100,7 +100,7 @@ function DPASelection({ sideBar, setSidebarOpen }) {
                       />
                     </div>
                   </div>
-                  <div className="col px-0 dataCardHeading">{card2?.name}</div>
+                  <div className="col px-0 dataCardHeading">{card2?.dpa_name}</div>
                   <div className="col px-0 dataCardText">
                     {card2?.description}
                   </div>
