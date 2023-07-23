@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 
-const BaseURL = process.env.REACT_APP_BASEURL;
+const BaseURL = "https://api.beyondsimp.org";
 
 const postData = async (url, body) => {
   //   const Token = localStorage.getItem("token");
