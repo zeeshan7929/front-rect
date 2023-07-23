@@ -51,6 +51,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
     setTrainedToken(res.result.training_token_usage);
     const res55 = await postData("get_client_tier_info", body);
     setTierInfo(res55.result);
+    console.log(res55.result)
     const res1 = await postData("get_client_uploaded_documents", body);
     setDoc(res1.result);
     const res3 = await postData("get_client_sub_renew_date", body);
@@ -101,8 +102,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
     });
     return { name: item[0].dpa_name, y: count, color: item[0].dpa_color };
   });
-  console.log("daa..")
-  console.log(data)
+  
   const handleFilterUserDpaName = () => {
     const filterDpaName = allUserDpaDetails?.filter((el) => {
       const { dpa_name } = el;
@@ -149,6 +149,9 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   let tokenUsage = b.reduce((total, cur) => Number(total) + Number(cur), 0);
   let c = allUserDpaDetails?.map((el) => el.dpa_usage);
   let AllDpa = c.reduce((total, cur) => Number(total) + Number(cur), 0);
+  console.log("All DPA 0000000000000")
+  console.log(AllDpa)
+  
     function Round(num, decimalPlaces = 0) {
     var p = Math.pow(10, decimalPlaces);
     return Math.round(num * p) / p;
@@ -653,7 +656,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                     <span>
                                                       out of{" "}
                                                       {CountConverter(
-                                                        tokenLimit
+                                                        tierInfo?.database_usage
                                                       )}
                                                     </span>{" "}
                                                   </div>
