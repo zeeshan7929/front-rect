@@ -11,15 +11,16 @@ import Highcharts from "highcharts";
 import { getOptionsDashboardCirculer } from "../../Common/Others/ChartOptions";
 import { postData } from "../../Common/fetchservices";
 import UsageDpaChart from "../../Common/Charts/UsageDpaChart";
+import { CountConverter } from "../../Common/Others/CountConverter";
 
 const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   let ids = JSON.parse(localStorage.getItem("a_login"));  
   const location = useLocation();
   let item = location?.state?.item;
-  console.log("ITEM : ")
-  console.log(item)
+  
   let dt = location?.state?.dt;
   
+  console.log(dt)
   let renewDate = location?.state?.getRenewDate;
   
   const [filterdpa, setFilterDpa] = useState([]);
@@ -34,7 +35,10 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
     });
     setFilterDpa(fill);
   };
-
+  function Round(num, decimalPlaces = 0) {
+    var p = Math.pow(10, decimalPlaces);
+    return Math.round(num * p) / p;
+}
   let data = [];
   let formate = dt?.reduce((total, current) => {
     const { dpa_name } = current;
@@ -48,7 +52,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
     let name = "";
     let color = "";
     for (let elem of formate[key]) {
-      y += Number(elem.token_usage);
+      y += Number(elem.dpa_usage);
       name = elem.dpa_name;
       color = elem.dpa_color;
     }
@@ -56,6 +60,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   }
 
   Object.values(formate || "").map((el) => data.push(el));
+  console.log(data)
   let a = data?.map((el) => el.y);
   let totalTokens = a.reduce((x, y) => Number(x) + Number(y), 0);
   useEffect(() => {
@@ -107,7 +112,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
       selector: (row) => (
         <div>
           <Line
-            percent={row?.dpa_usage_by_user > 0 ? row?.dpa_usage_by_user : "0"}
+            percent={(Round((Number(row?.dpa_usage) / Number(item?.usage_limit)) * 100,1)) }
             strokeWidth={5}
             trailWidth={5}
             strokeColor={randomBackground()}
@@ -118,7 +123,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
             }}
           />
           &nbsp;&nbsp;&nbsp;&nbsp;
-          {`${row?.dpa_usage_by_user > 0 ? row?.dpa_usage_by_user : "0"}%`}
+          {`${(Round((Number(row?.dpa_usage) / Number(item?.usage_limit)) * 100,1))}%`}
         </div>
       ),
       center: true,
@@ -301,14 +306,14 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                     <div className="persantage">
                                       {`${
                                         item?.token_usage > 0
-                                          ? (item?.token_usage * 100) /
-                                            item?.usage_limit
+                                          ? Round((item?.token_usage * 100) /
+                                          item?.usage_limit,1)
                                           : "0"
                                       }%`}
                                     </div>
                                     <div className="persantage">
                                       {item?.token_usage > 1000
-                                        ? `${item?.token_usage / 1000}k`
+                                        ? `${Round(item?.token_usage / 1000,2)}k`
                                         : item?.token_usage}{" "}
                                       Tokens
                                     </div>
@@ -317,8 +322,8 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                     <Line
                                       percent={`${
                                         item?.token_usage > 0
-                                          ? (item?.token_usage * 100) /
-                                            item?.usage_limit
+                                          ? Round((item?.token_usage * 100) /
+                                          item?.usage_limit,1)
                                           : "0"
                                       }%`}
                                       strokeWidth={1}
@@ -332,7 +337,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                     </div>
                                     <div className="progresbarbottomtext">
                                       {item?.token_usage > 1000
-                                        ? `${item?.token_usage / 1000}k`
+                                        ? `${Round(item?.token_usage / 1000,2)}k`
                                         : item?.token_usage}{" "}
                                       out of{" "}
                                       {item?.usage_limit > 1000
@@ -353,7 +358,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                           alt="edit"
                                         />
                                       </span>
-                                      70k User Limit{" "}
+                                      {CountConverter(item?.usage_limit)} User Limit{" "}
                                     </button>
                                   </NavLink>
                                 </div>
@@ -361,9 +366,9 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                               <div className="row mx-0 mb-2">
                                 <div className="col-md col-12 d-flex align-items-center justify-content-between justify-content-md-start gap-2 mb-0">
                                   <div className="textassign">
-                                    Assigned DPAs (5)
+                                    Assigned DPAs ({dt.length})
                                   </div>
-                                  <button className="border-0 assignbtn d-flex align-items-center gap-2">
+                                  {/* <button className="border-0 assignbtn d-flex align-items-center gap-2">
                                     <span className="d-inline-flex">
                                       <img
                                         className="w-100 h-100"
@@ -372,7 +377,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                       />
                                     </span>
                                     Assign DPA
-                                  </button>
+                                  </button> */}
                                 </div>
                                 <div className="col-md-auto mt-3 mt-sm-0">
                                   <div className="position-relative">
@@ -426,7 +431,8 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                       "pie",
                                       false,
                                       data,
-                                      "center"
+                                      "center",
+                                      totalTokens
                                     )}
                                   />
                                   {data?.map((el) => {
@@ -461,11 +467,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                             }}
                                           >
                                             {el.y > 1000 ? `${el.y}k` : el.y}{" "}
-                                            Tokens(
-                                            {token > 0
-                                              ? `${(token * 100) / totalTokens}`
-                                              : "0"}
-                                            )
+                                            
                                           </div>
                                         </div>
                                       </div>

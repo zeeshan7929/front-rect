@@ -15,10 +15,9 @@ import { RenewsDate } from "../../Common/Others/RenewsDate";
 const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   let item = location?.state?.item;
-  let renewDate = location?.state?.getRenewDate;
-  let tokenLimit = location?.state?.tokenLimit;
-  console.log("Token Limit")
-  console.log(tokenLimit)
+  // let renewDate = location?.state?.getRenewDate;
+  // let tokenLimit = location?.state?.tokenLimit;
+  
   const [users, setUsers] = useState([]);
   const [filterUsers, setfilterUsers] = useState([]);
   const [search, setsearch] = useState("");
@@ -26,7 +25,9 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
   const [tierInfo,setTierInfo] = useState([]);
   const [dpaInfo, setDpaInfo] = useState({});
   const [refreshTokens,setRefreshToken] = useState("");
-
+  const [allUserDpaDetails,setAllUserDpaDetails] = useState([]);
+  const [renewDate, setRenewDate] = useState({});
+  const [tokenLimit, setTokenLimit] = useState("");
   let ids = JSON.parse(localStorage.getItem("a_login"));
   let details_ = JSON.parse(localStorage.getItem("details"));
   const handleDpa = async () => {
@@ -49,6 +50,12 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
     return Math.round(num * p) / p;
 }
   const handleAllUsers = async () => {
+    const body__ = {
+      client_id: ids?.client_id,
+      user_id: String(ids?.user_id),
+    };
+    const res = await postData("get_user_assign_token_limit", body__);
+    setTokenLimit(res?.result?.user_assign_token_limit);
     const body = {
       client_id: ids?.client_id,
       dpa_id: String(item?.dpa_id ? item.dpa_id : item?.id),
@@ -56,8 +63,15 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
     const res1 = await postData("get_dpa_info", body);
     setDpaInfo(res1?.result);
     const count = await postData("get_dpa_token_usage_count", body);
+    const res3 = await postData("get_client_sub_renew_date", body);
+    setRenewDate(res3.result?.sub_renew_date);
     setdpacount(count?.result?.dpa_usage_token_count);
-    
+    const body___ = { 
+      client_id: ids?.client_id,
+      user_id: ids?.user_id.toString()
+    }
+    const res4 = await postData("u_get_user_all_assign_dpa", body___);
+    setAllUserDpaDetails(res4.result);
     const r_tokens = await postData('get_client_remaining_days_to_refresh_tokens',body);
     setRefreshToken(r_tokens?.result)
 
@@ -66,8 +80,8 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
 
   const filterAllUsers = () => {
     const fill = users?.filter((el) => {
-      const { username } = el;
-      if (username?.toLowerCase().includes(search?.toLowerCase())) {
+      const { name } = el;
+      if (name?.toLowerCase().includes(search?.toLowerCase())) {
         return el;
       }
     });
@@ -99,7 +113,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
             }}
             src={row?.profile_image ? row?.profile_image : "assets/img/bg/Avatar.png"}
           />
-          {row?.username.toLowerCase()}
+          {row?.name.toLowerCase()}
         </>
       ),
       letf: true,
@@ -137,10 +151,15 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
     },
     {
       selector: (row) => (
+       
         <div>
           <NavLink
             to="/user-usage-tracking"
-            state={{ item: row }}
+            state={{ item: row,
+              dt: allUserDpaDetails,
+            getRenewDate:RenewsDate(renewDate),
+            tokenLimit:10000
+            }}
             style={{
               fontSize: "26px",
               textDecoration: "none",

@@ -369,13 +369,13 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
                                                                   10K
                                                                 </li>
                                                                 <li className="vertical-line2  ms-0">
-                                                                  1L
+                                                                  100K
                                                                 </li>
                                                                 <li className="vertical-line3 me-1">
-                                                                  2.5L
+                                                                  250K
                                                                 </li>
                                                                 <li className="vertical-line4 me-2">
-                                                                  5L
+                                                                  500K
                                                                 </li>
                                                                 <li className="vertical-line5 ms-0">
                                                                   1M
