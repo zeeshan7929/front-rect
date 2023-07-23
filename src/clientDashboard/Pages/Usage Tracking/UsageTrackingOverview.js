@@ -30,6 +30,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   const [trainedToken, setTrainedToken] = useState("");
   const [tokenLimit, setTokenLimit] = useState("");
   const [doc, setDoc] = useState([]);
+  const [tierInfo,setTierInfo] = useState("");
 
   // handle TotalLimit
   const handleTotalLimit = async () => {
@@ -48,6 +49,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
     };
     const res = await postData("get_client_training_token_usage", body);
     setTrainedToken(res.result.training_token_usage);
+    const res55 = await postData("get_client_tier_info", body);
+    setTierInfo(res55.result);
     const res1 = await postData("get_client_uploaded_documents", body);
     setDoc(res1.result);
     const res3 = await postData("get_client_sub_renew_date", body);
@@ -66,25 +69,40 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
     setAllUserDpa(allUsers?.result);
   };
 
-  let data = [];
-  let formate = allUserDpaDetails?.reduce((total, current) => {
-    const { dpa_name } = current;
-    total[dpa_name] = total[dpa_name] || [];
-    total[dpa_name].push(current);
-    return total;
+  // let data = [];
+  // let formate = allUserDpaDetails?.reduce((total, current) => {
+  //   const { dpa_name } = current;
+  //   total[dpa_name] = total[dpa_name] || [];
+  //   total[dpa_name].push(current);
+  //   return total;
+  // }, {});
+  const formate = allUserDpaDetails.reduce((group, product) => {
+    const { dpa_name } = product;
+    group[dpa_name] = group[dpa_name] ?? [];
+    group[dpa_name].push(product);
+    return group;
   }, {});
 
-  for (let key in formate) {
-    let y = 0;
-    let name = "";
-    for (let elem of formate[key]) {
-      y += Number(elem.token_usage);
-      name = elem.dpa_name;
-    }
-    formate[key] = { name, y };
-  }
-  Object.values(formate).map((el) => data.push(el));
-
+  // for (let key in formate) {
+  //   let y = 0;
+  //   let name = "";
+  //   for (let elem of formate[key]) {
+  //     y += Number(elem.token_usage);
+  //     name = elem.dpa_name;
+  //   }
+  //   formate[key] = { name, y };
+  // }
+  // Object.values(formate).map((el) => data.push(el));
+  let data = Object.values(formate).map((item) => {
+    let count = 0;
+    
+    item.map((el) => {
+      count += Number(el.dpa_usage);
+    });
+    return { name: item[0].dpa_name, y: count, color: item[0].dpa_color };
+  });
+  console.log("daa..")
+  console.log(data)
   const handleFilterUserDpaName = () => {
     const filterDpaName = allUserDpaDetails?.filter((el) => {
       const { dpa_name } = el;
@@ -126,11 +144,15 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
     (total, cur) => Number(total) + Number(cur),
     0
   );
+
   let b = allUserDpa?.map((el) => el.token_usage);
   let tokenUsage = b.reduce((total, cur) => Number(total) + Number(cur), 0);
   let c = allUserDpaDetails?.map((el) => el.dpa_usage);
   let AllDpa = c.reduce((total, cur) => Number(total) + Number(cur), 0);
-
+    function Round(num, decimalPlaces = 0) {
+    var p = Math.pow(10, decimalPlaces);
+    return Math.round(num * p) / p;
+}
   const columns = [
     {
       name: `Total Users : ${allUserDpa.length}`,
@@ -151,13 +173,11 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
       //  ${row.username}`,
     },
     {
-      name: `TOTAL USAGE : ${CountConverter(tokenUsage)}(${
-        tokenUsage > 0 ? `${(tokenUsage * 100) / totalTokenLimit}%` : "0"
-      })`,
+      name: `TOTAL USAGE : ${CountConverter(tokenUsage)}`,
       selector: (row) => (
         <div>
           <Line
-            percent={(row?.token_usage > 0 * 100) / row?.usage_limit > 0}
+            percent={(row?.token_usage  / row?.usage_limit) * 100 }
             strokeWidth={5}
             trailWidth={5}
             strokeColor={randomBackground()}
@@ -168,7 +188,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
             }}
           />
           &nbsp;&nbsp;&nbsp;&nbsp;
-          {`${row?.token_usage}%`}
+          {`${Round((Number(row.token_usage) / Number(row?.usage_limit)) * 100 ,1)}%`}
         </div>
       ),
       center: true,
@@ -258,7 +278,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                               sideBar={sideBar}
                               textHeader={`Usage Tracking`}
                               textSubHeader={
-                                "welcome carmen,you can view your DPA usage here."
+                                "welcome Xeeshan,you can view your DPA usage here."
                               }
                             />
                           </div>
@@ -269,7 +289,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                   Usage Tracking
                                 </div>
                                 <div className="col pageSubheading px-0">
-                                  welcome carmen, you can find all information
+                                  welcome Zeeshan, you can find all information
                                   you require here.
                                 </div>
                               </div>
@@ -465,7 +485,101 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                       </div>
                                     </div>
                                 </div>
-                                    
+                                <div className="col-xxl-6">
+                                      <div className="card shadow-none border-0 p-3 dpaSection topDapSection  mb-4 usedByUser h100">
+                                        <div className="row mx-0 align-items-center">
+                                          <div className="col-12 dpaUsesHeading fw-semibold mb-4 text-sm-center text-start">
+                                            Usage by Users
+                                          </div>
+                                          <div className="col-12 px-0">
+                                            <div className="row mx-0 align-items-center justify-content-between topForm g-4 ">
+                                              <div className="col-md-auto inputcol px-0">
+                                                <div className="position-relative">
+                                                  <input
+                                                    type="text"
+                                                    onChange={(e) =>
+                                                      setsearchalluserName(
+                                                        e.target.value
+                                                      )
+                                                    }
+                                                    className="form-control border-0"
+                                                    id="exampleFormControlInput1"
+                                                    placeholder="Search User"
+                                                  />
+                                                  <span className="d-inline-flex position-absolute top-0 end-0 me-3 mt-2 pt-2">
+                                                    <img
+                                                      className="w-100 h-100"
+                                                      src="assets/img/svg/search.svg"
+                                                      alt="search"
+                                                    />
+                                                  </span>
+                                                </div>
+                                              </div>
+                                              <div className="col-md-auto Selectcol px-0">
+                                                <div className="usageSlect">
+                                                  <select
+                                                    className="form-select shadow-none"
+                                                    aria-label="Default select example"
+                                                  >
+                                                    <option
+                                                      className="slected"
+                                                      selected
+                                                    >
+                                                      All DPA
+                                                    </option>
+                                                    <option value={1}>
+                                                      One
+                                                    </option>
+                                                    <option value={2}>
+                                                      Two
+                                                    </option>
+                                                    <option value={3}>
+                                                      Three
+                                                    </option>
+                                                  </select>
+                                                </div>
+                                              </div>
+                                              <div className="col-12 px-0">
+                                                <div className="imagetable w-100">
+                                                  <DataTable
+                                                    title={
+                                                      <div
+                                                        style={{
+                                                          display: "flex",
+                                                          lineHeight: "50px",
+                                                          paddingRight: "10px",
+                                                          paddingLeft: "10px",
+                                                          fontSize: "15px",
+                                                          backgroundColor:
+                                                            "#f6f8f9",
+                                                          borderRadius:
+                                                            "1.5em 1.5em 0 0",
+                                                          alignItems: "center",
+                                                          textAlign: "center",
+                                                          justifyContent:
+                                                            "space-between",
+                                                        }}
+                                                      >
+                                                        <p>User</p>
+                                                        <p>DPA Usage</p>
+                                                        <p>Action</p>
+                                                      </div>
+                                                    }
+                                                    columns={columns}
+                                                    data={
+                                                      searchalluserName
+                                                        ? filterallUserDpa
+                                                        : allUserDpa
+                                                    }
+                                                    // customStyles={customStyles}
+                                                  />
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
                                     <div className="col-xxl-6">
                                       <div className="card border-0 rounded-4 bottomcard p-3 me-2">
                                         <div className="row mx-0">
@@ -481,7 +595,9 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                 "pie",
                                                 false,
                                                 data,
-                                                "center"
+                                                "center",
+                                                AllDpa
+
                                               )}
                                             />
                                           </div>
@@ -501,8 +617,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                   <div className="col-auto">
                                                     <div className="persentaheading colortext">
                                                       {AllDpa > 0
-                                                        ? (AllDpa * 100) /
-                                                          tokenLimit
+                                                        ? Round(((AllDpa) / (tierInfo?.database_usage)) * 100,1)
+                                                          
                                                         : "0"}
                                                       %
                                                     </div>
@@ -511,9 +627,9 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                     <Line
                                                       percent={
                                                         AllDpa > 0
-                                                          ? (AllDpa * 100) /
-                                                            tokenLimit
-                                                          : "0"
+                                                        ? ((AllDpa) / (tierInfo?.database_usage)) * 100
+                                                          
+                                                        : "0"
                                                       }
                                                       strokeWidth={2}
                                                       trailWidth={2}
@@ -545,7 +661,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                 <div className="col-12 kmmetter colortext">
                                                   <strong>
                                                     {CountConverter(
-                                                      AllDpa - tokenLimit
+                                                      tierInfo?.database_usage - AllDpa
                                                     )}
                                                   </strong>{" "}
                                                   remaining
@@ -658,7 +774,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                                         Used:{" "}
                                                                         <span className="fw-semibold">
                                                                           {CountConverter(
-                                                                            el?.dpa_usage
+                                                                            el?.token_usage
                                                                             
                                                                           )}
                                                                         </span>
@@ -702,11 +818,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                                     <div className="col-12 progressGroup mt-2">
                                                                       <Line
                                                                         percent={
-                                                                          (el.token_usage >
-                                                                            0 *
-                                                                              100) /
-                                                                            AllDpa >
-                                                                          0
+                                                                          
+                                                                          (el.token_usage / tierInfo?.database_usage) * 100
                                                                         }
                                                                         strokeWidth={
                                                                           1
@@ -756,7 +869,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                                         Used:{" "}
                                                                         <span className="fw-semibold">
                                                                           {CountConverter(
-                                                                            el.token_usage
+                                                                            el?.dpa_usage
                                                                           )}
                                                                         </span>
                                                                       </div>
@@ -799,11 +912,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                                     <div className="col-12 progressGroup mt-2">
                                                                       <Line
                                                                         percent={
-                                                                          (el.token_usage >
-                                                                            0 *
-                                                                              100) /
-                                                                            AllDpa >
-                                                                          0
+                                                                          (el?.dpa_usage / tierInfo?.database_usage) * 100
                                                                         }
                                                                         strokeWidth={
                                                                           1
@@ -830,101 +939,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                         </div>
                                       </div>
                                     </div>
-                                    <div className="col-xxl-6">
-                                      <div className="card shadow-none border-0 p-3 dpaSection topDapSection  mb-4 usedByUser h100">
-                                        <div className="row mx-0 align-items-center">
-                                          <div className="col-12 dpaUsesHeading fw-semibold mb-4 text-sm-center text-start">
-                                            Usage by Users
-                                          </div>
-                                          <div className="col-12 px-0">
-                                            <div className="row mx-0 align-items-center justify-content-between topForm g-4 ">
-                                              <div className="col-md-auto inputcol px-0">
-                                                <div className="position-relative">
-                                                  <input
-                                                    type="text"
-                                                    onChange={(e) =>
-                                                      setsearchalluserName(
-                                                        e.target.value
-                                                      )
-                                                    }
-                                                    className="form-control border-0"
-                                                    id="exampleFormControlInput1"
-                                                    placeholder="Search User"
-                                                  />
-                                                  <span className="d-inline-flex position-absolute top-0 end-0 me-3 mt-2 pt-2">
-                                                    <img
-                                                      className="w-100 h-100"
-                                                      src="assets/img/svg/search.svg"
-                                                      alt="search"
-                                                    />
-                                                  </span>
-                                                </div>
-                                              </div>
-                                              <div className="col-md-auto Selectcol px-0">
-                                                <div className="usageSlect">
-                                                  <select
-                                                    className="form-select shadow-none"
-                                                    aria-label="Default select example"
-                                                  >
-                                                    <option
-                                                      className="slected"
-                                                      selected
-                                                    >
-                                                      All DPA
-                                                    </option>
-                                                    <option value={1}>
-                                                      One
-                                                    </option>
-                                                    <option value={2}>
-                                                      Two
-                                                    </option>
-                                                    <option value={3}>
-                                                      Three
-                                                    </option>
-                                                  </select>
-                                                </div>
-                                              </div>
-                                              <div className="col-12 px-0">
-                                                <div className="imagetable w-100">
-                                                  <DataTable
-                                                    title={
-                                                      <div
-                                                        style={{
-                                                          display: "flex",
-                                                          lineHeight: "50px",
-                                                          paddingRight: "10px",
-                                                          paddingLeft: "10px",
-                                                          fontSize: "15px",
-                                                          backgroundColor:
-                                                            "#f6f8f9",
-                                                          borderRadius:
-                                                            "1.5em 1.5em 0 0",
-                                                          alignItems: "center",
-                                                          textAlign: "center",
-                                                          justifyContent:
-                                                            "space-between",
-                                                        }}
-                                                      >
-                                                        <p>User</p>
-                                                        <p>DPA Usage</p>
-                                                        <p>Action</p>
-                                                      </div>
-                                                    }
-                                                    columns={columns}
-                                                    data={
-                                                      searchalluserName
-                                                        ? filterallUserDpa
-                                                        : allUserDpa
-                                                    }
-                                                    // customStyles={customStyles}
-                                                  />
-                                                </div>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
+                                    
                                   </div>
                                 </div>
                               </div>
