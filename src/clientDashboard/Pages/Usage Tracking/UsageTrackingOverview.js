@@ -45,19 +45,20 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   // handle trainedToken && documnet
   const handleDocument = async () => {
     const body = {
-      client_id: clientId?.client_id,
+      client_id: String(clientId?.client_id),
     };
     const res = await postData("get_client_training_token_usage", body);
     setTrainedToken(res.result.training_token_usage);
     const res55 = await postData("get_client_tier_info", body);
     setTierInfo(res55.result);
-    console.log(res55.result)
+    
     const res1 = await postData("get_client_uploaded_documents", body);
     setDoc(res1.result);
     const res3 = await postData("get_client_sub_renew_date", body);
     setRenewDate(res3.result?.sub_renew_date);
     const res4 = await postData("get_client_all_dpa_details", body);
     setAllUserDpaDetails(res4.result);
+    console.log(allUserDpaDetails)
     const totalassignUser = await postData("get_client_assign_user", body);
     settotalUserCount(totalassignUser?.result?.users_count);
     const totalassignDpa = await postData("get_client_assign_dpa", body);
@@ -149,8 +150,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   let tokenUsage = b.reduce((total, cur) => Number(total) + Number(cur), 0);
   let c = allUserDpaDetails?.map((el) => el.dpa_usage);
   let AllDpa = c.reduce((total, cur) => Number(total) + Number(cur), 0);
-  console.log("All DPA 0000000000000")
-  console.log(AllDpa)
+  
   
     function Round(num, decimalPlaces = 0) {
     var p = Math.pow(10, decimalPlaces);

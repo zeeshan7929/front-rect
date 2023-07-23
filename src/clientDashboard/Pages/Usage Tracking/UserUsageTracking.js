@@ -30,7 +30,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   const handleItems = async() =>{
     const bod = {
       client_id: item?.client_id,
-      user_id: item?.user_id.toString()
+      user_id: String(item?.id)
     }
     const res = await postData("u_get_user_all_assign_dpa", bod);
     console.log(res)
@@ -81,7 +81,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
     filterAllUsers();
   }, [search]);
   // console.log("Item : ")
-  const dt_len = 1;
+  const dt_len = dt.length;
   const columns = [
     {
       name: "DPA",
