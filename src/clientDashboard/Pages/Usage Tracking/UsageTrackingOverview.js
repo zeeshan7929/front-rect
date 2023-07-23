@@ -401,9 +401,9 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                       <div className="persentaheading">
                                                         {tokenLimit > 0
                                                           ? (
-                                                              (trainedToken *
-                                                                100) /
-                                                              tokenLimit
+                                                              (trainedToken /
+                                                                tierInfo?.training_tokens)  * 100
+                                                              
                                                             ).toFixed(1)
                                                           : "0"}
                                                         %
@@ -413,9 +413,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                       <Line
                                                         percent={
                                                           tokenLimit > 0
-                                                            ? (trainedToken *
-                                                                100) /
-                                                              tokenLimit
+                                                            ? (trainedToken /
+                                                            tierInfo?.training_tokens)  * 100
                                                             : "0"
                                                         }
                                                         strokeWidth={2}
@@ -440,7 +439,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                         <span>
                                                           out of{" "}
                                                           {CountConverter(
-                                                            tokenLimit
+                                                            tierInfo?.training_tokens
                                                           )}
                                                         </span>{" "}
                                                       </div>
@@ -465,7 +464,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                       </div>
                                                       <div className="number text-start text-sm-center">
                                                         {CountConverter(
-                                                          tokenLimit
+                                                          tierInfo.training_tokens
                                                         )}
                                                       </div>
                                                     </div>
@@ -475,7 +474,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                       </div>
                                                       <div className="number text-start text-sm-center">
                                                         {CountConverter(
-                                                          tokenLimit
+                                                          tierInfo?.training_tokens - trainedToken
                                                         )}
                                                       </div>
                                                     </div>

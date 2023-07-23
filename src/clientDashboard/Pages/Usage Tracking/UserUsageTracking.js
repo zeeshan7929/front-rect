@@ -18,13 +18,24 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   let item = location?.state?.item;
   
-  let dt = location?.state?.dt;
+  // let dt = location?.state?.dt;
   
-  console.log(dt)
+  
   let renewDate = location?.state?.getRenewDate;
   
   const [filterdpa, setFilterDpa] = useState([]);
   const [search, setsearch] = useState("");
+  const [dt,setDT] = useState([])
+
+  const handleItems = async() =>{
+    const bod = {
+      client_id: item?.client_id,
+      user_id: item?.user_id.toString()
+    }
+    const res = await postData("u_get_user_all_assign_dpa", bod);
+    console.log(res)
+    setDT(res?.result);
+  }
 
   const filterAllUsers = () => {
     const fill = dt?.filter((el) => {
@@ -39,6 +50,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
     var p = Math.pow(10, decimalPlaces);
     return Math.round(num * p) / p;
 }
+
   let data = [];
   let formate = dt?.reduce((total, current) => {
     const { dpa_name } = current;
@@ -64,10 +76,12 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   let a = data?.map((el) => el.y);
   let totalTokens = a.reduce((x, y) => Number(x) + Number(y), 0);
   useEffect(() => {
+    handleItems();
     addBlurClass();
     filterAllUsers();
   }, [search]);
-
+  // console.log("Item : ")
+  const dt_len = 1;
   const columns = [
     {
       name: "DPA",
@@ -366,7 +380,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                               <div className="row mx-0 mb-2">
                                 <div className="col-md col-12 d-flex align-items-center justify-content-between justify-content-md-start gap-2 mb-0">
                                   <div className="textassign">
-                                    Assigned DPAs ({dt.length})
+                                    Assigned DPAs ({dt_len})
                                   </div>
                                   {/* <button className="border-0 assignbtn d-flex align-items-center gap-2">
                                     <span className="d-inline-flex">

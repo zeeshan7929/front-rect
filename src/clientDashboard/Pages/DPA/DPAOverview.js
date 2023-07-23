@@ -19,7 +19,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
   const [dpaCount, setDpaCount] = useState(0);
   const [totalDpa, setTotalDpa] = useState(0);
   const [totalTokenLimit, setTotalTokenLimit] = useState(0);
-
+  const [tierInfo,setTierInfo] = useState([])
   const getDocumentdata = async () => {
     const body = {
       client_id: clientId?.client_id,
@@ -30,7 +30,9 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
     setTrainingToken(
       res1.result.training_token_usage ? res1.result.training_token_usage : 0
     );
-
+    const res55 = await postData("get_client_tier_info", body);
+    setTierInfo(res55.result);
+    console.log(res55.result)
     const res3 = await postData("get_client_assign_dpa", body);
     setTotalDpa(
       res3.result.assign_dpa_count ? res3.result.assign_dpa_count : 0
@@ -300,7 +302,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
                                                 <div className="percent">
                                                   {(
                                                     (Number(traningToken) /
-                                                      Number(totalTokenLimit)) *
+                                                      Number(tierInfo.training_tokens)) *
                                                     100
                                                   ).toFixed()}
                                                   %
@@ -311,7 +313,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
                                             <div className="col-auto">
                                               <div className="progressBarTxt1">
                                                 {CountConverter(
-                                                  totalTokenLimit
+                                                   Number(tierInfo.training_tokens)
                                                 )}
                                               </div>
                                             </div>
@@ -321,7 +323,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
                                           <Line
                                             percent={(
                                               (Number(traningToken) /
-                                                Number(totalTokenLimit)) *
+                                              Number(tierInfo.training_tokens)) *
                                               100
                                             ).toFixed()}
                                             strokeWidth={2}
@@ -333,7 +335,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
                                           <div className="progressBottomTxt">
                                             <span>
                                               {CountConverter(
-                                                totalTokenLimit - traningToken
+                                                  Number(tierInfo.training_tokens) - Number(traningToken)
                                               )}
                                             </span>{" "}
                                             remaining
