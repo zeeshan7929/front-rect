@@ -58,8 +58,8 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
 
   const handleFilterUserDpa = () => {
     let fill = userDpa?.filter((el) => {
-      const { name } = el;
-      if (name.toLowerCase().includes(search.toLowerCase())) {
+      const { dpa_name } = el;
+      if (dpa_name.toLowerCase().includes(search.toLowerCase())) {
         return el;
       }
     });
@@ -104,7 +104,7 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
                 height: "25px",
               }}
             >
-              {row?.name ? row?.name : "name"}
+              {row?.dpa_name ? row?.dpa_name : "name"}
             </div>
           </div>
         </>
