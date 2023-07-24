@@ -22,7 +22,9 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
   const navigate = useNavigate();
   const location = useLocation();
   let ids = JSON.parse(localStorage.getItem("a_login"));
-  let details__ = JSON.parse(localStorage.getItem("details"));
+
+
+  // let details__ = JSON.parse(localStorage.getItem("details"));
   const [top3Dpa, setTop3Dpa] = useState([]);
   const [allClientDpa, setAllClientDpa] = useState([]);
   const [filterdDpa, setFilterdDpa] = useState([]);
@@ -164,7 +166,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                 setSidebarOpen={setSidebarOpen}
                                 textHeader={"Dashboard"}
                                 textSubHeader={
-                                  " Welcome  "+details__.name+" , you can find all information you require here."
+                                  " Welcome   , you can find all information you require here."
                                 }
                               />
                             </div>
