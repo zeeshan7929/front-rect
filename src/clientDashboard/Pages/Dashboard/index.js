@@ -124,6 +124,8 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
     });
     return { name: item[0].dpa_name, y: count, color: item[0].dpa_color };
   });
+
+  console.log(data)
   useEffect(() => {
     getTop3dpa();
     addBlurClass();
@@ -283,8 +285,8 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                   <Highchart
                                     data={data}
                                     gradiant={{
-                                      color1: "#4a5c77",
-                                      color2: "#4a5c77",
+                                      color1: "#538fc1",
+                                      color2: "#53bfc1",
                                     }}
                                   />
                                 </div>

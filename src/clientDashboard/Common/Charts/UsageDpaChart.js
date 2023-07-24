@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { HighchartsReact } from "highcharts-react-official";
 import Highcharts from "highcharts";
 import { postData } from "../../../clientDashboard/Common/fetchservices";
+import { SafeSortedReadOnlyDoubleCollection } from "igniteui-react-charts";
 const UsageDpaChart = ({ clientId, dpaId, userId }) => {
   const [overview, setoverview] = useState([]);
   const [dpausage, setdpausage] = useState([]);
   const [dpausers, setdpausers] = useState([]);
-
+  const [tokenCount,setTokenCount] = useState([]);
+  const [data_to_show,set_data_to_show] = useState([]);
   const [date, setDate] = useState("7 Days");
   let a = overview?.map((el) => el.usage);
   let totalTokenDpa = a?.reduce((x, y) => Number(x) + Number(y), 0);
@@ -26,6 +28,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         max_date: new Date(Date.now()).toISOString().substr(0, 10),
       };
       const res = await postData("get_range_user_dpa_usage", body);
+      console.log(res)
       let data = [];
       let groupedDate = res?.result.reduce((total, cur) => {
         const { date_time } = cur;
@@ -54,7 +57,10 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
           return { name: day, y: 0 };
         }
       });
+      setTokenCount(0);
+      ser.map((el) => setTokenCount((prev) => prev + Number(el.y)));
       setdpausers(ser);
+      set_data_to_show(ser);
     } else if (clientId && dpaId !== undefined) {
       const body = {
         client_id: clientId,
@@ -90,7 +96,10 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
           return { name: day, y: 0 };
         }
       });
+      setTokenCount(0);
+      ser.map((el) => setTokenCount((prev) => prev + Number(el.y)));
       setdpausage(ser);
+      set_data_to_show(ser)
     } else {
       const body = {
         client_id: clientId.toString(),
@@ -125,7 +134,10 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
           return { name: day, y: 0 };
         }
       });
+      setTokenCount(0);
+      ser.map((el) => setTokenCount((prev) => prev + Number(el.y)));
       setoverview(ser);
+      set_data_to_show(ser);
     }
   };
 
@@ -174,7 +186,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
 
   const options1 = {
     chart: {
-      type: "column",
+      type: "area",
       // height: 277,
     },
     accessibility: {
@@ -201,8 +213,8 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         text: "",
       },
       min: 50,
-      max: 10000,
-      // tickInterval: 1000,
+      max: tokenCount,
+      tickInterval: 10000,
       startPoint: 0,
     },
     plotOptions: {
@@ -226,13 +238,16 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
     series: [
       {
         name: "Token Usage",
-        color: {
-          linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
-          stops: [
-            [0, "#9bb7c2"],
-            [1, "#9bb7c2"],
-          ],
-        },
+        colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
+          return {
+            linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
+            stops: [
+              
+              [0, "#9bb7c2"],
+              [1, "#9bb7c2"],
+            ],
+          };
+        }),
         // data : [
         //   {
         //     name: "Point 1",
@@ -260,7 +275,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         //     y: 5000,
         //   },
         // ],
-        data:dpausers,
+        data:data_to_show
           // clientId && dpaId
             // ? dpausage
             // : clientId && userId
@@ -291,7 +306,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
               <option value="1 Month">1 Month</option>
               <option value="3 Months">3 Months</option>
               <option value="YTD">YTD</option>
-              <option value="Custom">Custom</option>
+              
             </select>
           </div>
         </div>
@@ -321,12 +336,12 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
           <div>All DPAs collective</div>
           <div>
             <h3>
-              {totalTokenDpa.length > 1000
-                ? `${totalTokenDpa / 1000}k`
-                : "0" || totalDpaUsage.length > 1000
-                ? `${totalDpaUsage / 1000}k`
-                : "0" || totalDpaUsers.length > 1000
-                ? `${totalDpaUsers / 1000}k`
+              {tokenCount > 1000
+                ? `${Math.round(tokenCount / 1000)}k`
+                : "0" || tokenCount > 1000
+                ? `${Math.round(tokenCount / 1000)}k`
+                : "0" || tokenCount > 1000
+                ? `${Math.round(tokenCount / 1000)}k`
                 : "0"}{" "}
               Token
             </h3>

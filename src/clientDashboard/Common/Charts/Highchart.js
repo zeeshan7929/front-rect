@@ -33,7 +33,7 @@ const Highchart = ({ id, gradiant, height }) => {
         user_id: el.user_id,
       };
     });
-
+    console.log(totalUsage)
     const grouped = slicedData.reduce((cur, total) => {
       const { date_time } = total;
       cur[date_time] = cur[date_time] ?? [];
@@ -60,8 +60,10 @@ const Highchart = ({ id, gradiant, height }) => {
         return { name: day, y: 0 };
       }
     });
+    setTotalUsage(0)
     ser.map((el) => setTotalUsage((prev) => prev + Number(el.y)));
     setData(ser);
+    
   };
 
   function findMinDate(n) {
@@ -71,11 +73,14 @@ const Highchart = ({ id, gradiant, height }) => {
   }
 
   const hanldeFilter = (option) => {
+    
     switch (option) {
+      
       case "7day":
         var minDate = findMinDate(7);
         getApiData(minDate);
         setFilterOption("Last 7 days");
+        
         break;
       case "2week":
         var minDate = findMinDate(14);
@@ -86,7 +91,7 @@ const Highchart = ({ id, gradiant, height }) => {
         var minDate = findMinDate(30);
         getApiData(minDate);
         setFilterOption("Last 1 months");
-
+        break
       case "3month":
         var minDate = findMinDate(90);
         getApiData(minDate);
@@ -117,11 +122,11 @@ const Highchart = ({ id, gradiant, height }) => {
 
   const getOptionsDashboardMain = (type) => ({
     chart: {
-      type: type,
+      type: "area",
       // height: 277,
     },
     accessibility: {
-      enabled: false,
+      enabled: true,
     },
     title: {
       text: "",
@@ -136,20 +141,21 @@ const Highchart = ({ id, gradiant, height }) => {
       title: {
         text: "",
       },
-      min: 4000,
-      max: 15000,
+      min: 1000,
+      max: totalUsage,
       tickInterval: 5000,
       startPoint: 0,
     },
     tooltip: {
       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
       pointFormat:
-        '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>${point.y} k</b></td></tr>',
+        '<tr><td style="color:{series.color};padding:0"></td>' +
+        '<td style="padding:0">Token Used: <b>{point.y} k</b></td></tr>',
       footerFormat: "</table>",
       shared: true,
       useHTML: true,
     },
+    
     colors: Highcharts.map(Highcharts.getOptions().colors, function (color) {
       return {
         linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
@@ -166,12 +172,14 @@ const Highchart = ({ id, gradiant, height }) => {
         borderWidth: 0,
       },
       series: {
-        pointWidth: 15,
+        pointWidth: 10,
       },
+      
     },
     legend: false,
     series: [
       {
+        name:"Token usage ",
         data: data,
        },
     ],
@@ -195,7 +203,7 @@ const Highchart = ({ id, gradiant, height }) => {
                   <option value="1month">1 Month</option>
                   <option value="3month">3 Months</option>
                   <option value="ytd">YTD</option>
-                  <option value="custom">Custom</option>
+                  {/* <option value="custom">Custom</option> */}
                 </select>
               </div>
             </div>
