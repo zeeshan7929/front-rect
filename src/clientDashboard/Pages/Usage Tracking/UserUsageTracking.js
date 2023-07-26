@@ -334,12 +334,10 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                   </div>
                                   <div className="col-12">
                                     <Line
-                                      percent={`${
-                                        item?.token_usage > 0
-                                          ? Round((item?.token_usage * 100) /
-                                          item?.usage_limit,1)
-                                          : "0"
-                                      }%`}
+                                      percent={
+                                        (item?.token_usage / item?.usage_limit ) * 100
+                                      }
+                                      
                                       strokeWidth={1}
                                       trailWidth={1}
                                       strokeColor="#4a5c77"

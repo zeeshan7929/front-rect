@@ -528,7 +528,7 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
                                                 </div>
                                                 <div className="col-auto mx-auto mt-auto pt-4 pt-lg-5 mt-lg-5">
                                                   <a
-                                                    href="javascript:;"
+                                                    href="/user-overview"
                                                     className="cancleBtn my-btn"
                                                   >
                                                     Cancel

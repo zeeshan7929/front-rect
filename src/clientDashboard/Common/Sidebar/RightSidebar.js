@@ -74,7 +74,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
       }`}
       // id="SearchOffcanvas"
     >
-      <div ref={myref} className="row overflow-hidden-auto h-100 w-100 mx-0">
+      <div ref={myref} className="row overflow-hidden-auto  w-100 mx-0">
         <div className="col-12 rightSide chartSide sticky-top rightSidebarHeader">
           <div className="row mx-0 align-items-center pt-xxl-4 pb-xxl-5 w-100">
             <div className="col-xxl-12 col searchgroup">

@@ -86,7 +86,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
           <button
             className="btn btn-secondary  btn-rounded w-50 rounded-pill  my-btn"
             style={{
-              backgroundColor: row.role == "admin" ? "#4a5c77" : "#d1d1cf",
+              backgroundColor: row.role === "admin" ? "#4a5c77" : "#d1d1cf",
             }}
           >
             {row.role}
@@ -104,7 +104,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
               percent={(Number(row?.token_usage) / Number(row?.usage_limit)) * 100}
               strokeWidth={5}
               trailWidth={5}
-              strokeColor={randomBackground()}
+              strokeColor="#9BB7C2"
               strokeLinecap="square"
               style={{
                 width: "100px",
@@ -163,6 +163,8 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
       },
       right: true,
       style: {
+        display:"flex",
+        color:"red",
         marginRight: "20px",
       },
     },
@@ -170,6 +172,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
   const customStyles = {
     rows: {
       style: {
+        
         minHeight: "65px", // override the row height
       },
     },

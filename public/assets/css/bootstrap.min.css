@@ -7189,7 +7189,7 @@ textarea.form-control-lg {
 }
 
 .d-table {
-  display: table !important;
+  display: flex !important;
 }
 
 .d-table-row {
@@ -8865,7 +8865,7 @@ textarea.form-control-lg {
     display: grid !important;
   }
   .d-sm-table {
-    display: table !important;
+    display: flex !important;
   }
   .d-sm-table-row {
     display: table-row !important;
@@ -9412,7 +9412,7 @@ textarea.form-control-lg {
     display: grid !important;
   }
   .d-md-table {
-    display: table !important;
+    display: flex !important;
   }
   .d-md-table-row {
     display: table-row !important;
@@ -9959,7 +9959,7 @@ textarea.form-control-lg {
     display: grid !important;
   }
   .d-lg-table {
-    display: table !important;
+    display: flex !important;
   }
   .d-lg-table-row {
     display: table-row !important;
@@ -10506,7 +10506,7 @@ textarea.form-control-lg {
     display: grid !important;
   }
   .d-xl-table {
-    display: table !important;
+    display: flex !important;
   }
   .d-xl-table-row {
     display: table-row !important;
@@ -11053,7 +11053,7 @@ textarea.form-control-lg {
     display: grid !important;
   }
   .d-xxl-table {
-    display: table !important;
+    display: flex !important;
   }
   .d-xxl-table-row {
     display: table-row !important;
@@ -11590,7 +11590,7 @@ textarea.form-control-lg {
     display: grid !important;
   }
   .d-print-table {
-    display: table !important;
+    display: flex !important;
   }
   .d-print-table-row {
     display: table-row !important;

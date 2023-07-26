@@ -25,9 +25,10 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         client_id: clientId.toString(),
         user_id: userId.toString(),
         min_date: min,
+        dpa_id:String(dpaId),
         max_date: new Date(Date.now()).toISOString().substr(0, 10),
       };
-      const res = await postData("get_range_user_dpa_usage", body);
+      const res = await postData("get_all_range_assign_dpa_usage", body);
       console.log(res)
       let data = [];
       let groupedDate = res?.result.reduce((total, cur) => {
@@ -214,7 +215,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
       },
       min: 50,
       max: tokenCount,
-      tickInterval: 10000,
+      tickInterval: 5000,
       startPoint: 0,
     },
     plotOptions: {

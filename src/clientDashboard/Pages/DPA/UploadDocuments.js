@@ -13,6 +13,7 @@ import { Line } from "rc-progress";
 import { toaster } from "../../Common/Others/Toaster";
 import { useImageToBase64 } from "../../../Chat Interface/Common/blob/blob";
 import FileSizeConverter from "../../Common/Others/FileSizeConverter";
+import { CountConverter } from "../../Common/Others/CountConverter";
 
 const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
@@ -23,20 +24,43 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
 
   const [fileSize, setFileSise] = useState("");
   const [fileName, setFileName] = useState("");
+  
   const [initialValue, setInitialValue] = useState({
     documentTitle: fileName ? fileName : "",
     documentDescription: base64Image ? base64Image : "",
   });
+  const [fileInitialValue,setFileInitialValue] = useState({
+    documentTitle: fileName ? fileName : "",
+    documentDescription: base64Image ? base64Image : "",
+  })
+  
+  const [tokenUsage,setTokenUsage] = useState([]);
+  const [tierInfo,setTierInfo] = useState([]);
+  const handleAPIData = async ()=>{
+    let body = {
+      client_id:ids?.client_id,
+      dpa_id:String(data?.id)
+    }
+    const tokens = await postData("get_dpa_training_token_usage_count", body);
+    setTokenUsage(tokens.result.dpa_training_token_usage_count);
+    const res55 = await postData("get_client_tier_info", body);
+    setTierInfo(res55.result);
+  }
   useEffect(() => {
+    
     addBlurClass();
   });
-
+  
   useEffect(() => {
-    setInitialValue({
-      ...initialValue,
-      documentDescription: base64Image,
-      documentTitle: fileName.replace(/\.[^/.]+$/, ""),
-    });
+    handleAPIData();
+    // setInitialValue({
+    //   ...initialValue,
+    //   documentDescription: base64Image,
+    //   documentTitle: fileName.replace(/\.[^/.]+$/, ""),
+    // });
+    // setFileInitialValue({
+    //   ...fileInitialValue,
+    // })
   }, [fileName, base64Image]);
 
   const validationschema = yup.object().shape({
@@ -45,9 +69,12 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
   });
   const handleUploadfile = async (e) => {
     if ((e.currentTarget.files[0].size / 1e6) * 10 < 100) {
+      
       convertToBase64(e.currentTarget.files[0]);
       setFileName(e.currentTarget.files[0].name);
       setFileSise(e.currentTarget.files[0].size);
+      console.log(fileSize)
+      console.log(fileName)
     } else {
       toaster(false, "Please choose a file that is smaller than 10 MB");
       setBase64Image("");
@@ -62,6 +89,39 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
     setFileSise(0);
   };
 
+
+  const submitHandler__ = async(value,resetForm) =>{
+    if (fileSize > 0){
+      await submitHandler(value,resetForm);
+    }else{
+      await submitDirectHandler(value,resetForm);
+    }
+  }
+
+  const submitDirectHandler = async (v, resetForm) => {
+    let title = v.documentTitle;
+    let description = v.documentDescription;
+    console.log(title)
+    console.log(description)
+    let body = {
+      client_id: String(ids.client_id),
+      user_id: String(ids.user_id),
+      dpa_id: String(location?.state.dpaId ? location?.state.dpaId : data.id),
+      doc_title: String(title),
+      doc_content: String(btoa(description)),
+    };
+
+    const res = await postData("train_new_text", body);
+    
+    if (res.result === "success") {
+      toaster(true, "Success");
+      v.documentTitle = ""
+      v.documentDescription = ""
+      resetForm();
+    } else {
+      toaster(false, res.result ? res.result : "Something went wrong");
+    }
+  };
   const submitHandler = async (value, resetForm) => {
     const body = {
       client_id: String(ids.client_id),
@@ -72,8 +132,9 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
     };
 
     const res = await postData("upload_new_document", body);
-    if (res.result == "success") {
+    if (res.result === "success") {
       toaster(true, "Success");
+      handleRemoveFile();
       resetForm();
     } else {
       toaster(false, res.result ? res.result : "Something went wrong");
@@ -185,13 +246,13 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                       <div className="row">
                                         <div className="col">
                                           <div className="progressBarTxt d-flex align-items-center">
-                                            <div className="percent">67%</div>
+                                            <div className="percent">{Math.round(Number(tokenUsage) / Number(tierInfo?.training_tokens) * 100)}%</div>
                                             <span>used</span>
                                           </div>
                                         </div>
                                         <div className="col-auto">
                                           <div className="progressBarTxt1">
-                                            1M
+                                          {CountConverter(tierInfo?.training_tokens)}
                                           </div>
                                         </div>
                                       </div>
@@ -202,14 +263,14 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                           className="progress rounded-pill"
                                           role="progressbar"
                                           aria-label="Segment one"
-                                          aria-valuenow="33"
+                                          aria-valuenow={Math.round(Number(tokenUsage) / Number(tierInfo?.training_tokens) * 100)}
                                           aria-valuemin="0"
                                           aria-valuemax="100"
-                                          style={{ width: "33%" }}
+                                          style={{ width: Math.round(Number(tokenUsage) / Number(tierInfo?.training_tokens) * 100)+"%" }}
                                         >
                                           <div className="progress-bar progressBar1 rounded-pill"></div>
                                         </div>
-                                        <div
+                                        {/* <div
                                           className="progress rounded-pill"
                                           role="progressbar"
                                           aria-label="Segment two"
@@ -217,14 +278,14 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                           aria-valuemin="0"
                                           aria-valuemax="100"
                                           style={{ width: "33%" }}
-                                        >
-                                          <div className="progress-bar progressBar2 rounded-pill"></div>
-                                        </div>
+                                        > */}
+                                          {/* <div className="progress-bar progressBar2 rounded-pill"></div> */}
+                                        {/* </div> */}
                                       </div>
                                     </div>
                                     <div className="col-12 d-flex justify-content-center">
                                       <div className="progressBottomTxt">
-                                        <span>330K </span> remaining
+                                        <span>{CountConverter(Number(tierInfo?.training_tokens) - Number(tokenUsage))} </span> remaining
                                       </div>
                                     </div>
                                   </div>
@@ -234,10 +295,10 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                 <Formik
                                   initialValues={initialValue}
                                   onSubmit={(value, resetForm) =>
-                                    submitHandler(value, { resetForm })
+                                    submitHandler__(value, { resetForm })
                                   }
                                   enableReinitialize={true}
-                                  validationSchema={validationschema}
+                                  // validationSchema={validationschema}
                                 >
                                   {(formik) => {
                                     return (
@@ -441,7 +502,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                                     <div className="row mx-0 text-center align-items-center gx-xxl-2 text-nowrap">
                                                       <div className="col-sm col-12">
                                                         <div className="balanceCount first fw-bold">
-                                                          330k
+                                                          {CountConverter(Number(tierInfo?.training_tokens) - Number(tokenUsage))}
                                                         </div>
                                                         <div className="balanceContent">
                                                           Current Balance
@@ -452,7 +513,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                                       </div>
                                                       <div className="col-sm col-12">
                                                         <div className="balanceCount second fw-bold">
-                                                          0
+                                                          {fileSize > 0 ? CountConverter(Number(Number(tierInfo?.training_tokens) - Number(tokenUsage)) - Number(fileSize)) : "0"}
                                                         </div>
                                                         <div className="balanceContent">
                                                           This upload
@@ -463,7 +524,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                                       </div>
                                                       <div className="col-sm col-12">
                                                         <div className="balanceCount thard fw-bold">
-                                                          330k
+                                                          {CountConverter((Number(Number(tierInfo?.training_tokens) - Number(tokenUsage))) - (Number(Number(tierInfo?.training_tokens) - Number(tokenUsage)) - Number(fileSize)))} 
                                                         </div>
                                                         <div className="balanceContent">
                                                           Post-Upload

@@ -77,7 +77,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
 
 
   };
-
+  console.log(dpaInfo)
   const filterAllUsers = () => {
     const fill = users?.filter((el) => {
       const { name } = el;
@@ -357,7 +357,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                         clientId={ids?.client_id}
                                         userId={ids?.user_id}
 
-                                        dpaId={item?.id}
+                                        dpaId={String(item?.dpa_id ? item.dpa_id : item?.id)}
                                       />
                                     </div>
                                   </div>

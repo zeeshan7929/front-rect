@@ -183,7 +183,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
             percent={(row?.token_usage  / row?.usage_limit) * 100 }
             strokeWidth={5}
             trailWidth={5}
-            strokeColor={randomBackground()}
+            strokeColor={"#9BB7C2"}
             strokeLinecap="square"
             style={{
               width: "100px",
@@ -468,7 +468,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                         )}
                                                       </div>
                                                     </div>
-                                                    <div className="col-sm-auto col-12">
+                                                    <div className="col-sm-auto col-12" style={{marginLeft:"30px"}}>
                                                       <div className="heading text-sm-center">
                                                         Remaining
                                                       </div>
@@ -584,13 +584,13 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                     </div>
                                     <div className="col-xxl-6">
                                       <div className="card border-0 rounded-4 bottomcard p-3 me-2">
-                                        <div className="row mx-0">
+                                        <div className="row mx-0" style={{display:"flex",justifyContent:"center"}}>
                                           <div className="col-12">
                                             <div className="text-xxl-center text-start dpetext me-2 mb-3">
                                               Usage by DPA
                                             </div>
                                           </div>
-                                          <div className="col-sm-4">
+                                          <div className="col-sm-8">
                                             <HighchartsReact
                                               highcharts={Highcharts}
                                               options={getOptionsDashboardCirculer(
@@ -603,7 +603,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                               )}
                                             />
                                           </div>
-                                          <div className="col-sm-8">
+                                          <div className="col-sm-8" style={{width:"100% !important"}}>
                                             <div className="row mx-0">
                                               <div className="col-12 px-0">
                                                 <div className="heading">

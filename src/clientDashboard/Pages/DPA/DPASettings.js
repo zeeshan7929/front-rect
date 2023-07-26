@@ -30,6 +30,8 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [usersdata, setusersdata] = useState([]);
+  const [tokenUsage,setTokenUsage] = useState([]);
+  const [tierInfo,setTierInfo] = useState([]);
   const [initialValues, setInitialValus] = useState({
     name: item?.dpa_name ? item?.dpa_name : "",
     description: item?.dpa_description ? item?.dpa_description : "",
@@ -107,6 +109,13 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
     };
     const res = await postData("get_all_users_of_dpa", body);
     setusersdata(res.result);
+
+    const tokens = await postData("get_dpa_training_token_usage_count", body);
+    setTokenUsage(tokens.result.dpa_training_token_usage_count);
+    const res55 = await postData("get_client_tier_info", body);
+    setTierInfo(res55.result);
+
+    
   };
   const getAllUserForAssign = async () => {
     const body = {
@@ -138,7 +147,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
     userAssignedApi();
   }, []);
   let a = usersdata?.map((el) => el?.dpa_usage_by_user);
-  let tokenUsage = a.reduce((total, cur) => Number(total) + Number(cur), 0);
+  let d_tokenUsage = a.reduce((total, cur) => Number(total) + Number(cur), 0);
   let b = usersdata?.map((el) => el.usage_limit);
   let totalLimit = b.reduce((total, cur) => Number(total) + Number(cur), 0);
 
@@ -161,9 +170,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
       ),
     },
     {
-      name: `TOTAL USAGE : ${CountConverter(tokenUsage)}(${
-        tokenUsage > 0 ? `${(tokenUsage * 100) / totalLimit}%` : "0"
-      })`,
+      name: `TOTAL USAGE : ${CountConverter(tokenUsage)}`,
       selector: (row) => (
         <div>
           <Line
@@ -318,10 +325,8 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                         <div className="col">
                                           <div className="progressBarTxt d-flex align-items-center">
                                             <div className="percent">
-                                              {traningToken?.training_token_usage
-                                                ? traningToken?.training_token_usage /
-                                                  100
-                                                : 0}
+                                              {Math.round(Number(tokenUsage) / Number(tierInfo?.training_tokens) * 100)
+                                                }
                                               %
                                             </div>
                                             <span>used</span>
@@ -329,7 +334,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                         </div>
                                         <div className="col-auto">
                                           <div className="progressBarTxt1">
-                                            1M
+                                            {CountConverter(tierInfo?.training_tokens)}
                                           </div>
                                         </div>
                                       </div>
@@ -337,10 +342,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                     <div className="col-12">
                                       <Line
                                         percent={
-                                          traningToken?.training_token_usage
-                                            ? traningToken?.training_token_usage /
-                                              100
-                                            : 0
+                                          Math.round(Number(tokenUsage) / Number(tierInfo?.training_tokens) * 100)
                                         }
                                         strokeWidth={2}
                                         trailWidth={2}
@@ -349,7 +351,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                     </div>
                                     <div className="col-12 d-flex justify-content-center">
                                       <div className="progressBottomTxt">
-                                        <span>330K </span> remaining
+                                        <span>{CountConverter(tierInfo?.training_tokens - tokenUsage)} </span> remaining
                                       </div>
                                     </div>
                                   </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+
 import Sidebar from "../../Common/Sidebar/Sidebar";
 import Header from "../../Common/Header/Header";
 import { addBlurClass } from "../../Common/Others/AddBlurClass";
@@ -22,12 +23,14 @@ import {
 } from "@react-pdf/renderer";
 import pdf from "../../Common/Others/pdf";
 import { postData } from "../../Common/fetchservices";
-import { useLocation } from "react-router-dom";
+import {useNavigate, useLocation } from "react-router-dom";
 {
 }
 export const DocumentViewer = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   let dpaInfo = location.state.data;
+  console.log(location)
+  const navigate = useNavigate();
   const [content, setContent] = useState("");
   const [fileName, setFileName] = useState("");
   const [dpaNAme, setDpaName] = useState("");
@@ -77,6 +80,7 @@ export const DocumentViewer = ({ sideBar, setSidebarOpen }) => {
     };
     const responce = await postData("get_file_content", body);
     const readableBase64 = atob(responce.result.content);
+    console.log(responce)
     setContent(readableBase64);
     setFileName(responce.result.fileName);
     setDpaName(responce.result.dpa_name);
@@ -126,7 +130,7 @@ export const DocumentViewer = ({ sideBar, setSidebarOpen }) => {
                                 <div className="mb-3 d-flex align-items-center">
                                   <button
                                     type="button"
-                                    onClick={() => window.history.back()}
+                                    onClick={()=>{navigate(-2)}}
                                     className="dpadeleteBtn backBtn btn rounded-pill text-white d-flex align-items-center gap-3 border-0 fw-medium"
                                   >
                                     <img
@@ -184,7 +188,8 @@ export const DocumentViewer = ({ sideBar, setSidebarOpen }) => {
                                           <div className="col-12 align-items-center ps--4a px-4 py-3">
                                             <div className="rw">
                                               <PDFViewer
-                                                showToolbar={true}
+                                              
+                                                showToolbar={false}
                                                 style={{
                                                   height: window.innerHeight,
                                                   marginVertical: "2%",

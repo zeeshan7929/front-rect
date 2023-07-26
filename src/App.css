@@ -24,6 +24,9 @@
   margin-right: 20px;
   text-align: center;
 }
+.bWdFbf{
+  display:flex !important;
+}
 .column-title {
   width: 150px;
   text-align: "left" !important;

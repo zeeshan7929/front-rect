@@ -6,16 +6,17 @@ const MasterHighchart = ({ title }) => {
   const [dpausage, setdpausage] = useState([]);
   const [date, setDate] = useState("7 Days");
   let a = dpausage?.map((el) => el.usage);
+  const [totalUsage,setTotalUsage] = useState("");
   let totalTokenDpa = a?.reduce((x, y) => Number(x) + Number(y), 0);
   const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-
+  let ids = JSON.parse(localStorage.getItem("a_login"));
   const handleAllRange = async (min) => {
     const body = {
-      client_id: "2",
-      dpa_id: "4",
+      client_id: ids?.client_id,
       min_date: min,
       max_date: new Date(Date.now()).toISOString().substr(0, 10),
     };
+    
     const res = await postData("get_all_range_dpa_training_token_usage", body);
     let data = [];
     let groupedDate = res?.result.reduce((total, cur) => {
@@ -27,15 +28,18 @@ const MasterHighchart = ({ title }) => {
       total[val].push(cur);
       return total;
     }, {});
-
+    setTotalUsage(0)
+    let u = 0;
     for (let key in groupedDate) {
       let totalDpaUsage = 0;
       for (let value of groupedDate[key]) {
-        totalDpaUsage += Number(value?.dpa_usage);
+        totalDpaUsage += Number(value?.embeding_usage);
+        u += totalDpaUsage
       }
-      data?.push({ name: key, usage: totalDpaUsage });
+      
+      data?.push({ name: key, y: totalDpaUsage });
     }
-
+    setTotalUsage(u);
     const ser = weekdays?.map((day) => {
       let match = data?.filter((el) => el.name == day);
       if (match.length) {
@@ -44,6 +48,7 @@ const MasterHighchart = ({ title }) => {
         return { name: day, usage: 0 };
       }
     });
+    console.log(ser);
     setdpausage(ser);
   };
 
@@ -92,7 +97,7 @@ const MasterHighchart = ({ title }) => {
 
   const options1 = {
     chart: {
-      type: "column",
+      type: "area",
       // height: 277,
     },
     accessibility: {
@@ -148,7 +153,7 @@ const MasterHighchart = ({ title }) => {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
             [0, "#9bb7c2"],
-            [1, "#9bb7c2"],
+              [1, "#9bb7c2"],
           ],
         },
         data: dpausage,
@@ -176,7 +181,7 @@ const MasterHighchart = ({ title }) => {
               <option value="1 Month">1 Month</option>
               <option value="3 Months">3 Months</option>
               <option value="YTD">YTD</option>
-              <option value="Custom">Custom</option>
+              
             </select>
           </div>
         </div>
@@ -206,7 +211,7 @@ const MasterHighchart = ({ title }) => {
           <div>All modal usage of client</div>
           <div>
             <h3>
-              {totalTokenDpa.length > 1000 ? `${totalTokenDpa / 1000}k` : "0"}{" "}
+              {`${totalUsage / 1000}k`}{" "}
               Token
             </h3>
             Last {date}

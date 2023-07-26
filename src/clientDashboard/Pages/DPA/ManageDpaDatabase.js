@@ -15,11 +15,15 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
   let item = location?.state?.data;
   const ids = JSON.parse(localStorage.getItem("a_login"));
   let trainedToken = location?.state?.trainToken;
+  const [tokenUsage,setTokenUsage] = useState([]);
   const [documents, setDocuments] = useState([]);
+  const [tierInfo,setTierInfo] = useState([]);
+  const [searchValue,setSearchValue] = useState([]);
+  const [allDocs,setAllDocs] = useState([]);
   const dpaID = location?.state?.dpaId
     ? location?.state?.dpaId
     : location?.state?.data?.id;
-
+  console.log(trainedToken)
   const get_dpa_all_document = async () => {
     const body = {
       client_id: ids.client_id,
@@ -27,7 +31,44 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
     };
     const res = await postData("get_dpa_all_documents", body);
     setDocuments(res.result);
+    setAllDocs(res.result);
+    const tokens = await postData("get_dpa_training_token_usage_count", body);
+    setTokenUsage(tokens.result.dpa_training_token_usage_count);
+    
+    const res55 = await postData("get_client_tier_info", body);
+    setTierInfo(res55.result);
+    
+
   };
+  
+  const onDeleteFile = async(el)=>{
+    const body = {
+      dpa_id:String(dpaID),
+      doc_id:el.doc_id,
+      client_id:ids.client_id,
+      file_path:el.file_path
+    }
+    const res = await postData("delete_document", body);
+    if (res.result === "success"){
+      get_dpa_all_document()
+    }
+  }
+  const handlerSearch = (e)=>{
+    
+    let doc = documents;
+    if (e ==="" || e === undefined){
+      setDocuments(allDocs);
+      return;
+    }
+    const  newDoc = []
+    doc.forEach(element => {
+      if (element.filename.includes(e)){
+        newDoc.push(element)
+      }
+      
+      setDocuments(newDoc);
+    });
+  }
   useEffect(() => {
     addBlurClass();
     get_dpa_all_document();
@@ -106,7 +147,7 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                   <div className="col-12">
                                     <button
                                       className="backBtn"
-                                      onClick={() => window.history.back()}
+                                      onClick={() => navigate(-1)}
                                     >
                                       <img
                                         src="assets/img/svg/leftarrow.svg"
@@ -148,8 +189,8 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                             state={{
                                               item: item ? item : "",
                                               dpaID,
-                                              trainedToken: trainedToken
-                                                ? trainedToken
+                                              trainedToken: tokenUsage
+                                                ? tokenUsage
                                                 : "",
                                             }}
                                             className="relationBarright text-dec"
@@ -185,10 +226,9 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                         <div className="col">
                                           <div className="progressBarTxt d-flex align-items-center">
                                             <div className="percent">
-                                              {trainedToken?.training_token_usage
-                                                ? trainedToken?.training_token_usage /
-                                                  100
-                                                : 0}
+                                              {Math.round((tokenUsage / tierInfo.training_tokens) * 100)
+                                                
+                                                }
                                               %
                                             </div>
                                             <span>used</span>
@@ -196,7 +236,7 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                         </div>
                                         <div className="col-auto">
                                           <div className="progressBarTxt1">
-                                            1M
+                                            {CountConverter(tierInfo.training_tokens)}
                                           </div>
                                         </div>
                                       </div>
@@ -204,8 +244,7 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                     <div className="col-12">
                                       <Line
                                         percent={
-                                          trainedToken?.training_token_usage /
-                                          100
+                                          (tokenUsage / tierInfo.training_tokens) * 100
                                         }
                                         strokeWidth={1}
                                         trailWidth={1}
@@ -217,7 +256,7 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                     </div>
                                     <div className="col-12 d-flex justify-content-center">
                                       <div className="progressBottomTxt">
-                                        <span>330K </span> remaining
+                                        <span>{CountConverter(tierInfo.training_tokens - tokenUsage)} </span> remaining
                                       </div>
                                     </div>
                                   </div>
@@ -229,7 +268,7 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                 <div className="row mx-0">
                                   <div className="col-xxl mb-3 mb-xxl-0">
                                     <div className="row">
-                                      <div className="col-sm-6 col-md-auto mb-3 mb-sm-0">
+                                      {/* <div className="col-sm-6 col-md-auto mb-3 mb-sm-0">
                                         <div
                                           className="dashboardCard"
                                           style={{ backgroundColor: "#E7EBB8" }}
@@ -253,7 +292,7 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                             </div>
                                           </div>
                                         </div>
-                                      </div>
+                                      </div> */}
 
                                       <div className="col-sm-6 col-md-auto ps-md-0">
                                         <div
@@ -335,6 +374,10 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                           className="inP form-control shadow-none"
                                           name
                                           id
+                                          
+                                          onChange={(e)=>{
+                                            handlerSearch(e.target.value);
+                                          }}
                                           placeholder="Search Document Database"
                                         />
                                         <div className="parent">
@@ -345,7 +388,10 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                         </div>
                                       </div>
                                       <div className="col-auto">
-                                        <button className="resetBtn">
+                                        <button className="resetBtn" onClick={()=>{
+                                          document.getElementsByClassName('inP')[0].value = "";
+                                          setDocuments(allDocs);
+                                        }}>
                                           Reset Filters
                                         </button>
                                       </div>
@@ -403,13 +449,26 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                                 navigate("/document-viewer", {
                                                   state: {
                                                     docId: el?.id,
+                                                    
                                                     data: item,
                                                   },
                                                 })
                                               }
                                             ></i>
-                                            <i className="bi bi-download ps-2 pointer"></i>
-                                            <i className="bi bi-trash3 ps-2 pointer"></i>
+                                            <i className="bi bi-download ps-2 pointer"
+                                            onClick={()=>{
+                                              alert("download file ...")
+                                            }}
+                                            >
+
+                                            </i>
+                                            <i className="bi bi-trash3 ps-2 pointer"
+                                            onClick={()=>{
+                                              onDeleteFile(el);
+                                            }}
+                                            >
+                                              
+                                            </i>
                                           </td>
                                           <td className="list-body  ">
                                             <span
