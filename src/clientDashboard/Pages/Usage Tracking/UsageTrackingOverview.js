@@ -603,7 +603,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                               )}
                                             />
                                           </div>
-                                          <div className="col-sm-8" style={{width:"100% !important"}}>
+                                          <div className="col-sm-8" style={{width:"100%"}}>
                                             <div className="row mx-0">
                                               <div className="col-12 px-0">
                                                 <div className="heading">
