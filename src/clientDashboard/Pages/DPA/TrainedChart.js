@@ -124,7 +124,7 @@ const MasterHighchart = ({ title }) => {
         text: "",
       },
       min: 5000,
-      max: 100000,
+      max: totalUsage,
       tickInterval: 10000,
       startPoint: 0,
     },
@@ -211,7 +211,7 @@ const MasterHighchart = ({ title }) => {
           <div>All modal usage of client</div>
           <div>
             <h3>
-              {`${totalUsage / 1000}k`}{" "}
+              {`${Math.round(totalUsage / 1000)}k`}{" "}
               Token
             </h3>
             Last {date}

@@ -186,7 +186,7 @@ const SubscriptionPlan = ({ setSidebarOpen, sideBar }) => {
                                                     </div>
                                                   </div>
 
-                                                  {item?.id == el?.id ? (
+                                                  {item?.id === el?.id ? (
                                                     <div className="col-auto">
                                                       <a
                                                         // href="javascript:;"

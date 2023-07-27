@@ -137,7 +137,8 @@ const Sidebar = ({ setSidebarOpen, sideBar }) => {
               }`}
               onClick={() => setSidebarOpen("")}
             >
-              <NavLink to="/settings" className="stretched-link">
+              <NavLink to="/settings" className="stretched-link" state={{c_info:{"name":"Zeesofts"}}}>
+                
                 <img
                   className="sidebarImg"
                   src="assets/img/svg/settings.svg"

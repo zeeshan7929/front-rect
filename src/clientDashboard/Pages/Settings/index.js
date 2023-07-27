@@ -13,18 +13,27 @@ import { toaster } from "../../Common/Others/Toaster";
 import { Country, State } from "country-state-city";
 import Select from "react-select";
 import Modal from "../../Common/Modal";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 const Settings = ({ sideBar, setSidebarOpen }) => {
   const countries = Country.getAllCountries();
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [open1, setOpen1] = useState(false);
   const [open3, setOpen3] = useState(false);
+  const [userDetails,setUserDetails] = useState([]);
+  const [admins,setAdmins] = useState([]);
+  const [clientInfo,setClientInfo] = useState([]);
+  const location = useLocation();
+  let c_info = location?.state.c_info;
+  
   const formRef = useRef();
   const ref = useRef();
   const details = JSON.parse(localStorage.getItem("details"));
   const updatedetails = JSON.parse(localStorage.getItem("updatedetails"));
   const updatephone = JSON.parse(localStorage.getItem("updatephone"));
+  const [logo,setLogo] = useState("");
+  const ids = JSON.parse(localStorage.getItem("a_login"))
+  
   const countrydata = countries?.map((el) => ({
     label: el?.name,
     value: el?.isoCode,
@@ -36,8 +45,39 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
       value: state?.isoCode,
       ...state,
     }));
+
+  
+  const user_details = async ()=>{
+    const body = {
+      client_id:ids?.client_id,
+      user_id:String(ids?.user_id)
+    }
+    const res = await postData("get_user_info", body);
+    console.log(res.result)
+    setUserDetails(res.result)
+
+    const ad = await postData('get_client_all_role_users',body)
+    setAdmins(ad.result)
+
+    const cInfo = await postData('get_client_info',body);
+    setClientInfo(cInfo.result);
+    setInitialValue(cInfo.result);
+    get_base64_image(cInfo.result.logo_path);
+    
+  }
+  let get_base64_image =  async(image) =>{
+    const body = {
+      filename:image
+    }
+    const res = await postData("reterive_image", body);
+    
+    setLogo("data:image/png;base64, "+res?.result)
+  }
   useEffect(() => {
+    user_details()
+    
     addBlurClass();
+    
   }, []);
 
   const handleDeleteUser = async () => {
@@ -54,14 +94,14 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
     }
   };
   const [initialValue, setInitialValue] = useState({
-    name: "",
+    name: clientInfo?.name,
     phone: "",
-    mobile: "",
+    phone: "",
     website: "",
     industry: "",
     country: "",
     state: "",
-    address: "",
+    street_address: "",
     zip_code: "",
   });
 
@@ -89,24 +129,21 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
     // country: Yup.string().required("Please Enter  Country"),
     // state: Yup.string().required("Please Enter State "),
     website: Yup.string().required("Please Enter website "),
-    address: Yup.string().required("Please Enter Street Address"),
+    street_address: Yup.string().required("Please Enter Street Address"),
     zip_code: Yup.string().required("Please Enter Zip code").max(6).min(6),
   });
 
   const validationschemas = yup.object().shape({
-    name: Yup.string().required("Please Enter Name"),
-    email: Yup.string().email().required("Email is required"),
-    role: Yup.string().required("Role is required!!"),
+    
+    // role: Yup.string().required("Role is required!!"),
   });
   const token = JSON.parse(localStorage.getItem("a_login"));
   const handleUpdateRep = async () => {
     const initial = formRef?.current?.values;
     const ree = formRef?.current.resetForm();
     const body = {
-      user_id: token.user_id,
-      email: initial?.email,
-      name: initial?.name,
-      role: initial?.role,
+      
+      user_id: initial?.role,
     };
 
     const res = await postData("update_representative_info", body);
@@ -148,7 +185,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
         ? countryCode[0]?.name
         : countryCode1[0]?.name,
       state: stateCode[0]?.name ? stateCode[0]?.name : stateCode1[0]?.name,
-      address: initial?.address,
+      address: initial?.street_address,
       zip_code: initial?.zip_code,
     };
     const res = await postData("update_client_info", body);
@@ -197,7 +234,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                   // sideBar={sideBar}
                                   textHeader={"Settings"}
                                   textSubHeader={
-                                    "welcome carmen, you can find your company information here"
+                                    "welcome "+userDetails.username+", you can find your company information here"
                                   }
                                 />
                               </div>
@@ -208,7 +245,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                       Settings
                                     </div>
                                     <div className="col pageSubheading px-0">
-                                      welcome carmen, you can find all
+                                      welcome s, you can find all
                                       information you require here.
                                     </div>  
                                   </div>
@@ -226,25 +263,22 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                           }}
                                           className="settingTopBoxHead"
                                         >
-                                          Company x
+                                          {clientInfo.name}
                                         </div>
                                       </div>
                                       <div className="col-12">
                                         <div className="settingTopBoxSubHead">
                                           Current Representative:
                                           <span>
-                                            {details
-                                              ? details?.name
-                                              : updatedetails?.name}
+                                            {userDetails.username
+                                              }
                                           </span>
                                         </div>
                                       </div>
                                       <div className="col-12 py-1">
                                         <div className="moreDetail">
                                           Email:{" "}
-                                          {details
-                                            ? details?.email
-                                            : updatedetails?.email}
+                                          {userDetails.email}
                                         </div>
                                       </div>
                                       <div className="col-12">
@@ -279,7 +313,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   Update Representative
                                                 </div>
                                               </div>
-                                              <div className="col-12">
+                                              {/* <div className="col-12">
                                                 <div className="updateBoxSubHead">
                                                   The new representative has to
                                                   be an admin.
@@ -314,7 +348,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                     ? formik.errors.email
                                                     : ""}
                                                 </p>
-                                              </div>
+                                              </div> */}
                                               <div className="col-12">
                                                 <div className="settingSelectTop position-relative d-flex justify-content-between align-items-center">
                                                   <div className="settingSelectTopTxt">
@@ -342,23 +376,26 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   name="role"
                                                   className="form-select updateSelect"
                                                   aria-label="Default select example"
+                                                  
                                                 >
-                                                  <option selected>
-                                                    Select an Admin
-                                                  </option>
+                                                  <option
+                                                          value={ids?.user_id}
+                                                          selected
+                                                        >
+                                                          {userDetails?.username}
+                                                        </option>
 
-                                                  <option
-                                                    selected
-                                                    value={"user"}
-                                                  >
-                                                    user
-                                                  </option>
-                                                  <option
-                                                    selected
-                                                    value={"admin"}
-                                                  >
-                                                    admin
-                                                  </option>
+                                                  {admins?.map((el) => {
+                                                    return (
+                                                      <option
+                                                        value={el?.id}
+                                                        
+                                                      >
+                                                        {el?.name}
+                                                      </option>
+                                                    );
+                                                  
+                                                })}
                                                 </Field>
                                                 <p className="text-danger">
                                                   {formik.touched.role &&
@@ -372,6 +409,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   type="submit"
                                                   onClick={() => setOpen1(true)}
                                                   className="updateBtn"
+                                                  
                                                 >
                                                   Update Representative{" "}
                                                 </button>
@@ -394,6 +432,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                         // onSubmit={(value, resetForm) =>
                                         //   submitHandler(value, resetForm)
                                         // }
+                                        enableReinitialize= {true}
                                         validationSchema={validationschema}
                                       >
                                         {(formik) => {
@@ -415,7 +454,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                 <div class="col-12">
                                                   <div class="companyImg position-relative">
                                                     <img
-                                                      src="assets/img/logo/Logo.svg"
+                                                      src={logo}
                                                       alt=""
                                                     />
                                                     <input
@@ -446,6 +485,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                     className="companyInfoFormInp form-control"
                                                     name="name"
                                                     id
+                                                    
                                                     placeholder="Company X"
                                                   />
 
@@ -487,14 +527,14 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   <Field
                                                     type="tel"
                                                     className="companyInfoFormInp form-control"
-                                                    name="mobile"
+                                                    name="phone"
                                                     id
                                                     placeholder="Enter mobile number"
                                                   />
                                                   <p className="text-danger">
-                                                    {formik.touched.mobile &&
-                                                    formik.errors.mobile
-                                                      ? formik.errors.mobile
+                                                    {formik.touched.phone &&
+                                                    formik.errors.phone
+                                                      ? formik.errors.phone
                                                       : ""}
                                                   </p>
                                                 </div>
@@ -544,6 +584,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   <label
                                                     htmlFor
                                                     className="companyInfoFormLbl"
+                                                    
                                                   >
                                                     Country
                                                   </label>
@@ -566,7 +607,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                     aria-label="Default select example"
                                                     name="country"
                                                     options={countrydata}
-                                                    defaultInputValue="India"
+                                                    placeholder={clientInfo.country}
                                                     value={
                                                       formik?.values?.country
                                                     }
@@ -580,9 +621,9 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                             .name,
                                                           phone:
                                                             formik.values.phone,
-                                                          mobile:
+                                                            phone:
                                                             formik.values
-                                                              .mobile,
+                                                              .phone,
                                                           website:
                                                             formik.values
                                                               .website,
@@ -590,9 +631,9 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                             formik.values
                                                               .industry,
 
-                                                          address:
+                                                              street_address:
                                                             formik.values
-                                                              .address,
+                                                              .street_address,
                                                           zip_code:
                                                             formik.values
                                                               .zip_code,
@@ -646,8 +687,8 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                     }}
                                                     id="state"
                                                     name="state"
-                                                    placeholder="Choose State"
-                                                    defaultInputValue="up"
+                                                    placeholder={clientInfo.state}
+                                                    defaultInputValue={clientInfo.state}
                                                     options={updatedStates(
                                                       formik.values.country
                                                         ? formik.values.country
@@ -668,9 +709,9 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                             .name,
                                                           phone:
                                                             formik.values.phone,
-                                                          mobile:
+                                                            phone:
                                                             formik.values
-                                                              .mobile,
+                                                              .phone,
                                                           website:
                                                             formik.values
                                                               .website,
@@ -678,9 +719,9 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                             formik.values
                                                               .industry,
 
-                                                          address:
+                                                              street_address:
                                                             formik.values
-                                                              .address,
+                                                              .street_address,
                                                           zip_code:
                                                             formik.values
                                                               .zip_code,
@@ -722,14 +763,14 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   <Field
                                                     type="text"
                                                     className="companyInfoFormInp form-control"
-                                                    name="address"
+                                                    name="street_address"
                                                     id
                                                     placeholder="1 Beaver Rd"
                                                   />
                                                   <p className="text-danger">
-                                                    {formik.touched.address &&
-                                                    formik.errors.address
-                                                      ? formik.errors.address
+                                                    {formik.touched.street_address &&
+                                                    formik.errors.street_address
+                                                      ? formik.errors.street_address
                                                       : ""}
                                                   </p>
                                                 </div>

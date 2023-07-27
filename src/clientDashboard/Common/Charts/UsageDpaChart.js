@@ -28,7 +28,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         dpa_id:String(dpaId),
         max_date: new Date(Date.now()).toISOString().substr(0, 10),
       };
-      const res = await postData("get_all_range_assign_dpa_usage", body);
+      const res = await postData("get_range_user_dpa_usage", body);
       console.log(res)
       let data = [];
       let groupedDate = res?.result.reduce((total, cur) => {

@@ -110,7 +110,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
       selector: (row) => (
         <div>
           <Line
-            percent={row?.embeding_usage > 0 ? row?.embeding_usage : "0"}
+            percent={(row?.embeding_usage / tierInfo.training_tokens) * 100}
             strokeWidth={5}
             trailWidth={5}
             strokeColor={row?.dpa_color}

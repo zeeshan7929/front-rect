@@ -13,6 +13,7 @@ import { toaster } from "../../Common/Others/Toaster";
 import { SelectColors } from "../../Common/Others/SelectColors";
 import { useOnClickOutside } from "../../Common/Others/useOnClickOutside";
 import { CountConverter } from "../../Common/Others/CountConverter";
+import { Navigate } from "react-router-dom";
 
 const CreateNewDpa = ({ sideBar, setSidebarOpen }) => {
   let clientId = JSON.parse(localStorage.getItem("a_login"));
@@ -88,17 +89,19 @@ const CreateNewDpa = ({ sideBar, setSidebarOpen }) => {
       dpa_name: value.name,
       dpa_description: value.description,
       dpa_color: value.colour,
-      allow_files: value.allowToUpload[0] == "yes" ? "true" : "false",
+      allow_files: value.allowToUpload[0] === "yes" ? "true" : "false",
       users: assignedUser.map((el) => el.id),
     };
-    if (assignedUser.length == 0) {
+    if (assignedUser.length === 0) {
       setError("Atleast 1 user is required !");
     } else {
       let res = await postData("add_new_dpa", body);
-      if (res.result == "success") {
+      if (res.result === "success") {
         toaster(true, "Success");
-        resetForm();
-        setAssignedUser([]);
+        window.history.back();
+        // resetForm();
+        // setAssignedUser([]);
+        
       } else {
         toaster(false, "Something went wrong");
       }
@@ -335,7 +338,7 @@ const CreateNewDpa = ({ sideBar, setSidebarOpen }) => {
                                       </div>
                                       <div className="col-12">
                                         <div className="creteSubHead">
-                                          You have 6 out of 12 DPAs left.
+                                          You have {totalDpa - dpaCount} out of {totalDpa} DPAs left.
                                         </div>
                                       </div>
                                       <div className="col-12 position-relative mb-2">
@@ -344,6 +347,7 @@ const CreateNewDpa = ({ sideBar, setSidebarOpen }) => {
                                           className="form-control createInp"
                                           name="name"
                                           id
+                                          maxLength={25}
                                           placeholder="Name of DPA"
                                         />
                                         <span className="createSpan d-sm-block d-none">
@@ -362,6 +366,7 @@ const CreateNewDpa = ({ sideBar, setSidebarOpen }) => {
                                           className="form-control createInp pt-2 pb-2"
                                           name="description"
                                           id
+                                          maxLength={60}
                                           placeholder="Description of DPA"
                                         />
                                         <span className="createSpan d-sm-block d-none">

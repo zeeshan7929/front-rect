@@ -1,3 +1,8 @@
+
+function Round(num, decimalPlaces = 0) {
+  var p = Math.pow(10, decimalPlaces);
+  return Math.round(num * p) / p;
+}
 const getOptionsDashboardCirculer = (
   type,
   legend,
@@ -22,7 +27,7 @@ const getOptionsDashboardCirculer = (
               center
                 ? `<p style="font-weight : bold">${
                     totalToken > 1000
-                      ? `${totalToken / 1000}k`
+                      ? `${Round(totalToken / 1000,1)}k`
                       : totalToken > 0
                       ? totalToken
                       : "0"

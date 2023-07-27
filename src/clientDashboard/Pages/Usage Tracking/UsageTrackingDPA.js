@@ -234,7 +234,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                   setSidebarOpen={setSidebarOpen}
                                   textHeader={` DPA Usage Tracking`}
                                   textSubHeader={
-                                    "welcome "+ details_.name + ", you can find all information you require here."
+                                    "welcome "+  + ", you can find all information you require here."
                                   }
                                 />
                               </div>
@@ -355,7 +355,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                     <div className="col-xxl-12">
                                       <UsageDpaChart
                                         clientId={ids?.client_id}
-                                        userId={ids?.user_id}
+                                       
 
                                         dpaId={String(item?.dpa_id ? item.dpa_id : item?.id)}
                                       />

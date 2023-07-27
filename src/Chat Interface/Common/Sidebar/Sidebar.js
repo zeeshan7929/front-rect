@@ -29,6 +29,8 @@ function Sidebar({ setSidebarOpen }) {
     if (token) {
       localStorage.removeItem("a_login");
       navigate("/assistant-login");
+    }else{
+      navigate("/assistant-login");
     }
   };
   let get_base64_image =  async(image) =>{

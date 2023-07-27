@@ -115,6 +115,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
     
     if (res.result === "success") {
       toaster(true, "Success");
+      navigate(-1);
       v.documentTitle = ""
       v.documentDescription = ""
       resetForm();
@@ -134,6 +135,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
     const res = await postData("upload_new_document", body);
     if (res.result === "success") {
       toaster(true, "Success");
+      navigate(-1);
       handleRemoveFile();
       resetForm();
     } else {
@@ -513,7 +515,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                                       </div>
                                                       <div className="col-sm col-12">
                                                         <div className="balanceCount second fw-bold">
-                                                          {fileSize > 0 ? CountConverter(Number(Number(tierInfo?.training_tokens) - Number(tokenUsage)) - Number(fileSize)) : "0"}
+                                                        {CountConverter((Number(Number(tierInfo?.training_tokens) - Number(tokenUsage))) - (Number(Number(tierInfo?.training_tokens) - Number(tokenUsage)) - Number(fileSize)))} 
                                                         </div>
                                                         <div className="balanceContent">
                                                           This upload
@@ -524,8 +526,9 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                                       </div>
                                                       <div className="col-sm col-12">
                                                         <div className="balanceCount thard fw-bold">
-                                                          {CountConverter((Number(Number(tierInfo?.training_tokens) - Number(tokenUsage))) - (Number(Number(tierInfo?.training_tokens) - Number(tokenUsage)) - Number(fileSize)))} 
-                                                        </div>
+                                                        {fileSize > 0 ? CountConverter(Number(Number(tierInfo?.training_tokens) - Number(tokenUsage)) - Number(fileSize)) : "0"}
+                                                       
+                                                           </div>
                                                         <div className="balanceContent">
                                                           Post-Upload
                                                         </div>

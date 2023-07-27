@@ -260,7 +260,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
                                       <div className="row">
                                         <div className="col-12 d-flex justify-content-between">
                                           <div className="dashboardNumber">
-                                            {roleuser?.length}
+                                            {roleuser?.length + totaladmin.length}
                                           </div>
                                           <div className="dashboardIcon">
                                             <img

@@ -428,7 +428,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                 </div>
                               </div>
                               <div className="col-xxl-12 px-0">
-                                <UsageDpaChart clientId={ids?.client_id} userId={ids?.user_id} />
+                                <UsageDpaChart clientId={ids?.client_id} userId={item?.id} />
                               </div>
                             </div>
                             <div className="col-xxl-4">
