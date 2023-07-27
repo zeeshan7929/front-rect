@@ -236,7 +236,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
                                 setSidebarOpen={setSidebarOpen}
                                 textHeader={"User Management"}
                                 textSubHeader={
-                                  "welcome carmen, you can find all user information here."
+                                  " you can find all user information here."
                                 }
                               />
                             </div>

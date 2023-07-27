@@ -181,7 +181,7 @@ const CreateNewDpa = ({ sideBar, setSidebarOpen }) => {
                                 setSidebarOpen={setSidebarOpen}
                                 textHeader={"Create New DPA"}
                                 textSubHeader={
-                                  " welcome carmen, you can find all information you require here."
+                                  " you can find all information you require here."
                                 }
                               />
                             </div>

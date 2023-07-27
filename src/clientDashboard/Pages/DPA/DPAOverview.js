@@ -217,7 +217,7 @@ const DPAOverview = ({ sideBar, setSidebarOpen }) => {
                                 // sideBar={sideBar}
                                 textHeader={`DPA Database Overview`}
                                 textSubHeader={
-                                  "welcome carmen, you can find all information you require here."
+                                  " you can find all information you require here."
                                 }
                               />
                             </div>

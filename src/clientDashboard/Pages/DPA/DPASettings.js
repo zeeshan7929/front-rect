@@ -243,7 +243,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                             sideBar={sideBar}
                             textHeader={`DPA Settings`}
                             textSubHeader={
-                              "welcome carmen, you can find all information you require here."
+                              " you can find all information you require here."
                             }
                           />
                         </div>

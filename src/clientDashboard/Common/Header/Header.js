@@ -4,6 +4,7 @@ import { postData } from "../../../clientDashboard/Common/fetchservices";
 const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
   const token = JSON.parse(localStorage.getItem("a_login"));
   const [profileImage,setProfileImage] = useState("")
+  const [userInfo,setUserInfo] = useState([]);
   const [windowSize, setWindowSize] = useState({
     width: undefined,
   });
@@ -15,6 +16,7 @@ const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
       .then((res) => {
         
         get_base64_image(res?.result.profile_image)
+        setUserInfo(res?.result)
       })
       .catch((er) => {
         console.warn(er);
@@ -52,7 +54,7 @@ const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
             <div className="col textSide ps-0">
               <div className="row flex-column mx-0 d-none d-md-flex">
                 <div className="col pageHeading px-0">{textHeader}</div>
-                <div className="col pageSubheading px-0">{textSubHeader}</div>
+                <div className="col pageSubheading px-0">Welcome { userInfo.username  + ", " +textSubHeader}</div>
               </div>
             </div>
             <div className="col-auto imgSide pe-0">

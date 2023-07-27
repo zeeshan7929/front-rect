@@ -263,7 +263,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                 setSidebarOpen={setSidebarOpen}
                                 textHeader={"User Management"}
                                 textSubHeader={
-                                  "welcome carmen, you can add new users here"
+                                  " you can add new users here"
                                 }
                               />
                             </div>
@@ -309,6 +309,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                 <div className="col-auto px-0">
                                                   <NavLink
                                                     to="/user-usage-tracking"
+                                                    state={{item:item}}
                                                     className="trackUsageBtn"
                                                   >
                                                     <img

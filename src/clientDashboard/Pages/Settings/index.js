@@ -234,7 +234,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                   // sideBar={sideBar}
                                   textHeader={"Settings"}
                                   textSubHeader={
-                                    "welcome "+userDetails.username+", you can find your company information here"
+                                    " you can find your company information here"
                                   }
                                 />
                               </div>

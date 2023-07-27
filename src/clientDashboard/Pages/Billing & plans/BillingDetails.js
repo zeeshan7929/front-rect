@@ -132,7 +132,7 @@ const BillingDetails = ({ sideBar, setSidebarOpen }) => {
                               setSidebarOpen={setSidebarOpen}
                               textHeader={`Billing & Plans`}
                               textSubHeader={
-                                " welcome carmen, you can find all your billing history here."
+                                " you can find all your billing history here."
                               }
                             />
                           </div>

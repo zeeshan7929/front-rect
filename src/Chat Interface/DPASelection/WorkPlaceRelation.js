@@ -13,7 +13,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
   const [removeStar, setRemoveStar] = useState();
   const [isOpen, setIsOpen] = useState("");
   const [quary, setQuary] = useState("");
-  const [details, setDetails] = useState({});
+  const [details, setDetails] = useState([]);
   const [show, setshow] = useState(false);
   const [submitting,setSubmitting] = useState(false);
   const ref = useRef();
@@ -47,7 +47,9 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
     setSubmitting(true);
     try {
     const res = await postData("u_request_query", body);
-    setDetails(res?.result);
+    details === undefined ? setDetails(res?.result) : setDetails(old=>[...old,res?.result])
+    // details.length > 0 ? setDetails(old=>[...old,res?.result]) : setDetails(res?.result)
+    console.log(details)
     setshow(true);
     }catch(er) {
       console.warn(er)
@@ -92,7 +94,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
     </>
   );
 
-
+ 
   const formatDate = (date) => {
     let formatedDate = `${date.slice(0, 4)} ${date.slice(8, date.length)}`;
     return formatedDate;
@@ -117,38 +119,29 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                     <div className="row mx-0 flex-column flex-nowrap overflow-hidden h-100">
                       <div className="col-12 flex-fill overflow-hidden-auto">
                         <div className="row mx-0 py-4 px-xl-4">
-                          {Object?.values(details || {}).length ||
-                          show == true ? (
-                            <div className="col-12 userMessage mb-3">
-                              <div className="userMessageInner p-2 d-flex justify-content-between">
-                                <div className="text">{details?.query}</div>
-                                <div className="msgTime d-flex align-items-end">
-                                  {formatDate(new Date().toLocaleTimeString())}
-                                </div>
-                              </div>
-                            </div>
-                          ) : (
-                            ""
-                          )}
-
-                          {show ? (
-                            <div className="col-12 botMessage mb-3">
-                              <div className="botMessageInner p-2">
-                                <div className="row mx-0">
-                                  <div className="col-12 px-0">
-                                    <div className="text">
-                                      {details?.response}
-                                    </div>
+                          { Object?.keys(details).map((keyName, ii)=>(
+                            <div>
+                                <div className="col-12 userMessage mb-3">
+                                <div className="userMessageInner p-2 d-flex justify-content-between">
+                                  <div className="text">{details[ii].query}</div>
+                                  <div className="msgTime d-flex align-items-end">
+                                    {formatDate(new Date().toLocaleTimeString())}
                                   </div>
-                                  {/* <div className="col-12 px-0">
-                                    <ol className="text m-0 ps-3">
-                                      <li>Parental Leave</li>
-                                      <li>Compassionate Leave</li>
-                                      <li>Sick Leave</li>
-                                    </ol>
-                                  </div> */}
-                                  <div className="col-12 px-0">
-                                    {details?.attachments?.map((item,i) => {
+                                </div>
+                                </div>
+                                <div className="col-12 botMessage mb-3">
+                                <div className="botMessageInner p-2">
+                                  <div className="row mx-0">
+                                    <div className="col-12 px-0">
+                                      <div className="text">
+                                        {details[ii].response}
+                                      </div>
+                                    </div>
+                                  
+                                    
+                                 
+                              <div className="col-12 px-0">
+                                    {details[ii]?.attachments?.map((item,i) => {
                                       return (
                                         <div
                                           key={i}
@@ -185,7 +178,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                                             <div
                                               style={{cursor:"pointer"}}
                                               onClick={()=>{
-                                                navigator.clipboard.writeText(details.response)
+                                                navigator.clipboard.writeText(details[ii].response)
                                               }}
                                               className="msgActionBtn border-0 bg-transparent text-decoration-none"
                                             >
@@ -200,12 +193,13 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                                       );
                                     })}
                                   </div>
+                            </div>
+                            </div>
                                 </div>
                               </div>
-                            </div>
-                          ) : (
-                            ""
-                          )}
+                            ))
+                            
+                          }
                         </div>
                       </div>
                       <div className="col-12 bottomBar chatBottomBar d-flex align-items-start">

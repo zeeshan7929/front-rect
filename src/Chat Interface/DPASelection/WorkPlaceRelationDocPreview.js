@@ -34,7 +34,7 @@ function WorkPlaceRelationDocPreview({ sideBar, setSidebarOpen }) {
       },
       {
         src: "https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap",
-        fontWeight: "bold",
+        fontWeight: "normal",
       },
       {
         src: "https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap",

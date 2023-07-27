@@ -119,7 +119,7 @@ export const DocumentViewer = ({ sideBar, setSidebarOpen }) => {
                             sideBar={sideBar}
                             textHeader={"Document Viewer"}
                             textSubHeader={
-                              "welcome carmen, you can find all information you require here."
+                              " you can find all information you require here."
                             }
                           />
                         </div>

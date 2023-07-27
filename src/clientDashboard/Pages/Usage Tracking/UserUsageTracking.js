@@ -17,6 +17,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   let ids = JSON.parse(localStorage.getItem("a_login"));  
   const location = useLocation();
   let item = location?.state?.item;
+  console.log(item);
   
   // let dt = location?.state?.dt;
   
@@ -234,7 +235,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                               sideBar={sideBar}
                               textHeader={`User Usage Tracking`}
                               textSubHeader={
-                                "welcome carmen, you can find all information you require here."
+                                " you can find all information you require here."
                               }
                             />
                           </div>

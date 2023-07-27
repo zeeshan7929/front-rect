@@ -4,6 +4,7 @@ import Highcharts from "highcharts";
 import { postData } from "../../../clientDashboard/Common/fetchservices";
 const MasterHighchart = ({ title }) => {
   const [dpausage, setdpausage] = useState([]);
+  const [usage,setUsage] = useState([]);
   const [date, setDate] = useState("7 Days");
   let a = dpausage?.map((el) => el.usage);
   const [totalUsage,setTotalUsage] = useState("");
@@ -29,27 +30,35 @@ const MasterHighchart = ({ title }) => {
       return total;
     }, {});
     setTotalUsage(0)
-    let u = 0;
+    let u__ = 0;
     for (let key in groupedDate) {
       let totalDpaUsage = 0;
       for (let value of groupedDate[key]) {
         totalDpaUsage += Number(value?.embeding_usage);
-        u += totalDpaUsage
+        u__ += totalDpaUsage
       }
       
       data?.push({ name: key, y: totalDpaUsage });
     }
-    setTotalUsage(u);
+    let x__ = 0;
+    data.forEach((el)=>{
+      x__ += el.y;
+    })
+    
+    setUsage(x__);
+    
+    setTotalUsage(u__);
     const ser = weekdays?.map((day) => {
-      let match = data?.filter((el) => el.name == day);
+      let match = data?.filter((el) => el.name === day);
       if (match.length) {
         return match[0];
       } else {
         return { name: day, usage: 0 };
       }
     });
-    console.log(ser);
+    
     setdpausage(ser);
+    console.log(ser);
   };
 
   const handleMinDate = (n) => {
@@ -124,7 +133,7 @@ const MasterHighchart = ({ title }) => {
         text: "",
       },
       min: 5000,
-      max: totalUsage,
+      max: usage,
       tickInterval: 10000,
       startPoint: 0,
     },
@@ -211,7 +220,7 @@ const MasterHighchart = ({ title }) => {
           <div>All modal usage of client</div>
           <div>
             <h3>
-              {`${Math.round(totalUsage / 1000)}k`}{" "}
+              {`${Math.round(usage / 1000)}k`}{" "}
               Token
             </h3>
             Last {date}

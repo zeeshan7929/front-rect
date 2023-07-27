@@ -281,7 +281,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                               sideBar={sideBar}
                               textHeader={`Usage Tracking`}
                               textSubHeader={
-                                "welcome Xeeshan,you can view your DPA usage here."
+                                " you can view your DPA usage here."
                               }
                             />
                           </div>

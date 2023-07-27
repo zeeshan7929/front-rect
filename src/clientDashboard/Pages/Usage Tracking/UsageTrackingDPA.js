@@ -234,7 +234,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                   setSidebarOpen={setSidebarOpen}
                                   textHeader={` DPA Usage Tracking`}
                                   textSubHeader={
-                                    "welcome "+  + ", you can find all information you require here."
+                                    " you can find all information you require here."
                                   }
                                 />
                               </div>

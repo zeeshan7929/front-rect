@@ -13,9 +13,11 @@ import * as yup from "yup";
 import { useOnClickOutside } from "../../Common/Others/useOnClickOutside";
 import { toaster } from "../../Common/Others/Toaster";
 import { CountConverter } from "../../Common/Others/CountConverter";
+import { useNavigate } from "react-router-dom";
 
 const AddUser = ({ sideBar, setSidebarOpen }) => {
   const ref = useRef();
+  let navigate = useNavigate();
   const [isOpen, setIsOpen] = useState("");
   const [data, setData] = useState(0);
   const [value, setValue] = useState(1);
@@ -181,7 +183,7 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
                                 textHeader={"Add User"}
                                 setSidebarOpen={setSidebarOpen}
                                 textSubHeader={
-                                  " welcome carmen, you can add new users here"
+                                  " you can add new users here"
                                 }
                               />
                             </div>
@@ -528,7 +530,9 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
                                                 </div>
                                                 <div className="col-auto mx-auto mt-auto pt-4 pt-lg-5 mt-lg-5">
                                                   <a
-                                                    href="/user-overview"
+                                                    onClick={()=>{
+                                                      navigate(-1);
+                                                    }}
                                                     className="cancleBtn my-btn"
                                                   >
                                                     Cancel

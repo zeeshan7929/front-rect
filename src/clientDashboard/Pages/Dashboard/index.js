@@ -166,7 +166,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                 setSidebarOpen={setSidebarOpen}
                                 textHeader={"Dashboard"}
                                 textSubHeader={
-                                  " Welcome   , you can find all information you require here."
+                                  " you can find all information you require here."
                                 }
                               />
                             </div>

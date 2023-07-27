@@ -137,7 +137,7 @@ const UploadRequest = () => {
                                         Document Upload Request
                                       </div>
                                       <div className="col pageSubheading px-0">
-                                        welcome carmen, you can find all
+                                         you can find all
                                         information you require here.
                                       </div>
                                     </div>
