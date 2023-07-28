@@ -1,6 +1,116 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Sidebar from "../../Common/Sidebar/Sidebar";
+import Header from "../../Common/Header/Header";
+import { postData } from "../../Common/fetchservices";
+import { addBlurClass } from "../../Common/Others/AddBlurClass";
+import { CountConverter } from "../../Common/Others/CountConverter";
+import { toaster } from "../../Common/Others/Toaster";
 
-const UploadRequest = () => {
+const UploadRequest = ({ sideBar, setSidebarOpen }) => {
+
+  const ids = JSON.parse(localStorage.getItem('a_login'));
+
+  const location = useLocation()
+  const navigate = useNavigate();
+  let item = location.state.data;
+  // console.log(item)
+  let dpaID = location.state.dpaId;
+  const [tokenUsage,setTokenUsage] = useState([]);
+  const [tierInfo,setTierInfo] = useState([]);
+  const [documents,setDocuments] = useState([]);
+  const [allDocs,setAllDocs] = useState([]);
+  const [databaseConsume,setDatabaseConsume] = useState([]);
+  let u = 0
+  const get_dpa_all_pending_document = async () => {
+    const body = {
+      client_id: ids.client_id,
+      dpa_id: String(dpaID),
+    };
+    const res = await postData("get_dpa_all_pending_document", body);
+    setDocuments(res.result);
+    setAllDocs(res.result);
+    u = 0;
+    res.result.forEach((el)=>{
+      u += el.database_usage;
+    })
+    
+    setDatabaseConsume(u);
+    const tokens = await postData("get_dpa_training_token_usage_count", body);
+    setTokenUsage(tokens.result.dpa_training_token_usage_count);
+    
+    const res55 = await postData("get_client_tier_info", body);
+    setTierInfo(res55.result);
+    
+
+  };
+  const handlerSearch = (e)=>{
+    
+    let doc = documents;
+    if (e ==="" || e === undefined){
+      setDocuments(allDocs);
+      return;
+    }
+    const  newDoc = []
+    doc.forEach(element => {
+      if (element.filename.includes(e)){
+        newDoc.push(element)
+      }
+      
+      setDocuments(newDoc);
+    });
+  }
+  const onDeleteFile = async(el)=>{
+    const body = {
+      id:el.id,
+      file_path:el.file_path
+    }
+    const res = await postData("delete_pending_document", body);
+    if (res.result === "success"){
+      get_dpa_all_pending_document()
+    }
+  }
+  const getuserInfo = async (u_id)=>{
+    const body ={
+      client_id: ids?.client_id,
+      user_id:u_id
+    }
+    const res = await postData("get_user_info", body);
+    return res?.result
+    
+  }
+
+  const onApproveAllDocuments = async ()=>{
+    let doc_ids = []
+    documents.forEach((el)=>{
+      doc_ids.push(el.id);
+    })
+    const body ={
+      client_id: ids?.client_id,
+      document_ids:doc_ids
+    }
+    const res = await postData("approve_all_document", body);
+    if (res?.result === "Success"){
+      toaster(true, "Successfully approved all documents");
+      get_dpa_all_pending_document();
+    }
+    
+  }
+  const convertDateTODayMonthYear = (date) => {
+    let formated = new Date(date).toLocaleDateString("en-US", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+    return formated
+  }
+  
+
+  useEffect(() => {
+    addBlurClass();
+    get_dpa_all_pending_document();
+  }, []);
+
   return (
     <main className="container-fluid h-100">
       <div className="row mainInner h-100">
@@ -9,113 +119,14 @@ const UploadRequest = () => {
           data-page-name="dpasetting"
         >
           <div className="container-fluid h-100">
-            <div className="row main h-100 menuIcon">
+          <div
+              className={`row main h-100 menuIcon ${
+                sideBar === "grid" ? "show" : ""
+              }`}
+            >
               <div className="col-auto px-0 leftPart h-100">
                 <div className="row sideBar h-100">
-                  <div className="col-12 sideBarInner h-100">
-                    <div className="row d-flex  flex-column h-100 flex-nowrap">
-                      <div className="col-12">
-                        <img src="" alt="" />
-                      </div>
-                      <div className="col-12 sideBarHeader">
-                        <div className="companyLogo">
-                          <img src="assets/img/logo/Logo.svg" alt="" />
-                        </div>
-                        <img
-                          src="assets/img/svg/menuClose.svg"
-                          className="d-lg-none menuCloseIcon"
-                          id="menuClose"
-                          alt="menu close"
-                        />
-                      </div>
-                      <div className="col-12 sideBarBody flex-fill overflow-hidden-auto h-100">
-                        <ul className="sidebarUL list-unstyled">
-                          <li className="sidebarLi">
-                            <a href="javascript:;" className="stretched-link">
-                              <img
-                                className="sidebarImg"
-                                src="assets/img/svg/home.svg"
-                                alt=""
-                              />
-                            </a>{" "}
-                            Dashboard
-                          </li>
-                          <li className="sidebarLi">
-                            <a href="javascript:;" className="stretched-link">
-                              <img
-                                className="sidebarImg"
-                                src="assets/img/svg/message.svg"
-                                alt=""
-                              />
-                            </a>{" "}
-                            DPA Interface
-                          </li>
-                          <li className="sidebarLi">
-                            <a href="javascript:;" className="stretched-link">
-                              <img
-                                className="sidebarImg"
-                                src="assets/img/svg/users.svg"
-                                alt=""
-                              />
-                            </a>{" "}
-                            Users
-                          </li>
-                          <li className="sidebarLi">
-                            <a href="javascript:;" className="stretched-link">
-                              <img
-                                className="sidebarImg"
-                                src="assets/img/svg/trending-up.svg"
-                                alt=""
-                              />
-                            </a>{" "}
-                            Usage Tracking
-                          </li>
-                          <li className="sidebarLi">
-                            <a href="javascript:;" className="stretched-link">
-                              <img
-                                className="sidebarImg"
-                                src="assets/img/svg/grid.svg"
-                                alt=""
-                              />
-                            </a>{" "}
-                            Database & DPA
-                          </li>
-                          <li className="sidebarLi active">
-                            <a href="javascript:;" className="stretched-link">
-                              <img
-                                className="sidebarImg"
-                                src="assets/img/svg/creditcard.svg"
-                                alt=""
-                              />
-                            </a>{" "}
-                            Billing & Plans
-                          </li>
-                          <li className="sidebarLi">
-                            <a href="javascript:;" className="stretched-link">
-                              <img
-                                className="sidebarImg"
-                                src="assets/img/svg/settings.svg"
-                                alt=""
-                              />
-                            </a>{" "}
-                            Settings
-                          </li>
-                        </ul>
-                      </div>
-                      <div className="col-12 sideBarFooter d-flex flex-column justify-content-end">
-                        <div className="col-12 d-flex justify-content-center">
-                          <div className="logout">
-                            <img src="assets/img/svg/logout.svg" alt="" />{" "}
-                            Logout
-                          </div>
-                        </div>
-                        <div className="sideBarTxt">
-                          <span>Powered by Kairav</span>
-                          <span>© 2023 All Rights Reserved</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <Sidebar sideBar={sideBar} setSidebarOpen={setSidebarOpen} />
                 </div>
               </div>
               <div className="col px-0 rightPart rightBgInnerPart h-100">
@@ -124,108 +135,14 @@ const UploadRequest = () => {
                     <div className="row h-100 mx-0 dpasetting">
                       <div className="col-12 overflow-hidden-auto scrollPart h-100 px-0">
                         <div className="row mx-0 sticky-top stickyHeader">
-                          <div className="col-12 header px-0">
-                            <div className="row mx-0 justify-content-center align-items-center">
-                              <div className="col-xxl-8 leftSide">
-                                <div className="row mx-0 align-items-center">
-                                  <div className="col-auto menuIconBtn me-2 d-lg-none d-lg-block ps-0">
-                                    <img src="assets/img/svg/grid.svg" alt="" />
-                                  </div>
-                                  <div className="col textSide ps-0">
-                                    <div className="row flex-column mx-0 d-none d-md-flex">
-                                      <div className="col pageHeading px-0 fw-semibold">
-                                        Document Upload Request
-                                      </div>
-                                      <div className="col pageSubheading px-0">
-                                         you can find all
-                                        information you require here.
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="col-auto imgSide pe-0">
-                                    <div className="row mx-0 imgSideInner">
-                                      <div className="col-auto px-0 d-xxl-none">
-                                        <a
-                                          href="javascript:;"
-                                          className="notificationBtn"
-                                          id="openSearch"
-                                        >
-                                          <img
-                                            src="assets/img/svg/topSearch.svg"
-                                            className="w100"
-                                            alt=""
-                                          />
-                                        </a>
-                                      </div>
-                                      <div className="col-auto px-0">
-                                        <a
-                                          href="javascript:;"
-                                          className="notificationBtn"
-                                        >
-                                          <img
-                                            src="assets/img/svg/001-notification.svg"
-                                            className="w100"
-                                            alt=""
-                                          />
-                                          <div className="notificationText">
-                                            2
-                                          </div>
-                                        </a>
-                                      </div>
-                                      <div className="col-auto px-0">
-                                        <a
-                                          href="javascript:;"
-                                          className="userImgBtn"
-                                        >
-                                          <img
-                                            src="assets/img/bg/Avatar.png"
-                                            className="w-100"
-                                            alt=""
-                                          />
-                                        </a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div
-                                className="col-xxl-4 rightSide chartSide"
-                                id="SearchOffcanvas"
-                              >
-                                <div className="row mx-0 align-items-center">
-                                  <div className="col-xxl-12 col searchgroup">
-                                    <div className="input-group">
-                                      <input
-                                        type="search"
-                                        className="form-control shadow-none fw-normal border-0"
-                                        placeholder="Username"
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                      />
-                                      <button
-                                        type="button"
-                                        className="input-group-text border-0"
-                                        id="basic-addon1"
-                                      >
-                                        <img
-                                          src="assets/img/svg/032-search.svg"
-                                          alt=""
-                                        />
-                                      </button>
-                                    </div>
-                                  </div>
-                                  <div className="col-auto d-xxl-none">
-                                    <img
-                                      src="assets/img/svg/menuClose.svg"
-                                      className="searchCloseIcon"
-                                      id="searchClose"
-                                      alt="menu close"
-                                    />
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
+                        <Header
+                            setSidebarOpen={setSidebarOpen}
+                            sideBar={sideBar}
+                            textHeader={"Manage DPA Database"}
+                            textSubHeader={
+                              " you can find all information you require here."
+                            }
+                          />
                         </div>
                         <div className="row py-3 dpaSettingInnerPage mx-0 bg-transparent">
                           <div className="col-12 pe-xxl-0">
@@ -244,9 +161,13 @@ const UploadRequest = () => {
                                   <button
                                     type="button"
                                     className="dpadeleteBtn backBtn btn rounded-pill text-white d-flex align-items-center gap-3 border-0 fw-medium"
+                                    onClick={()=>{
+                                      navigate(-1)
+                                    }}
                                   >
                                     <span className="d-inline-flex">
                                       <img
+                                      style={{height:"24px"}}
                                         src="assets/img/svg/arrow-left.svg"
                                         className="w-100"
                                         alt=""
@@ -257,12 +178,31 @@ const UploadRequest = () => {
                                 </div>
                                 <div className="workplaceCard mb-xxl-0 mb-3">
                                   <div className="row mx-0 innerbody p-3 align-items-center">
-                                    <div className="col-auto">
-                                      <div className="workplacePoint rounded-circle"></div>
-                                    </div>
-                                    <div className="col workrelation fw-semibold px-0">
-                                      Workplace Relations
-                                    </div>
+                                  <div className="col px-0 d-flex alignItems-center">
+                                          <div
+                                            className="circle"
+                                            style={{
+                                              width: "34px",
+                                              height: "34px",
+                                              borderRadius: "50%",
+                                              border: "none",
+                                              backgroundColor: item?.dpa_color,
+                                            }}
+                                          />
+                                          <div
+                                            className="hWorkplace"
+                                            style={{
+                                              color: "#1E1E1E",
+                                              fontSize: "26px",
+                                              // fontWeight: "bold",
+                                            }}
+                                          >
+                                            {item?.dpa_name
+                                              ? item?.dpa_name
+                                              : "no name"}
+                                          </div>
+                                        </div>
+                                    
                                     <div className="col-sm-auto mt-sm-0 mt-3">
                                       <button
                                         type="button"
@@ -297,13 +237,16 @@ const UploadRequest = () => {
                                       <div className="row">
                                         <div className="col">
                                           <div className="progressBarTxt d-flex align-items-center">
-                                            <div className="percent">67%</div>
+                                            <div className="percent">{Math.round((tokenUsage / tierInfo.training_tokens) * 100)
+                                                
+                                              }
+                                            %</div>
                                             <span>used</span>
                                           </div>
                                         </div>
                                         <div className="col-auto">
                                           <div className="progressBarTxt1">
-                                            1M
+                                            {CountConverter(tierInfo.training_tokens)}
                                           </div>
                                         </div>
                                       </div>
@@ -314,14 +257,14 @@ const UploadRequest = () => {
                                           className="progress rounded-pill"
                                           role="progressbar"
                                           aria-label="Segment one"
-                                          aria-valuenow="33"
+                                          aria-valuenow={Math.round((tokenUsage / tierInfo.training_tokens) * 100)}
                                           aria-valuemin="0"
                                           aria-valuemax="100"
-                                          style={{ width: "33%" }}
+                                          style={{ width: Math.round((tokenUsage / tierInfo.training_tokens) * 100) }}
                                         >
                                           <div className="progress-bar progressBar1 rounded-pill"></div>
                                         </div>
-                                        <div
+                                        {/* <div
                                           className="progress rounded-pill"
                                           role="progressbar"
                                           aria-label="Segment two"
@@ -331,12 +274,12 @@ const UploadRequest = () => {
                                           style={{ width: "33%" }}
                                         >
                                           <div className="progress-bar progressBar2 rounded-pill"></div>
-                                        </div>
+                                        </div> */}
                                       </div>
                                     </div>
                                     <div className="col-12 d-flex justify-content-center">
                                       <div className="progressBottomTxt">
-                                        <span>330K </span> remaining
+                                        <span>{CountConverter(tierInfo.training_tokens - tokenUsage)} </span> remaining
                                       </div>
                                     </div>
                                   </div>
@@ -367,6 +310,9 @@ const UploadRequest = () => {
                                                 placeholder="Search user"
                                                 aria-label="Username"
                                                 aria-describedby="basic-addon1"
+                                                onChange={(e)=>{
+                                                  handlerSearch(e.target.value);
+                                                }}
                                               />
                                               <button
                                                 type="button"
@@ -390,12 +336,80 @@ const UploadRequest = () => {
                                           </div>
                                         </div>
                                       </div>
-                                      <div className="col-12 my-4">
-                                        <img
-                                          src="assets/img/svg/TableCointainer.svg"
-                                          className="w-100"
-                                          alt=""
-                                        />
+                                      
+                                      <div className=" col-12 pt-3 pb-5 card me-2 my-3">
+                                <table>
+                                  <thead className="col-12  border-0">
+                                    <tr>
+                                      <th className="list-header col-3 ps-2">Document Title</th>
+                                      <th className="list-header">Format</th>
+                                      <th className="list-header ">Database Usage</th>
+                                      <th className="list-header">Upload Date</th>
+                                      <th className="list-header">User</th>
+                                      <th className="list-header ">Actions</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    {documents?.map((el) => {
+                                      return (
+                                        <tr className="  ">
+                                          <td className="list-body col-3 ">
+                                            {el?.filename}
+                                          </td>
+                                          <td className="list-body">
+                                            {el.format}
+                                          </td>
+                                          <td className="list-body ps-3">
+                                            {CountConverter(el.database_usage)}
+                                          </td>
+                                          <td className="list-body ">
+                                            {convertDateTODayMonthYear(
+                                              el.date_time
+                                            )}
+                                          </td>
+                                          <td className="list-body">
+                                            {el.username}
+                                          </td>
+                                          <td className="list-body d-flex justify-content-a align-items-center" >
+                                            <i
+                                              className="bi bi-eye pointer" 
+                                              
+                                              onClick={() =>
+                                                navigate("/document-viewer", {
+                                                  state: {
+                                                    docId: el?.id,
+                                                    
+                                                    data: item,
+                                                  },
+                                                })
+                                              }
+                                            ></i>
+                                            <i>
+                                            <button type="button"
+                                              className="dpadeleteBtn btn rounded-pill text-white d-inline-flex align-items-center gap-3 border-0 fw-medium"
+                                              style={{background:"#e15656",height:"20px",fontSize:"10px"}}
+                                              onClick={()=>{
+                                                onDeleteFile(el);
+                                              }}
+                                            >Delete</button>
+                                            </i>
+                                            {/* <i className="bi bi-trash3 ps-2 pointer"
+                                            
+                                            > */}
+                                          </td>
+                                          
+                                        </tr>
+                                      );
+                                    })}
+                                  </tbody>
+                                </table>
+                                {/* <div className="dpaDatabase">
+                                  <img
+                                    src="assets/img/svg/dpadatabase.svg"
+                                    alt="image"
+                                  />
+                                </div> */}
+                              
                                       </div>
                                     </div>
                                   </div>
@@ -406,7 +420,7 @@ const UploadRequest = () => {
                                           <div className="row mx-0 text-center align-items-center gx-xxl-2 text-nowrap">
                                             <div className="col-sm col-12">
                                               <div className="balanceCount first fw-bold">
-                                                330k
+                                                {CountConverter(tierInfo?.training_tokens)}
                                               </div>
                                               <div className="balanceContent">
                                                 Current Balance
@@ -417,7 +431,7 @@ const UploadRequest = () => {
                                             </div>
                                             <div className="col-sm col-12">
                                               <div className="balanceCount second fw-bold">
-                                                0
+                                                {CountConverter(databaseConsume)}
                                               </div>
                                               <div className="balanceContent">
                                                 This upload
@@ -428,7 +442,7 @@ const UploadRequest = () => {
                                             </div>
                                             <div className="col-sm col-12">
                                               <div className="balanceCount thard fw-bold">
-                                                330k
+                                                {CountConverter(tierInfo.training_tokens - databaseConsume)}
                                               </div>
                                               <div className="balanceContent">
                                                 Post-Upload
@@ -445,6 +459,7 @@ const UploadRequest = () => {
                                                 <button
                                                   type="button"
                                                   className="btn cancleBtn d-flex align-items-center justify-content-center text-white"
+                                                  onClick={()=>{navigate(-1)}}
                                                 >
                                                   Cancel
                                                 </button>
@@ -453,6 +468,7 @@ const UploadRequest = () => {
                                                 <button
                                                   type="button"
                                                   className="btn saveChangeBtn approvBtn border-0 d-flex align-items-center justify-content-center text-white"
+                                                  onClick={()=>{onApproveAllDocuments();}}
                                                 >
                                                   <span className="d-flex">
                                                     <img

@@ -230,7 +230,7 @@ function App() {
           <Route
             path="/approve-upload"
             element={
-              <UploadDocuments
+              <UploadRequest
                 sideBar={sideBar}
                 setSidebarOpen={setSidebarOpen}
               />

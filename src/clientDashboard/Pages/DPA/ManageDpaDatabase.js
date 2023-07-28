@@ -424,64 +424,65 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
                                   <tbody>
                                     {documents?.map((el) => {
                                       return (
-                                        <tr className="  ">
-                                          <td className="list-body col-3 ">
-                                            {el?.filename}
-                                          </td>
-                                          <td className="list-body">
-                                            {el.format}
-                                          </td>
-                                          <td className="list-body ps-3">
-                                            {CountConverter(el.database_usage)}
-                                          </td>
-                                          <td className="list-body ">
-                                            {convertDateTODayMonthYear(
-                                              el.upload_date
-                                            )}
-                                          </td>
-                                          <td className="list-body">
-                                            {el.username}
-                                          </td>
-                                          <td className="list-body d-flex justify-content-a align-items-center">
-                                            <i
-                                              className="bi bi-eye pointer"
-                                              onClick={() =>
-                                                navigate("/document-viewer", {
-                                                  state: {
-                                                    docId: el?.id,
-                                                    
-                                                    data: item,
-                                                  },
-                                                })
-                                              }
-                                            ></i>
-                                            <i className="bi bi-download ps-2 pointer"
-                                            onClick={()=>{
-                                              alert("download file ...")
-                                            }}
-                                            >
+                                        el.status === "approved" ?
+                                        (<tr className="  ">
+                                        <td className="list-body col-3 ">
+                                          {el?.filename}
+                                        </td>
+                                        <td className="list-body">
+                                          {el.format}
+                                        </td>
+                                        <td className="list-body ps-3">
+                                          {CountConverter(el.database_usage)}
+                                        </td>
+                                        <td className="list-body ">
+                                          {convertDateTODayMonthYear(
+                                            el.upload_date
+                                          )}
+                                        </td>
+                                        <td className="list-body">
+                                          {el.username}
+                                        </td>
+                                        <td className="list-body d-flex justify-content-a align-items-center">
+                                          <i
+                                            className="bi bi-eye pointer"
+                                            onClick={() =>
+                                              navigate("/document-viewer", {
+                                                state: {
+                                                  docId: el?.id,
+                                                  
+                                                  data: item,
+                                                },
+                                              })
+                                            }
+                                          ></i>
+                                          <i className="bi bi-download ps-2 pointer"
+                                          onClick={()=>{
+                                            alert("download file ...")
+                                          }}
+                                          >
 
-                                            </i>
-                                            <i className="bi bi-trash3 ps-2 pointer"
-                                            onClick={()=>{
-                                              onDeleteFile(el);
+                                          </i>
+                                          <i className="bi bi-trash3 ps-2 pointer"
+                                          onClick={()=>{
+                                            onDeleteFile(el);
+                                          }}
+                                          >
+                                            
+                                          </i>
+                                        </td>
+                                        <td className="list-body  ">
+                                          <span
+                                            className="tags"
+                                            style={{
+                                              color: color,
+                                              backgroundColor: "#f4f2ff",
                                             }}
-                                            >
-                                              
-                                            </i>
-                                          </td>
-                                          <td className="list-body  ">
-                                            <span
-                                              className="tags"
-                                              style={{
-                                                color: color,
-                                                backgroundColor: "#f4f2ff",
-                                              }}
-                                            >
-                                              Market
-                                            </span>
-                                          </td>
-                                        </tr>
+                                          >
+                                            Market
+                                          </span>
+                                        </td>
+                                      </tr>) : ""
                                       );
                                     })}
                                   </tbody>

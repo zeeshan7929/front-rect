@@ -36,6 +36,10 @@
   align-items: "center" !important;
   justify-content: "center" !important;
 }
+td  {
+  justify-content: center;
+  gap: 5px;
+}
 .buttonclass {
   width: 70px;
   border-radius: 20%;
@@ -86,6 +90,10 @@ th {
 } */
 
 /* Alternate Row Colors */
+tr{
+  text-align: center;
+}
+
 tr:nth-child(even) td {
   background-color: #ffffff;
 }
@@ -104,14 +112,14 @@ tr:nth-child(odd) td {
   list-style-type: none;
 }
 .list-header {
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
   color: #9493a6;
   font-family: "Poppins", sans-serif;
 }
 
 .list-body {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 400;
   height: 50px;
 }
