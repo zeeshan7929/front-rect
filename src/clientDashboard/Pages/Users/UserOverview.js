@@ -71,6 +71,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
   const columns = [
     {
       name: `Total Users : ${allUser?.length}`,
+      width:"200px",
       sortable: true,
       cell: (row) => (
         <div className="dpa-row d-flex align-items-center">
@@ -102,6 +103,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
           </button>
         </div>
       ),
+      width:"200px",
       sortable: true,
     },
     {
@@ -140,6 +142,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
             : ""}
         </div>
       ),
+      width:"200px",
       center: true,
       sortable: true,
     },
@@ -171,11 +174,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
         );
       },
       right: true,
-      style: {
-        display:"flex",
-        color:"red",
-        marginRight: "20px",
-      },
+      width:"115px",
     },
   ];
   const customStyles = {
