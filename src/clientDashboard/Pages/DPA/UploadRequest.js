@@ -6,6 +6,7 @@ import { postData } from "../../Common/fetchservices";
 import { addBlurClass } from "../../Common/Others/AddBlurClass";
 import { CountConverter } from "../../Common/Others/CountConverter";
 import { toaster } from "../../Common/Others/Toaster";
+import Modal from "../../Common/Modal";
 
 const UploadRequest = ({ sideBar, setSidebarOpen }) => {
 
@@ -19,6 +20,7 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
   const [tokenUsage,setTokenUsage] = useState([]);
   const [tierInfo,setTierInfo] = useState([]);
   const [documents,setDocuments] = useState([]);
+  const [modelOpen, setModelOpen] = useState(false);
   const [allDocs,setAllDocs] = useState([]);
   const [databaseConsume,setDatabaseConsume] = useState([]);
   let u = 0
@@ -43,6 +45,16 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
     setTierInfo(res55.result);
     
 
+  };
+  const handleDeleteDpa = async () => {
+    const body = {
+      dpa_id: String(item.id ? item.id : dpaID),
+    };
+    const res = await postData("delete_dpa", body);
+    setModelOpen(false);
+    if (res.result == "success") {
+      navigate("/dpa-overview");
+    }
   };
   const handlerSearch = (e)=>{
     
@@ -207,6 +219,7 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
                                       <button
                                         type="button"
                                         className="dpadeleteBtn btn rounded-pill text-white d-inline-flex align-items-center gap-3 border-0 fw-medium"
+                                        onClick={() => setModelOpen(true)}
                                       >
                                         <span className="d-inline-flex">
                                           <img
@@ -500,6 +513,12 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
           </div>
         </div>
       </div>
+      <Modal
+        type={"Deleting DPA"}
+        modelOpen={modelOpen}
+        setModelOpen={setModelOpen}
+        hanldeFunction={handleDeleteDpa}
+      />
     </main>
   );
 };

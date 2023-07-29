@@ -28,6 +28,8 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
   const [userRole, setUserRole] = useState([]);
   const [assignedUser, setAssignedUser] = useState([]);
   const [noOfLetters, setNumberOfLetters] = useState(25);
+  const [tierInfo,setTierInfo] = useState([]);
+  const [createdUsers,setCreatedUsers] = useState([]);
   const [initialValue, setInitialValue] = useState({
     name: "",
     email: "",
@@ -43,6 +45,20 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
       .max(25, "Name must be 25 characters or less"),
     email: Yup.string().email().required("Email is required"),
   });
+
+  const getRestrictions = async()=>{
+    const body = {
+      client_id: token?.client_id,
+    };
+    const res1 = await postData("get_client_tier_info", body);
+    const cusrs = await postData("get_client_created_users",body);
+    setTierInfo(res1?.result);
+    setCreatedUsers(cusrs?.result.created_users_count);
+
+
+    console.log(createdUsers)
+    console.log(tierInfo)
+  }
 
   const userUsageLimit = async () => {
     const body = {
@@ -69,10 +85,11 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
     addBlurClass();
     userUsageLimit();
     getAllDpa();
+    getRestrictions();
   }, []);
 
   const handleAssignUser = (el) => {
-    let fill = assignedUser.filter((item) => item.id == el.id);
+    let fill = assignedUser.filter((item) => item.id === el.id);
     if (fill.length) {
       setAssignedUser(fill);
     } else {
@@ -93,16 +110,23 @@ const AddUser = ({ sideBar, setSidebarOpen }) => {
       usage_limit: updateMaxValue(value),
       assign_dpa: assignedUser.map((el) => el.id),
     };
-    const res = await postData("add_new_user", body);
-    if (res.result == "success") {
+    
+    if (Number(createdUsers) === Number(tierInfo.number_of_users)){
+      toaster(false, "Users Limit exceed");
+      navigate(-1);
+    }
+    else {
+      const res = await postData("add_new_user", body);
+      if (res.result === "success" || res.result === "Success") {
       resetForm();
       setAssignedUser([]);
       setData(0);
       toaster(true, "Success");
       window.history.back();
     } else {
-      toaster(false, "Something went wrong");
+      toaster(false, res.result);
     }
+  }
   };
 
   const handleAutoClose = () => setShow("");

@@ -447,8 +447,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                   </div>
                                                 </div>
                                                 <div className="col-12 bottomSection px-0">
-                                                  <div className="row mx-0 justify-content-between">
-                                                    <div className="col-sm-auto col-12">
+                                                  <div className="" style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
+                                                    <div className="">
                                                       <div className="heading text-sm-center">
                                                         Documents Trained
                                                       </div>
@@ -458,9 +458,9 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                           : "0"}
                                                       </div>
                                                     </div>
-                                                    <div className="col-sm-auto col-12 px-sm-0">
+                                                    <div className="">
                                                       <div className="heading text-sm-center">
-                                                        Total Tier Limit
+                                                       Total Tier Limit
                                                       </div>
                                                       <div className="number text-start text-sm-center">
                                                         {CountConverter(
@@ -468,7 +468,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                         )}
                                                       </div>
                                                     </div>
-                                                    <div className="col-sm-auto col-12" style={{marginLeft:"30px"}}>
+                                                    <div className="" style={{}}>
                                                       <div className="heading text-sm-center">
                                                         Remaining
                                                       </div>
@@ -495,7 +495,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                           </div>
                                           <div className="col-12 px-0">
                                             <div className="row mx-0 align-items-center justify-content-between topForm g-4 ">
-                                              <div className="col-md-auto inputcol px-0">
+                                              <div className="col-md-auto inputcol px-0" style={{maxWidth:"45%"}}>
                                                 <div className="position-relative">
                                                   <input
                                                     type="text"
@@ -584,13 +584,13 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                     </div>
                                     <div className="col-xxl-6">
                                       <div className="card border-0 rounded-4 bottomcard p-3 me-2">
-                                        <div className="row mx-0" style={{display:"flex",justifyContent:"center"}}>
+                                        <div className="row mx-0" style={{maxHeight:"250px"}} >
                                           <div className="col-12">
                                             <div className="text-xxl-center text-start dpetext me-2 mb-3">
                                               Usage by DPA
                                             </div>
                                           </div>
-                                          <div className="col-sm-8">
+                                          <div className="col-sm-5" style={{padding:"0px"}}>
                                             <HighchartsReact
                                               highcharts={Highcharts}
                                               options={getOptionsDashboardCirculer(
@@ -598,12 +598,12 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                 false,
                                                 data,
                                                 "center",
-                                                AllDpa
+                                                -1
 
                                               )}
                                             />
                                           </div>
-                                          <div className="col-sm-8" style={{width:"100%"}}>
+                                          <div className="col-sm-7" style={{padding:"0px",display:"flex",alignItems:"center",justifyContent:"center"}}>
                                             <div className="row mx-0">
                                               <div className="col-12 px-0">
                                                 <div className="heading">
@@ -640,8 +640,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                   </div>
                                                 </div>
                                               </div>
-                                              <div className="row px-0 align-items-center">
-                                                <div className="col-sm-auto col-12">
+                                              <div className="" style={{display:"flex",justifyContent:"space-between",padding:"0px",alignItems:"center"}}>
+                                                <div className="">
                                                   <div className="tokens colortext">
                                                     Usage renews{" "}
                                                     <strong>
@@ -649,7 +649,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                     </strong>
                                                   </div>
                                                 </div>
-                                                <div className="col-sm col-12">
+                                                <div className="">
                                                   <div className="kmmetter text-sm-end">
                                                     {CountConverter(AllDpa)}{" "}
                                                     <span>
@@ -660,7 +660,9 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                     </span>{" "}
                                                   </div>
                                                 </div>
-                                                <div className="col-12 kmmetter colortext">
+                                                
+                                              </div>
+                                              <div className="col-12 kmmetter colortext" style={{padding:"0px"}}>
                                                   <strong>
                                                     {CountConverter(
                                                       tierInfo?.database_usage - AllDpa
@@ -668,12 +670,11 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                   </strong>{" "}
                                                   remaining
                                                 </div>
-                                              </div>
                                             </div>
                                           </div>
                                         </div>
                                         <div className="row mx-0 align-items-center justify-content-between topForm g-4 mt-2">
-                                          <div className="col-md-auto inputcol px-0">
+                                          <div className="col-md-auto inputcol px-0" >
                                             <div className="position-relative">
                                               <input
                                                 type="text"
@@ -817,17 +818,20 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                                         </span>
                                                                       </button>
                                                                     </NavLink>
-                                                                    <div className="col-12 progressGroup mt-2">
+                                                                    <div className="col-12 progressGroup " style={{marginTop:"-1%"}}>
                                                                       <Line
                                                                         percent={
                                                                           
                                                                           (el.token_usage / tierInfo?.database_usage) * 100
                                                                         }
+                                                                        height={
+                                                                          5
+                                                                        }
                                                                         strokeWidth={
-                                                                          1
+                                                                          2
                                                                         }
                                                                         trailWidth={
-                                                                          1
+                                                                          2
                                                                         }
                                                                         strokeColor={
                                                                           el.dpa_color
@@ -911,7 +915,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                                         </span>
                                                                       </button>
                                                                     </NavLink>
-                                                                    <div className="col-12 progressGroup mt-2">
+                                                                    <div className="col-12 progressGroup ">
                                                                       <Line
                                                                         percent={
                                                                           (el?.dpa_usage / tierInfo?.database_usage) * 100

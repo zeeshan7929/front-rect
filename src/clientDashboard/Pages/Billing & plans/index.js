@@ -39,8 +39,8 @@ const BillingPlans = ({ sideBar, setSidebarOpen }) => {
     };
     const res = await postData("cancel_client_subscription", body);
     setopen(false);
-    if (res?.result == "Success") {
-      handleBillingDetails();
+    if (res?.result === true) {
+      toaster(false, "Subscription cancelled!");
     } else {
       toaster(false, "Empty");
     }

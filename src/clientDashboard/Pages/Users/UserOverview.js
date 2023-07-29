@@ -15,7 +15,8 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
   const [roleuser, setRoleuser] = useState([]);
   const [totaladmin, settotaladmin] = useState([]);
   const [usersLimit,setUsersLimit] = useState("");
-  const [tierInfo,setTierInfo] = useState([])
+  const [tierInfo,setTierInfo] = useState([]);
+  const [profileImage,setProfileImage] = useState([]);
   // const adminUserNumber = allUser?.filter((item) => item.role == "admin");
   const navigate = useNavigate();
   const token = JSON.parse(localStorage.getItem("a_login"));
@@ -29,6 +30,14 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
     setAllUser(res.result);
     setFilterData(res.result);
   };
+  let get_base64_image =  async(image) =>{
+    const body = {
+      filename:image
+    }
+    const res = await postData("reterive_image", body);
+    
+    return "data:image/png;base64, "+res?.result
+  }
   function Round(num, decimalPlaces = 0) {
     var p = Math.pow(10, decimalPlaces);
     return Math.round(num * p) / p;

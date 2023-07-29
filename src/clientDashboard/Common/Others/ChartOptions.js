@@ -30,8 +30,8 @@ const getOptionsDashboardCirculer = (
                       ? `${Round(totalToken / 1000,1)}k`
                       : totalToken > 0
                       ? totalToken
-                      : "0"
-                  }</p> <br/>Token used`
+                      : ""
+                  }</p> <br/>`
                 : ""
             }`,
             centerX,

@@ -14,11 +14,13 @@ import { toaster } from "../../Common/Others/Toaster";
 import { useImageToBase64 } from "../../../Chat Interface/Common/blob/blob";
 import FileSizeConverter from "../../Common/Others/FileSizeConverter";
 import { CountConverter } from "../../Common/Others/CountConverter";
+import Modal from "../../Common/Modal";
 
 const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   const navigate = useNavigate();
   let data = location?.state?.data;
+  let dpaID = location.state.dpaId;
   let ids = JSON.parse(localStorage.getItem("a_login"));
   const { base64Image, convertToBase64, setBase64Image } = useImageToBase64();
 
@@ -36,6 +38,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
   
   const [tokenUsage,setTokenUsage] = useState([]);
   const [tierInfo,setTierInfo] = useState([]);
+  const [modelOpen, setModelOpen] = useState(false);
   const handleAPIData = async ()=>{
     let body = {
       client_id:ids?.client_id,
@@ -50,7 +53,16 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
     
     addBlurClass();
   });
-  
+  const handleDeleteDpa = async () => {
+    const body = {
+      dpa_id: String(data.id ? data.id : dpaID),
+    };
+    const res = await postData("delete_dpa", body);
+    setModelOpen(false);
+    if (res.result == "success") {
+      navigate("/dpa-overview");
+    }
+  };
   useEffect(() => {
     handleAPIData();
     // setInitialValue({
@@ -218,6 +230,7 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
                                       <button
                                         type="button"
                                         className="dpadeleteBtn btn rounded-pill text-white d-inline-flex align-items-center gap-3 border-0 fw-medium"
+                                        onClick={()=>{ setModelOpen(true)}}
                                       >
                                         <span className="d-inline-flex">
                                           <img
@@ -591,6 +604,12 @@ const UploadDocuments = ({ sideBar, setSidebarOpen }) => {
           </div>
         </div>
       </div>
+      <Modal
+        type={"Deleting DPA"}
+        modelOpen={modelOpen}
+        setModelOpen={setModelOpen}
+        hanldeFunction={handleDeleteDpa}
+      />
     </main>
   );
 };

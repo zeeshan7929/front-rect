@@ -22,7 +22,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   
   let item = location?.state?.item;
-  console.log("TE : ")
+  
   console.log(item)
   const [value, setValue] = useState(1);
   const [open, setopen] = useState(false);
@@ -93,9 +93,10 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
   const deleteuser = async () => {
     const body = {
       user_id: String(item.id),
+      client_id: ids.client_id
     };
     const res = await postData("delete_user", body);
-    if (res.result == "success") {
+    if (res.result === "success") {
       setModelOpen(false);
       window.history.back();
     }
@@ -319,7 +320,9 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                     Track Usage
                                                   </NavLink>
                                                 </div>
-                                                <div className="col-auto px-0">
+                                                {
+                                                  ids.user_id !== item.id ? (
+                                                    <div className="col-auto px-0">
                                                   <div
                                                     className="deleteUserBtn"
                                                     onClick={() =>
@@ -333,6 +336,8 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                     Delete User
                                                   </div>
                                                 </div>
+                                                  ) : ""
+                                                }
                                               </div>
                                             </div>
                                           </div>
