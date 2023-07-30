@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../../Common/Sidebar/Sidebar";
 import Header from "../../Common/Header/Header";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import DataTable from "react-data-table-component";
 import { addBlurClass } from "../../Common/Others/AddBlurClass";
 import { postData } from "../../Common/fetchservices";
@@ -22,7 +22,10 @@ const BillingPlans = ({ sideBar, setSidebarOpen }) => {
   const [open, setopen] = useState(false);
   const [date, setDate] = useState("");
 
+
+  let navigate = useNavigate();
   const handleBillingDetails = async () => {
+
     const body = {
       client_id: clientId?.client_id,
     };
@@ -41,8 +44,10 @@ const BillingPlans = ({ sideBar, setSidebarOpen }) => {
     setopen(false);
     if (res?.result === true) {
       toaster(false, "Subscription cancelled!");
+      localStorage.clear()
+      window.location.href = "/assistant-login"
     } else {
-      toaster(false, "Empty");
+      toaster(false, "Subscription can't cancelled!<br>Please contanct admin");
     }
   };
 
@@ -391,7 +396,7 @@ const BillingPlans = ({ sideBar, setSidebarOpen }) => {
                                           </div>
                                         </div>
                                         <div className="col-md-auto ps-0 col-6 col-sm-3">
-                                          <div className="position-relative">
+                                          {/* <div className="position-relative">
                                             <select
                                               className="form-select formSelect form-select-lg mb-3 "
                                               aria-label=".form-select-lg example"
@@ -426,7 +431,7 @@ const BillingPlans = ({ sideBar, setSidebarOpen }) => {
                                               src="assets/img/svg/down.svg"
                                               alt
                                             />
-                                          </div>
+                                          </div> */}
                                         </div>
                                         <div className="col-md-auto ps-0 col-6 col-sm-3">
                                           <button className="uploadBtn">

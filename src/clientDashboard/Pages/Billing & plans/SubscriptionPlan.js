@@ -21,6 +21,7 @@ const SubscriptionPlan = ({ setSidebarOpen, sideBar }) => {
   const [plan, setplan] = useState({});
   const [showItem, setShowItem] = useState(false);
   const [stripeId, setStripeId] = useState("");
+  const [currentPlan,setCurrentPlan] = useState(item?.id);
 
   const ref = useRef(null);
   const handleTiers = async () => {
@@ -29,6 +30,7 @@ const SubscriptionPlan = ({ setSidebarOpen, sideBar }) => {
     };
     const res = await postData("get_all_tiers_info", body);
     setPlans(res?.result);
+    setCurrentPlan(item?.id);
   };
 
   const handleUpdateTiers = async () => {
@@ -38,7 +40,13 @@ const SubscriptionPlan = ({ setSidebarOpen, sideBar }) => {
       tier_id: String(plan?.id),
     };
     const res = await postData("upgrade_subscription", body);
-    setStripeId(res?.result?.secret);
+    if (res.result.secret !== undefined){
+      toaster(true,"Subscription updated successfully");
+      setCurrentPlan(plan?.id)
+    }else{
+      toaster(false,"Failed to update subscription.");
+    }
+    // setStripeId(res?.result?.secret);
   };
 
   useEffect(() => {
@@ -186,7 +194,7 @@ const SubscriptionPlan = ({ setSidebarOpen, sideBar }) => {
                                                     </div>
                                                   </div>
 
-                                                  {item?.id === el?.id ? (
+                                                  {(currentPlan === el?.id) ? (
                                                     <div className="col-auto">
                                                       <a
                                                         // href="javascript:;"
@@ -224,14 +232,14 @@ const SubscriptionPlan = ({ setSidebarOpen, sideBar }) => {
                               </div>
 
                               {/* payment mode */}
-                              <div className="mt-4 w-75 ms-auto me-auto d-none">
+                              {/* <div className="mt-4 w-75 ms-auto me-auto d-none">
                                 {stripeId && (
                                   <StripeContainer
                                     id={stripeId}
                                     comp="billing"
                                   />
                                 )}
-                              </div>
+                              </div> */}
                             </div>
                           </div>
                         </div>

@@ -125,6 +125,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   useEffect(() => {
     handleTotalLimit();
     handleDocument();
+      
   }, []);
   useEffect(() => {
     handleFilterUserDpaName();
