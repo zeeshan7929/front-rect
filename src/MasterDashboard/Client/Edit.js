@@ -20,7 +20,7 @@ function Edit({ sideBar, setSidebarOpen }) {
     const res1 = await postData("get_client_info", body);
     setUserInfo(res1?.result);
     const res = await postData("get_client_all_users", body);
-    let fill = res?.result?.filter((el) => el?.client_id == String(item));
+    let fill = res?.result?.filter((el) => el?.client_id === String(item));
     setUser(fill[0]);
     const data = {
       client_id: fill[0]?.client_id,
@@ -34,7 +34,7 @@ function Edit({ sideBar, setSidebarOpen }) {
   }, []);
   const handleClientConfig = () => {
     if (localStorage.getItem("a_login")) {
-      navigate("/Dashboard");
+      window.open("/Dashboard","__blank") 
     }
   };
   return (

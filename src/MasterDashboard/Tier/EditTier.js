@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Sidebar from "../Common/Sidebar/Sidebar";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Field, Form, Formik } from "formik";
 import * as yup from "yup";
 import * as Yup from "yup";
@@ -14,16 +14,20 @@ import { Header } from "../Common/Header/Header";
 const EditTier = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   const Editvalue = location.state.item;
+  const navigate = useNavigate();
 
   const [initialValue, setInitialValue] = useState({
     tierName: Editvalue.name,
-    tokenUsageLimit: "",
+    tokenUsageLimit: Editvalue.database_usage,
     trainingToken: Editvalue.training_tokens,
     numberOfDPA: Editvalue.num_of_dpa,
     numberOfUsers: Editvalue.num_of_users,
     pricingMonthly: Editvalue.pricing_monthly,
     pricingYearly: Editvalue.pricing_yearly,
     colorTag: "",
+    productId:Editvalue.product_id,
+    monthlyPriceId:Editvalue.monthly_price_id,
+    yearlyPriceId:Editvalue.yearly_price_id
   });
 
   const validationschema = yup.object().shape({
@@ -34,6 +38,9 @@ const EditTier = ({ sideBar, setSidebarOpen }) => {
     numberOfUsers: Yup.string().required("Number of users is required"),
     pricingMonthly: Yup.string().required("Pricing(monthly) is required"),
     pricingYearly: Yup.string().required("Pricing(yearly) is required"),
+    productId: Yup.string().required("Product Id is required"),
+    monthlyPriceId: Yup.string().required("Monthly Price Id is required"),
+    yearlyPriceId: Yup.string().required("Yearly Price Id is required"),
   });
 
   const Handler = async (value, { resetForm }) => {
@@ -47,17 +54,18 @@ const EditTier = ({ sideBar, setSidebarOpen }) => {
       number_of_users: value.numberOfUsers,
       pricing_monthly: value.pricingMonthly,
       pricing_yearly: value.pricingYearly,
-      price_id_monthly: "price_1N1ceMGJ76zzZMRvFNYSYi7b",
-      price_id_yearly: "price_1N1ceMGJ76zzZMRvTGGlr7oi",
-      product_id: "prod_NnD4JJAUck9smW",
+      product_id: value.productId,
+      price_id_monthly: value.monthlyPriceId,
+      price_id_yearly: value.yearlyPriceId,
       color: value.colorTag,
     };
     const res = await postData("m_edit_tier", body);
     if (res.result == "success") {
       resetForm();
-      toaster(true);
+      toaster(true,"Tier Update successfully");
+      navigate(-1);
     } else {
-      toaster(false);
+      toaster(false,"Tier can't update");
     }
   };
 
@@ -295,6 +303,69 @@ const EditTier = ({ sideBar, setSidebarOpen }) => {
                                                             : ""}
                                                         </p>
                                                       </div>
+                                                      <div className="col-12 mb-2">
+                                                      <label
+                                                        for=""
+                                                        className="tireLbl"
+                                                      >
+                                                        Product Id
+                                                      </label>
+
+                                                      <Field
+                                                        type="text"
+                                                        className="form-control"
+                                                        placeholder="Product Id"
+                                                        name="productId"
+                                                      />
+                                                      <p className="text-danger">
+                                                        {formik.touched.productId &&
+                                                        formik.errors.productId
+                                                          ? formik.errors.productId
+                                                          : ""}
+                                                      </p>
+                                                    </div>
+                                                    <div className="col-12 mb-2">
+                                                      <label
+                                                        for=""
+                                                        className="tireLbl"
+                                                      >
+                                                        Montly Price Id
+                                                      </label>
+
+                                                      <Field
+                                                        type="text"
+                                                        className="form-control"
+                                                        placeholder="Monthly Price Id"
+                                                        name="monthlyPriceId"
+                                                      />
+                                                      <p className="text-danger">
+                                                        {formik.touched.monthlyPriceId &&
+                                                        formik.errors.monthlyPriceId
+                                                          ? formik.errors.monthlyPriceId
+                                                          : ""}
+                                                      </p>
+                                                    </div>
+                                                    <div className="col-12 mb-2">
+                                                      <label
+                                                        for=""
+                                                        className="tireLbl"
+                                                      >
+                                                        Yearly Price Id
+                                                      </label>
+
+                                                      <Field
+                                                        type="text"
+                                                        className="form-control"
+                                                        placeholder="Yearly Price Id"
+                                                        name="yearlyPriceId"
+                                                      />
+                                                      <p className="text-danger">
+                                                        {formik.touched.yearlyPriceId &&
+                                                        formik.errors.yearlyPriceId
+                                                          ? formik.errors.yearlyPriceId
+                                                          : ""}
+                                                      </p>
+                                                    </div>
                                                       <div className="col-12">
                                                         <label
                                                           for=""
@@ -337,7 +408,7 @@ const EditTier = ({ sideBar, setSidebarOpen }) => {
                                                         </div>
                                                       </div>
                                                       <div className="col-12 d-flex justify-content-center mt-5 mb-2">
-                                                        <button className="cancleBtn">
+                                                        <button className="cancleBtn" onClick={()=>{navigate(-1)}}>
                                                           Cancel
                                                         </button>
                                                         <button

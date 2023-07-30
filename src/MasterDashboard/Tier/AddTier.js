@@ -9,8 +9,10 @@ import { SelectColors } from "../../clientDashboard/Common/Others/SelectColors";
 import { toaster } from "../../clientDashboard/Common/Others/Toaster";
 import { ToastContainer } from "react-toastify";
 import { Header } from "../Common/Header/Header";
+import { useNavigate } from "react-router-dom";
 
 const AddTier = ({ sideBar, setSidebarOpen }) => {
+  let navigate = useNavigate();
   useEffect(() => {
     addBlurClass();
   }, []);
@@ -24,6 +26,9 @@ const AddTier = ({ sideBar, setSidebarOpen }) => {
     pricingMonthly: "",
     pricingYearly: "",
     colorTag: "",
+    productId:"",
+    monthlyPriceId:"",
+    yearlyPriceId:""
   });
 
   const validationschema = yup.object().shape({
@@ -34,6 +39,10 @@ const AddTier = ({ sideBar, setSidebarOpen }) => {
     numberOfUsers: Yup.string().required("Number of users is required"),
     pricingMonthly: Yup.string().required("Pricing(monthly) is required"),
     pricingYearly: Yup.string().required("Pricing(yearly) is required"),
+    productId: Yup.string().required("Product Id is required"),
+    monthlyPriceId: Yup.string().required("Monthly Price Id is required"),
+    yearlyPriceId: Yup.string().required("Yearly Price Id is required"),
+
   });
 
   const submitHandler = async (value, { resetForm }) => {
@@ -45,17 +54,18 @@ const AddTier = ({ sideBar, setSidebarOpen }) => {
       number_of_users: value.numberOfUsers,
       pricing_monthly: value.pricingMonthly,
       pricing_yearly: value.pricingYearly,
-      product_id: "",
-      monthly_price_id: "",
-      yearly_price_id: "",
+      product_id: value.productId,
+      monthly_price_id: value.monthlyPriceId,
+      yearly_price_id: value.yearlyPriceId,
       tag_color: value.colorTag,
     };
     const res = await postData("m_add_new_tier", body);
-    if (res.result == "success") {
+    if (res.status === "success") {
       resetForm();
-      toaster(true);
+      toaster(true,"Successfully Added new Tier");
+      navigate('tier')
     } else {
-      toaster(false);
+      toaster(false,"Failed to add new tier.");
     }
   };
 
@@ -286,6 +296,69 @@ const AddTier = ({ sideBar, setSidebarOpen }) => {
                                                           : ""}
                                                       </p>
                                                     </div>
+                                                    <div className="col-12 mb-2">
+                                                      <label
+                                                        for=""
+                                                        className="tireLbl"
+                                                      >
+                                                        Product Id
+                                                      </label>
+
+                                                      <Field
+                                                        type="text"
+                                                        className="form-control"
+                                                        placeholder="Product Id"
+                                                        name="productId"
+                                                      />
+                                                      <p className="text-danger">
+                                                        {touched.productId &&
+                                                        errors.productId
+                                                          ? errors.productId
+                                                          : ""}
+                                                      </p>
+                                                    </div>
+                                                    <div className="col-12 mb-2">
+                                                      <label
+                                                        for=""
+                                                        className="tireLbl"
+                                                      >
+                                                        Montly Price Id
+                                                      </label>
+
+                                                      <Field
+                                                        type="text"
+                                                        className="form-control"
+                                                        placeholder="Monthly Price Id"
+                                                        name="monthlyPriceId"
+                                                      />
+                                                      <p className="text-danger">
+                                                        {touched.monthlyPriceId &&
+                                                        errors.monthlyPriceId
+                                                          ? errors.monthlyPriceId
+                                                          : ""}
+                                                      </p>
+                                                    </div>
+                                                    <div className="col-12 mb-2">
+                                                      <label
+                                                        for=""
+                                                        className="tireLbl"
+                                                      >
+                                                        Yearly Price Id
+                                                      </label>
+
+                                                      <Field
+                                                        type="text"
+                                                        className="form-control"
+                                                        placeholder="Yearly Price Id"
+                                                        name="yearlyPriceId"
+                                                      />
+                                                      <p className="text-danger">
+                                                        {touched.yearlyPriceId &&
+                                                        errors.yearlyPriceId
+                                                          ? errors.yearlyPriceId
+                                                          : ""}
+                                                      </p>
+                                                    </div>
                                                     <div className="col-12">
                                                       <label
                                                         for=""
@@ -336,8 +409,9 @@ const AddTier = ({ sideBar, setSidebarOpen }) => {
                                                       </div>
                                                     </div>
                                                     <div className="col-12 d-flex justify-content-center mt-5 mb-2">
-                                                      <button className="cancleBtn">
+                                                      <button className="cancleBtn" onClick={()=>{navigate(-1)}}>
                                                         Cancel
+                                                        
                                                       </button>
                                                       <button
                                                         type="submit"

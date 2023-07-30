@@ -2,9 +2,12 @@ import React, { useEffect, useState } from "react";
 import { HighchartsReact } from "highcharts-react-official";
 import Highcharts from "highcharts";
 import { postData } from "../../../clientDashboard/Common/fetchservices";
+import { CountConverter } from "../../../clientDashboard/Common/Others/CountConverter";
 const MasterHighchart = ({ title }) => {
   const [dpausage, setdpausage] = useState([]);
   const [embedding, setembedding] = useState([]);
+  const [totalUsage,setTotalUsage] = useState(0);
+  
   const [date, setDate] = useState("7 Days");
   let a = dpausage?.map((el) => el.usage);
   let totalTokenDpa = a?.reduce((x, y) => Number(x) + Number(y), 0);
@@ -18,7 +21,7 @@ const MasterHighchart = ({ title }) => {
       min_date: min,
       max_date: new Date(Date.now()).toISOString().substr(0, 10),
     };
-    if (title == "Modal Usage") {
+    if (title === "Modal Usage") {
       const res = await postData(
         "m_get_all_clients_all_range_embedding_usage",
         body
@@ -35,22 +38,28 @@ const MasterHighchart = ({ title }) => {
       }, {});
       console.log("Grouped data:")
       console.log(groupedDate)
+      let i = 0;
       for (let key in groupedDate) {
         let totalDpaUsage = 0;
         for (let value of groupedDate[key]) {
           totalDpaUsage += Number(value?.dpa_usage);
+          i += value?.dpa_usage;
         }
         data?.push({ name: key, y: totalDpaUsage });
       }
-
+     let s = 0;
       const ser = weekdays?.map((day) => {
         let match = data?.filter((el) => el.name == day);
         if (match.length) {
+          s += match[0]['y']
+          
           return match[0];
         } else {
           return { name: day, y: 0 };
         }
       });
+      setTotalUsage(0)
+      setTotalUsage(s);
       setdpausage(ser);
     } else {
       const res = await postData(
@@ -67,24 +76,30 @@ const MasterHighchart = ({ title }) => {
         total[val].push(cur);
         return total;
       }, {});
-
+      let i = 0;
       for (let key in groupedDate) {
         let totalDpaUsage = 0;
         for (let value of groupedDate[key]) {
           totalDpaUsage += Number(value?.embeding_usage);
+          i += value?.embeding_usage;
         }
         data?.push({ name: key, y: totalDpaUsage });
+        
       }
-
+      let s = 0;
       const ser = weekdays?.map((day) => {
-        let match = data?.filter((el) => el.name == day);
+        let match = data?.filter((el) => el.name === day);
         if (match.length) {
+          s += match[0]['y']
           return match[0];
         } else {
           return { name: day, y: 0 };
         }
       });
+      setTotalUsage(0);
+      setTotalUsage(s);
       setembedding(ser);
+      console.log(totalUsage);
     }
   };
 
@@ -133,9 +148,14 @@ const MasterHighchart = ({ title }) => {
 
   const options1 = {
     chart: {
-      type: "column",
+      type: "area",
     },
-
+    title:{
+      text:"",
+    },
+    subtitle: {
+      text: "",
+    },
     xAxis: {
       categories: weekdays,
       labels: {
@@ -151,7 +171,7 @@ const MasterHighchart = ({ title }) => {
         text: "",
       },
       min: 5000,
-      max: 100000,
+      max: totalUsage,
       tickInterval: 10000,
       startPoint: 0,
     },
@@ -184,11 +204,11 @@ const MasterHighchart = ({ title }) => {
         color: {
           linearGradient: { x1: 0, x2: 0, y1: 0, y2: 1 },
           stops: [
-            [0, title == "Modal Usage" ? "#bad5d6" : "#dbc8cb"],
-            [1, title == "Modal Usage" ? "#9db9c3" : "#b6bec6"],
+            [0, title === "Modal Usage" ? "#bad5d6" : "#dbc8cb"],
+            [1, title === "Embedding Usage" ? "#9db9c3" : "#b6bec6"],
           ],
         },
-        data: title == "Modal Usage" ? dpausage : embedding,
+        data: title === "Modal Usage" ? dpausage : embedding,
       },
     ],
   };
@@ -213,7 +233,7 @@ const MasterHighchart = ({ title }) => {
               <option value="1 Month">1 Month</option>
               <option value="3 Months">3 Months</option>
               <option value="YTD">YTD</option>
-              <option value="Custom">Custom</option>
+              
             </select>
           </div>
         </div>
@@ -243,10 +263,8 @@ const MasterHighchart = ({ title }) => {
           <div>All modal usage of client</div>
           <div>
             <h3>
-              {totalTokenDpa.length > 1000
-                ? `${totalTokenDpa / 1000}k`
-                : totalTokenEm.length > 1000
-                ? `${totalTokenEm / 1000}k`
+              {totalUsage > 1000
+                ? `${CountConverter(totalUsage) }` 
                 : "0"}{" "}
               Token
             </h3>
