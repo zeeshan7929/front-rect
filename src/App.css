@@ -144,7 +144,14 @@ tr:nth-child(odd) td {
 .font-size {
   font-size: "16";
 }
-
+.chart-info{
+  flex-shrink: 0;
+  
+  max-width: 100%;
+  padding-right: calc(var(--bs-gutter-x) * 0.5);
+  padding-left: calc(var(--bs-gutter-x) * 0.5);
+  margin-top: var(--bs-gutter-y);
+}
 .chatpass {
   bottom: 1px;
   right: 3px;

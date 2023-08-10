@@ -8,7 +8,8 @@ const getOptionsDashboardCirculer = (
   legend,
   data,
   center,
-  totalToken
+  totalToken,
+  us
 ) => ({
   chart: {
     minHeight: 100,
@@ -25,13 +26,13 @@ const getOptionsDashboardCirculer = (
           .label(
             `${
               center
-                ? `<p style="font-weight : bold">${
-                    totalToken > 1000
-                      ? `${Round(totalToken / 1000,1)}k`
-                      : totalToken > 0
-                      ? totalToken
-                      : ""
-                  }</p> <br/>`
+                ? `<p>${
+                  totalToken > 1000
+                    ? `${Round(totalToken / 1000,1)}k`
+                    : totalToken > 0
+                    ? totalToken
+                    : ""
+                }</p><br><p>${us !== undefined ? "Tokens used" : ""}</p></br>`
                 : ""
             }`,
             centerX,
@@ -42,13 +43,14 @@ const getOptionsDashboardCirculer = (
             fontSize: "14px",
             diplay: "flex",
             alignItems: "center",
+            flexWrap:"wrap",
             justifyContent: "center",
             flex: "column",
           })
           .attr({
             fill: "rgba(255, 255, 255, 0.75)",
             padding: 8,
-            r: 5,
+            r: 1,
           })
           .add();
 
@@ -56,7 +58,7 @@ const getOptionsDashboardCirculer = (
         var labelBox = label.getBBox();
         label.translate(
           centerX - labelBox.width / 4,
-          centerY - labelBox.height / 4
+          centerY - labelBox.height / 3
         );
       },
     },

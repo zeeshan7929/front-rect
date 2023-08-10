@@ -20,6 +20,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   const [filterallUserDpa, setfilterAllUserDpa] = useState([]);
   const [allUserDpaDetails, setAllUserDpaDetails] = useState([]);
   const [filterAllUserDpaDetails, setfilterAllUserDpaDetails] = useState([]);
+  const [filterDpaData,setFilterDpaData] = useState([]);
   const [searchDPaName, setsearchDpaName] = useState("");
   const [searchalluserName, setsearchalluserName] = useState("");
   const [userCount, setUserCount] = useState("");
@@ -31,7 +32,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   const [tokenLimit, setTokenLimit] = useState("");
   const [doc, setDoc] = useState([]);
   const [tierInfo,setTierInfo] = useState("");
-
+  const [order,setOrder] = useState('asc');
   // handle TotalLimit
   const handleTotalLimit = async () => {
     const body = {
@@ -58,7 +59,8 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
     setRenewDate(res3.result?.sub_renew_date);
     const res4 = await postData("get_client_all_dpa_details", body);
     setAllUserDpaDetails(res4.result);
-    console.log(allUserDpaDetails)
+    setFilterDpaData(res4.result);
+    
     const totalassignUser = await postData("get_client_assign_user", body);
     settotalUserCount(totalassignUser?.result?.users_count);
     const totalassignDpa = await postData("get_client_assign_dpa", body);
@@ -132,6 +134,34 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
     handleFilterAllUserDpaName();
   }, [searchDPaName, searchalluserName]);
 
+  function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        /* next line works with strings and numbers, 
+         * and you may want to customize it to your needs
+         */
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+  function filterDPA(selected){
+    setOrder(selected);
+    const sortedarray = filterDpaData.sort((a,b) => {
+      return order === 'highest'?  (a.dpa_usage - b.dpa_usage): (b.dpa_usage - a.dpa_usage);
+      })
+      setfilterAllUserDpaDetails([...sortedarray])
+    }
+  
+  
+  function showHighestDpa(){
+    // console.log(filterAllUserDpaDetails)
+  }
+
   const filterDpaName = (item) => {
     setsearchDpaName(item);
     let a = allUserDpaDetails.filter((el) => {
@@ -160,6 +190,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
   const columns = [
     {
       name: `Total Users : ${allUserDpa.length}`,
+      flex:3,
       selector: (row) => (
         <>
           <img
@@ -195,8 +226,11 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
           {`${Round((Number(row.token_usage) / Number(row?.usage_limit)) * 100 ,1)}%`}
         </div>
       ),
+      
       center: true,
+      flex:2,
       style: {
+        
         paddingLeft: "8px",
         paddingRight: "8px",
       },
@@ -239,8 +273,11 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
           </svg>
         </NavLink>
       ),
+      maxWidth: "50px",
       right: true,
+      wrap:true,
       style: {
+       
         marginRight: "20px",
       },
     },
@@ -301,7 +338,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                 <div className="col-xxl-12  px-0">
                                 
                                 <div className="row mx-0 g-4 rightSection pe-2">
-                                <div className="chart-info" style={{display:'flex', gap:'2%', maxHeight:'500px'}}>
+                                <div className="chart-info" style={{display:'flex', gap:'2%', maxHeight:'500px',height:"35vh"}}>
                                 <UsageDpaChart
                                       clientId={clientId?.client_id}
                                     />
@@ -701,24 +738,33 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                             <div className="usageSlect">
                                               <select
                                                 onChange={(e) =>
-                                                  filterDpaName(e.target.value)
+                                                  // filterDpaName(e.target.value)
+                                                  filterDPA(e.target.value)
                                                 }
                                                 className="form-select shadow-none"
                                                 aria-label="Default select example"
                                               >
                                                 <option
-                                                  className="slected"
-                                                  selected
-                                                  value={""}
+                                                  className=""
+                                                  
+                                                  value={"highest"}
                                                   onClick={() =>
-                                                    setfilterAllUserDpaDetails(
-                                                      ""
-                                                    )
+                                                    showHighestDpa()
                                                   }
                                                 >
                                                   Highest Usage
                                                 </option>
-                                                {data?.map((el) => {
+                                                <option
+                                                  className="slected"
+                                                  selected
+                                                  value={"lowest"}
+                                                  onClick={() =>
+                                                    showHighestDpa()
+                                                  }
+                                                >
+                                                  Lowest Usage
+                                                </option>
+                                                {/* {data?.map((el) => {
                                                   return (
                                                     <option
                                                       value={el?.name.toLowerCase()}
@@ -726,7 +772,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
                                                       {el?.name}
                                                     </option>
                                                   );
-                                                })}
+                                                })} */}
                                               </select>
                                             </div>
                                           </div>

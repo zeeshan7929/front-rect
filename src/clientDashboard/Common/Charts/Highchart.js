@@ -4,13 +4,15 @@ import { HighchartsReact } from "highcharts-react-official";
 import { postData } from "../fetchservices";
 import { CountConverter } from "../Others/CountConverter";
 
+
+
 const Highchart = ({ id, gradiant, height }) => {
   const [filterOption, setFilterOption] = useState("7day");
   const [totalUsage, setTotalUsage] = useState(0);
   const [data, setData] = useState([]);
   const weekdays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
   const ids = JSON.parse(localStorage.getItem("a_login"));
-
+  const [totalToken,setTotalToken] = useState([]);
   const getApiData = async (minDate) => {
     const body = {
       client_id: ids.client_id,
@@ -23,24 +25,21 @@ const Highchart = ({ id, gradiant, height }) => {
       return {
         assign_dpa_id: el.assign_dpa_id,
         client_id: el.client_id,
-        date_time: new Date(el.date_time.slice(0, 10)).toLocaleString(
-          "default",
-          { weekday: "short" }
-        ),
+        date_time: el.date_time,
         dpa_id: el.dpa_id,
         dpa_usage: el.dpa_usage,
         embeding_usage: el.embeding_usage,
         user_id: el.user_id,
       };
     });
-    console.log(totalUsage)
+    
     const grouped = slicedData.reduce((cur, total) => {
       const { date_time } = total;
       cur[date_time] = cur[date_time] ?? [];
       cur[date_time].push(total);
       return cur;
     }, []);
-
+    
     let da = Object.values(grouped).map((item) => {
       let dpaUsage = 0;
       let embaddeingUsage = 0;
@@ -60,9 +59,40 @@ const Highchart = ({ id, gradiant, height }) => {
         return { name: day, y: 0 };
       }
     });
+    let prev = {};
+    let org = []
+
+    slicedData.map((el)=>{
+      let d = new Date(el.date_time);
+      const dat_ = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+      
+      if (!(dat_ in prev)){prev[dat_] = Number(el.dpa_usage)}
+      else {
+        let old = prev[dat_]
+        prev[dat_] = Number(old) + Number(el.dpa_usage)
+      }
+    })
+    let finalData = [];
+    let t = 0;
+    Object.keys(prev).forEach(function(key, index) {
+      finalData.push([Number(key),Number(prev[key])])
+      t += Number(prev[key])
+    });
+    
+    setTotalToken(t);
+    const ser_ = slicedData.map((el)=>{
+      let d = new Date(el.date_time);
+      let dat_ = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+      
+      return {label :dat_,y:Number(el.dpa_usage)}
+    })
+    
+    
     setTotalUsage(0)
-    ser.map((el) => setTotalUsage((prev) => prev + Number(el.y)));
-    setData(ser);
+    console.log(finalData)
+    // ser.map((el) => setTotalUsage((prev) => prev + Number(el.y)));
+    setData(finalData);
+    
     
   };
 
@@ -123,7 +153,13 @@ const Highchart = ({ id, gradiant, height }) => {
   const getOptionsDashboardMain = (type) => ({
     chart: {
       type: "area",
+      animation: Highcharts.svg,
+      
       // height: 277,
+    },
+    lang: {
+      decimalPoint: '.',
+      thousandsSep: ','
     },
     accessibility: {
       enabled: true,
@@ -135,22 +171,23 @@ const Highchart = ({ id, gradiant, height }) => {
       text: "",
     },
     xAxis: {
-      categories: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      type: 'datetime',
     },
     yAxis: {
       title: {
         text: "",
       },
       min: 1000,
-      max: totalUsage,
+      max: totalToken,
       tickInterval: 5000,
       startPoint: 0,
     },
     tooltip: {
       headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+      
       pointFormat:
         '<tr><td style="color:{series.color};padding:0"></td>' +
-        '<td style="padding:0">Token Used: <b>{point.y} k</b></td></tr>',
+        '<td style="padding:0">Token Used: <b>{point.y:,.0f}</b></td></tr>',
       footerFormat: "</table>",
       shared: true,
       useHTML: true,
@@ -237,7 +274,7 @@ const Highchart = ({ id, gradiant, height }) => {
                     // fontWeight: "bold",
                   }}
                 >
-                  {CountConverter(totalUsage)} Tokens
+                  {CountConverter(totalToken)} Tokens
                 </div>
                 <div className="progresbarbottomtext">{filterOption}</div>
               </div>

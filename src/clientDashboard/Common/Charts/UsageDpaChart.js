@@ -9,6 +9,7 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
   const [dpausers, setdpausers] = useState([]);
   const [tokenCount,setTokenCount] = useState([]);
   const [data_to_show,set_data_to_show] = useState([]);
+  const [totalToken,setTotalToken] = useState(0);
   const [date, setDate] = useState("7 Days");
   let a = overview?.map((el) => el.usage);
   let totalTokenDpa = a?.reduce((x, y) => Number(x) + Number(y), 0);
@@ -29,39 +30,39 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         max_date: new Date(Date.now()).toISOString().substr(0, 10),
       };
       const res = await postData("get_range_user_dpa_usage", body);
-      console.log(res)
-      let data = [];
-      let groupedDate = res?.result.reduce((total, cur) => {
-        const { date_time } = cur;
-        let val = new Date(date_time).toLocaleDateString("default", {
-          weekday: "short",
-        });
-        total[val] = total[val] || [];
-        total[val].push(cur);
-        return total;
-      }, {});
-
-      for (let key in groupedDate) {
-        let totalDpaUsage = 0;
-        for (let value of groupedDate[key]) {
-          totalDpaUsage += Number(value?.dpa_usage);
-        }
-        data?.push({ name: key, y: totalDpaUsage });
-        
-      }
-
-      const ser = weekdays?.map((day) => {
-        let match = data?.filter((el) => el.name == day);
-        if (match.length) {
-          return match[0];
-        } else {
-          return { name: day, y: 0 };
-        }
+      let slicedData = res.result.map((el) => {
+        return {
+          assign_dpa_id: el.assign_dpa_id,
+          client_id: el.client_id,
+          date_time: el.date_time,
+          dpa_id: el.dpa_id,
+          dpa_usage: el.dpa_usage,
+          embeding_usage: el.embeding_usage,
+          user_id: el.user_id,
+        };
       });
-      setTokenCount(0);
-      ser.map((el) => setTokenCount((prev) => prev + Number(el.y)));
-      setdpausers(ser);
-      set_data_to_show(ser);
+      console.log(slicedData)
+      let prev = {};
+      slicedData.map((el)=>{
+        let d = new Date(el.date_time);
+        const dat_ = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+        
+        if (!(dat_ in prev)){prev[dat_] = Number(el.dpa_usage)}
+        else {
+          let old = prev[dat_]
+          prev[dat_] = Number(old) + Number(el.dpa_usage)
+        }
+      })
+      let finalData = [];
+      let t = 0;
+      Object.keys(prev).forEach(function(key, index) {
+        finalData.push([Number(key),Number(prev[key])])
+        t += Number(prev[key])
+      });
+      setTotalToken(0);
+      setTotalToken(t);
+      set_data_to_show(finalData);
+      console.log(finalData)
     } else if (clientId && dpaId !== undefined) {
       const body = {
         client_id: clientId,
@@ -70,37 +71,39 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         max_date: new Date(Date.now()).toISOString().substr(0, 10),
       };
       const res = await postData("get_all_range_assign_dpa_usage", body);
-      let data = [];
-      let groupedDate = res?.result.reduce((total, cur) => {
-        const { date_time } = cur;
-        let val = new Date(date_time).toLocaleDateString("default", {
-          weekday: "short",
-        });
-        total[val] = total[val] || [];
-        total[val].push(cur);
-        return total;
-      }, {});
-
-      for (let key in groupedDate) {
-        let totalDpaUsage = 0;
-        for (let value of groupedDate[key]) {
-          totalDpaUsage += Number(value?.dpa_usage);
-        }
-        data?.push({ name: key, y: totalDpaUsage });
-      }
-
-      const ser = weekdays?.map((day) => {
-        let match = data?.filter((el) => el.name == day);
-        if (match.length) {
-          return match[0];
-        } else {
-          return { name: day, y: 0 };
-        }
+      let slicedData = res.result.map((el) => {
+        return {
+          assign_dpa_id: el.assign_dpa_id,
+          client_id: el.client_id,
+          date_time: el.date_time,
+          dpa_id: el.dpa_id,
+          dpa_usage: el.dpa_usage,
+          embeding_usage: el.embeding_usage,
+          user_id: el.user_id,
+        };
       });
-      setTokenCount(0);
-      ser.map((el) => setTokenCount((prev) => prev + Number(el.y)));
-      setdpausage(ser);
-      set_data_to_show(ser)
+      console.log(slicedData)
+      let prev = {};
+      slicedData.map((el)=>{
+        let d = new Date(el.date_time);
+        const dat_ = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+        
+        if (!(dat_ in prev)){prev[dat_] = Number(el.dpa_usage)}
+        else {
+          let old = prev[dat_]
+          prev[dat_] = Number(old) + Number(el.dpa_usage)
+        }
+      })
+      let finalData = [];
+      let t = 0;
+      Object.keys(prev).forEach(function(key, index) {
+        finalData.push([Number(key),Number(prev[key])])
+        t += Number(prev[key])
+      });
+      setTotalToken(0);
+      setTotalToken(t);
+      set_data_to_show(finalData)
+      console.log(finalData)
     } else {
       const body = {
         client_id: clientId.toString(),
@@ -108,37 +111,38 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
         max_date: new Date(Date.now()).toISOString().substr(0, 10),
       };
       const res = await postData("get_client_all_range_dpa_usage", body);
-      let data = [];
-      let groupedDate = res?.result.reduce((total, cur) => {
-        const { date_time } = cur;
-        let val = new Date(date_time).toLocaleDateString("default", {
-          weekday: "short",
-        });
-        total[val] = total[val] || [];
-        total[val].push(cur);
-        return total;
-      }, {});
-
-      for (let key in groupedDate) {
-        let totalDpaUsage = 0;
-        for (let value of groupedDate[key]) {
-          totalDpaUsage += Number(value?.dpa_usage);
-        }
-        data?.push({ name: key, y: totalDpaUsage });
-      }
-
-      const ser = weekdays?.map((day) => {
-        let match = data?.filter((el) => el.name == day);
-        if (match.length) {
-          return match[0];
-        } else {
-          return { name: day, y: 0 };
-        }
+      let slicedData = res.result.map((el) => {
+        return {
+          assign_dpa_id: el.assign_dpa_id,
+          client_id: el.client_id,
+          date_time: el.date_time,
+          dpa_id: el.dpa_id,
+          dpa_usage: el.dpa_usage,
+          embeding_usage: el.embeding_usage,
+          user_id: el.user_id,
+        };
       });
-      setTokenCount(0);
-      ser.map((el) => setTokenCount((prev) => prev + Number(el.y)));
-      setoverview(ser);
-      set_data_to_show(ser);
+      let prev = {};
+      slicedData.map((el)=>{
+        let d = new Date(el.date_time);
+        const dat_ = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+        
+        if (!(dat_ in prev)){prev[dat_] = Number(el.dpa_usage)}
+        else {
+          let old = prev[dat_]
+          prev[dat_] = Number(old) + Number(el.dpa_usage)
+        }
+      })
+      let finalData = [];
+      let t = 0;
+      Object.keys(prev).forEach(function(key, index) {
+        finalData.push([Number(key),Number(prev[key])])
+        t += Number(prev[key])
+      });
+      setTotalToken(0);
+      setTotalToken(t);
+      set_data_to_show(finalData)
+      console.log(finalData)
     }
   };
 
@@ -201,21 +205,16 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
     },
 
     xAxis: {
-      categories: weekdays,
-      labels: {
-        style: {
-          fontSize: "13px",
-          fontFamily: "Verdana, sans-serif",
-        },
-      },
+      type: 'datetime',
     },
+    
     yAxis: {
       title: {
         text: "",
       },
       min: 50,
-      max: tokenCount,
-      tickInterval: 5000,
+      max: totalToken,
+      tickInterval: totalToken > 1000 ? 5000 : 1000,
       startPoint: 0,
     },
     plotOptions: {
@@ -331,26 +330,22 @@ const UsageDpaChart = ({ clientId, dpaId, userId }) => {
           className="d-flex"
           style={{
             justifyContent: "space-between",
-            marginTop: "10px",
+           
           }}
         >
-          <div>All DPAs collective</div>
+          <div style={{fontSize:"12px"}}>All DPAs collective</div>
           <div>
-            <h3>
-              {tokenCount > 1000
-                ? `${Math.round(tokenCount / 1000)}k`
-                : "0" || tokenCount > 1000
-                ? `${Math.round(tokenCount / 1000)}k`
-                : "0" || tokenCount > 1000
-                ? `${Math.round(tokenCount / 1000)}k`
-                : "0"}{" "}
+            <h3 style={{fontSize:"16px", marginTop:"10px"}}>
+              {totalToken > 1000
+                ? `${Math.round(totalToken / 1000)}k`
+                
+                : totalToken}{" "}
               Token
             </h3>
-            Last {date}
           </div>
         </div>
         <div className="col-12  mt-3">
-          <HighchartsReact highcharts={Highcharts} options={options1} containerProps={{ style: { height: "200px" } }}  />
+          <HighchartsReact highcharts={Highcharts} options={options1} containerProps={{ style: { height: "13vh" } }}  />
         </div>
       </div>
     </div>

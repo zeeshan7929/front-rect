@@ -6,6 +6,7 @@ import { useOnClickOutside } from "../../clientDashboard/Common/Others/useOnClic
 import Header from "../Common/Header/Header";
 import { Document, Font, PDFViewer, Page, Text } from "@react-pdf/renderer";
 
+
 function WorkPlaceRelationDocPreview({ sideBar, setSidebarOpen }) {
   const location = useLocation();
   let item = location?.state?.item;
@@ -14,12 +15,14 @@ function WorkPlaceRelationDocPreview({ sideBar, setSidebarOpen }) {
   const [searchParams,] = useSearchParams();
 
   const [content, setContent] = useState("");
+  const [fileInfo,setFileinfo] = useState([]);
 
   const getUploadedDocs = async () => {
     const body = {
       doc_id: searchParams.get("id"),
     };
     const responce = await postData("u_get_file_content", body);
+    setFileinfo(responce.result);
     const readableBase64 = atob(responce.result.content);
     setContent(readableBase64);
   };
@@ -61,29 +64,32 @@ function WorkPlaceRelationDocPreview({ sideBar, setSidebarOpen }) {
               <div className="col-auto rightPart px-0 h-100">
                 <div className="row mx-0 flex-column flex-nowrap overflow-hidden">
                   <Header
-                    title={"Workplace Relation Document Preview"}
+                    title={"Document Preview"}
                     setSidebarOpen={setSidebarOpen}
                   />
                 </div>
               
                 
                 <div className="col-12 align-items-center ps--4a px-4 py-3">
-                  <div className="rw">
+                  {fileInfo.filename.includes('.xlsx') ? "Sorry file can't view" :(
+                    <div className="rw">
                     <PDFViewer
-                      showToolbar={true}
+                      showToolbar={false}
                       style={{
                         height: window.innerHeight,
                         marginVertical: "2%",
                         width: "100%",
+                        fontSize:"12px"
                       }}
                     >
                       <Document>
                         <Page pageNumber={1} size="A4">
-                          <Text>{content}</Text>
+                          <Text style={{fontSize:"14px"}}>{content}</Text>
                         </Page>
                       </Document>
                     </PDFViewer>
                   </div>
+                  )}
                 </div>
               </div>
             </div>

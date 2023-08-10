@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {  useCallback, useEffect, useRef, useState } from "react";
 import Sidebar from "../Common/Sidebar/Sidebar";
 import { postData } from "../../clientDashboard/Common/fetchservices";
 import { useLocation } from "react-router-dom";
@@ -6,6 +6,9 @@ import { useOnClickOutside } from "../../clientDashboard/Common/Others/useOnClic
 import Header from "../Common/Header/Header";
 
 function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
+  const messagesEndRef = useRef(null)
+
+  
   const location = useLocation();
   let item = location?.state?.item;
   let ids = JSON.parse(localStorage.getItem("a_login"));
@@ -17,6 +20,10 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
   const [show, setshow] = useState(false);
   const [submitting,setSubmitting] = useState(false);
   const ref = useRef();
+  const messageRef = useRef();
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
+  }
   
   const handleStarredMsg = async () => {
     const body = {
@@ -34,8 +41,9 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
   useOnClickOutside(ref, handleAutoClose);
 
   useEffect(() => {
+    scrollToBottom()
     handleStarredMsg();
-  }, []);
+  }, [details]);
 
   const handleQuestion = useCallback(async () => {
     const body = {
@@ -48,6 +56,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
     try {
     const res = await postData("u_request_query", body);
     details === undefined ? setDetails(res?.result) : setDetails(old=>[...old,res?.result])
+    
     // details.length > 0 ? setDetails(old=>[...old,res?.result]) : setDetails(res?.result)
     console.log(details)
     setshow(true);
@@ -118,9 +127,9 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                   <div className="col-12 mainPart d-flex flex-column flex-fill overflow-hidden chatArea">
                     <div className="row mx-0 flex-column flex-nowrap overflow-hidden h-100">
                       <div className="col-12 flex-fill overflow-hidden-auto">
-                        <div className="row mx-0 py-4 px-xl-4">
+                        <div className="row mx-0 py-4 px-xl-4 chat-section" >
                           { Object?.keys(details).map((keyName, ii)=>(
-                            <div>
+                            <div ref={messagesEndRef}>
                                 <div className="col-12 userMessage mb-3">
                                 <div className="userMessageInner p-2 d-flex justify-content-between">
                                   <div className="text">{details[ii].query}</div>
@@ -134,10 +143,16 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                                   <div className="row mx-0">
                                     <div className="col-12 px-0">
                                       <div className="text">
-                                        {details[ii].response}
+                                        {details[ii].response.split('\n').map(function (item,idx){
+                                            
+                                          return <div>{item !== "" ? (<span>
+                                            {item}
+                                            <br></br>
+                                          </span>) : ""}</div>
+                                        })}
                                       </div>
                                     </div>
-                                  
+                                    <div  />
                                     
                                  
                               <div className="col-12 px-0">
@@ -201,6 +216,7 @@ function WorkPlaceRelation({ sideBar, setSidebarOpen }) {
                             
                           }
                         </div>
+                        <div ref={messagesEndRef} />
                       </div>
                       <div className="col-12 bottomBar chatBottomBar d-flex align-items-start">
                         <div className="chatInputWrapper w-100 position-relative mt-4">

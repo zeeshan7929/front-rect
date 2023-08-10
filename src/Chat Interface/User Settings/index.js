@@ -62,7 +62,7 @@ function UserSetting({ sideBar, setSidebarOpen }) {
     if (res.result == "success") {
       toaster(true, "Success");
     } else {
-      toaster(false, "Something went wrong");
+      toaster(false, "User Password doesn't match!");
     }
     setBodyState({});
     setModelOpen1(false);

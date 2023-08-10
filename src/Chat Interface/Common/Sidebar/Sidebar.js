@@ -26,12 +26,8 @@ function Sidebar({ setSidebarOpen }) {
   }, []);
 
   const hanldeLogout = () => {
-    if (token) {
-      localStorage.removeItem("a_login");
-      navigate("/assistant-login");
-    }else{
-      navigate("/assistant-login");
-    }
+    localStorage.clear();
+    navigate("/assistant-login");
   };
   let get_base64_image =  async(image) =>{
     const body = {
@@ -41,12 +37,11 @@ function Sidebar({ setSidebarOpen }) {
     
     setProfileImage(res?.result)
   }
-
+  let data = JSON.parse(localStorage.getItem("a_login"))
   const handleAdmin = () => {
-    if (JSON.parse(localStorage.getItem("m_login"))) {
-      navigate("/master-dashboard");
+    if (data.role === "admin") {
+      navigate("/dashboard");
     } else {
-      navigate("/master-login");
     }
   };
   return (
@@ -99,8 +94,10 @@ function Sidebar({ setSidebarOpen }) {
                   </NavLink>
                 </li>
                 <li>
+                  
                   <NavLink
-                    to="/document-upload"
+                    to={data.role === "user" ? "/document-upload" : "/dpa-overview"}
+                    target={data.role === "user" ? "" : "_blank"}
                     className={`sLink ${
                       pathname == "/document-upload" ? "active" : ""
                     }`}

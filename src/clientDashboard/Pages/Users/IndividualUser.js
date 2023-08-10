@@ -31,6 +31,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
   const [modelOpen, setModelOpen] = useState(false);
   const [modelOpen1, setModelOpen1] = useState(false);
   const [el, setEl] = useState({});
+  const [userLimit,setUserLimit] = useState(500000);
   const [initialValues, setInitialValus] = useState({
     name: item?.name,
     email: item?.email,
@@ -38,7 +39,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
     password: item?.password,
   });
   useEffect(() => {
-    let limit = 500000;
+    let limit = item?.usage_limit;
     let value;
     if (limit >= 10000 && limit <= 100000) {
       value = 1;

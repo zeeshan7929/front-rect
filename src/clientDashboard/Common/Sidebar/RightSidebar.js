@@ -74,7 +74,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
       }`}
       // id="SearchOffcanvas"
     >
-      <div ref={myref} className="row overflow-hidden-auto  w-100 mx-0">
+      <div ref={myref} className="row overflow-scroll-auto  w-100 mx-0">
         <div className="col-12 rightSide chartSide sticky-top rightSidebarHeader">
           <div className="row mx-0 align-items-center pt-xxl-4 pb-xxl-5 w-100">
             <div className="col-xxl-12 col searchgroup">
@@ -108,7 +108,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
             </div>
           </div>
         </div>
-        <div className="col-12 chartSide">
+        <div className="col-12 chartSide" style={{maxHeight:"80vh",overflowY:"scroll"}}>
           <div className="accordion row mx-0 g-4" id="accordionExample">
             <div className="col-12">
               <div className="accordion-item border-0">
@@ -170,7 +170,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                                 {RenewsDate(renewDate)}
                               </span>
                             </div>
-                            <div className="col-auto reviewCounting">
+                            <div className="col-auto reviewCounting"style={{color:"#4a5c77"}}>
                               {CountConverter(totalTokenUsed)}{" "}
                               <span>
                                 out of {CountConverter(assignDpa)}
@@ -195,6 +195,8 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                         percentage={
                           assignDpa > 0 ? Round((((totalTokenUsed + Number.EPSILON) * 100) / assignDpa),1) : "0"
                         }
+                        usage_renew={RenewsDate(renewDate)}
+                        for_={"0"}
                       />
                     </div>
                     <div className="row mx-0 gx-1">
@@ -258,7 +260,7 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                       {open.trained == "" ? (
                         <>
                           <div className="row mx-0 align-items-center my-1">
-                            <div className="col-auto chartValue fw-semibold">
+                            <div className="col-auto chartValue fw-semibold" style={{color:"#9BB7C2"}}>
                               {tierInfo.training_tokens > 0
                                 ? (( percent / tierInfo.training_tokens ) * 100).toFixed()
                                 : "0"}
@@ -276,18 +278,18 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                                 }
                                 strokeWidth={2}
                                 trailWidth={2}
-                                strokeColor="#4a5c77"
+                                strokeColor="#9BB7C2"
                               />
                             </div>
                           </div>
                           <div className="row mx-0 align-items-center">
                             <div className="col renewsContent fw-normal">
-                              Usage renews{" "}
+                              <span style={{color:"#9BB7C2"}}>Training Tokens</span> used
                               <span className="fw-bold">
-                                {RenewsDate(renewDate)}
+                                
                               </span>
                             </div>
-                            <div className="col-auto reviewCounting">
+                            <div className="col-auto reviewCounting" style={{color:"#9BB7C2"}}>
                               {CountConverter(percent)}{" "}
                               <span>
                                 out of {CountConverter(tierInfo.training_tokens)}
@@ -314,30 +316,32 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                             ? ((percent / tierInfo.training_tokens) * 100).toFixed()
                             : "0"
                         }
+                        usage_renew={RenewsDate(renewDate)}
+                        for_={"1"}
                       />
                     </div>
                     <div className="row mx-0 gx-1">
                       <div className="col text-center d-flex flex-column">
-                        <div className="token fw-normal flex-fill">
+                        <div className="token fw-normal flex-fill" style={{color:"#9BB7C2"}}>
                           Document
                         </div>
-                        <div className="tokenCounting text-center fw-semibold">
+                        <div className="tokenCounting text-center fw-semibold" style={{color:"#9BB7C2"}}>
                           {uploaddocument ? uploaddocument : 0}
                         </div>
                       </div>
                       <div className="col text-center d-flex flex-column">
-                        <div className="token fw-normal flex-fill">
+                        <div className="token fw-normal flex-fill" style={{color:"#9BB7C2"}}>
                           Total Tokens used
                         </div>
-                        <div className="tokenCounting text-center fw-semibold">
+                        <div className="tokenCounting text-center fw-semibold" style={{color:"#9BB7C2"}}>
                           {CountConverter(percent)}
                         </div>
                       </div>
-                      <div className="col text-center d-flex flex-column">
-                        <div className="token fw-normal flex-fill">
+                      <div className="col text-center d-flex flex-column" style={{color:"#9BB7C2"}}>
+                        <div className="token fw-normal flex-fill" style={{color:"#9BB7C2"}}>
                           Tokens remaining
                         </div>
-                        <div className="tokenCounting text-center fw-semibold">
+                        <div className="tokenCounting text-center fw-semibold" style={{color:"#9BB7C2"}}>
                           {CountConverter(tierInfo.training_tokens - percent)}
                         </div>
                       </div>

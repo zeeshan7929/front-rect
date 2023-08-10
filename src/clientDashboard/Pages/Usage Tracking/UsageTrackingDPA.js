@@ -17,7 +17,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
   let item = location?.state?.item;
   // let renewDate = location?.state?.getRenewDate;
   // let tokenLimit = location?.state?.tokenLimit;
-  
+  console.log(item)
   const [users, setUsers] = useState([]);
   const [filterUsers, setfilterUsers] = useState([]);
   const [search, setsearch] = useState("");
@@ -41,6 +41,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
     const res = await postData("get_all_users_of_dpa", bod);
     console.log(res)
     setUsers(res?.result);
+    console.log(res)
 
     const res2 = await postData("get_client_tier_info", body);
     setTierInfo(res2?.result);
@@ -140,13 +141,14 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
         </div>
       ),
       center: true,
+      minWidth:"250px",
       style: {
         marginLeft: "20px",
       },
     },
     {
       name: `ACROSS ALL DPA`,
-      selector: (row) => <div>{CountConverter(row.dpa_usage_by_user)}</div>,
+      selector: (row) => <div>{CountConverter(row.usage_limit)}</div>,
       center: true,
     },
     {
@@ -174,6 +176,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
           ></i>
         </div>
       ),
+      maxWidth:"50px",
       right: true,
       style: {
         marginRight: "20px",

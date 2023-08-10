@@ -234,7 +234,7 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                       </div>
                                     </div>
                                   </div>
-                                  <div className="col-md-3 col-sm-6">
+                                  {/* <div className="col-md-3 col-sm-6">
                                     <div
                                       className="dashboardCard"
                                       style={{ backgroundColor: "#A5B3C9" }}
@@ -258,8 +258,8 @@ export default function Dashboard({ sideBar, setSidebarOpen }) {
                                         </div>
                                       </div>
                                     </div>
-                                  </div>
-                                  <div className="col-md-3 col-sm-6">
+                                  </div> */}
+                                  <div className="col-md-5 col-sm-6">
                                     <div
                                       className="dashboardCard"
                                       style={{ backgroundColor: "#898989" }}

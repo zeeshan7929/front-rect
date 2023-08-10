@@ -174,7 +174,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
       },
     },
   ];
-
+  console.log(data)
   const customStyles = {
     rows: {
       style: {
@@ -354,7 +354,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                         : item?.token_usage}{" "}
                                       out of{" "}
                                       {item?.usage_limit > 1000
-                                        ? `${item?.usage_limit / 1000}k`
+                                        ? `${CountConverter(item?.usage_limit)}`
                                         : item?.usage_limit}
                                     </div>
                                   </div>
@@ -445,20 +445,22 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                       false,
                                       data,
                                       "center",
-                                      totalTokens
+                                      totalTokens,
+                                      "0"
                                     )}
                                   />
                                   {data?.map((el) => {
                                     let token = +el.y;
                                     return (
-                                      <div className="col px-0 d-flex  alignItems-center mt-5 mb-5 ms-5">
+                                      <div className="col px-0 d-flex  alignItems-center  mb-3 ms-5">
                                         <div
                                           className="circle"
                                           style={{
-                                            width: "34px",
-                                            height: "34px",
+                                            width: "16px",
+                                            height: "16px",
                                             borderRadius: "50%",
                                             border: "none",
+                                            marginTop:"5px",
                                             backgroundColor: el.color,
                                           }}
                                         />
@@ -467,7 +469,8 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                             className="hWorkplace"
                                             style={{
                                               color: "#1E1E1E",
-                                              fontSize: "26px",
+                                              fontSize: "14px",
+                                              marginLeft:"-10px"
                                             }}
                                           >
                                             {el.name}
@@ -475,11 +478,11 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                           <div
                                             className="hWorkplace"
                                             style={{
-                                              fontSize: "26px",
+                                              fontSize: "13px",
                                               fontWeight: "bold",
                                             }}
                                           >
-                                            {el.y > 1000 ? `${el.y}k` : el.y}{" "}
+                                            {el.y > 1000 ? `${el.y}k` : el.y}{" "}Tokens
                                             
                                           </div>
                                         </div>

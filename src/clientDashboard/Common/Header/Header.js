@@ -87,6 +87,8 @@ const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
                     <img style={{borderRadius:15}}
                       src={profileImage}
                       className="w-100"
+                      width={"68"}
+                      height={"68"}
                       alt=""
                     />
                   </NavLink>

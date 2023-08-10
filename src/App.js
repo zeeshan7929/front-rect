@@ -305,7 +305,7 @@ function App() {
             }
           />
 
-<Route
+          <Route
             path="/workplace-relation-preview"
             element={
               <WorkPlaceRelationDocPreview
