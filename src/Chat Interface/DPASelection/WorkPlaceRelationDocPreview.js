@@ -22,7 +22,7 @@ function WorkPlaceRelationDocPreview({ sideBar, setSidebarOpen }) {
       doc_id: searchParams.get("id"),
     };
     const responce = await postData("u_get_file_content", body);
-    setFileinfo(responce.result);
+    setFileinfo(responce?.result);
     const readableBase64 = atob(responce.result.content);
     setContent(readableBase64);
   };
@@ -64,14 +64,14 @@ function WorkPlaceRelationDocPreview({ sideBar, setSidebarOpen }) {
               <div className="col-auto rightPart px-0 h-100">
                 <div className="row mx-0 flex-column flex-nowrap overflow-hidden">
                   <Header
-                    title={"Document Preview"}
+                    title={fileInfo.filename}
                     setSidebarOpen={setSidebarOpen}
                   />
                 </div>
               
                 
                 <div className="col-12 align-items-center ps--4a px-4 py-3">
-                  {fileInfo.filename.includes('.xlsx') ? "Sorry file can't view" :(
+                  {fileInfo.filename !== undefined && (fileInfo.filename.includes(".xlsx") || fileInfo.filename.includes(".docx"))  ? <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>Sorry can't display this file.</div> :(
                     <div className="rw">
                     <PDFViewer
                       showToolbar={false}
