@@ -116,12 +116,12 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
       client_id: ids.client_id,
       user_id: String(item.id),
     };
-    const res = await postData("get_user_all_assign_dpa", body);
-    let data = res?.result?.map((item) => {
-      const { dpa_id } = item;
-      return allClientDpa?.filter((el) => el.id == dpa_id)[0];
-    });
-    setUserDpa(data);
+    const res = await postData("u_get_user_all_assign_dpa", body);
+    // let data = res?.result?.map((item) => {
+    //   const { dpa_id } = item;
+    //   return allClientDpa?.filter((el) => el.id === dpa_id)[0];
+    // });
+    setUserDpa(res?.result);
   };
 
   const handleAssignDpa = (id) => {
@@ -141,7 +141,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
 
   const handleRevokeUser = async () => {
     const body = {
-      dpa_id: String(el.id),
+      dpa_id: String(el.dpa_id),
       user_id: String(item.id),
       client_id: ids.client_id,
     };
@@ -517,8 +517,10 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                 </div>
                                               </div>
                                               {allClientDpa.map((el) => {
+                                                 
                                                 return (
-                                                  <li
+                                                  (el.dpa_name !== "" && el.dpa_name !== undefined && el.dpa_name !== null ) ? (
+                                                    <li
                                                     key={Math.random()}
                                                     className="dropdown-item"
                                                   >
@@ -532,6 +534,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                     <span className="itemText">
                                                       {el.dpa_name}
                                                     </span>
+                                                   
                                                     <div
                                                       className="asignBtn"
                                                       onClick={() =>
@@ -541,6 +544,8 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                       Assign
                                                     </div>
                                                   </li>
+                                                  ) : ""
+                                                  
                                                 );
                                               })}
                                             </ul>
@@ -579,7 +584,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                         {el?.dpa_name}
                                                       </div>
                                                       <div className="dpaSubHeadings">
-                                                        {el?.dpa_description}
+                                                        {el?.description}
                                                       </div>
                                                     </div>
                                                     <div className="col-auto px-0 dropdown">

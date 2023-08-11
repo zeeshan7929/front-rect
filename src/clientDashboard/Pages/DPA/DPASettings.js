@@ -30,8 +30,11 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [usersdata, setusersdata] = useState([]);
+  const [el, setEl] = useState({});
   const [tokenUsage,setTokenUsage] = useState([]);
   const [tierInfo,setTierInfo] = useState([]);
+
+  const [modelOpen1, setModelOpen1] = useState(false);
   const [initialValues, setInitialValus] = useState({
     name: item?.dpa_name ? item?.dpa_name : "",
     description: item?.dpa_description ? item?.dpa_description : "",
@@ -41,12 +44,22 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
   });
   const [modelOpen, setModelOpen] = useState(false);
   const handleAssignUsers = (el) => {
-    let fill = usersdata?.filter((item) => item?.id == el.id);
+    let fill = usersdata?.filter((item) => item?.id === el.id);
     if (fill.length) {
       return;
     } else {
       setusersdata([...usersdata, el]);
     }
+  };
+
+  const handleAssignDpa = async(dpa_id,user_id) => {
+    const body = {
+      dpa_id: String(item?.id ? item.id : dpaID),
+      user_id: String(user_id),
+      client_id: ids.client_id,
+    };
+    const res = await postData("assign_new_dpa_to_user", body);
+    userAssignedApi();
   };
   const autoClose = () => {
     setOPen("");
@@ -66,12 +79,26 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
     });
     setAllAssignUsersFilter(fill);
   };
-  const handleRemoveUsers = (id, iid) => {
-    let fill = usersdata?.filter((el) => {
-      return el.user_id !== id || el.id !== iid;
-    });
-    setusersdata(fill);
+  
+  const handleRemoveUsers = async(id, iid) => {
+    const body = {
+      dpa_id: String(iid),
+      user_id: String(id),
+      client_id: ids.client_id,
+    };
+    const res = await postData("delete_user_assign_dpa", body);
+    if (res.result === "success") {
+      let fill = usersdata?.filter((el) => {
+        return el.id !== id || el.dpa_id !== iid;
+      });
+      setusersdata(fill);
+      
+    }
+    
   };
+
+  
+  
   const handleSubmit = async (val) => {
     let userDate = {};
     assignUsers?.map((el) => {
@@ -624,8 +651,8 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                                                   className="hovers"
                                                                   onClick={() =>
                                                                     handleRemoveUsers(
-                                                                      el?.user_id,
-                                                                      el?.id
+                                                                      el?.id,
+                                                                      el?.dpa_id
                                                                     )
                                                                   }
                                                                 >
@@ -758,9 +785,10 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                                                           <button
                                                                             type="button"
                                                                             onClick={() =>
-                                                                              handleAssignUsers(
-                                                                                el
-                                                                              )
+                                                                              // handleAssignUsers(
+                                                                              //   el
+                                                                              // )
+                                                                              handleAssignDpa(el.dpa_id,el.id)
                                                                             }
                                                                             className="btn assignBtn rounded-pill text-black border-0 d-flex align-items-center text-white"
                                                                           >
@@ -796,9 +824,10 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                                                           <button
                                                                             type="button"
                                                                             onClick={() =>
-                                                                              handleAssignUsers(
-                                                                                el
-                                                                              )
+                                                                              // handleAssignUsers(
+                                                                              //   el
+                                                                              // )
+                                                                              handleAssignDpa(el.dpa_id,el.id)
                                                                             }
                                                                             className="btn assignBtn rounded-pill text-black border-0 d-flex align-items-center text-white"
                                                                           >
@@ -877,6 +906,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
         modelOpen={modelOpen}
         setModelOpen={setModelOpen}
         hanldeFunction={handleDeleteDpa}
+        
       />
     </main>
   );
