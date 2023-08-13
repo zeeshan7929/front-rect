@@ -8,7 +8,7 @@ function DocumentUpload({ sideBar, setSidebarOpen }) {
   const navigate = useNavigate();
   const ids = JSON.parse(localStorage.getItem("a_login"));
   const [AllDpa, setAllDpa] = useState([]);
-  const [selectedDpa, setSelectedDpa] = useState("");
+  const [selectedDpa, setSelectedDpa] = useState([]);
 
   const all_assign_dpa = async () => {
     const body = {
@@ -63,16 +63,16 @@ function DocumentUpload({ sideBar, setSidebarOpen }) {
                                           key={Math.random()}
                                           className="col-12 px-0"
                                           onClick={() => {
-                                            if (el.dpa_id == selectedDpa) {
-                                              setSelectedDpa("");
+                                            if (el.dpa_id == selectedDpa.id) {
+                                              setSelectedDpa([]);
                                             } else {
-                                              setSelectedDpa(el.dpa_id);
+                                              setSelectedDpa({"id":el.dpa_id,"name":el.dpa_name});
                                             }
                                           }}
                                         >
                                           <div
                                             className={`card dataCard bg-two  ${
-                                              selectedDpa == el.dpa_id
+                                              selectedDpa.id == el.dpa_id
                                                 ? "chat-active"
                                                 : ""
                                             }`}
@@ -91,7 +91,7 @@ function DocumentUpload({ sideBar, setSidebarOpen }) {
                                                 </div>
                                               </div>
                                               <div className="col px-0 dataCardHeading">
-                                                {el?.name}
+                                                {el?.dpa_name}
                                               </div>
                                               <div className="col px-0 dataCardText">
                                                 {el?.description}
@@ -157,7 +157,7 @@ function DocumentUpload({ sideBar, setSidebarOpen }) {
                                       onClick={() => {
                                         if (selectedDpa) {
                                           navigate("/upload-page", {
-                                            state: { dpaId: selectedDpa },
+                                            state: { dpa_details: selectedDpa },
                                           });
                                         }
                                       }}

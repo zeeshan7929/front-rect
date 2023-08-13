@@ -7,7 +7,6 @@ import { PDFViewerer } from "../../Common/Others/PDFViewerer";
 // import font from "../../../../assets/fonts/Poppins/Poppins-Regular.ttf";
 
 import { Logger } from "logging-library";
-import FileViewer from "react-file-viewer";
 import { CustomErrorComponent } from "custom-error";
 // import pdf from "../../Common/Others/document-viewer.pdf";
 
@@ -24,8 +23,10 @@ import {
 import pdf from "../../Common/Others/pdf";
 import { postData } from "../../Common/fetchservices";
 import {useNavigate, useLocation } from "react-router-dom";
-{
-}
+
+
+
+
 export const DocumentViewer = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   let dpaInfo = location.state.data;

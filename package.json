@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cyntler/react-doc-viewer": "^1.13.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.12.2",
@@ -32,7 +33,7 @@
     "react-csv": "^2.2.2",
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
-    "react-file-viewer": "^1.2.1",
+    "react-file-viewer": "^0.5.0",
     "react-highcharts": "^16.1.0",
     "react-icons": "^4.8.0",
     "react-indiana-drag-scroll": "^2.2.0",

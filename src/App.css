@@ -24,7 +24,9 @@
   margin-right: 20px;
   text-align: center;
 }
-
+.pg-viewer-wrapper #docx{
+  max-height:calc(100vh - 70px) !important;
+}
 .column-title {
   width: 150px;
   text-align: "left" !important;

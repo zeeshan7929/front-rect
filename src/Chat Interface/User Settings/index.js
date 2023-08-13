@@ -84,6 +84,7 @@ function UserSetting({ sideBar, setSidebarOpen }) {
       user_id: String(ids.user_id),
       name: val.name,
       email: val.email,
+      role:ids.role,
       profile_image: base64Image,
     };
     setModelOpen(true);
@@ -91,7 +92,7 @@ function UserSetting({ sideBar, setSidebarOpen }) {
   };
 
   const hanldeUpdateUserInfo = async () => {
-    const res = await postData("u_update_user_info", bodyState);
+    const res = await postData("update_user_info", bodyState);
     if (res.result == "success") {
       toaster(true, "Success");
     } else {

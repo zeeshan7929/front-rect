@@ -7,9 +7,12 @@ import { toaster } from "../../clientDashboard/Common/Others/Toaster";
 import FileSizeConverter from "../../clientDashboard/Common/Others/FileSizeConverter";
 import Header from "../Common/Header/Header";
 
+
 function UploadPage({ sideBar, setSidebarOpen }) {
   const location = useLocation();
+  
   const state = location.state;
+  console.log(state)
   const ids = JSON.parse(localStorage.getItem("a_login"));
   const navigate = useNavigate();
   const { base64Image, convertToBase64, setBase64Image } = useImageToBase64();
@@ -39,18 +42,25 @@ function UploadPage({ sideBar, setSidebarOpen }) {
     const body = {
       client_id: ids.client_id,
       user_id: String(ids.user_id),
-      dpa_id: String(state.dpaId),
+      dpa_id: String(state.dpa_details.id),
       filename: fileName,
       content: base64Image,
     };
+    var button = document.getElementById('btn-upload')
+    button.disabled = true
+    button.textContent = "Please wait ..."
     const res = await postData("u_upload_new_document", body);
     if (res.result == "success") {
       navigate("/upload-review");
+    }else if (String(res.result).includes("already")){
+      toaster(true,"Document already exists in database. Please review with admin or change name of document. "+fileName)
     }
+    button.disabled = false
+    button.textContent = "Upload For Review"
   };
   let t = (
     <>
-      Document Upload <span> HR</span>
+      Document Upload: <span> {state.dpa_details.name}</span>
     </>
   );
   return (
@@ -85,7 +95,7 @@ function UploadPage({ sideBar, setSidebarOpen }) {
                                     <input
                                       type="file"
                                       onChange={(e) => handleFileChange(e)}
-                                      accept=".pdf,.jpg,.png,"
+                                      accept=".PDF, .XSLX, .PPTX, .DOCX, .TXT, .CSV"
                                       id="uploadFile"
                                       hidden
                                     />
@@ -108,7 +118,7 @@ function UploadPage({ sideBar, setSidebarOpen }) {
                                             Select a file or drag and drop here
                                           </div>
                                           <div className="formetText">
-                                            JPG, PNG or PDF, file size no more
+                                          PDF, XSLX, PPTX, DOCX, TXT or CSV file size no more
                                             than 10MB
                                           </div>
                                         </div>
@@ -192,174 +202,20 @@ function UploadPage({ sideBar, setSidebarOpen }) {
                                       <div className="col-auto ps-0 fileNameText">
                                         {fileName}
                                       </div>
-                                      <NavLink
+                                      {/* <NavLink
                                         to="/document-preview"
                                         state={{ data: blob }}
                                         className="col-auto previewText"
                                       >
                                         Preview
-                                      </NavLink>
+                                      </NavLink> */}
                                       <div className="col px-0 fileSizeText">
                                         {FileSizeConverter(fileSize)}
                                       </div>
                                     </div>
                                   </div>
 
-                                  {/* <div className="col-12 uploadedCard">
-                                  <NavLink to="" className="closetBtn">
-                                    <img
-                                      src="../assets/img/svg/close.svg"
-                                      alt=""
-                                    />
-                                  </NavLink>
-                                  <div className="row mx-0 align-items-center flex-nowrap">
-                                    <div className="col-auto px-0">
-                                      <div className="fileImgOuter">
-                                        <img
-                                          src="../assets/img/svg/file.svg"
-                                          className="w-100 h-100"
-                                          alt=""
-                                        />
-                                      </div>
-                                    </div>
-                                    <div className="col-auto ps-0 fileNameText">
-                                      Passport.png
-                                    </div>
-                                    <NavLink
-                                      to=""
-                                      className="col-auto previewText"
-                                    >
-                                      Preview
-                                    </NavLink>
-                                    <div className="col px-0 fileSizeText">
-                                      5.7MB
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-12 uploadedCard">
-                                  <NavLink to="" className="closetBtn">
-                                    <img
-                                      src="../assets/img/svg/close.svg"
-                                      alt=""
-                                    />
-                                  </NavLink>
-                                  <div className="row mx-0 align-items-center flex-nowrap">
-                                    <div className="col-auto px-0">
-                                      <div className="fileImgOuter">
-                                        <img
-                                          src="../assets/img/svg/file.svg"
-                                          className="w-100 h-100"
-                                          alt=""
-                                        />
-                                      </div>
-                                    </div>
-                                    <div className="col-auto ps-0 fileNameText">
-                                      Passport.png
-                                    </div>
-                                    <NavLink
-                                      to=""
-                                      className="col-auto previewText"
-                                    >
-                                      Preview
-                                    </NavLink>
-                                    <div className="col px-0 fileSizeText">
-                                      5.7MB
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-12 uploadedCard">
-                                  <NavLink to="" className="closetBtn">
-                                    <img
-                                      src="../assets/img/svg/close.svg"
-                                      alt=""
-                                    />
-                                  </NavLink>
-                                  <div className="row mx-0 align-items-center flex-nowrap">
-                                    <div className="col-auto px-0">
-                                      <div className="fileImgOuter">
-                                        <img
-                                          src="../assets/img/svg/file.svg"
-                                          className="w-100 h-100"
-                                          alt=""
-                                        />
-                                      </div>
-                                    </div>
-                                    <div className="col-auto ps-0 fileNameText">
-                                      Passport.png
-                                    </div>
-                                    <NavLink
-                                      to=""
-                                      className="col-auto previewText"
-                                    >
-                                      Preview
-                                    </NavLink>
-                                    <div className="col px-0 fileSizeText">
-                                      5.7MB
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-12 uploadedCard">
-                                  <NavLink to="" className="closetBtn">
-                                    <img
-                                      src="../assets/img/svg/close.svg"
-                                      alt=""
-                                    />
-                                  </NavLink>
-                                  <div className="row mx-0 align-items-center flex-nowrap">
-                                    <div className="col-auto px-0">
-                                      <div className="fileImgOuter">
-                                        <img
-                                          src="../assets/img/svg/file.svg"
-                                          className="w-100 h-100"
-                                          alt=""
-                                        />
-                                      </div>
-                                    </div>
-                                    <div className="col-auto ps-0 fileNameText">
-                                      Passport.png
-                                    </div>
-                                    <NavLink
-                                      to=""
-                                      className="col-auto previewText"
-                                    >
-                                      Preview
-                                    </NavLink>
-                                    <div className="col px-0 fileSizeText">
-                                      5.7MB
-                                    </div>
-                                  </div>
-                                </div>
-                                <div className="col-12 uploadedCard">
-                                  <NavLink to="" className="closetBtn">
-                                    <img
-                                      src="../assets/img/svg/close.svg"
-                                      alt=""
-                                    />
-                                  </NavLink>
-                                  <div className="row mx-0 align-items-center flex-nowrap">
-                                    <div className="col-auto px-0">
-                                      <div className="fileImgOuter">
-                                        <img
-                                          src="../assets/img/svg/file.svg"
-                                          className="w-100 h-100"
-                                          alt=""
-                                        />
-                                      </div>
-                                    </div>
-                                    <div className="col-auto ps-0 fileNameText">
-                                      Passport.png
-                                    </div>
-                                    <NavLink
-                                      to=""
-                                      className="col-auto previewText"
-                                    >
-                                      Preview
-                                    </NavLink>
-                                    <div className="col px-0 fileSizeText">
-                                      5.7MB
-                                    </div>
-                                  </div>
-                                </div> */}
+                                  
                                 </div>
                               </div>
                             </div>
@@ -385,6 +241,7 @@ function UploadPage({ sideBar, setSidebarOpen }) {
                       Cancel
                     </div>
                     <div
+                    id="btn-upload"
                       onClick={() => handleUploadDoc()}
                       className="btn uploadBtn"
                     >
