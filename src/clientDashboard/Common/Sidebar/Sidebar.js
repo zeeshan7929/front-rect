@@ -1,9 +1,15 @@
 import React, { useRef } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useOnClickOutside } from "../Others/useOnClickOutside";
+import { postData } from "../fetchservices";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Sidebar = ({ setSidebarOpen, sideBar }) => {
   const myref = useRef(null);
+  const [profileImage,setProfileImage] = useState("")
+  const [clientInfo,setClientInfo] = useState([]);
+  
   const location = useLocation();
   const navigate = useNavigate();
   const { pathname } = location;
@@ -24,13 +30,42 @@ const Sidebar = ({ setSidebarOpen, sideBar }) => {
 
   useOnClickOutside(myref, autoClose);
 
+  useEffect(() => {
+      postData("get_client_info", {
+        client_id: token.client_id,
+        user_id: token.user_id.toString(),
+      })
+        .then((res) => {
+          
+          if (String(res?.result.logo_path) !== "Logo_images/"){
+            get_base64_image(res?.result.logo_path)
+          }
+          setClientInfo(res?.result)
+        })
+        .catch((er) => {
+          console.warn(er);
+        });
+      
+    }, []);
+  let get_base64_image =  async(image) =>{
+    const body = {
+      filename:image
+    }
+    const res = await postData("reterive_image", body);
+    if (res.result !== ""){
+    setProfileImage(res?.result)
+    console.log(profileImage)
+    }
+  }
   return (
     <div ref={myref} className="col-12 sideBarInner h-100">
       <div className="row d-flex  flex-column h-100 flex-nowrap">
-        <div className="col-12 sideBarHeader">
-          <div className="companyLogo">
-            <img src="assets/img/logo/Logo.svg" alt="image" />
+        <div className="col-12 sideBarHeader " style={{justifyContent:"center",alignItems:"center",gap:"5px",marginBottom:"20px"}}>
+          <div className="" style={{marginBottom:"5px",padding:"0px"}}>
+            <img width={"50px"} height={"50px"} style={{border:"1px solid gray" , borderRadius:"50px"}} src={profileImage !== "" ? "data:image/png;base64, "+profileImage : ""} alt="image" />
+            
           </div>
+          <h4>{clientInfo.name}</h4>
           <img
             src="assets/img/svg/menuClose.svg"
             className="d-lg-none menuCloseIcon pointer"

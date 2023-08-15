@@ -74,7 +74,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
       width:"200px",
       sortable: true,
       cell: (row) => (
-        <div className="dpa-row d-flex align-items-center">
+        <div className="dpa-row d-flex align-items-left">
           <span
             className="circle"
             // style={{ backgroundColor: randomBackground() }}
@@ -92,7 +92,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
     {
       name: "Role",
       cell: (row) => (
-        <div className="dpa-row d-flex align-items-center ">
+        <div className="dpa-row d-flex align-items-left ">
           <button
             className="btn btn-secondary  btn-rounded w-50 rounded-pill  my-btn"
             style={{
@@ -109,17 +109,19 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
     {
       name: "USAGE",
       selector: (row) => (
-        <div>
+        <div className="dpa-row  align-items-left ">
           {Number(row?.token_usage) || Number(row?.usage_limit) > 0 ? (
             <Line
               percent={(Number(row?.token_usage) / Number(row?.usage_limit)) * 100}
               strokeWidth={5}
               trailWidth={5}
+              lineHeight="2px"
               strokeColor="#9BB7C2"
               strokeLinecap="square"
               style={{
                 width: "100px",
                 alignItems: "flex-start",
+                lineHeight:"2px"
               }}
             />
           ) : (
@@ -150,7 +152,7 @@ const UserOverview = ({ sideBar, setSidebarOpen }) => {
       name: "Actions",
       selector: (row) => {
         return (
-          <NavLink
+          <NavLink  className=" d-flex align-items-center "
             to="/user-management"
             state={{ item: row }}
             style={{ fontSize: "20px" }}

@@ -23,6 +23,8 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
   const [userDetails,setUserDetails] = useState([]);
   const [admins,setAdmins] = useState([]);
   const [clientInfo,setClientInfo] = useState([]);
+  const [companyProfile,setCompanyProfile] = useState("");
+  const [profileBase,setProfileBase] = useState("");
   const location = useLocation();
   let c_info = location?.state.c_info;
   
@@ -56,7 +58,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
     console.log(res.result)
     setUserDetails(res.result)
 
-    const ad = await postData('get_client_all_role_users',body)
+    const ad = await postData('get_client_all_role_admin',body)
     setAdmins(ad.result)
 
     const cInfo = await postData('get_client_info',body);
@@ -103,6 +105,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
     state: "",
     street_address: "",
     zip_code: "",
+    file:"",
   });
 
   const [userdata, setuserdata] = useState({
@@ -151,7 +154,9 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
     localStorage.removeItem("details");
     if (res.result) {
       setOpen1("");
-      ree.resetForm();
+      localStorage.setItem("a_login",JSON.stringify({"client_id":String(ids.client_id),"role":"admin","user_id":String(initial.role)}))
+      user_details()
+      // ree.resetForm();
       toaster(true, "SuccessFul Update");
     }
   };
@@ -187,17 +192,29 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
       state: stateCode[0]?.name ? stateCode[0]?.name : stateCode1[0]?.name,
       address: initial?.street_address,
       zip_code: initial?.zip_code,
+      logo_filename:companyProfile.name,
+      logo_content:profileBase.split(',')[1]
     };
     const res = await postData("update_client_info", body);
     localStorage.setItem("updatephone", JSON.stringify(body.phone));
     if (res.result) {
       setOpen("");
-      ree.resetForm();
+      // ree.resetForm();
       toaster(true, "SuccessFull Update");
     } else {
       toaster(false, "Fields are Empty");
     }
   };
+  const convertToBase64 = (file) => {
+    const reader = new FileReader()
+
+    reader.readAsDataURL(file)
+
+    reader.onload = () => {
+      console.log('called: ', reader)
+      setProfileBase(reader.result)
+    }
+  }
   return (
     <>
       <div className="container-fluid h-100">
@@ -268,25 +285,29 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                       </div>
                                       <div className="col-12">
                                         <div className="settingTopBoxSubHead">
-                                          Current Representative:
-                                          <span>
-                                            {userDetails.username
+                                          Current Representative: {" "}
+                                          <strong>
+                                          {userDetails.username
                                               }
-                                          </span>
+                                          </strong>
                                         </div>
                                       </div>
                                       <div className="col-12 py-1">
                                         <div className="moreDetail">
                                           Email:{" "}
+                                          <strong>
                                           {userDetails.email}
+                                          </strong>
                                         </div>
                                       </div>
                                       <div className="col-12">
                                         <div className="moreDetail">
                                           Phone:{" "}
+                                          <strong>
                                           {details
                                             ? details?.phone
                                             : updatephone}
+                                          </strong>
                                         </div>
                                       </div>
                                     </div>
@@ -313,42 +334,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   Update Representative
                                                 </div>
                                               </div>
-                                              {/* <div className="col-12">
-                                                <div className="updateBoxSubHead">
-                                                  The new representative has to
-                                                  be an admin.
-                                                </div>
-                                              </div>
-                                              <div className="col-12 mb-3">
-                                                <Field
-                                                  type="text"
-                                                  className="form-control updateInp"
-                                                  name="name"
-                                                  id
-                                                  placeholder="Enter Name"
-                                                />
-                                                <p className="text-danger">
-                                                  {formik.touched.name &&
-                                                  formik.errors.name
-                                                    ? formik.errors.name
-                                                    : ""}
-                                                </p>
-                                              </div>
-                                              <div className="col-12 mb-4">
-                                                <Field
-                                                  type="emial"
-                                                  className="form-control updateInp"
-                                                  name="email"
-                                                  id
-                                                  placeholder="Enter email"
-                                                />
-                                                <p className="text-danger">
-                                                  {formik.touched.email &&
-                                                  formik.errors.email
-                                                    ? formik.errors.email
-                                                    : ""}
-                                                </p>
-                                              </div> */}
+                                              
                                               <div className="col-12">
                                                 <div className="settingSelectTop position-relative d-flex justify-content-between align-items-center">
                                                   <div className="settingSelectTopTxt">
@@ -387,13 +373,18 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
 
                                                   {admins?.map((el) => {
                                                     return (
+                                                    el.id !== ids.user_id ? (
+                                                      
                                                       <option
                                                         value={el?.id}
                                                         
                                                       >
                                                         {el?.name}
                                                       </option>
-                                                    );
+                                                    
+                                                    ) : ""
+                                                      
+                                                      );
                                                   
                                                 })}
                                                 </Field>
@@ -455,12 +446,24 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   <div class="companyImg position-relative">
                                                     <img
                                                       src={logo}
+                                                      width={"100px"}
+                                                      height={"100px"}
                                                       alt=""
                                                     />
                                                     <input
                                                       type="file"
                                                       class="d-none"
                                                       id="companyImg"
+                                                      name="companyImg"
+                                                      onChange={(event) => {
+                                                        if (event.currentTarget.files[0]){
+                                                          setCompanyProfile(event.currentTarget.files[0])
+                                                          convertToBase64(event.currentTarget.files[0])
+                                                          setLogo(profileBase)
+                                                        }
+                                                       
+                                                        
+                                                      }}
                                                     />
                                                     <label
                                                       for="companyImg"

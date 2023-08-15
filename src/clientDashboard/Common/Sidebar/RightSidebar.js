@@ -322,26 +322,26 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
                     </div>
                     <div className="row mx-0 gx-1">
                       <div className="col text-center d-flex flex-column">
-                        <div className="token fw-normal flex-fill" style={{color:"#9BB7C2"}}>
+                        <div className="token fw-normal flex-fill" style={{color:"#464255"}}>
                           Document
                         </div>
-                        <div className="tokenCounting text-center fw-semibold" style={{color:"#9BB7C2"}}>
+                        <div className="tokenCounting text-center fw-semibold" style={{color:"#464255"}}>
                           {uploaddocument ? uploaddocument : 0}
                         </div>
                       </div>
                       <div className="col text-center d-flex flex-column">
-                        <div className="token fw-normal flex-fill" style={{color:"#9BB7C2"}}>
+                        <div className="token fw-normal flex-fill" style={{color:"#464255"}}>
                           Total Tokens used
                         </div>
-                        <div className="tokenCounting text-center fw-semibold" style={{color:"#9BB7C2"}}>
+                        <div className="tokenCounting text-center fw-semibold" style={{color:"#464255"}}>
                           {CountConverter(percent)}
                         </div>
                       </div>
-                      <div className="col text-center d-flex flex-column" style={{color:"#9BB7C2"}}>
-                        <div className="token fw-normal flex-fill" style={{color:"#9BB7C2"}}>
+                      <div className="col text-center d-flex flex-column" style={{color:"#464255"}}>
+                        <div className="token fw-normal flex-fill" style={{color:"#464255"}}>
                           Tokens remaining
                         </div>
-                        <div className="tokenCounting text-center fw-semibold" style={{color:"#9BB7C2"}}>
+                        <div className="tokenCounting text-center fw-semibold" style={{color:"#464255"}}>
                           {CountConverter(tierInfo.training_tokens - percent)}
                         </div>
                       </div>

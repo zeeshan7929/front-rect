@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Sidebar from "../../Common/Sidebar/Sidebar";
 import Header from "../../Common/Header/Header";
 import { postData } from "../../Common/fetchservices";
@@ -38,8 +38,8 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
     })
     
     setDatabaseConsume(u);
-    const tokens = await postData("get_dpa_training_token_usage_count", body);
-    setTokenUsage(tokens.result.dpa_training_token_usage_count);
+    const tokens = await postData("get_client_training_token_usage", body);
+    setTokenUsage(tokens.result.training_token_usage);
     
     const res55 = await postData("get_client_tier_info", body);
     setTierInfo(res55.result);
@@ -215,21 +215,38 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
                                           </div>
                                         </div>
                                     
-                                    <div className="col-sm-auto mt-sm-0 mt-3">
-                                      <button
-                                        type="button"
-                                        className="dpadeleteBtn btn rounded-pill text-white d-inline-flex align-items-center gap-3 border-0 fw-medium"
-                                        onClick={() => setModelOpen(true)}
-                                      >
-                                        <span className="d-inline-flex">
-                                          <img
-                                            src="assets/img/svg/trash-2.svg"
-                                            className="w-100"
-                                            alt=""
-                                          />
-                                        </span>
-                                        Delete DPA
-                                      </button>
+                                        <div className="col-auto d-flex justify-content-end pe-0">
+                                      <NavLink
+                                            to="/dpa-settings"
+                                            state={{
+                                              item: item ? item : "",
+                                              dpaID,
+                                              trainedToken: tokenUsage
+                                                ? tokenUsage
+                                                : "",
+                                            }}
+                                            className="relationBarright text-dec"
+                                          >
+                                            <button  style={{fontFamily: "Poppins",
+                                            fontStyle: "normal",
+                                            fontWeight: "500",
+                                            fontSize: "14px",
+                                            lineHeight: "21px",
+                                            letterSpacing: ".4px",
+                                            color: "#fff",
+                                            background: "#e7ebb8",
+                                            borderRadius: "18px",
+                                            border: "none",
+                                            padding: "9px 25px",
+                                            display: "flex",
+                                            alignItems: "center",}}>
+                                              <img
+                                                src="assets/img/svg/settings.svg"
+                                                alt="image"
+                                              />
+                                              Edit DPA Settings &amp; Users
+                                            </button>
+                                          </NavLink>
                                     </div>
                                   </div>
                                 </div>
@@ -433,7 +450,7 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
                                           <div className="row mx-0 text-center align-items-center gx-xxl-2 text-nowrap">
                                             <div className="col-sm col-12">
                                               <div className="balanceCount first fw-bold">
-                                                {CountConverter(tierInfo?.training_tokens)}
+                                                {CountConverter(tierInfo?.training_tokens - tokenUsage) }
                                               </div>
                                               <div className="balanceContent">
                                                 Current Balance
@@ -455,7 +472,7 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
                                             </div>
                                             <div className="col-sm col-12">
                                               <div className="balanceCount thard fw-bold">
-                                                {CountConverter(tierInfo.training_tokens - databaseConsume)}
+                                                {CountConverter((tierInfo?.training_tokens - tokenUsage) - databaseConsume)}
                                               </div>
                                               <div className="balanceContent">
                                                 Post-Upload
@@ -479,7 +496,9 @@ const UploadRequest = ({ sideBar, setSidebarOpen }) => {
                                               </div>
                                               <div className="col-auto">
                                                 <button
-                                                  type="button"
+                                                  type="button" 
+                                                  disabled = {databaseConsume > 0 ? false : true}
+                                                  style={{background: databaseConsume > 0 ? "#4a3aff" : "gray"}}
                                                   className="btn saveChangeBtn approvBtn border-0 d-flex align-items-center justify-content-center text-white"
                                                   onClick={()=>{onApproveAllDocuments();}}
                                                 >

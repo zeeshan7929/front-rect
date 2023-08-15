@@ -117,6 +117,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
           {row?.name.toLowerCase()}
         </>
       ),
+      minWidth:"180px",
       letf: true,
     },
     {
@@ -124,7 +125,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
       name: `TOTAL USAGE : ${dpaUsage}`,
       selector: (row) => (
         
-        <div>
+        <div className="dpa-row  align-items-left">
           <Line
             percent={(Number(row?.dpa_usage_by_user ) / Number(row?.usage_limit)) * 100  }
             strokeWidth={5}
@@ -141,7 +142,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
         </div>
       ),
       center: true,
-      minWidth:"250px",
+      minWidth:"190px",
       style: {
         marginLeft: "20px",
       },
@@ -398,23 +399,24 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                           <div
                                             style={{
                                               display: "flex",
-                                              lineHeight: "50px",
+                                              lineHeight: "30px",
+                                              paddingBottom:"-10px",
                                               paddingRight: "16px",
                                               paddingLeft: "16px",
-                                              fontSize: "15px",
+                                              fontSize: "13px",
                                               backgroundColor: "#f6f8f9",
                                               borderRadius: "1.5em 1.5em 0 0",
                                               alignItems: "center",
                                               textAlign: "center",
-                                              justifyContent: "space-between",
+                                              justifyContent: "space-around",
                                             }}
                                           >
-                                            <p>USER</p>
-                                            <p>DPA USAGE</p>
-                                            <p style={{ paddingRight: "30px" }}>
-                                              LIMIT
+                                            <p style={{marginTop:"5px"}}>USER</p>
+                                            <p style={{marginTop:"5px" ,minWidth:"270px"}}>DPA USAGE</p>
+                                            <p style={{ paddingRight: "30px" ,marginTop:"5px" }} >
+                                              USER LIMIT
                                             </p>
-                                            <p>Action</p>
+                                            <p style={{marginTop:"5px"}}>Action</p>
                                           </div>
                                         }
                                         columns={columns}

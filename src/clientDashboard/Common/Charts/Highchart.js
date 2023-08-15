@@ -177,9 +177,8 @@ const Highchart = ({ id, gradiant, height }) => {
       title: {
         text: "",
       },
-      min: 1000,
-      max: totalToken,
-      tickInterval: 5000,
+      min: 0,
+      
       startPoint: 0,
     },
     tooltip: {

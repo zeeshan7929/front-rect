@@ -22,16 +22,15 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
   const location = useLocation();
   
   let item = location?.state?.item;
-  
-  console.log(item)
   const [value, setValue] = useState(1);
   const [open, setopen] = useState(false);
   const [userDpa, setUserDpa] = useState([]);
+  const [userInfo,setUserInfo] = useState([]);
   const [allClientDpa, setAllClientDpa] = useState([]);
   const [modelOpen, setModelOpen] = useState(false);
   const [modelOpen1, setModelOpen1] = useState(false);
   const [el, setEl] = useState({});
-  const [userLimit,setUserLimit] = useState(500000);
+  const [userLimit,setUserLimit] = useState("");
   const [initialValues, setInitialValus] = useState({
     name: item?.name,
     email: item?.email,
@@ -39,17 +38,19 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
     password: item?.password,
   });
   useEffect(() => {
-    let limit = item?.usage_limit;
+    getUserInfo()
+    let limit = parseInt(userInfo.usage_limit);
+    item.usage_limit = userInfo.usage_limit
     let value;
-    if (limit >= 10000 && limit <= 100000) {
+    if (limit >= 10000 && limit < 100000) {
       value = 1;
-    } else if (limit > 100000 && limit <= 250000) {
+    } else if (limit >= 100000 && limit < 250000) {
       value = 2;
-    } else if (limit > 250000 && limit <= 500000) {
+    } else if (limit >= 250000 && limit < 500000) {
       value = 3;
-    } else if (limit > 500000 && limit <= 1000000) {
+    } else if (limit >= 500000 && limit < 1000000) {
       value = 4;
-    } else if (limit > 1000000 && limit < 2000000) {
+    } else if (limit >= 1000000 && limit < 2000000) {
       value = 5;
     } else if (limit >= 2000000 && limit < 2000100) {
       value = 6;
@@ -57,7 +58,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
       value = 7;
     }
     setValue(value);
-  }, []);
+  }, [userInfo.usage_limit]);
   const [sheet, setSheet] = useState(null);
   const [curValue, setCurValue] = useState(50);
 
@@ -110,7 +111,15 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
     const res = await postData("get_client_all_dpa_details", body);
     setAllClientDpa(res.result);
   };
-
+  const getUserInfo = async () => {
+    const body = {
+      client_id: ids.client_id,
+      user_id: String(item.id)
+    };
+    const res = await postData("get_user_info", body);
+    console.log(res.result)
+    setUserInfo(res.result);
+  };
   const getAllDpaOfUser = async () => {
     const body = {
       client_id: ids.client_id,

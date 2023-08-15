@@ -32,9 +32,8 @@ const ManageDpaDatabase = ({ sideBar, setSidebarOpen }) => {
     const res = await postData("get_dpa_all_documents", body);
     setDocuments(res.result);
     setAllDocs(res.result);
-    const tokens = await postData("get_dpa_training_token_usage_count", body);
-    setTokenUsage(tokens.result.dpa_training_token_usage_count);
-    
+    const tokens = await postData("get_client_training_token_usage", body);
+    setTokenUsage(tokens.result.training_token_usage);
     const res55 = await postData("get_client_tier_info", body);
     setTierInfo(res55.result);
     

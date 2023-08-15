@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { HighchartsReact } from "highcharts-react-official";
 import Highcharts from "highcharts";
 import { postData } from "../../../clientDashboard/Common/fetchservices";
+import { CountConverter } from "../../Common/Others/CountConverter";
 const MasterHighchart = ({ title }) => {
   const [dpausage, setdpausage] = useState([]);
   const [usage,setUsage] = useState([]);
@@ -19,46 +20,64 @@ const MasterHighchart = ({ title }) => {
     };
     
     const res = await postData("get_all_range_dpa_training_token_usage", body);
-    let data = [];
-    let groupedDate = res?.result.reduce((total, cur) => {
-      const { date_time } = cur;
-      let val = new Date(date_time).toLocaleDateString("default", {
-        weekday: "short",
-      });
-      total[val] = total[val] || [];
-      total[val].push(cur);
-      return total;
-    }, {});
+    let slicedData = res.result.map((el) => {
+      return {
+        assign_dpa_id: el.assign_dpa_id,
+        client_id: el.client_id,
+        date_time: el.date_time,
+        dpa_id: el.dpa_id,
+        dpa_usage: el.dpa_usage,
+        embeding_usage: el.embeding_usage,
+        user_id: el.user_id,
+      };
+    });
+    const grouped = slicedData.reduce((cur, total) => {
+      const { date_time } = total;
+      cur[date_time] = cur[date_time] ?? [];
+      cur[date_time].push(total);
+      return cur;
+    }, []);
     setTotalUsage(0)
-    let u__ = 0;
-    for (let key in groupedDate) {
-      let totalDpaUsage = 0;
-      for (let value of groupedDate[key]) {
-        totalDpaUsage += Number(value?.embeding_usage);
-        u__ += totalDpaUsage
-      }
+
+
+    let da = Object.values(grouped).map((item) => {
+      let dpaUsage = 0;
+      let embaddeingUsage = 0;
+      item.map(
+        (el) =>
+          (dpaUsage += Number(el.dpa_usage)) &&
+          (embaddeingUsage += Number(el.embeding_usage))
+      );
+      return { name: item[0].date_time, y: embaddeingUsage };
+    });
+    let prev = {};
+    slicedData.map((el)=>{
+      let d = new Date(el.date_time);
+      const dat_ = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
       
-      data?.push({ name: key, y: totalDpaUsage });
-    }
-    let x__ = 0;
-    data.forEach((el)=>{
-      x__ += el.y;
-    })
-    
-    setUsage(x__);
-    
-    setTotalUsage(u__);
-    const ser = weekdays?.map((day) => {
-      let match = data?.filter((el) => el.name === day);
-      if (match.length) {
-        return match[0];
-      } else {
-        return { name: day, usage: 0 };
+      if (!(dat_ in prev)){prev[dat_] = Number(el.embeding_usage)}
+      else {
+        let old = prev[dat_]
+        prev[dat_] = Number(old) + Number(el.embeding_usage)
       }
+    })
+    let finalData = [];
+    let t = 0;
+    Object.keys(prev).forEach(function(key, index) {
+      finalData.push([Number(key),Number(prev[key])])
+      t += Number(prev[key])
     });
     
-    setdpausage(ser);
-    console.log(ser);
+    setUsage(t);
+    const ser_ = slicedData.map((el)=>{
+      let d = new Date(el.date_time);
+      let dat_ = Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate())
+      
+      return {label :dat_,y:Number(el.embeding_usage)}
+    })
+    
+    setdpausage(finalData);
+    console.log(finalData);
   };
 
   const handleMinDate = (n) => {
@@ -107,6 +126,7 @@ const MasterHighchart = ({ title }) => {
   const options1 = {
     chart: {
       type: "area",
+      animation: Highcharts.svg
       // height: 277,
     },
     accessibility: {
@@ -120,7 +140,7 @@ const MasterHighchart = ({ title }) => {
     },
 
     xAxis: {
-      categories: weekdays,
+      type: 'datetime',
       labels: {
         style: {
           fontSize: "13px",
@@ -132,8 +152,13 @@ const MasterHighchart = ({ title }) => {
       title: {
         text: "",
       },
-      min: 5000,
-      max: usage,
+      labels: {
+        formatter: function () {
+            return CountConverter(this.value)
+        }
+    },
+      min: 0,
+      format: '{value}',
       tickInterval: 10000,
       startPoint: 0,
     },
@@ -146,13 +171,17 @@ const MasterHighchart = ({ title }) => {
       enabled: false,
     },
     tooltip: {
-      headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-      pointFormat:
-        '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-        '<td style="padding:0"><b>{point.y:.1f} k</b></td></tr>',
+      headerFormat: '<span style="font-size:10px">{point.key}</span><br><table>',
+      pointFormatter: function(){
+        var point = this,
+            series = point.series;
+
+        return `${series.name}: <b>${CountConverter(point.y)}</b>`
+    },
       footerFormat: "</table>",
       shared: true,
       useHTML: true,
+      
     },
 
     series: [
@@ -220,7 +249,7 @@ const MasterHighchart = ({ title }) => {
           <div>All modal usage of client</div>
           <div>
             <h3>
-              {`${Math.round(usage / 1000)}k`}{" "}
+              {CountConverter(usage)}{" "}
               Token
             </h3>
             Last {date}

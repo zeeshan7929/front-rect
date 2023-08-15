@@ -15,7 +15,9 @@ const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
     })
       .then((res) => {
         
-        get_base64_image(res?.result.profile_image)
+        if (res?.result.profile_image !== ""){
+          get_base64_image(res?.result.profile_image)
+        }
         setUserInfo(res?.result)
       })
       .catch((er) => {
@@ -37,8 +39,9 @@ const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
       filename:image
     }
     const res = await postData("reterive_image", body);
-    
-    setProfileImage("data:image/png;base64, "+res?.result)
+    if (res.result !== ""){
+    setProfileImage(res?.result)
+    }
   }
   return (
     <div className="col-12 header px-0">
@@ -85,7 +88,12 @@ const Header = ({ setSidebarOpen, textHeader, textSubHeader, sideBar }) => {
                 <div className="col-auto px-0">
                   <NavLink className="userImgBtn">
                     <img style={{borderRadius:15}}
-                      src={profileImage}
+                      
+                      src={
+                        profileImage !== ""
+                        ? "data:image/png;base64, "+profileImage
+                        : "../assets/img/svg/user.svg"
+                      }
                       className="w-100"
                       width={"68"}
                       height={"68"}
