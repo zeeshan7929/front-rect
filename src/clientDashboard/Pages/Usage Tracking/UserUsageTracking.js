@@ -23,10 +23,11 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   
   
   let renewDate = location?.state?.getRenewDate;
-  
+  const [isOpen,setIsOpen] = useState(false);
   const [filterdpa, setFilterDpa] = useState([]);
   const [search, setsearch] = useState("");
   const [dt,setDT] = useState([])
+
 
   const handleItems = async() =>{
     const bod = {
@@ -82,6 +83,36 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
     filterAllUsers();
   }, [search]);
   // console.log("Item : ")
+  async function revoke_access(dpa_id){
+    
+    const bod = {
+      client_id: item?.client_id,
+      user_id: String(item?.id),
+      dpa_id: String(dpa_id)
+    }
+    const res = await postData("delete_user_assign_dpa", bod);
+    console.log(res)
+    document.getElementById(String(dpa_id)).style.display = "none";
+    handleItems();
+    filterAllUsers();
+  }
+  function delete_dpa(dpa_id){
+    var dis = document.getElementById(String(dpa_id)).style.display
+    if (dis === "block"){
+      document.getElementById(String(dpa_id)).style.display = "none";
+      return
+    }else{
+      var elms = document.getElementsByClassName('r-a')
+      var arr = [...elms];
+      arr.forEach(el=>{
+        el.style.display = "none"
+      });
+      document.getElementById(String(dpa_id)).style.display = "block";
+    }
+
+    
+  }
+    
   const dt_len = dt.length;
   const columns = [
     {
@@ -150,7 +181,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
     {
       name: "Action",
       selector: (row) => (
-        <div>
+        <div style={{display:"flex",justifyContent:"center",flexDirection:"row"}}>
           <NavLink
             to="/usage-tracking-dpa"
             state={{ item: row }}
@@ -162,9 +193,19 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
           >
             <i style={{ color: "#1E1E1E" }} class="bi bi-eye"></i>
           </NavLink>
+          
+            <div className="r-a" id={String(row.dpa_id)} style={{display:"none", position:"absolute",right:"0",top:"0",background: "white",padding: "8px",borderRadius: "10px",boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)",marginTop:"-8%"}}>
+              <div style={{backgroundColor:"red",color:"white",padding:"3px 10px 3px 10px",borderRadius:"10px"}} onClick={()=>{revoke_access(row.dpa_id)}}>
+              Revoke Access
+              </div>
+            </div>
+          
+          
           <i
             style={{ fontSize: "26px", textDecoration: "none" }}
             class="bi bi-gear"
+            
+            onClick={()=>{delete_dpa(row.dpa_id)}}
           ></i>
         </div>
       ),

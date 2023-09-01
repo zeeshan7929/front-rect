@@ -25,6 +25,8 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
   const [clientInfo,setClientInfo] = useState([]);
   const [companyProfile,setCompanyProfile] = useState("");
   const [profileBase,setProfileBase] = useState("");
+  const [repInfo,setRepInfo] = useState([]);
+  const [repId,setRepId] = useState("");
   const location = useLocation();
   let c_info = location?.state.c_info;
   
@@ -65,6 +67,15 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
     setClientInfo(cInfo.result);
     setInitialValue(cInfo.result);
     get_base64_image(cInfo.result.logo_path);
+    setRepId(cInfo.result.rep_id)
+    //Call for representative info 
+    const body1 = {
+      client_id:ids?.client_id,
+      rep_id:cInfo.result.rep_id
+    }
+    const r_info = await postData('get_representative_info',body1)
+    setRepInfo(r_info.result)
+    
     
   }
   let get_base64_image =  async(image) =>{
@@ -145,19 +156,19 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
     const initial = formRef?.current?.values;
     const ree = formRef?.current.resetForm();
     const body = {
-      
+      client_id:ids?.client_id,
       user_id: initial?.role,
     };
 
     const res = await postData("update_representative_info", body);
-    localStorage.setItem("updatedetails", JSON.stringify(body));
-    localStorage.removeItem("details");
+    // localStorage.setItem("updatedetails", JSON.stringify(body));
+    // localStorage.removeItem("details");
     if (res.result) {
       setOpen1("");
-      localStorage.setItem("a_login",JSON.stringify({"client_id":String(ids.client_id),"role":"admin","user_id":String(initial.role)}))
+      // localStorage.setItem("a_login",JSON.stringify({"client_id":String(ids.client_id),"role":"admin","user_id":String(initial.role)}))
       user_details()
       // ree.resetForm();
-      toaster(true, "SuccessFul Update");
+      toaster(true, "Successfully Update");
     }
   };
 
@@ -287,7 +298,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                         <div className="settingTopBoxSubHead">
                                           Current Representative: {" "}
                                           <strong>
-                                          {userDetails.username
+                                          {repInfo.username
                                               }
                                           </strong>
                                         </div>
@@ -296,7 +307,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                         <div className="moreDetail">
                                           Email:{" "}
                                           <strong>
-                                          {userDetails.email}
+                                          {repInfo.email}
                                           </strong>
                                         </div>
                                       </div>
@@ -304,9 +315,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                         <div className="moreDetail">
                                           Phone:{" "}
                                           <strong>
-                                          {details
-                                            ? details?.phone
-                                            : updatephone}
+                                          {repInfo.phone}
                                           </strong>
                                         </div>
                                       </div>
@@ -365,24 +374,22 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
                                                   
                                                 >
                                                   <option
-                                                          value={ids?.user_id}
+                                                          value={clientInfo.rep_id}
                                                           selected
                                                         >
-                                                          {userDetails?.username}
+                                                          {repInfo?.username}
                                                         </option>
 
                                                   {admins?.map((el) => {
                                                     return (
-                                                    el.id !== ids.user_id ? (
+                                                      (el?.name !== repInfo.username) ? 
                                                       
                                                       <option
-                                                        value={el?.id}
-                                                        
-                                                      >
-                                                        {el?.name}
-                                                      </option>
-                                                    
-                                                    ) : ""
+                                                      value={el?.id}
+                                                    >
+                                                      {el?.name}
+                                                    </option>
+                                                      : ""
                                                       
                                                       );
                                                   

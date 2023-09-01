@@ -9,6 +9,7 @@ import { toaster } from "../../clientDashboard/Common/Others/Toaster";
 const MasterLogin = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
+  const [submitting,setSubmitting] = useState(false);
   const [initialValue, setInitialValue] = useState({
     email: "",
     password: "",
@@ -25,7 +26,7 @@ const MasterLogin = () => {
       email: value?.email,
       password: value?.password,
     };
-
+    setSubmitting(true);
     const res = await postData("m_login", data);
     if (res !== undefined) {
       localStorage.setItem("m_login", JSON.stringify(res?.result));
@@ -35,8 +36,10 @@ const MasterLogin = () => {
       const body = {
         email: value?.email,
       };
+      setSubmitting(true);
       const res2 = await postData("m_request_otp", body);
-      if (res2?.result == "OTP sent!") {
+      if (res2?.result === "OTP sent!") {
+        setSubmitting(true);
         toaster(true, "Success");
         setTimeout(() => {
           navigate("/master-verify-otp");
@@ -45,6 +48,7 @@ const MasterLogin = () => {
         toaster(false, "OTP Did Not Match");
       }
     } else {
+      setSubmitting(true);
       toaster(false, "Email & Password din't Match");
     }
     resetForm();

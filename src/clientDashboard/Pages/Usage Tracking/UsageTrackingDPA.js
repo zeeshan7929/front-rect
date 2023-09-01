@@ -64,7 +64,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
     const res1 = await postData("get_dpa_info", body);
     setDpaInfo(res1?.result);
     const count = await postData("get_dpa_token_usage_count", body);
-    const res3 = await postData("get_client_sub_renew_date", body);
+    const res3 = await postData("get_client_info", body);
     setRenewDate(res3.result?.sub_renew_date);
     setdpacount(count?.result?.dpa_usage_token_count);
     const body___ = { 
@@ -100,6 +100,37 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
   let b = users?.map((el) => el.dpa_usage_by_user);
   let dpaUsage = b?.reduce((total, cur) => Number(total) + Number(cur), 0);
   
+
+  async function revoke_access(user_id){
+    const bod = {
+      client_id: item?.client_id,
+      user_id: String(user_id),
+      dpa_id: String(item?.dpa_id ? item.dpa_id : item?.id)
+    }
+    const res = await postData("delete_user_assign_dpa", bod);
+    console.log(res)
+    document.getElementById(String(user_id)).style.display = "none";
+    handleDpa();
+    filterAllUsers();
+  }
+  function delete_dpa(dpa_id){
+    var dis = document.getElementById(String(dpa_id)).style.display
+    if (dis === "block"){
+      document.getElementById(String(dpa_id)).style.display = "none";
+      return
+    }else{
+      var elms = document.getElementsByClassName('r-a')
+      var arr = [...elms];
+      arr.forEach(el=>{
+        el.style.display = "none"
+      });
+      document.getElementById(String(dpa_id)).style.display = "block";
+    }
+
+    
+  }
+
+
   const columns = [
     {
       name: `TOTAL USER : ${users?.length}`,
@@ -155,7 +186,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
     {
       selector: (row) => (
        
-        <div>
+        <div style={{display:"flex",justifyContent:"center",flexDirection:"row"}}>
           <NavLink
             to="/user-usage-tracking"
             state={{ item: row,
@@ -171,9 +202,16 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
           >
             <i style={{ color: "#1E1E1E" }} class="bi bi-eye"></i>
           </NavLink>
+
+          <div className="r-a" id={String(row.id)} style={{display:"none", position:"absolute",right:"0",top:"0",background: "white",padding: "8px",borderRadius: "10px",boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)",marginTop:"-20% "}}>
+              <div style={{backgroundColor:"red",color:"white",padding:"3px 10px 3px 10px",borderRadius:"10px"}} onClick={()=>{revoke_access(row.id)}}>
+              Revoke Access
+              </div>
+            </div>
           <i
             style={{ fontSize: "26px", textDecoration: "none" }}
             class="bi bi-gear"
+            onClick={()=>{delete_dpa(row.id)}}
           ></i>
         </div>
       ),
@@ -346,7 +384,7 @@ const UsageTrackingDPA = ({ sideBar, setSidebarOpen }) => {
                                       <div className="col-12 d-flex align-items-center justify-content-between pt-2">
                                         <div className="progresbarbottomtext">
                                           Usage renews{" "}
-                                          <strong>{RenewsDate(refreshTokens.remaining_days)}</strong>{" "}
+                                          <strong>{RenewsDate(renewDate)}</strong>{" "}
                                         </div>
                                         <div className="progresbarbottomtext">
                                           {CountConverter(dpacount)} out of{" "}

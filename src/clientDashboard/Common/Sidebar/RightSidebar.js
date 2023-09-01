@@ -23,8 +23,15 @@ export const RightSidebar = ({ sideBar, setSidebarOpen, tiers, id }) => {
       client_id: ids.client_id,
     };
     let res = await postData("get_client_tier_info", body);
-    setRenewDate(res?.result?.renew_date);
+    // setRenewDate(res?.result?.renew_date);
     setTierInfo(res?.result)
+
+
+    
+    const sub_renew_date = await postData("get_client_info",body)
+    setRenewDate(sub_renew_date?.result?.sub_renew_date)
+
+    
     
     const res1 = await postData("/get_client_training_token_usage", body);
     

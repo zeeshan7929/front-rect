@@ -17,7 +17,7 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
   const [filterUserDpa, setFilterUserDpa] = useState([]);
   const [dpastats, setDpaStats] = useState();
   const [search, setsearch] = useState("");
-
+  const [renewDate,setRenewDate] = useState("");
   let data = [];
   const groupedDpa = userDpa?.reduce((total, cur) => {
     const { name } = cur;
@@ -44,7 +44,14 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
     };
     const res = await postData("u_get_user_all_assign_dpa", body);
     setUserDpa(res?.result);
+
+    const re_new = await postData("get_client_info",body)
+    setRenewDate(re_new?.result?.sub_renew_date)
+
   };
+
+
+
 
   const handleUserStats = async () => {
     const body = {
@@ -229,8 +236,7 @@ function TrackMyUsage({ sideBar, setSidebarOpen }) {
                                 DPA Usage renews{" "}
                                 <strong>
                                   {RenewsDate(
-                                    dpastats?.dpa_usage_renewal_days_remaining >
-                                      0
+                                    renewDate
                                   )}
                                 </strong>
                               </div>

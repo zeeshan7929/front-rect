@@ -19,11 +19,11 @@ const Sidebar = ({ setSidebarOpen, sideBar }) => {
   const hanldeLogout = () => {
     if (token) {
       localStorage.removeItem("a_login");
-      navigate("/master-login");
+      navigate("/assistant-login");
     }
   };
   const autoClose = () => {
-    if (sideBar == "grid") {
+    if (sideBar === "grid") {
       setSidebarOpen("");
     }
   };

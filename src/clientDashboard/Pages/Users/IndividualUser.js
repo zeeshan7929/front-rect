@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import { useLocation, NavLink } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import { toaster } from "../../Common/Others/Toaster";
-import "react-rangeslider/lib/index.css";
+
 import Slider from "react-rangeslider";
 import Modal from "../../Common/Modal/index";
 import { useOnClickOutside } from "../../Common/Others/useOnClickOutside";
@@ -27,6 +27,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
   const [userDpa, setUserDpa] = useState([]);
   const [userInfo,setUserInfo] = useState([]);
   const [allClientDpa, setAllClientDpa] = useState([]);
+  const [toAssignDPA,setToAssignDPA] = useState([]);
   const [modelOpen, setModelOpen] = useState(false);
   const [modelOpen1, setModelOpen1] = useState(false);
   const [el, setEl] = useState({});
@@ -83,7 +84,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
       user_id: String(item.id),
       password: value?.password,
     };
-    const res = await postData("update_user_info", body);
+    const res = await postData("u_update_user_info", body);
     if (res.result == "success") {
       resetForm();
       toaster(true, "Success");
@@ -104,12 +105,17 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
     }
   };
 
+  
   const Assigndpa = async () => {
     const body = {
       client_id: ids.client_id,
+      user_id: String(item.id),
     };
     const res = await postData("get_client_all_dpa_details", body);
-    setAllClientDpa(res.result);
+    const user_res = await postData("u_get_user_all_assign_dpa", body);
+    let result = res.result.filter(o1 => !user_res.result.some(o2 => String(o1.id) === String(o2.dpa_id)));
+    
+    setAllClientDpa(result);
   };
   const getUserInfo = async () => {
     const body = {
@@ -130,6 +136,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
     //   const { dpa_id } = item;
     //   return allClientDpa?.filter((el) => el.id === dpa_id)[0];
     // });
+    // setToAssignDPA(data);
     setUserDpa(res?.result);
   };
 
@@ -278,7 +285,35 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                 }
                               />
                             </div>
-                            <div className="row py-3">
+                            <div className="row mx-0 g-3 py-3">
+                            <div className="col-12 mb-3 mb-md-0">
+                              <button
+                              style={{
+                                background: "#90a0b8",
+                                borderRadius: "18px",
+                                fontWeight: "500",
+                                fontSize: "12px",
+                                lineHeight: "18px",
+                                color: "#fff",
+                                display: "flex",
+                                gap: "0.5rem",
+                                alignItems: "center",
+                                padding: "7px 20px 7px 20px",
+                              }}
+
+                                className="border-0 backbtn px-4"
+                                onClick={() => window.history.back()}
+                              >
+                                <span className="d-inline-flex">
+                                  <img
+                                    className="w-100 h-100"
+                                    src="assets/img/svg/leftarrow.svg"
+                                    alt="leftarrow"
+                                  />
+                                </span>
+                                Back{" "}
+                              </button>
+                            </div>
                               <div className="col-12 mb-4 individualUser">
                                 <div className="row flex-column mx-0 d-md-none headerHiddenDetails mb-3">
                                   <div className="col pageHeading px-0">
@@ -421,11 +456,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                         aria-label="Default select example"
                                                         name="role"
                                                       >
-                                                        <option
-                                                          value={values.role}
-                                                        >
-                                                          {values.role}
-                                                        </option>
+                                                        
                                                         <option value={"admin"}>
                                                           admin
                                                         </option>
@@ -605,7 +636,7 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
                                                         }}
                                                       >
                                                         <img
-                                                          src="assets/img/svg/settings.svg"
+                                                          src="assets/img/svg/settings_2.svg"
                                                           className="w-100"
                                                           alt
                                                         />

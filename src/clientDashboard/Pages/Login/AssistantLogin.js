@@ -11,6 +11,7 @@ const AssistantLogin = () => {
   const [show, setShow] = useState(true);
   const [Email, setEmail] = useState("");
   const navigate = useNavigate();
+  const [submitting,setSubmitting] = useState(false);
   const [initialValue, setInitialValue] = useState({
     email: "",
     password: "",
@@ -29,18 +30,22 @@ const AssistantLogin = () => {
       email: value?.email,
       password: value?.password,
     };
+    setSubmitting(true);
     const res = await postData("login", data);
     if (res?.result !== undefined) {
       localStorage.setItem("a_login", JSON.stringify(res?.result));
     }
 
     if (res.result.login !== "failed") {
+      
       const data = {
         email: value.email,
         user_id: res.result.user_id,
       };
+      setSubmitting(true);
       const res2 = await postData("request_otp", data);
-      if (res2.result == "OTP sent!") {
+      if (res2.result === "OTP sent!") {
+        setSubmitting(true);
         resetForm();
         toaster(true, res2.result);
         setTimeout(() => {
@@ -51,6 +56,7 @@ const AssistantLogin = () => {
       }
     } else {
       toaster(false, res?.result?.reason);
+      setSubmitting(false);
     }
   };
   const handle = () => {
@@ -151,7 +157,7 @@ const AssistantLogin = () => {
                                 </div>
                               </div>
                               <div className="col-12">
-                                <button className="loginBtn" type="submit">
+                                <button className="loginBtn" type="submit" disabled={submitting}>
                                   GET OTP
                                 </button>
                               </div>

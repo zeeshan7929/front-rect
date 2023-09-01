@@ -55,7 +55,7 @@ const UsageTrackingOverview = ({ sideBar, setSidebarOpen }) => {
     
     const res1 = await postData("get_client_uploaded_documents", body);
     setDoc(res1.result);
-    const res3 = await postData("get_client_sub_renew_date", body);
+    const res3 = await postData("get_client_info", body);
     setRenewDate(res3.result?.sub_renew_date);
     const res4 = await postData("get_client_all_dpa_details", body);
     setAllUserDpaDetails(res4.result);

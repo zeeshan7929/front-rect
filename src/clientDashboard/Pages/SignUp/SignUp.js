@@ -13,6 +13,8 @@ import StripeContainer, {
   stripePromise,
 } from "../../Common/Stripe/StripeContainer";
 
+import { useEffect } from "react";
+
 const SignUp = () => {
   const countries = Country.getAllCountries();
   const countrydata = countries?.map((el) => ({
@@ -39,8 +41,9 @@ const SignUp = () => {
   const [show1, setShow1] = useState(true);
   const [check, setcheck] = useState(false);
   const [key, setkey] = useState();
-
+  const [allTierInfo,setAllTierInfo] = useState([]);
   const [companyLogo, setCompanyLogo] = useState([]);
+  const [selectedTier,setSelectedTier] = useState([]);
   const [initialValue, setInitialValue] = useState({
     chosenTier: "",
     billingType: "",
@@ -106,6 +109,17 @@ const SignUp = () => {
 
   let nav = useNavigate();
   let [submitting, setSubmitting] = useState(false);
+  const getTierInfo = async()=>{
+    const body = {}
+    const res = await postData("m_get_all_tiers_info", body);
+    if (res.result !== ""){
+    setAllTierInfo(res?.result)
+    console.log(allTierInfo)
+    }
+}
+  useEffect(()=>{
+    getTierInfo()
+  },[])
   const submitHandler = async (value, { resetForm }) => {
     const val = {
       name: value.companyName,
@@ -221,13 +235,22 @@ const SignUp = () => {
                                   className="form-select shadow-none"
                                   aria-label="Default select example"
                                   name="chosenTier"
+                                  value = {selectedTier}
+                                  onChange={(e)=>{
+                                    setSelectedTier(e.target.value)
+                                    console.log(e.target.value)
+                                  }}
                                 >
                                   <option disabled selected>
                                     Choose Plan
                                   </option>
-                                  <option value={1}>Lite Plan</option>
-                                  <option value={2}>Standard Plan</option>
-                                  <option value={3}>Premium Plan</option>
+                                  {
+                                    allTierInfo.map((tier)=>{
+                                      return (
+                                        tier.product_id !== "" ? <option value={tier.id}>{tier.name}</option> : ""
+                                      )
+                                    })
+                                  }
                                 </Field>
                               </div>
                               <div
