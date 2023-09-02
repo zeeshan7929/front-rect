@@ -14,7 +14,12 @@ import StripeContainer, {
 } from "../../Common/Stripe/StripeContainer";
 
 import { useEffect } from "react";
-
+import { CountConverter } from "../../Common/Others/CountConverter";
+import PhoneInput from 'react-phone-input-2'
+// import 'react-phone-input-2/lib/style.css'
+import 'react-phone-input-2/lib/material.css'
+import { toaster } from "../../Common/Others/Toaster";
+import { useImageToBase64 } from "../../../Chat Interface/Common/blob/blob";
 const SignUp = () => {
   const countries = Country.getAllCountries();
   const countrydata = countries?.map((el) => ({
@@ -27,7 +32,7 @@ const SignUp = () => {
     value: el?.isoCode,
     ...el,
   }));
-
+  const { base64Image, convertToBase64 } = useImageToBase64();
   const updatedStates = (countryId) =>
     State.getStatesOfCountry(countryId).map((state) => ({
       label: state?.name,
@@ -44,6 +49,9 @@ const SignUp = () => {
   const [allTierInfo,setAllTierInfo] = useState([]);
   const [companyLogo, setCompanyLogo] = useState([]);
   const [selectedTier,setSelectedTier] = useState([]);
+  const [selectedBilling,setSetectedBilling] = useState("");
+  const [countryCode,setCountryCode] = useState("");
+  const [fileName,setFilename] = useState("");
   const [initialValue, setInitialValue] = useState({
     chosenTier: "",
     billingType: "",
@@ -74,14 +82,14 @@ const SignUp = () => {
     /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
   const validationschema = yup.object().shape({
-    chosenTier: Yup.string().required("Please Select  Tier"),
-    billingType: Yup.string().required("Please Select  Billing Type"),
+    // chosenTier: Yup.string().required("Please Select  Tier"),
+    // billingType: Yup.string().required("Please Select  Billing Type"),
     companyName: Yup.string().required("Please Enter  Company Name"),
-    companyContactNumber: Yup.string()
-      .required("Please Enter  Contact Number")
-      .matches(phoneReg, "Phone number is not valid")
-      .min(10, "too short")
-      .max(10, "too long"),
+    // companyContactNumber: Yup.string()
+    //   .required("Please Enter  Contact Number")
+    //   .matches(phoneReg, "Phone number is not valid")
+    //   .min(10, "too short")
+    //   .max(10, "too long"),
     companyWebsiteUrl: Yup.string().required("Please Enter  Website Url"),
     industry: Yup.string().required("Please Enter  Industry"),
     country: Yup.mixed().required("Please Enter Country "),
@@ -117,6 +125,16 @@ const SignUp = () => {
     console.log(allTierInfo)
     }
 }
+
+  function getTierInfoById(tierId){
+    var returnVal = ""
+    allTierInfo.forEach((el)=>{
+      if (String(el.id) === String(tierId)){
+        returnVal = el
+      }
+    })
+    return returnVal
+  }
   useEffect(()=>{
     getTierInfo()
   },[])
@@ -127,12 +145,12 @@ const SignUp = () => {
       email: value.reEmail,
     };
     const body = {
-      tier_id: value?.chosenTier,
-      billing_type: value?.billingType,
-      filename: "",
-      file_content: "",
+      tier_id: String(selectedTier),
+      billing_type: selectedBilling === "0" ? "monthly" : "yearly",
+      filename: fileName !== "" ? fileName : "",
+      file_content: fileName !== "" ? base64Image : "",
       name: value?.companyName,
-      phone: value?.companyContactNumber.toString(),
+      phone: String("+") + String(countryCode),
       website: value?.companyWebsiteUrl,
       industry: value?.industry,
       country: value?.country.name,
@@ -159,7 +177,7 @@ const SignUp = () => {
       user_name: value?.reName,
       user_email: value?.reEmail,
       user_password: value?.reConfirmPassword,
-      mobile: "+91",
+      mobile: "",
     };
     setSubmitting(true);
 
@@ -183,6 +201,7 @@ const SignUp = () => {
       }
       if (r.paymentIntent.status === "succeeded" || r.paymentIntent.status === "processing") {
         nav("/assistant-login");
+        toaster(true,"Welcome to KARAIV")
       } else throw new Error("Please try again");
     } catch (er) {
       alert("Payment failed. Please try again");
@@ -241,13 +260,17 @@ const SignUp = () => {
                                     console.log(e.target.value)
                                   }}
                                 >
-                                  <option disabled selected>
+                                  <option  selected>
                                     Choose Plan
                                   </option>
                                   {
-                                    allTierInfo.map((tier)=>{
+                                    allTierInfo.map((tier,i)=>{
                                       return (
-                                        tier.product_id !== "" ? <option value={tier.id}>{tier.name}</option> : ""
+                                        i === 0 ? (
+                                          tier.product_id !== "" ? <option value={tier.id} >{tier.name}</option> : ""
+                                        ) : (
+                                          tier.product_id !== "" ? <option value={tier.id}>{tier.name}</option> : ""
+                                        )
                                       )
                                     })
                                   }
@@ -269,10 +292,10 @@ const SignUp = () => {
                                   Features
                                 </div>
                                 <ul className="fw-normal">
-                                  <li>2M Training Tokens</li>
-                                  <li>10M Database Usage</li>
-                                  <li>3 DPAs</li>
-                                  <li>5 Users</li>
+                                  <li>{CountConverter(getTierInfoById(selectedTier).training_tokens)} Training Tokens</li>
+                                  <li>{CountConverter(getTierInfoById(selectedTier).database_usage)} Database Usage</li>
+                                  <li>{getTierInfoById(selectedTier).num_of_dpa} DPAs</li>
+                                  <li>{getTierInfoById(selectedTier).num_of_users} Users</li>
                                 </ul>
                               </div>
                             </div>
@@ -293,12 +316,18 @@ const SignUp = () => {
                                   className="form-select shadow-none bg-white"
                                   aria-label="Default select example"
                                   name="billingType"
+                                  value = {selectedBilling}
+                                  onChange={(e)=>{
+                                    setSetectedBilling(e.target.value)
+                                    console.log(e.target.value)
+                                  }}
                                 >
-                                  <option disabled selected>
+                                  <option  selected>
                                     Select Type
                                   </option>
-                                  <option value={"monthly"}>Monthly</option>
-                                  <option value={"yearly"}>Yearly</option>
+                                  <option value="0">Monthly</option>
+                                  <option value="1">Yearly</option>
+                                  
                                 </Field>
                               </div>
                               <div
@@ -364,6 +393,8 @@ const SignUp = () => {
                                       name="companyLogo"
                                       hidden
                                       onChange={(event) => {
+                                        setFilename(event.target.files[0].name)
+                                        convertToBase64(event.target.files[0]);
                                         formik.setTouched({
                                           ...formik.touched,
                                           file: true,
@@ -420,28 +451,30 @@ const SignUp = () => {
                                       : ""}
                                   </p>
                                 </div>
-                                <div className="col-12 formGroup">
-                                  <label
-                                    htmlFor="companyNUmber"
-                                    className="form-label fw-normal px-3"
-                                  >
-                                    Company Contact Number
-                                  </label>
-                                  <div className="input-group flex-nowrap">
+                                <div className="col-12 ">
+                                  
+                                  <div className=" flex-nowrap">
                                     <span
-                                      className="input-group-text bg-white border-end-0 rounded-end-0 d-flex align-items-center gap-3 pe-0"
+                                      className=" border-end-0 rounded-end-0 d-flex align-items-center gap-3 pe-0"
                                       id="addon-wrapping"
                                     >
-                                      +91{" "}
-                                      <div className="arrowImg d-flex">
-                                        <img
-                                          src="assets/img/svg/down-chevron.svg"
-                                          className="h-100"
-                                          alt
-                                        />
-                                      </div>
+                                      <PhoneInput
+                                      disableSearchIcon={false}
+                                      inputStyle={{
+                                        width:"100%",
+                                        borderRadius:"15px",
+                                        color:"#a3a3a3"
+                                      }}
+                                      id="companyNUmber"
+                                      enableSearch
+                                      name="companyContactNumber"
+                                      country={'us'}
+                                      value={countryCode}
+                                      onChange={(e)=>{setCountryCode(e)}}
+                                    />
+                                      
                                     </span>
-                                    <Field
+                                    {/* <Field
                                       type="number"
                                       className="form-control shadow-none border-start-0 rounded-start-0"
                                       id="companyNUmber"
@@ -449,7 +482,7 @@ const SignUp = () => {
                                       placeholder="Contact Number"
                                       aria-label="companyNUmber"
                                       aria-describedby="addon-wrapping"
-                                    />
+                                    /> */}
                                   </div>
                                   <div
                                     id="cpassword"
@@ -1497,11 +1530,23 @@ const SignUp = () => {
                           >
                             {submitting
                               ? "Submitting"
-                              : `Make Payment of $1,200`}
+                              : (
+                                selectedBilling === "0" ? (
+                                  `Make Payment of $${getTierInfoById(selectedTier).pricing_monthly}`
+                                ) : (
+                                  `Make Payment of $${getTierInfoById(selectedTier).pricing_yearly}`
+                                )
+                              )}
                           </button>
                         </div>
                         <div className="col-12 text-center timeingPyment fw-normal">
-                          Lite Tier, Yearly
+                          {selectedBilling !== "" ? (
+                            getTierInfoById(selectedTier).name 
+                          ) : ""}
+                          {","}
+                          {selectedBilling !== "" ? (
+                            selectedBilling === "0" ? "Monthly" : "Yearly"
+                          ) : ""}
                         </div>
                       </div>
                     </Form>

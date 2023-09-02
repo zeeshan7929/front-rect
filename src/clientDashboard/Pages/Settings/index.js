@@ -192,7 +192,7 @@ const Settings = ({ sideBar, setSidebarOpen }) => {
       return el.name == initial?.state?.name;
     });
     const body = {
-      client_id: Number(token.client_id),
+      client_id: String(token.client_id),
       name: initial?.name,
       phone: initial?.phone,
       website: initial?.website,
