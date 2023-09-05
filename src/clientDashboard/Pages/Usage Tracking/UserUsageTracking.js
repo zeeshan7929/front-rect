@@ -12,6 +12,7 @@ import { getOptionsDashboardCirculer } from "../../Common/Others/ChartOptions";
 import { postData } from "../../Common/fetchservices";
 import UsageDpaChart from "../../Common/Charts/UsageDpaChart";
 import { CountConverter } from "../../Common/Others/CountConverter";
+import { RenewsDate } from "../../Common/Others/RenewsDate";
 
 const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   let ids = JSON.parse(localStorage.getItem("a_login"));  
@@ -22,10 +23,12 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
   // let dt = location?.state?.dt;
   
   
-  let renewDate = location?.state?.getRenewDate;
+  // let renewDate = location?.state?.getRenewDate;
   const [isOpen,setIsOpen] = useState(false);
   const [filterdpa, setFilterDpa] = useState([]);
   const [search, setsearch] = useState("");
+  const [clientInfo,setClientInfo] = useState([]);
+  const [userTokenUsage,setUserTokenUsage] = useState("");
   const [dt,setDT] = useState([])
 
 
@@ -37,7 +40,13 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
     const res = await postData("u_get_user_all_assign_dpa", bod);
     console.log(res)
     setDT(res?.result);
+    const cInfo = await postData("get_client_info",bod)
+    setClientInfo(cInfo?.result)
+    
+    const uRes = await postData("get_user_info",bod);
+    setUserTokenUsage(uRes?.result.usage_limit);
   }
+
 
   const filterAllUsers = () => {
     const fill = dt?.filter((el) => {
@@ -387,7 +396,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                   </div>
                                   <div className="col-12 d-flex align-items-center justify-content-between">
                                     <div className="progresbarbottomtext">
-                                      Usage renews <strong>{renewDate}</strong>{" "}
+                                      Usage renews <strong>{RenewsDate(clientInfo.sub_renew_date)}</strong>{" "}
                                     </div>
                                     <div className="progresbarbottomtext">
                                       {item?.token_usage > 1000
@@ -412,7 +421,7 @@ const UserUsageTracking = ({ sideBar, setSidebarOpen }) => {
                                           alt="edit"
                                         />
                                       </span>
-                                      {CountConverter(item?.usage_limit)} User Limit{" "}
+                                      {CountConverter(userTokenUsage) === 0 ? CountConverter(clientInfo.token_usage_limit) : CountConverter(userTokenUsage) } User Limit{" "}
                                     </button>
                                   </NavLink>
                                 </div>

@@ -30,6 +30,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
   const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [usersdata, setusersdata] = useState([]);
+  const [toAssignUsers,setToAssignUsers] = useState([]);
   const [el, setEl] = useState({});
   const [tokenUsage,setTokenUsage] = useState([]);
   const [tierInfo,setTierInfo] = useState([]);
@@ -43,23 +44,23 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
       item?.allow_files?.toLowerCase() == "true" ? "true" : "false",
   });
   const [modelOpen, setModelOpen] = useState(false);
-  const handleAssignUsers = (el) => {
-    let fill = usersdata?.filter((item) => item?.id === el.id);
-    if (fill.length) {
-      return;
-    } else {
-      setusersdata([...usersdata, el]);
-    }
-  };
+ 
 
   const handleAssignDpa = async(dpa_id,user_id) => {
+    // setAllClientDpa(allClientDpa.filter(item => item.id !== id))
     const body = {
       dpa_id: String(item?.id ? item.id : dpaID),
       user_id: String(user_id),
       client_id: ids.client_id,
     };
+    console.log("Handle remove users called")
+    let fill_ = toAssignUsers?.filter(item => item.id !== user_id);
+    console.log(fill_);
+    setToAssignUsers(fill_);
     const res = await postData("assign_new_dpa_to_user", body);
     userAssignedApi();
+    getAllUserForAssign();
+   
   };
   const autoClose = () => {
     setOPen("");
@@ -77,7 +78,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
         return el;
       }
     });
-    setAllAssignUsersFilter(fill);
+    
   };
   
   const handleRemoveUsers = async(id, iid) => {
@@ -86,8 +87,13 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
       user_id: String(id),
       client_id: ids.client_id,
     };
+    
+
     const res = await postData("delete_user_assign_dpa", body);
     if (res.result === "success") {
+      userAssignedApi();
+      getAllUserForAssign();
+      
       let fill = usersdata?.filter((el) => {
         return el.id !== id || el.dpa_id !== iid;
       });
@@ -130,12 +136,30 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
   };
 
   const userAssignedApi = async () => {
+    
     const body = {
       client_id: ids.client_id,
       dpa_id: String(item.id ? item.id : dpaID),
     };
-    const res = await postData("get_all_users_of_dpa", body);
-    setusersdata(res.result);
+    let res = await postData("get_client_all_users", body);
+    const res_ = await postData("get_all_users_of_dpa", body);
+    setusersdata(res_.result);  
+    setAllAssignUsers(res.result);
+    
+    if (res_.result.length > 0){
+      let result = res.result.filter(o => !res_.result.some(v => v.id === o.id));  
+      console.log(result);
+      setToAssignUsers(result);
+    }else{
+      console.log("length : 0")
+      console.log(res.result)
+      setToAssignUsers(res.result);
+    }
+    // setToAssignUsers(array);
+    let fill = res?.result.filter((el) => {
+      return el?.client_id === ids.client_id;
+    });
+    setAssignUsers(fill);
 
     const tokens = await postData("get_dpa_training_token_usage_count", body);
     setTokenUsage(tokens.result.dpa_training_token_usage_count);
@@ -144,16 +168,8 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
 
     
   };
+  
   const getAllUserForAssign = async () => {
-    const body = {
-      client_id: ids.client_id,
-    };
-    let res = await postData("get_client_all_users", body);
-    setAllAssignUsers(res.result);
-    let fill = res?.result.filter((el) => {
-      return el?.client_id == ids.client_id;
-    });
-    setAssignUsers(fill);
   };
 
   const dpaValidationSchema = Yup.object().shape({
@@ -166,18 +182,44 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
   });
   useEffect(() => {
     handlefilterUser();
+    userAssignedApi();
     getAllUserForAssign();
     addBlurClass();
+    
   }, [search]);
 
   useEffect(() => {
     userAssignedApi();
+    getAllUserForAssign();
   }, []);
   let a = usersdata?.map((el) => el?.dpa_usage_by_user);
   let d_tokenUsage = a.reduce((total, cur) => Number(total) + Number(cur), 0);
   let b = usersdata?.map((el) => el.usage_limit);
   let totalLimit = b.reduce((total, cur) => Number(total) + Number(cur), 0);
 
+
+  async function revoke_access(row){
+    handleRemoveUsers(row.id,row.dpa_id)
+    document.getElementById(String(row.id)).style.display = "none";
+  }
+
+  function delete_dpa(row){
+    
+    var dis = document.getElementById(String(row.id)).style.display
+    if (dis === "block"){
+      document.getElementById(String(row.id)).style.display = "none";
+      return
+    }else{
+      var elms = document.getElementsByClassName('r-a')
+      var arr = [...elms];
+      arr.forEach(el=>{
+        el.style.display = "none"
+      });
+      document.getElementById(String(row.id)).style.display = "block";
+    }
+
+    
+  }
   const columns = [
     {
       name: `Total Users : ${usersdata.length}`,
@@ -227,13 +269,19 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
     },
     {
       selector: (row) => (
-        <NavLink
+        <div
           // to="/user-usage-tracking"
           // state={{ item: row, dt: allUserDpaDetails }}
-          style={{ fontSize: "26px", textDecoration: "none" }}
+          style={{ display:"flex",justifyContent:"center",flexDirection:"row" }}
+          
         >
-          <i style={{ color: "#1E1E1E" }} class="bi bi-gear"></i>
-        </NavLink>
+          <div className="r-a" id={String(row.id)} style={{display:"none", position:"absolute",right:"0",top:"0",background: "white",padding: "8px",borderRadius: "10px",boxShadow: "0px 10px 15px -3px rgba(0,0,0,0.1)",marginTop:"-13% "}}>
+              <div style={{backgroundColor:"red",color:"white",padding:"3px 10px 3px 10px",borderRadius:"10px"}} onClick={()=>{revoke_access(row)}}>
+              Revoke Access
+              </div>
+            </div>
+          <i style={{ color: "#1E1E1E" ,fontSize: "26px"}} onClick={()=>{delete_dpa(row)}} class="bi bi-gear"></i>
+        </div>
       ),
       right: true,
       style: {
@@ -760,7 +808,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                                           </div>
                                                           <div className="col-12 userGroup">
                                                             {search
-                                                              ? allAssignUsersFilter.map(
+                                                              ? toAssignUsers.map(
                                                                   (el) => {
                                                                     return (
                                                                       <div
@@ -799,7 +847,7 @@ const DPASettings = ({ sideBar, setSidebarOpen }) => {
                                                                     );
                                                                   }
                                                                 )
-                                                              : allAssignUsers.map(
+                                                              : toAssignUsers.map(
                                                                   (el) => {
                                                                     return (
                                                                       <div

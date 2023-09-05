@@ -141,16 +141,18 @@ const IndividualUser = ({ sideBar, setSidebarOpen }) => {
   };
 
   const handleAssignDpa = (id) => {
-    let result = userDpa.find((el) => el.id == id);
+    let result = userDpa.find((el) => el.id === id);
     if (result) {
       return;
     } else {
+      setAllClientDpa(allClientDpa.filter(item => item.id !== id))
       const body = {
         dpa_id: String(id),
         user_id: String(item.id),
         client_id: ids.client_id,
       };
       const res = postData("assign_new_dpa_to_user", body);
+      
       Assigndpa();
     }
   };
